@@ -27,7 +27,7 @@ foreach ($ids as $id) {
 ?>
 <section class="banner">
 
-    <div id="large-header" class="large-header " style="height: 124px; background: url(<?= Yii::app()->baseUrl; ?>/images/img_inn.jpg">
+    <div id="large-header" class="large-header " style="height: 124px; background: url(<?= Yii::app()->baseUrl; ?>/images/img_inn.jpg)">
 
 
         <div class="banner_txt">
@@ -81,7 +81,7 @@ foreach ($ids as $id) {
 
                 <div class="col-md-8">
                     <div class="dtl_dsrpn">
-                        <h1>Lorem Ipsum is simply dummy text</h1>
+                        <h1><?= $product->product_name; ?></h1>
                         <div class="dtl_inn">
                             <h2><?= $product->product_name; ?></h2>
                             <p><?= $product->description; ?></p>

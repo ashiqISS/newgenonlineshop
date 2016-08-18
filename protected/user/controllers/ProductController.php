@@ -17,7 +17,7 @@ class ProductController extends Controller {
 
     public function actionDetail($name) {
         $prduct = Products::model()->findByAttributes(array('canonical_name' => $name, 'status' => 1));
-        $related_products = explode(",", $prduct->related_products);
+//        $related_products = explode(",", $prduct->related_products);
         if (!empty($prduct)) {
             $this->render('detailed', array('product' => $prduct));
         } else {
