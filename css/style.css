@@ -6570,9 +6570,9 @@ td {
     font-family: 'Roboto', sans-serif;
     font-size: 13px;
     border-bottom: 1px solid #e4dede;
-    padding-left:9px !important;
+/*    padding-left:9px !important;
     padding-top: 15px !important;
-    padding-bottom: 15px !important; text-align:center;
+    padding-bottom: 15px !important; text-align:center;*/
 }
 
 .table > thead > tr > th {
