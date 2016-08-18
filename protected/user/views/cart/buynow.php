@@ -14,7 +14,7 @@
     }
 </style>
 <section class="banner">
-    <div id="large-header" class="large-header " style="height: 124px; background: url(<?= Yii::app()->baseUrl; ?>/images/img_inn.jpg">
+    <div id="large-header" class="large-header " style="height: 124px; background: url(<?= Yii::app()->baseUrl; ?>/images/img_inn.jpg)">
         <div class="banner_txt">
             <h1 class="animated fadeInLeft m2">Check <span class="redish"> Out </span></h1>
         </div>
@@ -57,46 +57,49 @@
                                         <?php
                                         foreach ($carts as $cart) {
 
-                                                $prod_details = Products::model()->findByPk($cart->product_id);
-                                                $folder = Yii::app()->Upload->folderName(0, 1000, $prod_details->id);
+                                            $prod_details = Products::model()->findByPk($cart->product_id);
+                                            $folder = Yii::app()->Upload->folderName(0, 1000, $prod_details->id);
 
-                                                $i = 0;
+                                            $i = 0;
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php echo $folder; ?>/<?php echo $prod_details->id; ?>/small.<?php echo $prod_details->main_image; ?>" class="img-responsive crt mid" align="absmiddle" style="max-height:300px; max-width:200px;display: block;">
+                                                </td>
+                                                <td>
+                                                    <h2>
+                                                        <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Products/Detail/<?php echo $prod_details->id; ?>"style="text-decoration: none;">
+                                                            <?php echo $prod_details->product_name; ?>
+                                                        </a>
+                                                    </h2>
+                                                </td>
+                                                <?php
+                                                if ($prod_details->discount) {
+                                                    $price = $prod_details->price - $prod_details->discount;
+                                                } else {
+                                                    $price = $prod_details->price;
+                                                }
+                                                $cart_qty = $cart->quantity;
+                                                $tot_price = $cart_qty * $price;
                                                 ?>
-                                                <tr>
-                                                    <td>
-                                                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php echo $folder; ?>/<?php echo $prod_details->id; ?>/small.<?php echo $prod_details->main_image; ?>" class="img-responsive crt mid" align="absmiddle" style="max-height:300px; max-width:200px;display: block;">
-                                                    </td>
-                                                    <td><h2>
-                                                            <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Products/Detail/<?php echo $prod_details->id; ?>"style="text-decoration: none;">
-                                                                <?php echo $prod_details->product_name; ?>
-                                                            </a></h2></td>
-                                                    <?php
-                                                    if ($prod_details->discount) {
-                                                            $price = $prod_details->price - $prod_details->discount;
-                                                    } else {
-                                                            $price = $prod_details->price;
-                                                    }
-                                                    $cart_qty = $cart->quantity;
-                                                    $tot_price = $cart_qty * $price;
-                                                    ?>
-                                                    <td><h2><?= Yii::app()->Currency->convert($price); ?></h2></td>
-                                                    <td class="">
-                                                        <select  class="quantity qty" cart="<?php echo $cart->id; ?>" style="width: 35px !important">
-                                                            <?php for ($i = 1; $i < 5; $i++) {
-                                                                    ?>
-                                                                    <option <?= $cart->quantity == $i ? 'selected' : '' ?> value="<?= $i; ?>" class="jsNumeric jsQty p0  qty" "><?= $i; ?> </option>
-                                                            <?php }
+                                                <td><h2><?= Yii::app()->Currency->convert($price); ?></h2></td>
+                                                <td class="">
+                                                    <select  class="quantity qty" cart="<?php echo $cart->id; ?>" style="width: 35px !important">
+                                                        <?php for ($i = 1; $i < 5; $i++) {
                                                             ?>
-                                                        </select>
+                                                            <option <?= $cart->quantity == $i ? 'selected' : '' ?> value="<?= $i; ?>" class="jsNumeric jsQty p0  qty" "><?= $i; ?> </option>
+                                                        <?php }
+                                                        ?>
+                                                    </select>
 
 
-                                                    </td>
-                                                    <td><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/cart/Delete/<?= $cart->id; ?>"><img class="bin" src="<?= Yii::app()->baseUrl; ?>/images/ben.png"></a></td>
-                                                    <td><h2 class="range_<?php echo $cart->id; ?>"><?= Yii::app()->Currency->convert($tot_price); ?></h2></td>
-                                            <input type="hidden" id="cart_<?php echo $cart->id; ?>" value="<?php echo $prod_details->id; ?>">
-                                            </tr>
-                                            <?php
-                                            $total+= $tot_price;
+                                                </td>
+                                                <td><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/cart/Delete/<?= $cart->id; ?>"><img class="bin" src="<?= Yii::app()->baseUrl; ?>/images/ben.png"></a></td>
+                                                <td><h2 class="range_<?php echo $cart->id; ?>"><?= Yii::app()->Currency->convert($tot_price); ?></h2></td>
+                                        <input type="hidden" id="cart_<?php echo $cart->id; ?>" value="<?php echo $prod_details->id; ?>">
+                                        </tr>
+                                        <?php
+                                        $total+= $tot_price;
                                     }
                                     ?>
                                     </tbody>
@@ -120,17 +123,20 @@
 
                         <tbody><tr>
                                 <td class="tdd">Sub-Total :</td>
-                                <td class="tdd">â‚¹ 3500.00</td>
+                                <td class="tdd range"><?= Yii::app()->Currency->convert($total); ?></td>
                             </tr>
                             <tr>
                                 <td class="tdd">Total :</td>
-                                <td class="tdd">â‚¹ 3500.00</td>
+                                <td class="tdd range"><?= Yii::app()->Currency->convert($total); ?></td>
 
                             </tr>
                         </tbody>
                     </table>
                     <div class="proceed_upmg">
-                        <button class="btn prsd-btn btn-default">proceed to checkout</button>
+                        <form method="post" action="<?= Yii::app()->request->baseUrl; ?>/index.php/checkOut/Checkout/" id="checkoutForm">
+                            <input type="hidden" value="<?php echo $total; ?>" name="total_amt" />
+                            <button class="btn prsd-btn btn-default" id="checkout_btn">proceed to checkout</button>
+                        </form>                        
 
                     </div></div>
             </div>
@@ -139,41 +145,45 @@
 </section> <!-- end of facial -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
-        $(document).ready(function () {
-
-            $('.quantity').change(function () {
-                var cart = $(this).attr('cart');
-                var qty = this.value;
-                var product_id = $('#cart_' + cart).val();
-                quantityChange(cart, qty, product_id);
-                total();
-            });
-
+    $(document).ready(function () {
+        // submit checkout form
+        $('#checkout_btn').click(function () {
+            $('#checkoutForm').submit();
         });
-        function quantityChange(cart, qty, product_id) {
 
-            $.ajax({
-                type: "POST",
-                cache: 'false',
-                async: false,
-                url: baseurl + 'Cart/Calculate',
-                data: {cart_id: cart, Qty: qty, prod_id: product_id},
-            }).done(function (data) {
-                $(".range_" + cart).html(data);
-            });
-        }
-        function total() {
-            $.ajax({
-                type: "POST",
-                cache: 'false',
-                async: false,
-                url: baseurl + 'Cart/Total',
-                data: {}
-            }).done(function (data) {
-                $(".range").html(data);
-                hideLoader();
-            });
-        }
+        $('.quantity').change(function () {
+            var cart = $(this).attr('cart');
+            var qty = this.value;
+            var product_id = $('#cart_' + cart).val();
+            quantityChange(cart, qty, product_id);
+            total();
+        });
+
+    });
+    function quantityChange(cart, qty, product_id) {
+
+        $.ajax({
+            type: "POST",
+            cache: 'false',
+            async: false,
+            url: baseurl + 'Cart/Calculate',
+            data: {cart_id: cart, Qty: qty, prod_id: product_id},
+        }).done(function (data) {
+            $(".range_" + cart).html(data);
+        });
+    }
+    function total() {
+        $.ajax({
+            type: "POST",
+            cache: 'false',
+            async: false,
+            url: baseurl + 'Cart/Total',
+            data: {}
+        }).done(function (data) {
+            $(".range").html(data);
+            hideLoader();
+        });
+    }
 
 
 

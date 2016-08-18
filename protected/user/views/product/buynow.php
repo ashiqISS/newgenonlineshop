@@ -14,7 +14,7 @@
     }
 </style>
 <section class="banner">
-    <div id="large-header" class="large-header " style="height: 124px; background: url(<?= Yii::app()->baseUrl; ?>/images/img_inn.jpg">
+    <div id="large-header" class="large-header " style="height: 124px; background: url(<?= Yii::app()->baseUrl; ?>/images/img_inn.jpg)">
         <div class="banner_txt">
             <h1 class="animated fadeInLeft m2">Check <span class="redish"> Out </span></h1>
         </div>
@@ -120,11 +120,11 @@
 
                         <tbody><tr>
                                 <td class="tdd">Sub-Total :</td>
-                                <td class="tdd">â‚¹ 3500.00</td>
+                                <td class="tdd">Subtotal: <?= Yii::app()->Currency->convert($total); ?></td>
                             </tr>
                             <tr>
                                 <td class="tdd">Total :</td>
-                                <td class="tdd">â‚¹ 3500.00</td>
+                                <td class="tdd">Total: <?= Yii::app()->Currency->convert($total); ?></td>
 
                             </tr>
                         </tbody>
