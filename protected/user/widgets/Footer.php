@@ -108,21 +108,21 @@ class Footer extends CWidget {
         <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
         <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
 
-                                                    <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
-                                                    <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
+                                                            <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
+                                                            <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/owl.carousel.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.appear.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.animateNumber.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/index-script.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/slick.min.js"></script>
-
+        <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/ng_main.js"></script>
 
 
 
         <script>
-            
-//            this script is for solving error : "Cannot read property 'msie' of undefined"
+
+        //            this script is for solving error : "Cannot read property 'msie' of undefined"
             jQuery.browser = {};
             (function () {
                 jQuery.browser.msie = false;
@@ -134,7 +134,7 @@ class Footer extends CWidget {
             })();
 
 
-            jQuery(document).ready(function () {
+             jQuery(document).ready(function () {
                 $(window).scroll(function () {
 
                     var body = $("html, body");
@@ -158,7 +158,7 @@ class Footer extends CWidget {
         <script>
 
 
-            jQuery(window).scroll(function ()
+         jQuery(window).scroll(function ()
 
 
             {
@@ -202,6 +202,7 @@ class Footer extends CWidget {
                     myanimations('.arrivals p', 'fadeInRight m2');
                 }
             });
+
 
 
 
