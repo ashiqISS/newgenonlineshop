@@ -9,10 +9,10 @@ class CartController extends Controller {
         public function actionBuynow() {
 
                 $id = $_REQUEST['prod'];
-                if (Yii::app()->session['user'] != '' && Yii::app()->session['user'] != NULL) {
+                if (Yii::app()->user->getState('user_id') != '' && Yii::app()->user->getState('user_id') != NULL) {
 
-                        $user_id = Yii::app()->session['user']['id'];
-                        Cart::model()->deleteAllByAttributes(array(), array('condition' => 'date < subdate(now(), 1) and user_id != ' . Yii::app()->session['user']['id']));
+                        $user_id = Yii::app()->user->getState('user_id');
+                        Cart::model()->deleteAllByAttributes(array(), array('condition' => 'date < subdate(now(), 1) and user_id != ' .Yii::app()->user->getState('user_id')));
                 } else {
                         if (!isset(Yii::app()->session['temp_user'])) {
                                 Yii::app()->session['temp_user'] = microtime(true);
@@ -47,9 +47,9 @@ class CartController extends Controller {
 
         public function actionMycart() {
 
-                if (Yii::app()->session['user'] != '' && Yii::app()->session['user'] != NULL) {
+                if (Yii::app()->user->getState('user_id') != '' && Yii::app()->user->getState('user_id') != NULL) {
 
-                        $user_details = UserDetails::model()->findByPk(Yii::app()->session['user']['id']);
+                        $user_details = Users::model()->findByPk(Yii::app()->user->getState('user_id'));
 
                         $id = $user_details->id;
 
@@ -91,8 +91,8 @@ class CartController extends Controller {
 
         public function actionTotal() {
 
-                if (Yii::app()->session['user'] != '' && Yii::app()->session['user'] != NULL) {
-                        $id = Yii::app()->session['user']['id'];
+                if (Yii::app()->user->getState('user_id') != '' &&Yii::app()->user->getState('user_id') != NULL) {
+                        $id =Yii::app()->user->getState('user_id');
                         $cart_items = Cart::model()->findAllByAttributes(array('user_id' => $id));
                 } else {
                         $temp_id = Yii::app()->session['temp_user'];
@@ -116,8 +116,8 @@ class CartController extends Controller {
         }
 
         public function actionEmptyCart() {
-                if (isset(Yii::app()->session['user']['id'])) {
-                        Cart::model()->deleteAllByAttributes(array('user_id' => Yii::app()->session['user']['id']));
+                if (Yii::app()->user->getState('user_id')) {
+                        Cart::model()->deleteAllByAttributes(array('user_id' =>Yii::app()->user->getState('user_id')));
                 } else if (isset(Yii::app()->session['temp_user'])) {
                         Cart::model()->deleteAllByAttributes(array('session_id' => Yii::app()->session['temp_user']));
                 }

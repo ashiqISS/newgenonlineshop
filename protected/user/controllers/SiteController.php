@@ -60,7 +60,9 @@ class SiteController extends Controller {
                     // login buyer
                     $buyer = BuyerDetails::model()->findByAttributes(array('user_id' => $user_model->id));
                     $buyer_id = $buyer->id;
+                    $buyer_fname = $buyer->first_name;
                     Yii::app()->user->setState('buyer_id', $buyer_id);
+                    Yii::app()->user->setState('buyer_fname', $buyer_fname);
 //                    $this->redirect(array('buyer/default/index'));
                     $this->redirect(array('product/products'));
                 } else if ($user_model->user_type == 2) {
