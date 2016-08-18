@@ -60,9 +60,38 @@ class HeaderMerchant extends CWidget {
                 </header>
                 <section class="faq hidden-xs">    
                     <div class="container">
-                        <div class="row">
+                                             <div class="row">
                             <div class="col-md-12">  
-                                <a class="faqs" href="#">FAQ'S<i class="fa infos fa-exclamation-circle"></i></a>
+                                <div class="col-md-11">  
+                                    <a class="faqs" href="#">FAQ'S<i class="fa infos fa-exclamation-circle"></i></a>
+                                </div>
+                                <div class="col-md-1 has_dropdown" style="top: 2px;">  
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary cat dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <?php if (isset(Yii::app()->session['currency'])) { ?>
+                                                <i class="fa currency_symbol">
+                                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/currency/<?php echo Yii::app()->session['currency']['id']; ?>.<?php echo Yii::app()->session['currency']['image']; ?>" width="16" height="11" alt=""/>
+                                                </i> <?php echo Yii::app()->session['currency']['currency_code']; ?>
+                                            <?php } else { ?>
+                                                <i class="fa currency_symbol"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/india-home.jpg" width="16" height="11" alt=""/></i> INR
+                                            <?php } ?>
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu categories">
+                                            <?php
+                                            $currencies = Currency::model()->findAll();
+
+                                            foreach ($currencies as $currency) {
+                                                ?>
+                                                <li>
+                                                    <a href="<?php echo Yii::app()->baseUrl; ?>/index.php/Site/CurrencyChange/id/<?= $currency->id; ?>" class="currency" code="<?= $currency->id; ?>">
+                                                        <i class="fa currency_symbol"><img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/currency/<?= $currency->id; ?>.<?= $currency->image; ?>" width="16" height="11" alt=""/></i> <?= $currency->currency_code; ?></a>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
+                                </div>                                
                             </div>
 
                         </div>
@@ -105,28 +134,7 @@ class HeaderMerchant extends CWidget {
                                         <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/user-registration">Register</a></li>
                                     <?php }
                                     ?>
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary cat dropdown-toggle" type="button" data-toggle="dropdown">
-                                            <?php if (isset(Yii::app()->session['currency'])) { ?>
-                                                <i class="fa currency_symbol"><img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/currency/<?php echo Yii::app()->session['currency']['id']; ?>.<?php echo Yii::app()->session['currency']['image']; ?>" width="16" height="11" alt=""/>
-                                                </i> <?php echo Yii::app()->session['currency']['currency_code']; ?>
-                                            <?php } else { ?>
-                                                <i class="fa currency_symbol"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/india-home.jpg" width="16" height="11" alt=""/></i> INR
-                                            <?php } ?>
-                                        </button>
-                                        <ul class="dropdown-menu categories">
-                                            <?php
-                                            $currencies = Currency::model()->findAll();
-
-                                            foreach ($currencies as $currency) {
-                                                ?>
-                                                <li>
-                                                    <a href="<?php echo Yii::app()->baseUrl; ?>/index.php/Site/CurrencyChange/id/<?= $currency->id; ?>" class="currency" code="<?= $currency->id; ?>">
-                                                        <i class="fa currency_symbol"><img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/currency/<?= $currency->id; ?>.<?= $currency->image; ?>" width="16" height="11" alt=""/></i><?= $currency->currency_code; ?></a>
-                                                </li>
-                                            <?php } ?>
-                                        </ul>
-                                    </div>
+                                    
                                 </ul>
                             </div>
 
