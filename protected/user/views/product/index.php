@@ -32,7 +32,7 @@ if ($category_name != "") {
     <div class="container">
         <div class="row">
             <div class="heading">
-                wishlist
+<!--                wishlist-->
 
             </div>
             <div class="row">
@@ -42,6 +42,7 @@ if ($category_name != "") {
                     <div class="category-ui">
 
                         <span class="da">Category</span>
+                        
                         <span class="da-2">Lorem Ipsum is simply</span>
                         <span class="da-3">Lorem Ipsum </span>
                         <span class="da-3">Lorem Ipsum</span>

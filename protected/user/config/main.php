@@ -29,7 +29,7 @@ return array(
     'modulePath' => $user . '/modules/',
     'modules' => array(
         // uncomment the following to enable the Gii tool
-        'registration', 'merchant', 'buyer', 'products',
+        'registration', 'merchant', 'products',
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'gii',
