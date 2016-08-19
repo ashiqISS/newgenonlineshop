@@ -128,7 +128,7 @@ class Header extends CWidget {
 
 
                                     </li>
-                                    <li><a class="mycart" href="#"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">Mycart</a></li>
+                                    <li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-cart"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">Mycart</a></li>
 
                                     <?php
                                     if (Yii::app()->user->hasState('user_id')) {
@@ -147,7 +147,6 @@ class Header extends CWidget {
                                             </ul>
 
                                         </li>
-                                        <!--<li><a href="#">Settings</a></li>-->
                                         <?php
                                     } else {
                                         ?>
@@ -233,7 +232,7 @@ class Header extends CWidget {
                                             <ul class="nav navbar-nav">
                                                 <li class="active"><a href="#">Home</a></li>
                                                 <li><a href="#">About Us</a></li> 
-                                                <li><a href="#">Products</a></li> 
+                                                <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                 <li><a href="#">Offers & Deals</a></li> 
 
 

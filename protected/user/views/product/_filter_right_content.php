@@ -35,7 +35,9 @@
                             <?php echo $product->product_name; ?> 
                         </a>
                     </h2>
-                    <h3><?php echo Yii::app()->Currency->convert($product->price); ?></h3>
+                    <?php if (Yii::app()->user->getId()) { ?>
+                        <h3><?php echo Yii::app()->Currency->convert($product->price); ?></h3>
+                    <?php } ?>
             </div>
             </a>
         </div>

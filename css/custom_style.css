@@ -3,8 +3,8 @@
 }
 
 .form-horizontal .form-group {
-     margin-right: 0px; 
-     margin-left: 0px; 
+    margin-right: 0px; 
+    margin-left: 0px; 
 }
 
 /*.form-control {
@@ -36,4 +36,113 @@ a.faqs {
     position: absolute;
     /*top: 0;*/
     right: 26px;
+}
+
+
+/*
+-------------------------
+Product Details
+-------------------------
+*/
+.product_thumb{
+    width:20%;
+    float:left;
+    padding-right:25px;
+}
+.product_thumb ul{
+    list-style:none;
+    margin:0px;
+    padding:0px;
+}
+.product_thumb ul li{
+    list-style:none;
+    margin:0px;
+    padding:0px;
+    margin-bottom:35px;
+    clear:both;
+}
+.product_thumb ul li:hover img{
+    border:solid 1px #f47721;
+    transition:all 0.3s ease-in-out;
+}
+.product_thumb ul li img{
+    border:solid 1px #fff;
+}
+.product_big_image{
+    float:left;
+    width:80%;
+    text-align:center;
+    position:relative;
+}
+.product_big_image img{
+    left:0px;
+    right:0px;
+}
+
+.mobile_slider{
+    display:none;
+}
+.laksyah_slider img {
+    max-width: 100%;
+    height: auto;
+}
+.laksyah_slider {
+    border: solid 14px #d5d5d7;
+}
+.laksyah_slider img {
+    max-width: 100%;
+    height: auto;
+}
+
+a.cart-b, button.cart-b {
+    background-color: #c47c65;
+    margin: 0;
+    padding-left: 12px;
+    padding-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 9px;
+    margin-top: 5%;
+    color: #fff;
+    font-weight: 400;
+    border-radius: 0px;
+    display: block;
+    font-size: 13px;
+    /*max-width: 157px;*/
+    margin-bottom: 15px;
+    width: 100%;
+    text-transform: uppercase;
+    border-radius: 4px;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none;
+}
+
+button.cart-b:focus { background-color: #c47c65 !important; }
+
+
+@media (max-width: 500px){
+    .product_list > .row .col-xs-6{
+        float:none;
+        width:100%;
+        max-width:322px;
+        margin:auto;
+    }
+    .product_thumb{
+        display:none;
+
+    }
+    .product_details_sidebar{
+        margin:0px;
+    }
+    .mobile_slider{
+        display:block;
+        margin-bottom:30px;
+    }
+    .product_thumb{
+        display:none;
+
+    }
+    .product_big_image{
+        display:none;
+    }
 }

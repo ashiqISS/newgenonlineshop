@@ -111,6 +111,7 @@ class Footer extends CWidget {
                                                             <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
                                                             <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
+        <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/owl.carousel.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.appear.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.animateNumber.min.js"></script>

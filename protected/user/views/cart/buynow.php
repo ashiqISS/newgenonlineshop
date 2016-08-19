@@ -64,11 +64,13 @@
                                             ?>
                                             <tr>
                                                 <td>
+                                                    <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $prod_details->canonical_name; ?>">
                                                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php echo $folder; ?>/<?php echo $prod_details->id; ?>/small.<?php echo $prod_details->main_image; ?>" class="img-responsive crt mid" align="absmiddle" style="max-height:300px; max-width:200px;display: block;">
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     <h2>
-                                                        <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Products/Detail/<?php echo $prod_details->id; ?>"style="text-decoration: none;">
+                                                        <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $prod_details->canonical_name; ?>"style="text-decoration: none;">
                                                             <?php echo $prod_details->product_name; ?>
                                                         </a>
                                                     </h2>

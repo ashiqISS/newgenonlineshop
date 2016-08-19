@@ -16,25 +16,36 @@
         text-transform: uppercase;
         border-radius: 4px;
     }
+    .slick-prev {
+        left: -17px;
+        background-image: url(<?= Yii::app()->baseUrl; ?>/images/arrow_left.png);
+        width: 19px;
+        height: 33px;
+    }
+    .slick-next {
+        background-image: url(<?= Yii::app()->baseUrl; ?>/images/arrow_right.png);
+        width: 19px;
+        height: 33px;
+        display: block;
+        right: -15px;
+    }
 </style>
 
 <?php
 $value = rtrim($product->category_id, ',');
 $ids = explode(',', $value);
 foreach ($ids as $id) {
-        $cat_name = ProductCategory::model()->findByPk($id)->category_name;
+    $cat_name = ProductCategory::model()->findByPk($id)->category_name;
 }
+$folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
 ?>
+
+
 <section class="banner">
-
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?= Yii::app()->baseUrl; ?>/images/img_inn.jpg)">
-
-
         <div class="banner_txt">
             <h1 class="animated fadeInLeft m2">Product <span class="redish"> detail </span></h1>
-
         </div>
-
     </div>
 </section>
 <div class="clearfix"></div>
@@ -44,69 +55,150 @@ foreach ($ids as $id) {
     <div class="container">
         <div class="row">
 
-
-
         </div> <!-- end of row -->
     </div> <!-- end of container -->
 </section>
+
 
 <section class="details-products">
     <div class="container">
         <div class="row">
 
-            <div class="heading">
-
+            <div style="padding-bottom: 1em;color: #e40689;">
+                <div class="breadcrumbs">
+                    <?php
+                    //$category_name = Yii::app()->request->getParam('name');
+                    $url = Yii::app()->request->urlReferrer;
+                    $catname = explode("/", $url);
+                    $category_name = $catname[8];
+                    ?>
+                    <?php echo $this->renderPartial('_bread_crumb', array('category_name' => $category_name)); ?><span> > </span><?php echo $product->product_name; ?>
+                </div>
             </div>
 
             <div class="row">
 
-                <div class="col-md-4">
+                <div class="col-md-7">
+                    <div class="product_thumb">
+                        <ul id="gal1">
 
-                    <!-- MAIN SLIDES -->
-                    <div class="views">
-                        <figure class="figures"> <img class="img-responsive" src="<?= Yii::app()->baseUrl; ?>/images/d1.jpg" alt="One">
-                        </figure>
-                        <figure class="figures"> <img class="img-responsive" src="<?= Yii::app()->baseUrl; ?>/images/d2.jpg" alt="One">
-                        </figure>
-                        <figure class="figures"> <img class="img-responsive" src="<?= Yii::app()->baseUrl; ?>/images/d3.jpg" alt="One">
-                        </figure>
+                            <?php
+                            $big = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/big';
+                            $bigg = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $product->id . '/gallery/big/';
+                            $thu = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/small';
+                            $thumbs = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $product->id . '/gallery/small/';
+                            $zoo = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/zoom';
+                            $zoom = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $product->id . '/gallery/zoom/';
+                            $file_display = array('jpg', 'jpeg', 'png', 'gif');
+
+                            if (file_exists($big) == false) {
+                                
+                            } else {
+                                $dir_contents = scandir($big);
+                                $i = 0;
+                                foreach ($dir_contents as $file) {
+                                    $file_type = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                                    if ($file !== '.' && $file !== '..' && in_array($file_type, $file_display) == true) {
+                                        ?>
+
+                                        <li> <a href="#" data-image="<?php echo $bigg . $file; ?>" data-zoom-image="<?php echo $zoom . $file; ?>"> <img src="<?php echo $thumbs . $file; ?>" alt=""/> </a> </li>
+                                        <?php
+                                    }
+                                    ?>
+
+
+
+                                    <?php
+                                }
+                                $i++;
+                            }
+                            ?>
+
+<!--                                                                <li><a href="#" data-image="<?= Yii::app()->request->baseUrl; ?>/images/product_big2.jpg" data-zoom-image="<?= Yii::app()->request->baseUrl; ?>/images/product_lg.jpg"> <img src="<?= Yii::app()->request->baseUrl; ?>/images/product_small.jpg" alt=""/> </a></li>
+                                                                <li><a href="#" data-image="<?= Yii::app()->request->baseUrl; ?>/images/product_small.jpg" data-zoom-image="<?= Yii::app()->request->baseUrl; ?>/images/product_big.jpg"> <img src="<?= Yii::app()->request->baseUrl; ?>/images/product_small.jpg" alt=""/> </a></li>
+                                                                <li><a href="#" data-image="<?= Yii::app()->request->baseUrl; ?>/images/product_small.jpg" data-zoom-image="<?= Yii::app()->request->baseUrl; ?>/images/product_big2.jpg"> <img src="<?= Yii::app()->request->baseUrl; ?>/images/product_small.jpg" alt=""/> </a></li>
+                            -->
+                            <?php if (empty($dir_contents)) { ?>
+                                <li><a href="#" data-image="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>" data-zoom-image="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/zoom.<?= $product->main_image ?>"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/small.<?= $product->main_image ?>" alt=""/> </a></li>
+                            <?php } ?>
+                        </ul>
                     </div>
-                    <!-- THUMBNAILS -->
-                    <div class="slider-nav-thumbnails">
-                        <div><img class="small_img" src="<?= Yii::app()->baseUrl; ?>/images/d1.jpg" alt="One"></div>
-                        <div><img class="small_img" src="<?= Yii::app()->baseUrl; ?>/images/d2.jpg" alt="Two"> </div>
-                        <div><img class="small_img" src="<?= Yii::app()->baseUrl; ?>/images/d3.jpg" alt="Three"> </div>
+                    <?php
+                    $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
+                    ?>
+
+                    <?php
+                    if (!empty($dir_contents)) {
+
+                        foreach ($dir_contents as $file1) {
+                            
+                        }
+                        ?>
+                        <div class="product_big_image"> <img src="<?php echo $bigg . $file1; ?>" id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file1; ?>" alt=""/>
+
+                        </div>
+                    <?php } else { ?>
+
+                        <div class="product_big_image"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>" id="laksyah_zoom" data-zoom-image="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/zoom.<?= $product->main_image ?>" alt=""/>                          
+                        </div>
+                    <?php } ?>
+                    <div class="mobile_slider">
+                        <div class="laksyah_slider">
+                            <?php if (file_exists($big) == false) { ?>
+                                <div class = "item"> <img src = "<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>" id = "laksyah_zoom" data-zoom-image = "<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>"></div>
+                                <?php
+                            } else {
+                                $dir_contents = scandir($big);
+                                $i = 0;
+                                foreach ($dir_contents as $file) {
+                                    $file_type = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                                    if ($file !== '.' && $file !== '..' && in_array($file_type, $file_display) == true) {
+                                        ?>
+
+                                        <div class="item"> <img src="<?php echo $bigg . $file; ?>"  id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file; ?>"></div>
+                                        <?php
+                                    }
+                                    ?>
+
+
+
+                                    <?php
+                                }
+                                $i++;
+                            }
+                            ?>
+                        </div>
                     </div>
+                    <div class="clearfix"></div>
+                    <script type="text/javascript">
+                        function popWindow(url) {
+                            var newWindow = window.open(url, "", "width=300, height=200");
+                        }
+                    </script>
+
+
+                    <!--                     MAIN SLIDES 
+                                        <div class="views">
+                                            <figure class="figures"> <img class="img-responsive" src="<?= Yii::app()->baseUrl; ?>/images/d1.jpg" alt="One">
+                                            </figure>
+                                            <figure class="figures"> <img class="img-responsive" src="<?= Yii::app()->baseUrl; ?>/images/d2.jpg" alt="One">
+                                            </figure>
+                                            <figure class="figures"> <img class="img-responsive" src="<?= Yii::app()->baseUrl; ?>/images/d3.jpg" alt="One">
+                                            </figure>
+                                        </div>
+                                         THUMBNAILS 
+                                        <div class="slider-nav-thumbnails">
+                                            <div><img class="small_img" src="<?= Yii::app()->baseUrl; ?>/images/d1.jpg" alt="One"></div>
+                                            <div><img class="small_img" src="<?= Yii::app()->baseUrl; ?>/images/d2.jpg" alt="Two"> </div>
+                                            <div><img class="small_img" src="<?= Yii::app()->baseUrl; ?>/images/d3.jpg" alt="Three"> </div>
+                                        </div>
+                    -->
+                </div>
+                <div class="col-md-5">
+                    <?php echo $this->renderPartial('_detailed_right', array('product' => $product)); ?>
                 </div>
 
-                <div class="col-md-8">
-                    <div class="dtl_dsrpn">
-                        <h1><?= $product->product_name; ?></h1>
-                        <div class="dtl_inn">
-                            <h2><?= $product->product_name; ?></h2>
-                            <p><?= $product->description; ?></p>
-                            <h3><?= Yii::app()->Currency->convert($product->price); ?></h3>
-                            <div class="counter">
-                                <div class="counter-1">
-                                    <form method="post" name="option" action="<?= Yii::app()->request->baseUrl; ?>/index.php/cart/Buynow" id="myform">
-                                        <input type="hidden"   value="<?= $product->id; ?>" id="prod_id" name="prod">
-                                        <input type="submit" value="Add to baskest" class="cart-b" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/cart/Buynow/<?php echo $prod->id; ?>" />
-<!--                                        <a class="cart-b" href="#"><i class="fa baskets fa-shopping-basket"></i>Add to baskest</a>-->
-                                    </form>
-                                </div>
-
-                                <div class="counter-2">
-                                    <div class="input-group topz"> <span> Qty :</span>
-                                        <input id="after" class="form-control nisi ni" type="text" value="1" min="1" max="10" vk_17e8e="subscribed" style="text-align: center;">
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="clearfix"></div>
-
-                        </div></div>
-                </div></div>
+            </div>
 
             <div class="row">
                 <div class="col-md-12 col-sm-12">
@@ -135,115 +227,157 @@ foreach ($ids as $id) {
 
 
 
-        $('.views').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: true,
-            fade: true,
-            asNavFor: '.slider-nav-thumbnails',
+                        $('.views').slick({
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: true,
+                            fade: true,
+                            asNavFor: '.slider-nav-thumbnails',
 //    prevArrow : '<i id="prev_slide_gallery" class="fa fa-angle-left"></i>',
 //    nextArrow : '<i id="next_slide_gallery" class="fa  fa-angle-right"></i>',
 
 
-        });
+                        });
 
-        $('.slider-nav-thumbnails').slick({
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            asNavFor: '.views',
-            dots: false,
-            //	centerMode: true,
-            focusOnSelect: true,
-            responsive: [
-                {
-                    breakpoint: 650,
-                    settings: {
-                        centerMode: false,
-                        slidesToShow: 4
+                        $('.slider-nav-thumbnails').slick({
+                            slidesToShow: 5,
+                            slidesToScroll: 1,
+                            asNavFor: '.views',
+                            dots: false,
+                            //	centerMode: true,
+                            focusOnSelect: true,
+                            responsive: [
+                                {
+                                    breakpoint: 650,
+                                    settings: {
+                                        centerMode: false,
+                                        slidesToShow: 4
 
-                    }
+                                    }
 
-                },
-                {
-                    breakpoint: 520,
-                    settings: {
-                        centerMode: false,
-                        slidesToShow: 3
+                                },
+                                {
+                                    breakpoint: 520,
+                                    settings: {
+                                        centerMode: false,
+                                        slidesToShow: 3
 
-                    }
+                                    }
 
-                },
-                {
-                    breakpoint: 350,
-                    settings: {
-                        centerMode: false,
-                        slidesToShow: 2
+                                },
+                                {
+                                    breakpoint: 350,
+                                    settings: {
+                                        centerMode: false,
+                                        slidesToShow: 2
 
-                    }
+                                    }
 
-                }
+                                }
 
-            ]
+                            ]
 
-        });
+                        });
 
 
-        //remove active class from all thumbnail slides
-        $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+                        //remove active class from all thumbnail slides
+                        $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
 
-        //set active class to first thumbnail slides
-        $('.slider-nav-thumbnails .slick-slide').eq(0).addClass('slick-active');
+                        //set active class to first thumbnail slides
+                        $('.slider-nav-thumbnails .slick-slide').eq(0).addClass('slick-active');
 
-        // On before slide change match active thumbnail to current slide
-        $('.views').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-            var mySlideNumber = nextSlide;
-            $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
-            $('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
-        });
+                        // On before slide change match active thumbnail to current slide
+                        $('.views').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+                            var mySlideNumber = nextSlide;
+                            $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+                            $('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
+                        });
 
 </script>
 
 <script>
 
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            $('.product-detail').slick({
-                slidesToShow: 5,
-                autoplay: false,
-                autoplaySpeed: 4000,
-                slidesToScroll: 1,
-                pauseOnHover: false,
-                prevArrow: '<i id="prev_slide_3"><img src="<?= Yii::app()->baseUrl; ?>/images/prev.png"></i>',
-                nextArrow: '<i id="next_slide_3"><img src="<?= Yii::app()->baseUrl; ?>/images/next.png"></i>',
-                responsive: [
-                    {
-                        breakpoint: 1000,
-                        settings: {
-                            centerMode: false,
-                            slidesToShow: 3
-                        }
-                    },
-                    {
-                        breakpoint: 800,
-                        settings: {
-                            centerMode: false,
-                            slidesToShow: 2
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            centerMode: false,
-                            slidesToShow: 1
-                        }
+        $('.product-detail').slick({
+            slidesToShow: 5,
+            autoplay: false,
+            autoplaySpeed: 4000,
+            slidesToScroll: 1,
+            pauseOnHover: false,
+            prevArrow: '<i id="prev_slide_3"><img src="<?= Yii::app()->baseUrl; ?>/images/prev.png"></i>',
+            nextArrow: '<i id="next_slide_3"><img src="<?= Yii::app()->baseUrl; ?>/images/next.png"></i>',
+            responsive: [
+                {
+                    breakpoint: 1000,
+                    settings: {
+                        centerMode: false,
+                        slidesToShow: 3
                     }
-                ]
-            });
-
+                },
+                {
+                    breakpoint: 800,
+                    settings: {
+                        centerMode: false,
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        centerMode: false,
+                        slidesToShow: 1
+                    }
+                }
+            ]
         });
 
-</script>
 
+        $(".add_to_cart").click(function () {
+
+            var id = $(this).attr('id');
+            addtocart(id);
+        });
+
+    });
+
+
+    function addtocart(id) {
+        var canname = $("#cano_name_" + id).val();
+        var qty = $(".qty").val();
+
+        $.ajax({
+            type: "POST",
+            url: baseurl + 'cart/Buynow',
+            data: {prod_id: id,cano_name: canname, qty: qty}
+        }).done(function (data) {
+            if (data == 9) {
+
+//                $('.option_errors').html('<p>Invalid Product.Please try again</p>').show();
+            } else {
+
+//                $('.option_errors').html("").hide();
+                getcartcount();
+                getcarttotal();
+                $(".cart_box").show();
+                $(".cart_box").html(data);
+                $("html, body").animate({scrollTop: 0}, "slow");
+            }
+            hideLoader();
+        });
+    }
+
+
+
+    function showLoader() {
+        $('.over-lay').show();
+    }
+    function hideLoader() {
+        $('.over-lay').hide();
+    }
+
+</script>
+<script src="<?php echo yii::app()->request->baseUrl; ?>/js/jquery.elevatezoom.js"></script>
 <?php
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1.11.3.min.js');
 //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/bootstrap.min.js');

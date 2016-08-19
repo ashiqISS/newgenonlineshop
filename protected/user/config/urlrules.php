@@ -21,6 +21,9 @@ return array(
     'delete-product' => 'merchant/products/deleteproduct',
     'view-product' => 'merchant/products/View',
     'my-products' => 'merchant/products/myProducts',
+    
+    'products' => 'product/products',    
+    'my-cart' => 'cart/Mycart',    
     '<controller:\w+>/<id:\d+>' => '<controller>/view',
     '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 );

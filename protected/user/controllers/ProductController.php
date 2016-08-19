@@ -16,12 +16,47 @@ class ProductController extends Controller {
     }
 
     public function actionDetail($name) {
+
         $prduct = Products::model()->findByAttributes(array('canonical_name' => $name, 'status' => 1));
-//        $related_products = explode(",", $prduct->related_products);
+        $related_products = explode(",", $prduct->related_products);
         if (!empty($prduct)) {
-            $this->render('detailed', array('product' => $prduct));
+            $this->AddProductViewed($prduct);
+            $this->render('detailed', array('product' => $prduct, 'related_products' => $related_products));
         } else {
             $this->redirect(array('Site/Error'));
+        }
+    }
+
+    public function AddProductViewed($product) {
+        $product_view = new ProductViewed;
+        if (Yii::app()->user->getId()) {
+            $user_id = Yii::app()->user->getId();
+            $product_view_exist = ProductViewed::model()->findByAttributes(array('user_id' => $user_id, 'product_id' => $product->id));
+            if ($product_view_exist == NULL) {
+                $product_view->date = date('Y-m-d');
+                $product_view->product_id = $product->id;
+                $product_view->session_id = NULL;
+                $product_view->user_id = $user_id;
+                if ($prduct->id != '') {
+                    $product_view->save(FALSE);
+                }
+            }
+        } else {
+            if (!isset(Yii::app()->session['temp_user'])) {
+                Yii::app()->session['temp_user'] = microtime(true);
+            }
+            $sessonid = Yii::app()->session['temp_user'];
+            $product_view_exist = ProductViewed::model()->findByAttributes(array('session_id' => $sessonid, 'product_id' => $product->id));
+
+            if (empty($product_view_exist) && $product_view_exist == NULL) {
+                $product_view->date = date('Y-m-d');
+                $product_view->product_id = $product->id;
+                $product_view->session_id = $sessonid;
+                $product_view->user_id = NULL;
+                if ($product->id != '') {
+                    $product_view->save(FALSE);
+                }
+            }
         }
     }
 

@@ -154,7 +154,7 @@
                             'contentSelector' => '#products',
                             'itemSelector' => 'div.product',
                             'loadingText' => 'Loading...',
-                            'donetext' => 'Loading Completed',
+                            'donetext' => '',
                             'pages' => $pages,
                         ));
                         ?>     

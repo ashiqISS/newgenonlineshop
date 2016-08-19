@@ -8,6 +8,7 @@ if ($user_type == 2) {
 } else {
     $this->widget('user.widgets.Header');
 }
+//echo 'ddddddddd'.Yii::app()->user->getId();
 echo $content;
 $this->widget('user.widgets.Footer');
 ?>
