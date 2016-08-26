@@ -135,10 +135,10 @@
                         </tbody>
                     </table>
                     <div class="proceed_upmg">
-                        <form method="post" action="<?= Yii::app()->request->baseUrl; ?>/index.php/checkOut/Checkout/" id="checkoutForm">
+                        <!--<form method="post" action="<?= Yii::app()->request->baseUrl; ?>/index.php/checkOut/Checkout/" id="checkoutForm">-->
                             <input type="hidden" value="<?php echo $total; ?>" name="total_amt" />
                             <button class="btn prsd-btn btn-default" id="checkout_btn">proceed to checkout</button>
-                        </form>                        
+                        <!--</form>-->                        
 
                     </div></div>
             </div>
