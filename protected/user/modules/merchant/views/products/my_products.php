@@ -1,5 +1,6 @@
    
 
+
 <section class="banner">
 
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?php echo Yii::app()->request->baseUrl; ?>/images/img_inn.jpg)">
@@ -38,55 +39,61 @@
 
                 <div class="left-my_acnt">
 
+                    <?php
+                    if (empty($ModelInstance)) {
+                        echo '<center><br><br>No products to display.</center>';
+                    } else {
+                        ?>
+
+
+
+                        <div class="panel-body sis">
+
+                            <div class="table-responsive">
+                                <table class="table" style="text-align:left">
+                                    <thead>
+                                        <tr>
+                                            <th class="tb"> Image</th>
+                                            <th>Product Code</th>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Description</th> 
+                                            <th></th>
+                                            <th></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        <?php
+                                        $this->widget('zii.widgets.CListView', array(
+                                            'id' => 'product-list',
+                                            'dataProvider' => $dataProvider,
+                                            'itemView' => 'product_list',
+                                            //        'sortableAttributes' => $sortAttr,
+                                            'template' => '{items}{pager}',
+                                            'emptyText' => ' <center><div style="vertical-align: central;padding-top: 8em;padding-bottom: 8em">No products added yet.</div></center>',
+                                        ));
+                                        echo '<br>';
+                                        ?>
 
 
 
 
-                    <div class="panel-body sis">
 
-                        <div class="table-responsive">
-                            <table class="table" style="text-align:left">
-                                <thead>
-                                    <tr>
-                                        <th class="tb"> Image</th>
-                                        <th>Product Code</th>
-                                        <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th>Description</th> 
-                                        <th></th>
-                                        <th></th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                    </tbody>
 
 
-                                    <?php
-                                    $this->widget('zii.widgets.CListView', array(
-                                        'id' => 'product-list',
-                                        'dataProvider' => $dataProvider,
-                                        'itemView' => 'product_list',
-                                        //        'sortableAttributes' => $sortAttr,
-                                        'template' => '{items}{pager}',
-                                        'emptyText' => ' <center><div style="vertical-align: central;padding-top: 8em;padding-bottom: 8em">No products added yet.</div></center>',
-                                    ));
-                                    echo '<br>';
-                                    ?>
+                                </table>
+                            </div>
 
 
-
-
-
-                                </tbody>
-
-
-                            </table>
                         </div>
 
-
-                    </div>
-
-
+                        <?php
+                    }
+                    ?>
 
                     <div class="clearfix"></div>
                 </div>

@@ -14,7 +14,7 @@ class CommonUrls {
     }
 
     public static function change_password() {
-        $url = Yii::app()->request->baseUrl . "/user.php/change-password";
+        $url = Yii::app()->request->baseUrl . "/user.php/change_password";
         return $url;
     }
 

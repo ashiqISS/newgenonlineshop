@@ -35,9 +35,6 @@ class Footer extends CWidget {
                     <div class="explore col col-xs-6 col-sm-4 col-md-2">
                         <h2>Newgen E-Shop</h2>
 
-
-
-
                         <ul>
                             <li><a href="#">Join Our Shop</a></li>
                             <li><a href="#">Merchant</a></li>
@@ -55,12 +52,6 @@ class Footer extends CWidget {
                             <li><a href="#">Affiliates</a></li>
                             <li><a href="#">Specials</a></li>
                         </ul>
-
-
-
-
-
-
 
                     </div> <!-- end of usefull-links  -->
 
@@ -108,8 +99,8 @@ class Footer extends CWidget {
         <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
         <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
 
-                                                            <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
-                                                            <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
+                                                                    <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
+                                                                    <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/owl.carousel.min.js"></script>
@@ -135,7 +126,7 @@ class Footer extends CWidget {
             })();
 
 
-             jQuery(document).ready(function () {
+            jQuery(document).ready(function () {
                 $(window).scroll(function () {
 
                     var body = $("html, body");
@@ -159,7 +150,7 @@ class Footer extends CWidget {
         <script>
 
 
-         jQuery(window).scroll(function ()
+            jQuery(window).scroll(function ()
 
 
             {
@@ -210,7 +201,10 @@ class Footer extends CWidget {
 
         </script>
 
-
+<!--<script>
+$.noConflict();
+// Code that uses other library's $ can follow here.
+</script>-->
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/simpleMobileMenu.js"></script>
         <script type="text/javascript">
 
@@ -382,6 +376,9 @@ class Footer extends CWidget {
 
 
         <script>
+            jQuery.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+                options.async = true;
+            });
 
             $(document).ready(function () {
 

@@ -96,7 +96,7 @@
 
 
                                                 </td>
-                                                <td><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/cart/Delete/<?= $cart->id; ?>"><img class="bin" src="<?= Yii::app()->baseUrl; ?>/images/ben.png"></a></td>
+                                                <td><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/cart/Delete?id=<?= $cart->id; ?>"><img class="bin" src="<?= Yii::app()->baseUrl; ?>/images/ben.png"></a></td>
                                                 <td><h2 class="range_<?php echo $cart->id; ?>"><?= Yii::app()->Currency->convert($tot_price); ?></h2></td>
                                         <input type="hidden" id="cart_<?php echo $cart->id; ?>" value="<?php echo $prod_details->id; ?>">
                                         </tr>
@@ -145,6 +145,10 @@
         </div>
     </div>
 </section> <!-- end of facial -->
+<?php
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1.11.3.min.js');
+//Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/bootstrap.min.js');
+?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
     $(document).ready(function () {

@@ -40155,3 +40155,200 @@ Stack trace:
 REQUEST_URI=/newgenshopping/admin.php/products/products/update/id/ww/newgenshopping/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
 HTTP_REFERER=http://localhost/newgenshopping/admin.php/products/products/update/id/15
 ---
+2016/08/26 11:49:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "wgenonlineshop".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:483
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(270): CController->missingAction('wgenonlineshop')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('wgenonlineshop')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('products/Produc...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\installs\Ampps\www\newgenonlineshop\admin.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/newgenonlineshop/admin.php/products/ProductCategory/wgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/admin.php/products/ProductCategory/create
+---
+2016/08/26 11:49:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "wgenonlineshop".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:483
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(270): CController->missingAction('wgenonlineshop')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('wgenonlineshop')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('products/Produc...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\installs\Ampps\www\newgenonlineshop\admin.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/newgenonlineshop/admin.php/products/ProductCategory/wgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/admin.php/products/ProductCategory/create
+---
+2016/08/26 11:49:41 [warning] [application] Failed to set unsafe attribute "description" of "ProductCategory".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductCategoryController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:49:41 [warning] [application] Failed to set unsafe attribute "meta_description" of "ProductCategory".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductCategoryController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:49:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductCategoryController.php:235
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductCategoryController.php(105): ProductCategoryController->loadModel('pps')
+#1 [internal function]: ProductCategoryController->actionUpdate('pps')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProductCategoryController), Array)
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProductCategoryController), Object(ReflectionMethod), Array)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('update')
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('products/produc...')
+#14 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\installs\Ampps\www\newgenonlineshop\admin.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/newgenonlineshop/admin.php/products/productCategory/update/id/pps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/admin.php/products/productCategory/update/id/29
+---
+2016/08/26 11:49:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductCategoryController.php:235
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductCategoryController.php(105): ProductCategoryController->loadModel('pps')
+#1 [internal function]: ProductCategoryController->actionUpdate('pps')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ProductCategoryController), Array)
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ProductCategoryController), Object(ReflectionMethod), Array)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('update')
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('products/produc...')
+#14 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\installs\Ampps\www\newgenonlineshop\admin.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/newgenonlineshop/admin.php/products/productCategory/update/id/pps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/admin.php/products/productCategory/update/id/29
+---
+2016/08/26 11:50:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ineshop".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:483
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(270): CController->missingAction('ineshop')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('ineshop')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('products/Produc...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\installs\Ampps\www\newgenonlineshop\admin.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/newgenonlineshop/admin.php/products/Products/ineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/admin.php/products/Products/create
+---
+2016/08/26 11:50:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ineshop".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:483
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(270): CController->missingAction('ineshop')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('ineshop')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('products/Produc...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\installs\Ampps\www\newgenonlineshop\admin.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/newgenonlineshop/admin.php/products/Products/ineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/admin.php/products/Products/create
+---
+2016/08/26 11:51:47 [warning] [application] Failed to set unsafe attribute "new_from" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:51:47 [warning] [application] Failed to set unsafe attribute "new_to" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:51:47 [warning] [application] Failed to set unsafe attribute "discount_from" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:51:47 [warning] [application] Failed to set unsafe attribute "discount_to" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:51:47 [warning] [application] Failed to set unsafe attribute "special_price" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:51:47 [warning] [application] Failed to set unsafe attribute "special_price_from" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:51:47 [warning] [application] Failed to set unsafe attribute "special_price_to" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:51:47 [warning] [application] Failed to set unsafe attribute "meta_description" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:51:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ineshop".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:483
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(270): CController->missingAction('ineshop')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('ineshop')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('products/Produc...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\installs\Ampps\www\newgenonlineshop\admin.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/newgenonlineshop/admin.php/products/Products/ineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/admin.php/products/Products/create
+---
+2016/08/26 11:51:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ineshop".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:483
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(270): CController->missingAction('ineshop')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('ineshop')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('products/Produc...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\installs\Ampps\www\newgenonlineshop\admin.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/newgenonlineshop/admin.php/products/Products/ineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/admin.php/products/Products/create
+---
+2016/08/26 11:52:16 [warning] [application] Failed to set unsafe attribute "new_from" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:52:16 [warning] [application] Failed to set unsafe attribute "new_to" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:52:16 [warning] [application] Failed to set unsafe attribute "discount_from" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:52:16 [warning] [application] Failed to set unsafe attribute "discount_to" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:52:16 [warning] [application] Failed to set unsafe attribute "special_price" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:52:16 [warning] [application] Failed to set unsafe attribute "special_price_from" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:52:16 [warning] [application] Failed to set unsafe attribute "special_price_to" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:52:16 [warning] [application] Failed to set unsafe attribute "meta_description" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (69)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "description" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "sale_from" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "sale_to" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "new_from" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "new_to" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "discount_from" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "discount_to" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "special_price" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "special_price_from" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "special_price_to" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)
+2016/08/26 11:58:00 [warning] [application] Failed to set unsafe attribute "meta_description" of "Products".
+in D:\installs\Ampps\www\newgenonlineshop\protected\admin\modules\products\controllers\ProductsController.php (214)
+in D:\installs\Ampps\www\newgenonlineshop\admin.php (13)

@@ -108,16 +108,22 @@ class Header extends CWidget {
                                 <img class="zee" src="<?= Yii::app()->request->baseUrl; ?>/images/logo.png">
                             </div>
                             <div class="col-md-4 col-xs-6 hidden-xs">
-                                <div id="custom-search-input">
-                                    <div class="input-group col-md-12">
-                                        <input type="text" class="form-control input-lg" placeholder="Search" />
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-info btn-lg" type="button">
-                                                <i class="glyphicon glyphicon-search"></i>
-                                            </button>
-                                        </span>
+
+                                <form action="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products" method="post">
+
+                                    <div id="custom-search-input">
+                                        <div class="input-group col-md-12">
+                                            <?php $this->widget("application.user.components.MainSearch"); ?>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-info btn-lg" type="submit" value="search" name="search" class="search">
+                                                    <i class="glyphicon glyphicon-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
+
+
                             </div>
                             <div class="col-md-4">
                                 <ul class="list-inline list-unstyled">
@@ -129,7 +135,7 @@ class Header extends CWidget {
 
                                     </li>
                                     <li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-cart"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">MyCart</a></li>
-                                    <li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-cart"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">Wishlist</a></li>
+                                    <!--<li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-cart"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">Wishlist</a></li>-->
 
                                     <?php
                                     if (Yii::app()->user->hasState('user_id')) {
@@ -141,8 +147,8 @@ class Header extends CWidget {
                                                 <i class="fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu categories">
-                                                <li><a href=""> My Account</a></li>
-                                                <li><a href=""> Change Password</a></li>
+                                                <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/my-account"> My Account</a></li>
+                                                <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/change-password"> Change Password</a></li>
                                                 <li><a href="<?php echo Yii::app()->request->baseUrl . '/user.php/logout'; ?>">Sign Out</a></li>
                                             </ul>
 
@@ -229,8 +235,8 @@ class Header extends CWidget {
                                                 </div>-->
                                             <ul class="nav navbar-nav">
                                                 <!--<li class="active"><a href="#">Home</a></li>-->
-                                                <li class="active"><a href="#">Home</a></li>
-                                                <li><a href="#">My Account</a></li>
+                                                <li><a href="#">Home</a></li>
+                                                <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
                                                 <li><a href="#">About Us</a></li> 
                                                 <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                 <li><a href="#">Offers & Deals</a></li> 
@@ -250,42 +256,58 @@ class Header extends CWidget {
 
                                             <div id="cssmenu">
                                                 <ul>
-                                                    <li> <div id="custom-search-input">
-                                                            <div class="input-group col-md-12">
-                                                                <input type="text" class="form-control input-lg" placeholder="Search" />
+                                                    <li> 
+
+                                                        <form action="<?php echo Yii::app()->request->baseUrl; ?>/index.php/searching/SearchList" method="post">
+                                                            <div class="search_box">
+                                                                <?php $this->widget("application.user.components.MainSearch"); ?>
                                                                 <span class="input-group-btn">
-                                                                    <button class="btn btn-info btn-lg" type="button">
+                                                                    <button class="btn btn-info btn-lg" type="submit" value="search" name="search" class="search">
                                                                         <i class="glyphicon glyphicon-search"></i>
                                                                     </button>
                                                                 </span>
+                                                                <!--<button type="submit" value="search" name="search" class="search" ><i class="fa fa-search"></i></button>-->
                                                             </div>
-                                                        </div></li>
+                                                        </form>
+
+
+                                                        <!--                                                        <div id="custom-search-input">
+                                                                                                                    <div class="input-group col-md-12">
+                                                                                                                        <input type="text" class="form-control input-lg" placeholder="Search" />
+                                                                                                                        <span class="input-group-btn">
+                                                                                                                            <button class="btn btn-info btn-lg" type="button">
+                                                                                                                                <i class="glyphicon glyphicon-search"></i>
+                                                                                                                            </button>
+                                                                                                                        </span>
+                                                                                                                    </div>
+                                                                                                                </div>-->
+                                                    </li>
                                                     <li><a href="index.html"><span>Home</span></a></li>
                                                     <li><a href="#">My Account</a></li>
                                                     <li><a href="#"><span>About Us</span></a></li>
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                     <li><a href="#"><span>Offers & Deals</span></a></li>
 
-        <!--                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
-                                                                <ul>
-                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                    <li><a href="#"><span>Sub</span></a></li>
+                                <!--                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
+                                                                                        <ul>
+                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                            <li><a href="#"><span>Sub</span></a></li>
 
-                                                                </ul>
-                                                            </li>
-                                                            <li class="has-sub"><a href="#"><span>categories</span></a>
-                                                                <ul>
-                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                    <li><a href="#"><span>Sub</span></a></li>
+                                                                                        </ul>
+                                                                                    </li>
+                                                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
+                                                                                        <ul>
+                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                            <li><a href="#"><span>Sub</span></a></li>
 
-                                                                </ul>
-                                                            </li>-->
-<!--                                                    <li><a href="#"><span>categories</span></a></li>
-                                                    <li><a href="#"><span>categories</span></a></li>-->
+                                                                                        </ul>
+                                                                                    </li>-->
+                        <!--                                                    <li><a href="#"><span>categories</span></a></li>
+                                                                            <li><a href="#"><span>categories</span></a></li>-->
 
                                                     <li><a href="#"><span>faqs</span></a></li>
 

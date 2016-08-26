@@ -297,10 +297,15 @@ class ProductsController extends Controller {
                 $model->gallery_images = $image0;
             }
 
+            if ($model->canonical_name == '') {
+                $model->canonical_name = preg_replace('#[ -]+#', '-', $model->product_name);
+                $model->canonical_name = $model->canonical_name . '_' . $model->id;
+            }
+
             if ($model->validate()) {
                 if ($model->save()) {
 
-                    $this->redirect(array('ProductDetail', array('pid' => $model->id)));
+                    $this->redirect(array('../my-products'));
                 }
             }
         }

@@ -25,11 +25,12 @@ return array(
         'user.views.*',
         'user.extensions.yii-mail.*',
         'application.user.extensions.yiinfinite-scroll.YiinfiniteScroller',
+        'user.extensions.easyimage.EasyImage',
     ),
     'modulePath' => $user . '/modules/',
     'modules' => array(
         // uncomment the following to enable the Gii tool
-        'registration', 'merchant', 'products',
+        'registration', 'merchant',
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'gii',

@@ -1,6 +1,6 @@
 <?php
 
-class BuyerDetailsController extends Controller {
+class UserAddressController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -58,15 +58,29 @@ class BuyerDetailsController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new BuyerDetails;
+        $model = new UserAddress;
 
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
 
-        if (isset($_POST['BuyerDetails'])) {
-            $model->attributes = $_POST['BuyerDetails'];
-            if ($model->save())
-                $this->redirect(array('admin'));
+        if (isset($_POST['UserAddress'])) {
+            $model->attributes = $_POST['UserAddress'];
+            $model->address_2 = $_POST['UserAddress']['address_2'];
+            $model->userid = Yii::app()->user->getId();
+            $model->CB = 0;
+            $model->DOC = date('Y-m-d');
+            $model = $this->checkDefault($model, 'default_billing_address');
+            $model = $this->checkDefault($model, 'default_shipping_address');
+
+            if ($model->validate()) {
+                if ($model->save()) {
+
+                    Yii::app()->user->setFlash('success', "your Address has been  successfully added");
+                    $this->redirect(array('buyerDetails/AddressBook'));
+                } else {
+                    Yii::app()->user->setFlash('error', "Sorry! There is some error..");
+                }
+            }
         }
 
         $this->render('create', array(
@@ -85,8 +99,8 @@ class BuyerDetailsController extends Controller {
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
 
-        if (isset($_POST['BuyerDetails'])) {
-            $model->attributes = $_POST['BuyerDetails'];
+        if (isset($_POST['UserAddress'])) {
+            $model->attributes = $_POST['UserAddress'];
             if ($model->save())
                 $this->redirect(array('update', 'id' => $model->id));
         }
@@ -113,7 +127,7 @@ class BuyerDetailsController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('BuyerDetails');
+        $dataProvider = new CActiveDataProvider('UserAddress');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -123,10 +137,10 @@ class BuyerDetailsController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new BuyerDetails('search');
+        $model = new UserAddress('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['BuyerDetails']))
-            $model->attributes = $_GET['BuyerDetails'];
+        if (isset($_GET['UserAddress']))
+            $model->attributes = $_GET['UserAddress'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -137,119 +151,62 @@ class BuyerDetailsController extends Controller {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return BuyerDetails the loaded model
+     * @return UserAddress the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = BuyerDetails::model()->findByPk($id);
+        $model = UserAddress::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
     }
-    
-     public function loadUserModel($id) {
-        $user_model = Users::model()->findByPk($id);
-        if ($user_model === null)
-            throw new CHttpException(404, "The requested users entry for id : $id does not exist.");
-        return $user_model;
-    }
 
     /**
      * Performs the AJAX validation.
-     * @param BuyerDetails $model the model to be validated
+     * @param UserAddress $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'buyer-details-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'user-address-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
     }
 
-    public function actionMyAccount() {
-        $user_id = Yii::app()->user->getId();
-        $user = Users::model()->findByPk($user_id);
-        $buyer = BuyerDetails::model()->findByAttributes(array('user_id'=>$user_id));
-        $this->render('my_account',array('buyer'=>$buyer, 'user'=>$user));
-    }
+    public function actionLoadStates() {
 
-    public function actionEditProfile() {
-        $user_id = Yii::app()->user->getId();
-        $buyer_id = Yii::app()->user->getState('buyer_id');
-        $model = $this->loadModel($buyer_id);
-        $user_model = $this->loadUserModel($user_id);
-
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
-
-        if (isset($_POST['BuyerDetails'], $_POST['Users'])) {
-            $model->attributes = $_POST['BuyerDetails'];
-            $user_model->attributes = $_POST['Users'];
-            $date1 = $_POST['BuyerDetails']['dob'];
-            $newDate = date("Y-m-d", strtotime($date1));
-            $model->dob = $newDate;
-            $model->gender = $_POST['BuyerDetails']['gender'];
-            $model->DOU = date('Y-m-d');
-            $user_model->DOU = date('Y-m-d');
-            if ($model->save() && $user_model->save())
-                $this->redirect(array('MyAccount'));
+        $data = States::model()->findAllByAttributes(array(
+            'country_id' => $_POST['UserAddress_country']), array("order" => "state_name"));
+        $flag = 0;
+        $data = CHtml::listData($data, 'Id', 'state_name');
+        foreach ($data as $value => $name) {
+            echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
         }
-
-        $this->render('edit_profile', array(
-            'model' => $model, 'user_model' => $user_model
-        ));
-        
     }
 
-    public function actionMyOrders() {
-        $this->render('my_orders');
-    }
-
-    public function actionAddressBook() {
-        $user_id = Yii::app()->user->getId();
-        $address = UserAddress::model()->findAllByAttributes(array('userid'=>$user_id));
-        $this->render('address_book',array('addresses'=>$address));
-    }
-
-    public function actionWishlist() {
-        $this->render('wishlist');
-    }
-
-    public function actionChangePassword() {
-
-        $model = new ResetPassword;
-        if (isset($_POST['ResetPassword'])) {
-            $model->attributes = $_POST['ResetPassword'];
-            if ($model->validate()) {
-                $user_id = Yii::app()->user->getState('user_id');
-                $user = Users::model()->findByPk($user_id);
-                $user->password = $model->newPassword;
-                if ($user->update()) {
-                    Yii::app()->user->setFlash('passwordReset', "Password Changed!");
-//                    $this->passwordChanged($user);
-                    $model = new ResetPassword;
-                }
-            }
+    public function actionLoadDistricts() {
+        $data = Districts::model()->findAllByAttributes(array(
+            'state_id' => $_POST['UserAddress_state']), array("order" => "district_name"));
+        $flag = 0;
+        $data = CHtml::listData($data, 'Id', 'district_name');
+        foreach ($data as $value => $name) {
+            echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
         }
-
-
-        $this->render('change_password', array('model' => $model));
     }
-    
-       public function passwordChanged($user_model) {
-        Yii::import('user.extensions.yii-mail.YiiMail');
-        $message = new YiiMailMessage;
-        $message->view = "_info_buyer_password_changed";
-        $params = array('user_model' => $user_model);
-        $message->subject = 'NewGen Shop : Password reset';
-        $message->setBody($params, 'text/html');
-        $message->addTo($user_model->email);
-        $message->from = 'aathira@intersmart.com';
-        if (Yii::app()->mail->send($message)) {
-//            echo 'message send';
-//            exit;
+
+    public function checkDefault($model, $default) {
+        if (!isset(Yii::app()->session['user'])) {
+            $this->redirect(Yii::app()->request->baseUrl . '/index.php/site/login');
         } else {
-            echo 'message not send';
-            exit;
+            $default_address = UserAddress::model()->findAllByAttributes(array('userid' => Yii::app()->session['user']['id'], $default => 1));
+            if (empty($default_address)) {
+                $model->$default = 1;
+            } elseif ($model->$default == 1) {
+                $address = UserAddress::model()->updateAll(array($default => 0), 'userid = ' . Yii::app()->session['user']['id']);
+                $model->$default = 1;
+            } elseif ($model->$default == 0) {
+                $model->$default = 0;
+            }
+            return $model;
         }
     }
 

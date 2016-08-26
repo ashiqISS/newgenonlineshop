@@ -23,5 +23,9 @@ class Utilities {
         $pw = str_shuffle($pw);
         return $pw;
     }
+    
+    public static function getPriceList(){
+    return array('0 AND 999' => '0 - 999', '1000 AND 4999' => '1000 - 4999', '5000 AND 10000'=> '5000 - 10000');
+}
 
 }

@@ -134,7 +134,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                             
                         }
                         ?>
-                        <div class="product_big_image"> <img src="<?php echo $bigg . $file1; ?>" id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file1; ?>" alt=""/>
+                        <div class="product_big_image"> <img src="<?php echo $bigg . $file1; ?>" id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file1; ?>" width="100%" alt=""/>
 
                         </div>
                     <?php } else { ?>

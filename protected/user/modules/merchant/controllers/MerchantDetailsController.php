@@ -165,7 +165,7 @@ class MerchantDetailsController extends Controller {
         $message = new YiiMailMessage;
         $message->view = "_info_password_changed";
         $params = array('user_model' => $user_model);
-        $message->subject = 'Welcome To eCareAgora';
+        $message->subject = 'NewGen Shop : Password reset';
         $message->setBody($params, 'text/html');
         $message->addTo($user_model->email);
         $message->from = 'aathira@intersmart.com';

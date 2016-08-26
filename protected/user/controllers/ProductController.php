@@ -8,10 +8,16 @@ class ProductController extends Controller {
             $this->render('ProductNotfound');
             return FALSE;
         }
+        if (isset($_GET['brand'])) {
+            $brand = $_GET['brand'];
+        } else {
+            $brand = '';
+        }
+
         $category = ProductCategory::model()->findAllByAttributes(array('parent' => $parent->parent));
         $cats = ProductCategory::model()->findAllByattributes(array('parent' => $parent->id), array('condition' => "id != $parent->id"));
-        $dataProvider = Yii::app()->Menu->MenuCategories($cats, $parent);
-        $this->render('index', array('dataProvider' => $dataProvider, 'parent' => $parent, 'category' => $category, 'name' => $name));
+        $dataProvider = Yii::app()->Menu->MenuCategories($cats, $parent, $brand);
+        $this->render('index', array('dataProvider' => $dataProvider, 'parent' => $parent, 'category' => $category, 'name' => $name, 'brand' => $brand));
         exit;
     }
 
@@ -62,38 +68,93 @@ class ProductController extends Controller {
 
     public function actionProducts() {
 
-//        $dataProvider = new CActiveDataProvider('Products', array(
-//            'criteria' => array(
-//                'condition' => 'status = 1',
-//            ),
-//            'pagination' => array(
-//                'pageSize' => 6,
-//            ),
-//            'sort' => array(
-//                //'defaultOrder' => 'price ASC',
-////                'defaultOrder' => $srt,
-//            )
-//                )
-//        );
-//        if (!empty($dataProvider)) {
-//            $this->render('products', array('dataProvider' => $dataProvider));
-//        } else {
-//            $this->redirect(array('Site/Error'));
+//        if (isset($_REQUEST['Keyword'])) {
+//            $searchterm = $_REQUEST['Keyword'];
+//            $criteria = new CDbCriteria;
+//            $criteria->condition = "status =1  AND (product_name LIKE '%" . $searchterm . "%'"
+//                    . " OR search_tag LIKE '%" . $searchterm . "%' )";
+////            $criteria->order = 'id desc';
+//            $total = Products::model()->count();
+//
+//            $pages = new CPagination($total);
+//            $pages->pageSize = 6;
+//            $pages->applyLimit($criteria);
+//
+//            $products = Products::model()->findAll($criteria);
+//
+//            $this->render('products', array(
+//                'products' => $products,
+//                'pages' => $pages,
+//                'file_name' => '_searchresult',
+//                'parameter' => $_REQUEST['saerchterm'],
+//                'search_parm' => $category,
+//                'searchterm' => $searchterm
+//            ));
+//
+//
+////            $this->render('searchresult', array('dataProvider' => $dataProvider, 'file_name' => '_searchresult', 'parameter' => $_REQUEST['saerchterm'], 'search_parm' => $category, 'searchterm' => $searchterm));
+////            exit;
 //        }
-
-
+////        $dataProvider1 = new CActiveDataProvider('ProductCategory', array(
+////            'criteria' => array(
+////                'condition' => 'status = 1', 'order' => 'id desc', 'limit' => 5),
+////                )
+////        );
+//        //$latest = Books::model()->findAll(['condition' => 'status = 2', 'order' => 'id desc', 'limit' => 5]);
+////        $this->render('searchresult', array('dataProvider' => $dataProvider1, 'file_name' => '_searchresult', 'parameter' => $_REQUEST['saerchterm'], 'search_parm' => $category, 'searchterm' => $searchterm));
+//        //$this->render('search');
+//        echo 'hai';
+        $brands = '';
+        $price = '';
         $criteria = new CDbCriteria;
-        $total = Products::model()->count();
+        $criteria->condition = 'status = 1';
+
+        if (isset($_POST['brand_inputs'])) {
+            $brands = $_POST['brand_inputs'];
+            if ($brands != '') {
+                $brs = explode(', ', $brands);
+                foreach ($brs as $brand) {
+                    $find_in_set .= "FIND_IN_SET('$brand',`brand_id`) OR ";
+                }
+                $find_in_set = rtrim($find_in_set, ' OR');
+                $criteria->addCondition($find_in_set);
+            }
+        }
+
+
+        if (isset($_POST['priceRange'])) {
+            $price = $_POST['priceRange'];
+
+            if ($price != '') {
+                $prc = explode(', ', $price);
+                foreach ($prc as $price) {
+                    $price_condition .= "price BETWEEN $price OR ";
+                }
+                $price_condition = rtrim($price_condition, ' OR');
+                $criteria->addCondition($price_condition);
+            }
+        }
+
+
+        $criteria->order = 'id desc';
+        $total = Products::model()->count($criteria);
 
         $pages = new CPagination($total);
         $pages->pageSize = 6;
         $pages->applyLimit($criteria);
 
         $products = Products::model()->findAll($criteria);
+        
 
         $this->render('products', array(
             'products' => $products,
             'pages' => $pages,
+            'file_name' => '_searchresult',
+            'parameter' => $_REQUEST['saerchterm'],
+            'brandsel' => $brands,
+            'price' => $price,
+            'search_parm' => $category,
+            'searchterm' => $searchterm
         ));
     }
 

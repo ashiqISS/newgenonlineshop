@@ -130,7 +130,7 @@ class BuyerDetailsController extends Controller {
     public static function siteURL() {
         $protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
         $domainName = $_SERVER['HTTP_HOST'];
-        return $protocol . $domainName . '/newgenshopping/';
+        return $protocol . $domainName .Yii::app()->baseUrl.'/';
     }
 
 }
