@@ -53,9 +53,11 @@ class HeaderMerchant extends CWidget {
             </head>
 
             <body id="home-1">
-                <div class="pre-loder">
-                    <div class="loding"> </div>
-                </div> <!-- end of pre-loder -->
+                   <?php if ($_SERVER['REQUEST_URI'] == Yii::app()->request->baseUrl . '/') { ?>
+                    <div class="pre-loder">
+                        <div class="loding"> </div>
+                    </div> <!-- end of pre-loder -->
+                <?php } ?>
                 <header class="cf visible-xs visible-sm">
                 </header>
                 <section class="faq hidden-xs">    
@@ -63,7 +65,7 @@ class HeaderMerchant extends CWidget {
                                              <div class="row">
                             <div class="col-md-12">  
                                 <div class="col-md-11">  
-                                    <a class="faqs" href="#">FAQ'S<i class="fa infos fa-exclamation-circle"></i></a>
+                                    <a class="faqs" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/faq">FAQ'S<i class="fa infos fa-exclamation-circle"></i></a>
                                 </div>
                                 <div class="col-md-1 has_dropdown" style="top: 2px;">  
 
@@ -104,7 +106,7 @@ class HeaderMerchant extends CWidget {
                     <div class="container bods">
                         <div class="row">
                             <div class="col-md-4 col-xs-6">
-                                <a href="<?php echo Yii::app()->request->baseUrl; ?>">
+                                <a href="<?= Yii::app()->request->baseUrl; ?>">
                                     <img class="zee" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png">
                                 </a>
                             </div>
@@ -121,7 +123,7 @@ class HeaderMerchant extends CWidget {
                                         $state = 'logout';
                                         ?>
                                         <li><a href="<?php echo Yii::app()->request->baseUrl . '/user.php/merchant-home'; ?>"><?php echo Yii::app()->user->getState('merchant_name'); ?></a></li>
-                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/merchant-profile">Settings</a></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/merchant-profile">My Account</a></li>
                                         <?php
                                     }
                                     ?>

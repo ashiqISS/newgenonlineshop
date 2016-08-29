@@ -5,7 +5,7 @@
 
 
         <div class="banner_txt">
-            <h1 class="animated fadeInLeft m2">My <span class="redish">Account </span></h1>
+            <h1 class="animated fadeInLeft m2"> <span class="redish">Products </span></h1>
 
         </div>
 

@@ -29,6 +29,10 @@
         display: block;
         right: -15px;
     }
+    #laksyah_zoom
+    {
+        width: 100% ! important;
+    }
 </style>
 
 <?php
@@ -83,11 +87,11 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                         <ul id="gal1">
 
                             <?php
-                            $big = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/big';
+                           $big = dirname(Yii::app()->request->scriptFile). '/uploads/products/' . $folder . '/' . $product->id . '/gallery/big';
                             $bigg = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $product->id . '/gallery/big/';
-                            $thu = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/small';
+                            $thu = dirname(Yii::app()->request->scriptFile). '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/small';
                             $thumbs = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $product->id . '/gallery/small/';
-                            $zoo = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/zoom';
+                            $zoo = dirname(Yii::app()->request->scriptFile). '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/zoom';
                             $zoom = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $product->id . '/gallery/zoom/';
                             $file_display = array('jpg', 'jpeg', 'png', 'gif');
 
@@ -101,7 +105,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                                     if ($file !== '.' && $file !== '..' && in_array($file_type, $file_display) == true) {
                                         ?>
 
-                                        <li> <a href="#" data-image="<?php echo $bigg . $file; ?>" data-zoom-image="<?php echo $zoom . $file; ?>"> <img src="<?php echo $thumbs . $file; ?>" alt=""/> </a> </li>
+                                        <li> <a href="#" data-image="<?php echo $bigg . $file; ?>" data-zoom-image="<?php echo $zoom . $file; ?>"> <img src="<?php echo $thumbs . $file; ?>" width="100%" alt=""/> </a> </li>
                                         <?php
                                     }
                                     ?>
@@ -119,7 +123,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                                                                 <li><a href="#" data-image="<?= Yii::app()->request->baseUrl; ?>/images/product_small.jpg" data-zoom-image="<?= Yii::app()->request->baseUrl; ?>/images/product_big2.jpg"> <img src="<?= Yii::app()->request->baseUrl; ?>/images/product_small.jpg" alt=""/> </a></li>
                             -->
                             <?php if (empty($dir_contents)) { ?>
-                                <li><a href="#" data-image="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>" data-zoom-image="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/zoom.<?= $product->main_image ?>"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/small.<?= $product->main_image ?>" alt=""/> </a></li>
+                                <li><a href="#" data-image="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>" data-zoom-image="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/zoom.<?= $product->main_image ?>"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/small.<?= $product->main_image ?>" width="100%" alt=""/> </a></li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -134,18 +138,18 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                             
                         }
                         ?>
-                        <div class="product_big_image"> <img src="<?php echo $bigg . $file1; ?>" id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file1; ?>" width="100%" alt=""/>
+                    <div class="product_big_image"> <img src="<?php echo $bigg . $file1; ?>" id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file1; ?>" style="width: 100%" alt=""/>
 
                         </div>
                     <?php } else { ?>
 
-                        <div class="product_big_image"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>" id="laksyah_zoom" data-zoom-image="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/zoom.<?= $product->main_image ?>" alt=""/>                          
+                        <div class="product_big_image"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>" id="laksyah_zoom" data-zoom-image="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/zoom.<?= $product->main_image ?>" style="width: 100%" alt=""/>                          
                         </div>
                     <?php } ?>
                     <div class="mobile_slider">
                         <div class="laksyah_slider">
                             <?php if (file_exists($big) == false) { ?>
-                                <div class = "item"> <img src = "<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>" id = "laksyah_zoom" data-zoom-image = "<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>"></div>
+                                <div class = "item"> <img src = "<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>" id = "laksyah_zoom" data-zoom-image = "<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>" width="100%"></div>
                                 <?php
                             } else {
                                 $dir_contents = scandir($big);
@@ -155,7 +159,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                                     if ($file !== '.' && $file !== '..' && in_array($file_type, $file_display) == true) {
                                         ?>
 
-                                        <div class="item"> <img src="<?php echo $bigg . $file; ?>"  id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file; ?>"></div>
+                                        <div class="item"> <img src="<?php echo $bigg . $file; ?>"  id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file; ?>" width="100%"></div>
                                         <?php
                                     }
                                     ?>
@@ -175,24 +179,6 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                             var newWindow = window.open(url, "", "width=300, height=200");
                         }
                     </script>
-
-
-                    <!--                     MAIN SLIDES 
-                                        <div class="views">
-                                            <figure class="figures"> <img class="img-responsive" src="<?= Yii::app()->baseUrl; ?>/images/d1.jpg" alt="One">
-                                            </figure>
-                                            <figure class="figures"> <img class="img-responsive" src="<?= Yii::app()->baseUrl; ?>/images/d2.jpg" alt="One">
-                                            </figure>
-                                            <figure class="figures"> <img class="img-responsive" src="<?= Yii::app()->baseUrl; ?>/images/d3.jpg" alt="One">
-                                            </figure>
-                                        </div>
-                                         THUMBNAILS 
-                                        <div class="slider-nav-thumbnails">
-                                            <div><img class="small_img" src="<?= Yii::app()->baseUrl; ?>/images/d1.jpg" alt="One"></div>
-                                            <div><img class="small_img" src="<?= Yii::app()->baseUrl; ?>/images/d2.jpg" alt="Two"> </div>
-                                            <div><img class="small_img" src="<?= Yii::app()->baseUrl; ?>/images/d3.jpg" alt="Three"> </div>
-                                        </div>
-                    -->
                 </div>
                 <div class="col-md-5">
                     <?php echo $this->renderPartial('_detailed_right', array('product' => $product)); ?>
@@ -375,6 +361,8 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
     function hideLoader() {
         $('.over-lay').hide();
     }
+    
+    $('.zoomContainer img').css({"width" : ""});
 
 </script>
 <script src="<?php echo yii::app()->request->baseUrl; ?>/js/jquery.elevatezoom.js"></script>

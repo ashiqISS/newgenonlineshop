@@ -247,5 +247,20 @@ class SiteController extends Controller {
                 $this->render('error', $error);
         }
     }
+    
+    public function actionfaq()
+    {
+        $this->render('faq');
+    }
+    
+    public function actionAboutUs()
+    {
+        $this->render('about');
+    }
+    
+    public function actionContactUs()
+    {
+        $this->render('contact');
+    }
 
 }

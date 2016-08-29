@@ -3,6 +3,19 @@
 class Footer extends CWidget {
 
     public function run() {
+
+        $myAccount = Yii::app()->request->baseUrl . '/index.php/site/login';
+        if (Yii::app()->user->hasState('user_id')) {
+
+            $utype = Yii::app()->user->getState('user_type');
+            switch ($utype) {
+                case 1 : $myAccount = Yii::app()->request->baseUrl . '/user.php/my-account';
+                    break;
+                case 2 : $myAccount = Yii::app()->request->baseUrl . '/user.php/merchant-profile';
+                    break;
+                default : $myAccount = "#";
+            }
+        }
         ?>
 
         <footer>
@@ -24,7 +37,7 @@ class Footer extends CWidget {
 
 
                         <ul>
-                            <li><a href="#">My account</a></li>
+                            <li><a href="<?= $myAccount ?>">My account</a></li>
                             <li><a href="#">Order History</a></li>
                             <li><a href="#">Wish List</a></li>
                             <li><a href="#">Newsletter</a></li>
@@ -47,8 +60,8 @@ class Footer extends CWidget {
                         <h2>Our Service</h2>
                         <ul>
                             <li><a href="#">Shipping Return</a></li>
-                            <li><a href="#">Contact us</a></li>
-                            <li><a href="#">Faq</a></li>
+                            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/contact_us">Contact us</a></li>
+                            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/faq">Faq</a></li>
                             <li><a href="#">Affiliates</a></li>
                             <li><a href="#">Specials</a></li>
                         </ul>
@@ -99,8 +112,8 @@ class Footer extends CWidget {
         <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
         <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
 
-                                                                    <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
-                                                                    <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
+                                                                                    <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
+                                                                                    <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/owl.carousel.min.js"></script>
@@ -201,10 +214,10 @@ class Footer extends CWidget {
 
         </script>
 
-<!--<script>
-$.noConflict();
-// Code that uses other library's $ can follow here.
-</script>-->
+                <!--<script>
+                $.noConflict();
+                // Code that uses other library's $ can follow here.
+                </script>-->
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/simpleMobileMenu.js"></script>
         <script type="text/javascript">
 

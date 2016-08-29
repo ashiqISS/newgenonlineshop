@@ -43,7 +43,7 @@ class Header extends CWidget {
                     .red {
                         color: #ec1e20; padding-top:5px;font-size: 12px;
                         font-family: 'Roboto', sans-serif;
-                    }
+                    }            
 
                 </style>
 
@@ -55,9 +55,11 @@ class Header extends CWidget {
             </head>
 
             <body id="home-1">
-                <div class="pre-loder">
-                    <div class="loding"> </div>
-                </div> <!-- end of pre-loder -->
+                <?php if ($_SERVER['REQUEST_URI'] == Yii::app()->request->baseUrl . '/') { ?>
+                    <div class="pre-loder">
+                        <div class="loding"> </div>
+                    </div> <!-- end of pre-loder -->
+                <?php } ?>
                 <header class="cf visible-xs visible-sm">
                 </header>
                 <section class="faq hidden-xs">    
@@ -65,7 +67,7 @@ class Header extends CWidget {
                         <div class="row">
                             <div class="col-md-12">  
                                 <div class="col-md-11">  
-                                    <a class="faqs" href="#">FAQ'S<i class="fa infos fa-exclamation-circle"></i></a>
+                                    <a class="faqs" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/faq">FAQ'S<i class="fa infos fa-exclamation-circle"></i></a>
                                 </div>
                                 <div class="col-md-1 has_dropdown" style="top: 2px;">  
 
@@ -105,7 +107,7 @@ class Header extends CWidget {
                     <div class="container bods">
                         <div class="row">
                             <div class="col-md-4 col-xs-6">
-                                <img class="zee" src="<?= Yii::app()->request->baseUrl; ?>/images/logo.png">
+                                <a href="<?= Yii::app()->request->baseUrl; ?>">  <img class="zee" src="<?= Yii::app()->request->baseUrl; ?>/images/logo.png"></a>
                             </div>
                             <div class="col-md-4 col-xs-6 hidden-xs">
 
@@ -128,12 +130,10 @@ class Header extends CWidget {
                             <div class="col-md-4">
                                 <ul class="list-inline list-unstyled">
 
-
-                                    <li><a class="mycart" href="#"  data-toggle="modal" data-target="#myModal"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/wallet2.png">Wallet</a>
-
-
-
-                                    </li>
+                                    <?php if (Yii::app()->user->hasState('user_id')) { ?>
+                                        <li><a class="mycart" href="#"  data-toggle="modal" data-target="#myModal"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/wallet2.png">Wallet</a>
+                                        </li>
+                                    <?php } ?>
                                     <li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-cart"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">MyCart</a></li>
                                     <!--<li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-cart"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">Wishlist</a></li>-->
 
@@ -235,10 +235,10 @@ class Header extends CWidget {
                                                 </div>-->
                                             <ul class="nav navbar-nav">
                                                 <!--<li class="active"><a href="#">Home</a></li>-->
-                                                <li><a href="#">Home</a></li>
-                                                <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
-                                                <li><a href="#">About Us</a></li> 
-                                                <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
+                                                <?php if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="#">Home</a></li><?php } ?>
+                                                <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
+                                                <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about_us">About Us</a></li> 
+                                                <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                 <li><a href="#">Offers & Deals</a></li> 
 
 
@@ -282,34 +282,34 @@ class Header extends CWidget {
                                                                                                                     </div>
                                                                                                                 </div>-->
                                                     </li>
-                                                    <li><a href="index.html"><span>Home</span></a></li>
-                                                    <li><a href="#">My Account</a></li>
-                                                    <li><a href="#"><span>About Us</span></a></li>
+                                                    <?php if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="index.html"><span>Home</span></a></li><?php } ?>
+                                                    <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
+                                                    <li><a href="<?= Yii::app()->request->baseUrl; ?>/site/AboutUs"><span>About Us</span></a></li>
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                     <li><a href="#"><span>Offers & Deals</span></a></li>
 
-                                <!--                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
-                                                                                        <ul>
-                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                <!--                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
+                                                                                                                        <ul>
+                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
 
-                                                                                        </ul>
-                                                                                    </li>
-                                                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
-                                                                                        <ul>
-                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                        </ul>
+                                                                                                                    </li>
+                                                                                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
+                                                                                                                        <ul>
+                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
 
-                                                                                        </ul>
-                                                                                    </li>-->
-                        <!--                                                    <li><a href="#"><span>categories</span></a></li>
-                                                                            <li><a href="#"><span>categories</span></a></li>-->
+                                                                                                                        </ul>
+                                                                                                                    </li>-->
+                                                        <!--                                                    <li><a href="#"><span>categories</span></a></li>
+                                                                                                            <li><a href="#"><span>categories</span></a></li>-->
 
-                                                    <li><a href="#"><span>faqs</span></a></li>
+                                                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/site/faq"><span>faqs</span></a></li>
 
 
 

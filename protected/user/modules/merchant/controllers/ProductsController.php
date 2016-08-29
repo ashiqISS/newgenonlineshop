@@ -135,6 +135,7 @@ class ProductsController extends Controller {
 
 
                 if ($model->save()) {
+                    
                     if ($image != "") {
                         $id = $model->id;
                         $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
