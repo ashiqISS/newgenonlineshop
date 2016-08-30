@@ -12971,3 +12971,243 @@ Stack trace:
 REQUEST_URI=/newgenonlineshop/user.php/Ampps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
 HTTP_REFERER=http://localhost/newgenonlineshop/user.php/add-product
 ---
+2016/08/30 08:02:18 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yiinfinite-scroll\YiinfiniteScroller.php:47
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(173): YiinfiniteScroller->run()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\product\products.php(83): CBaseController->widget('application.use...', Array)
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CController->renderPartial('products', Array, true)
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\ProductController.php(158): CController->render('products', Array)
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): ProductController->actionProducts()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('products')
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('product/product...')
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/newgenonlineshop/user.php/products?page=3
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/products
+---
+2016/08/30 09:38:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart.jpg')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 09:38:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart2.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart2.jp...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart2.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 09:38:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart.jpg')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 09:38:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart2.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart2.jp...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart2.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 09:39:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart2.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart2.jp...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart2.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 09:39:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart.jpg')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 09:39:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart.jpg')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 09:39:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart2.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart2.jp...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart2.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 10:51:22 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (67)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 10:51:36 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (67)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 10:52:39 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (67)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 10:54:30 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (67)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 10:55:51 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (67)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 10:56:06 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (67)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 11:04:47 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (67)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 11:04:52 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (67)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 11:07:03 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (67)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 11:10:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Myaccount/EditAddress".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('Myaccount/EditA...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/Myaccount/EditAddress?id=1
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/address-book
+---
+2016/08/30 11:11:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Myaccount/EditAddress".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('Myaccount/EditA...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/Myaccount/EditAddress?id=1
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/address-book
+---
+2016/08/30 11:11:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Myaccount/EditAddress".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('Myaccount/EditA...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/Myaccount/EditAddress?id=1
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/address-book
+---
+2016/08/30 11:36:36 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (67)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 11:36:47 [warning] [application] Failed to set unsafe attribute "address_2" of "UserAddress".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\UserAddressController.php (103)
+in D:\installs\Ampps\www\newgenonlineshop\user.php (13)
+2016/08/30 11:37:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/des.png".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/des.png')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/des.png
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-wishlist
+---
+2016/08/30 11:38:36 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yiinfinite-scroll\YiinfiniteScroller.php:47
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(173): YiinfiniteScroller->run()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\product\products.php(83): CBaseController->widget('application.use...', Array)
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CController->renderPartial('products', Array, true)
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\ProductController.php(158): CController->render('products', Array)
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): ProductController->actionProducts()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('products')
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('product/product...')
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/newgenonlineshop/user.php/products?page=3
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/products
+---
+2016/08/30 11:38:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart2.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart2.jp...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart2.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 11:38:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart.jpg')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 11:39:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart.jpg')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 11:39:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/cart2.jpg".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('images/cart2.jp...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/images/cart2.jpg
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/my-orders
+---
+2016/08/30 11:41:43 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yiinfinite-scroll\YiinfiniteScroller.php:47
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(173): YiinfiniteScroller->run()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\product\products.php(83): CBaseController->widget('application.use...', Array)
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CController->renderPartial('products', Array, true)
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\ProductController.php(158): CController->render('products', Array)
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): ProductController->actionProducts()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('products')
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('product/product...')
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/newgenonlineshop/index.php/products?page=3
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/products
+---

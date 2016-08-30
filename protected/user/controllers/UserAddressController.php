@@ -75,10 +75,10 @@ class UserAddressController extends Controller {
             if ($model->validate()) {
                 if ($model->save()) {
 
-                    Yii::app()->user->setFlash('success', "your Address has been  successfully added");
+                    Yii::app()->user->setFlash('address_updation', "New address added successfully.");
                     $this->redirect(array('buyerDetails/AddressBook'));
                 } else {
-                    Yii::app()->user->setFlash('error', "Sorry! There is some error..");
+                    Yii::app()->user->setFlash('address_updation', "Sorry! There is some error..");
                 }
             }
         }
@@ -101,8 +101,17 @@ class UserAddressController extends Controller {
 
         if (isset($_POST['UserAddress'])) {
             $model->attributes = $_POST['UserAddress'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+            $model->address_2 = $_POST['UserAddress']['address_2'];
+            $model = $this->checkDefault($model, 'default_billing_address');
+            $model = $this->checkDefault($model, 'default_shipping_address');
+            if ($model->validate()) {
+                if ($model->save()) {
+                    Yii::app()->user->setFlash('address_updation', "Address updated successfully");
+                    $this->redirect(array('buyerDetails/AddressBook'));
+                } else {
+                    Yii::app()->user->setFlash('address_updation', "Sorry! There is some error..");
+                }
+            }
         }
 
         $this->render('update', array(
@@ -115,6 +124,18 @@ class UserAddressController extends Controller {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
+    public function actionDeleteAddress() {
+
+        if (isset($_GET['id'])) {
+            if (UserAddress::model()->deleteByPk($_GET['id'])) {
+                Yii::app()->user->setFlash('address_updation', "Address deleted.");
+            } else {
+                Yii::app()->user->setFlash('address_updation', "Cannot remove address.");
+            }
+            $this->redirect(array('buyerDetails/AddressBook'));
+        }
+    }
+
     public function actionDelete($id) {
         $this->loadModel($id)->delete();
 
@@ -194,20 +215,16 @@ class UserAddressController extends Controller {
     }
 
     public function checkDefault($model, $default) {
-        if (!isset(Yii::app()->session['user'])) {
-            $this->redirect(Yii::app()->request->baseUrl . '/index.php/site/login');
-        } else {
-            $default_address = UserAddress::model()->findAllByAttributes(array('userid' => Yii::app()->session['user']['id'], $default => 1));
-            if (empty($default_address)) {
-                $model->$default = 1;
-            } elseif ($model->$default == 1) {
-                $address = UserAddress::model()->updateAll(array($default => 0), 'userid = ' . Yii::app()->session['user']['id']);
-                $model->$default = 1;
-            } elseif ($model->$default == 0) {
-                $model->$default = 0;
-            }
-            return $model;
+        $default_address = UserAddress::model()->findAllByAttributes(array('userid' => Yii::app()->user->getId(), $default => 1));
+        if (empty($default_address)) {
+            $model->$default = 1;
+        } elseif ($model->$default == 1) {
+            $address = UserAddress::model()->updateAll(array($default => 0), 'userid = ' . Yii::app()->user->getId());
+            $model->$default = 1;
+        } elseif ($model->$default == 0) {
+            $model->$default = 0;
         }
+        return $model;
     }
 
 }
