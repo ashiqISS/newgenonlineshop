@@ -60,7 +60,14 @@ a.faqs {
     /*top: 0;*/
     right: 26px;
 }
+span.required {
+    color: red;
+}
 
+.errorMessage
+{
+     color: red;
+}
 
 /*
 -------------------------
