@@ -15,7 +15,7 @@
 
                         <div style="padding: 2em">
                             <?php
-                            echo 'Hi '.  BuyerDetails::getFullname($user_model->id).',';
+                            echo 'Hi ' . MerchantDetails::getFullname($user_model->id).',';
                             ?>
                             <br><br>
                             Your password has been reset.

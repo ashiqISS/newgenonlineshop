@@ -152,8 +152,9 @@ class MerchantDetailsController extends Controller {
                 $user->password = $model->newPassword;
                 if ($user->update()) {
                     Yii::app()->user->setFlash('passwordReset', "Password Changed!");
-//                    $this->passwordChanged($user);
+                    $this->passwordChanged($user);
                     $model = new ResetPassword;
+                    
                 }
             }
         }
@@ -165,16 +166,16 @@ class MerchantDetailsController extends Controller {
         $message = new YiiMailMessage;
         $message->view = "_info_password_changed";
         $params = array('user_model' => $user_model);
-        $message->subject = 'NewGen Shop : Password reset';
+        $message->subject = 'NewGen Shop : Password Changed';
         $message->setBody($params, 'text/html');
         $message->addTo($user_model->email);
-        $message->from = 'aathira@intersmart.com';
+        $message->from = Yii::app()->params['infoEmail'];
         if (Yii::app()->mail->send($message)) {
 //            echo 'message send';
 //            exit;
         } else {
-            echo 'message not send';
-            exit;
+//            echo 'message not send';
+//            exit;
         }
     }
 

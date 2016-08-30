@@ -107,13 +107,17 @@ class Footer extends CWidget {
                 </div> 
             </div>
         </section>
-
+        <?php
+        Yii::app()->clientScript->registerScript(
+                'myHideEffect', '$(".alert-info").animate({opacity: 1.0}, 10000).fadeOut("slow");', CClientScript::POS_READY
+        );
+        ?>
         <?php $jquery = Yii::app()->request->baseUrl . '/js/jquery-1.11.3.min.js'; ?>
         <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
         <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
 
-                                                                                    <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
-                                                                                    <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
+                                                                                            <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
+                                                                                            <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/owl.carousel.min.js"></script>
@@ -214,10 +218,10 @@ class Footer extends CWidget {
 
         </script>
 
-                <!--<script>
-                $.noConflict();
-                // Code that uses other library's $ can follow here.
-                </script>-->
+                        <!--<script>
+                        $.noConflict();
+                        // Code that uses other library's $ can follow here.
+                        </script>-->
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/simpleMobileMenu.js"></script>
         <script type="text/javascript">
 

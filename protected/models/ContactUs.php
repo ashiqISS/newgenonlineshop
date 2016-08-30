@@ -7,8 +7,9 @@
  * @property integer $id
  * @property string $name
  * @property string $email
- * @property integer $phone
- * @property string $comment
+ * @property integer $contact_number
+ * @property string $subject
+ * @property string $message
  * @property string $date
  */
 class ContactUs extends CActiveRecord
@@ -29,13 +30,14 @@ class ContactUs extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, email, phone, comment, date', 'required'),
-			array('phone', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>100),
-			array('email', 'length', 'max'=>225),
+			array('name, email, contact_number, subject, message, date', 'required'),
+			array('contact_number', 'numerical', 'integerOnly'=>true),
+			array('name, subject', 'length', 'max'=>100),
+			array('email', 'length', 'max'=>200),
+			array('email', 'email'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, email, phone, comment, date', 'safe', 'on'=>'search'),
+			array('id, name, email, contact_number, subject, message, date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,8 +61,9 @@ class ContactUs extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'email' => 'Email',
-			'phone' => 'Phone',
-			'comment' => 'Comment',
+			'contact_number' => 'Contact Number',
+			'subject' => 'Subject',
+			'message' => 'Message',
 			'date' => 'Date',
 		);
 	}
@@ -86,8 +89,9 @@ class ContactUs extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('phone',$this->phone);
-		$criteria->compare('comment',$this->comment,true);
+		$criteria->compare('contact_number',$this->contact_number);
+		$criteria->compare('subject',$this->subject,true);
+		$criteria->compare('message',$this->message,true);
 		$criteria->compare('date',$this->date,true);
 
 		return new CActiveDataProvider($this, array(

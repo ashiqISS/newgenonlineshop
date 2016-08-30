@@ -108,7 +108,6 @@ class SiteController extends Controller {
                     $user->update();
                     $model = new ForgotPassword;
                     $this->resetPasswordMail($user);
-                    $this->redirect(array('ResetPassword'));
                 }
             }
         }
@@ -119,22 +118,20 @@ class SiteController extends Controller {
         $this->render('password_reset');
     }
 
-    public function resetPasswordMail() {
+    public function resetPasswordMail($user) {
         Yii::import('user.extensions.yii-mail.YiiMail');
         $message = new YiiMailMessage;
         $message->view = "_reset_password";
         $params = array('user' => $user);
         $message->subject = 'NewGenShop : Recover Password';
         $message->setBody($params, 'text/html');
-        $message->addTo('aathira@intersmart.in');
-//        $message->addTo($user->email);
-        $message->from = 'aathira@intersmart.in';
+//        $message->addTo('aathira@intersmart.in');
+        $message->addTo($user->email);
+        $message->from = Yii::app()->params['infoEmail'];
         if (Yii::app()->mail->send($message)) {
-//            echo 'message send';
-//            exit;
+            $this->redirect(array('ResetPassword'));
         } else {
-            echo 'message not send';
-            exit;
+            Yii::app()->user->setFlash('resetFailed', " Sorry, your request cannot be processed now due to some technical problems. Please try after some time.");
         }
     }
 
@@ -247,20 +244,46 @@ class SiteController extends Controller {
                 $this->render('error', $error);
         }
     }
-    
-    public function actionfaq()
-    {
+
+    public function actionfaq() {
         $this->render('faq');
     }
-    
-    public function actionAboutUs()
-    {
+
+    public function actionAboutUs() {
         $this->render('about');
     }
-    
-    public function actionContactUs()
-    {
-        $this->render('contact');
+
+    public function actionContactUs() {
+        $model = new ContactUs;
+        if (isset($_POST['ContactUs'])) {
+            $model->attributes = $_POST['ContactUs'];
+            date_default_timezone_set('Asia/Calcutta');
+            $model->date = date('Y-m-d H:i:s');
+            if ($model->validate()) {
+                if ($model->save()) {
+                    $this->sendContactMail($model);
+                    $model = new ContactUs;
+                }
+            }
+        }
+        $this->render('contact', array('model' => $model));
+    }
+
+    public function sendContactMail($model) {
+        Yii::import('user.extensions.yii-mail.YiiMail');
+        $message = new YiiMailMessage;
+        $message->view = "_contact_us";
+        $params = array('model' => $model);
+        $message->subject = 'NewGenShop : Contact Us';
+        $message->setBody($params, 'text/html');
+        $message->addTo(Yii::app()->params['contactEmail']);
+//       change to admin email
+        $message->from = $model->email;
+        if (Yii::app()->mail->send($message)) {
+            Yii::app()->user->setFlash('contactus', " Your message has sent to admin. We will contact you soon..");
+        } else {
+            Yii::app()->user->setFlash('contactus', " Sorry, your message was not sent due to some technical problems. Please try after some time.");
+        }
     }
 
 }

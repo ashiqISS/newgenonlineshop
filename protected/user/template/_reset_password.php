@@ -16,7 +16,9 @@
                             <br>
                             Hi<br>
                             Your password has been reset. <br>
-                            Please login with the following password and change your password form your account settings.<br><br>
+                            Please login with the following password and change your password form your account settings.<br>
+                            New Password : <?= $user->password; ?>
+                            <br><br>
                             Thanks & Regards<br>
                             NewGen Team
                         </div>

@@ -35,7 +35,7 @@ class ForgotPassword extends CFormModel {
             
         }
         if ($model == null) {
-            $this->addError('email', 'The email id is wrong');
+            $this->addError('email', 'Sorry , this email is not registered with us');
         }
     }
 

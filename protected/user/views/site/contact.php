@@ -1,5 +1,3 @@
-
-
 <section class="banner">
 
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?= Yii::app()->baseUrl ?>/images/img_inn.jpg">
@@ -12,53 +10,22 @@
 
     </div>
 
-
-
-
-
 </section>
 
-
-
-
-
-
-
-
 <div class="clearfix"></div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <section class="beautifull-spa-and-faeture">
     <h2 class="hidden">Feature</h2>
     <div class="container">
         <div class="row">
 
-
-
         </div> <!-- end of row -->
     </div> <!-- end of container -->
 </section>
 
-
-
-
 <section class="facial services">
     <div class="container">
         <div class="row">
-
-
-
 
             <div class="col-md-12 pdg">
 
@@ -116,13 +83,7 @@
                         </div>
                     </div>
 
-
-
                 </div>
-
-
-
-
 
                 <div class="col-md-9">
 
@@ -133,71 +94,85 @@
 
                 </div>
 
-
-
-
             </div>
-
-
-
-
-
-
-
-
 
             <div class="col-md-12  pdg">
 
+                <!--flash message-->
+                <?php if (Yii::app()->user->hasFlash('contactus')): ?>
+                    <div class="alert alert-info fade in">
+                        <?php echo Yii::app()->user->getFlash('contactus'); ?>
+                    </div>
+                <?php endif; ?>
+      
 
-                <form action="" method="post" class="contact-form-box" enctype="multipart/form-data">
-                    <fieldset>
-
-                        <div class="clearfix">
-                            <div class="col-xs-12 col-md-3">
-
-                                <p id="desc_contact0" class="desc_contact">&nbsp;</p>
-
-
-                                <p class="form-group">
-                                    <label for="email">Neme</label>
-                                    <input class="form-control grey validate" type="text" id="email" name="from" data-validate="isEmail" value="">
-                                </p>
-                                <div class="form-group selector1">
-                                    <label>Email Address</label>
-                                    <input class="form-control grey" type="text" name="id_order" id="" value="">
-                                </div>
-
-
-                                <div class="form-group selector1">
-                                    <label>Contact Number</label>
-                                    <input class="form-control grey" type="text" name="id_order" id="" value="">
-                                </div>
-
-                                <div class="form-group selector1">
-                                    <label>Subject</label>
-                                    <input class="form-control grey" type="text" name="id_order" id="" value="">
-                                </div>
+                <?php
+                $form = $this->beginWidget('CActiveForm', array(
+                    'id' => 'contact-us-form',
+                    'htmlOptions' => array('class' => 'contact-form-box'),
+                    // Please note: When you enable ajax validation, make sure the corresponding
+                    // controller action is handling ajax validation correctly.
+                    // There is a call to performAjaxValidation() commented in generated controller code.
+                    // See class documentation of CActiveForm for details on this.
+                    'enableAjaxValidation' => false,
+                ));
+                ?>
 
 
+                <?php // echo $form->errorSummary($model); ?>
+
+
+                <fieldset>
+
+                    <div class="clearfix">
+                        <div class="col-xs-12 col-md-3">
+
+                            <p id="desc_contact0" class="desc_contact">&nbsp;</p>
+
+
+                            <p class="form-group">
+                                <label for="email">Name</label>
+                                <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control grey validate')); ?>
+                                <?php echo $form->error($model, 'name', array('class' => 'red')); ?>
+                            </p>
+                            <div class="form-group selector1">
+                                <label>Email Address</label>
+                                <?php echo $form->textField($model, 'email', array('size' => 60, 'maxlength' => 200, 'class' => 'form-control grey')); ?>
+                                <?php echo $form->error($model, 'email', array('class' => 'red')); ?>
                             </div>
 
-                            <div class="col-xs-12 col-md-9">
-                                <div class="form-group">
-                                    <label for="message">Message</label>
-                                    <textarea class="form-control" id="message" name="message"></textarea>
-                                </div>
+
+                            <div class="form-group selector1">
+                                <label>Contact Number</label>
+                                <?php echo $form->textField($model, 'contact_number', array('class' => 'form-control grey')); ?>
+                                <?php echo $form->error($model, 'contact_number', array('class' => 'red')); ?>
+                            </div>
+
+                            <div class="form-group selector1">
+                                <label>Subject</label>
+                                <?php echo $form->textField($model, 'subject', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control grey')); ?>
+                                <?php echo $form->error($model, 'subject', array('class' => 'red')); ?>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-xs-12 col-md-9">
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <?php echo $form->textArea($model, 'message', array('rows' => 6, 'cols' => 50, 'class' => 'form-control')); ?>
+                                <?php echo $form->error($model, 'message', array('class' => 'red')); ?>
                             </div>
                         </div>
-                        <div class="submit">
-                            <button type="submit" name="submitMessage" id="" class="btn btn-default btn-sm bt_up ">
-                                <span>
-                                    Submit
 
-                                </span>
-                            </button>
-                        </div>
-                    </fieldset>
-                </form>
+                    </div>
+                    <div class="submit">
+                        <?php echo CHtml::submitButton($model->isNewRecord ? 'Submit' : 'Save', array('class' => 'btn btn-default btn-sm bt_up')); ?>
+
+                        <?php $this->endWidget(); ?>
+
+                    </div>                       
+                </fieldset>
 
 
 

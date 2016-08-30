@@ -98,7 +98,7 @@ class BuyerDetailsController extends Controller {
         $message->subject = 'Welcome To NewGenShop';
         $message->setBody($params, 'text/html');
         $message->addTo($user_model->email);
-        $message->from = 'aathira@intersmart.in';
+        $message->from = Yii::app()->params['infoEmail'];
         if (Yii::app()->mail->send($message)) {
 //            echo 'message send';
 //            exit;

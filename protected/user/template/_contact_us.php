@@ -14,11 +14,33 @@
                     <td>
 
                         <div style="padding: 2em">
-                            <?php
-                            echo 'Hi '.  BuyerDetails::getFullname($user_model->id).',';
-                            ?>
-                            <br><br>
-                            Your password has been reset.
+                            <table id="mail_content_tbl">
+                                <tr>
+                                    <td style=" padding: .5em;"> Name</td>
+                                    <td style=" padding: .5em;"> : </td>
+                                    <td style=" padding: .5em;"> <?php echo $model->name;  ?> </td>
+                                </tr>
+                                <tr>
+                                    <td style=" padding: .5em;"> Email</td>
+                                    <td style=" padding: .5em;"> : </td>
+                                    <td style=" padding: .5em;"> <?php echo $model->email;  ?> </td>
+                                </tr>
+                                <tr>
+                                    <td style=" padding: .5em;"> Contact Number</td>
+                                    <td style=" padding: .5em;"> : </td>
+                                    <td style=" padding: .5em;"> <?php echo $model->contact_number;  ?> </td>
+                                </tr>
+                                <tr>
+                                    <td style=" padding: .5em;"> Subject</td>
+                                    <td style=" padding: .5em;"> : </td>
+                                    <td style=" padding: .5em;"> <?php echo $model->subject;  ?> </td>
+                                </tr>
+                                <tr>
+                                    <td style=" padding: .5em;"> Message</td>
+                                    <td style=" padding: .5em;"> : </td>
+                                    <td style=" padding: .5em;"> <?php echo $model->message;  ?> </td>
+                                </tr>
+                            </table>
                         </div>
                     </td>
                 </tr>

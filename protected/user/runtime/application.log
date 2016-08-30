@@ -12869,3 +12869,105 @@ Stack trace:
 REQUEST_URI=/newgenonlineshop/index.php/products?page=3
 HTTP_REFERER=http://localhost/newgenonlineshop/index.php/products
 ---
+2016/08/30 10:07:36 [warning] [application] Failed to set unsafe attribute "contact_number" of "ContactUs".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\SiteController.php (262)
+in D:\installs\Ampps\www\newgenonlineshop\index.php (14)
+2016/08/30 10:07:36 [warning] [application] Failed to set unsafe attribute "subject" of "ContactUs".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\SiteController.php (262)
+in D:\installs\Ampps\www\newgenonlineshop\index.php (14)
+2016/08/30 10:07:36 [warning] [application] Failed to set unsafe attribute "message" of "ContactUs".
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\SiteController.php (262)
+in D:\installs\Ampps\www\newgenonlineshop\index.php (14)
+2016/08/30 10:07:36 [error] [exception.CException] exception 'CException' with message 'Property "ContactUs.phone" is not defined.' in D:\installs\Ampps\www\newgenonlineshop\framework\base\CComponent.php:130
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\db\ar\CActiveRecord.php(145): CComponent->__get('phone')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\validators\CRequiredValidator.php(58): CActiveRecord->__get('phone')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\validators\CValidator.php(213): CRequiredValidator->validateAttribute(Object(ContactUs), 'phone')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CModel.php(159): CValidator->validate(Object(ContactUs), NULL)
+#4 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\SiteController.php(265): CModel->validate()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): SiteController->actionContactUs()
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('ContactUs')
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('site/ContactUs')
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#13 {main}
+REQUEST_URI=/newgenonlineshop/index.php/contact_us
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/contact_us
+---
+2016/08/30 10:47:40 [error] [php] fsockopen(): php_network_getaddresses: getaddrinfo failed: No such host is known.  (D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\StreamBuffer.php:233)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\AbstractSmtpTransport.php(101): Swift_Transport_StreamBuffer->initialize()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Mailer.php(74): Swift_SmtpTransport->start()
+#2 D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\YiiMail.php(133): Swift_Mailer->send()
+#3 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\SiteController.php(285): YiiMail->send()
+#4 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\SiteController.php(267): SiteController->sendContactMail()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): SiteController->actionContactUs()
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): SiteController->runAction()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): SiteController->run()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/contact_us
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\StreamBuffer.php (233)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\StreamBuffer.php (70)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\AbstractSmtpTransport.php (101)
+2016/08/30 06:40:10 [error] [php] fsockopen(): php_network_getaddresses: getaddrinfo failed: No such host is known.  (D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\StreamBuffer.php:233)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\AbstractSmtpTransport.php(101): Swift_Transport_StreamBuffer->initialize()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Mailer.php(74): Swift_SmtpTransport->start()
+#2 D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\YiiMail.php(133): Swift_Mailer->send()
+#3 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\SiteController.php(131): YiiMail->send()
+#4 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\SiteController.php(110): SiteController->resetPasswordMail()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): SiteController->actionForgotPassword()
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): SiteController->runAction()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): SiteController->run()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/user.php/recover-password
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\StreamBuffer.php (233)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\StreamBuffer.php (70)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yii-mail\vendors\swiftMailer\classes\Swift\Transport\AbstractSmtpTransport.php (101)
+2016/08/30 07:12:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Ampps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('Ampps/www/newge...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/Ampps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/add-product
+---
+2016/08/30 07:12:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Ampps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('Ampps/www/newge...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/Ampps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/add-product
+---
+2016/08/30 07:13:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Ampps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('Ampps/www/newge...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/Ampps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/add-product
+---
+2016/08/30 07:13:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Ampps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('Ampps/www/newge...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\installs\Ampps\www\newgenonlineshop\user.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/newgenonlineshop/user.php/Ampps/www/newgenonlineshop/protected/admin/extensions/eckeditor/ECKEdit5.phpckeditor.js?t=B8DJ5M3
+HTTP_REFERER=http://localhost/newgenonlineshop/user.php/add-product
+---

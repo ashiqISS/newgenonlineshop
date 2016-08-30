@@ -94,7 +94,7 @@
                 $('#<?php echo $this->type; ?>_new_tag').on('click', '.<?php echo $this->type; ?>_need_add', function () {
                         var val = $(this).attr('id');
                         $.ajax({
-                                'url': '<?php echo Yii::app()->request->baseurl ?>' + '../user.php/site/<?php echo $this->type; ?>TagAdd',
+                                'url': '<?php echo Yii::app()->request->baseurl ?>' + '/user.php/site/<?php echo $this->type; ?>TagAdd',
                                 'async': false,
                                 'type': "POST",
                                 'global': false,
@@ -214,7 +214,7 @@
         function <?php echo $this->type; ?>SelectTag(val) {
                 var cat = $('#<?php echo $this->category_tag_id; ?>').val();
                 $.ajax({
-                        'url': '<?php echo Yii::app()->request->baseurl ?>' + '../user.php/site/<?php echo $this->type; ?>Cat',
+                        'url': '<?php echo Yii::app()->request->baseurl ?>' + '/user.php/site/<?php echo $this->type; ?>Cat',
                         'async': false,
                         'type': "POST",
                         'global': false,
@@ -225,7 +225,7 @@
                                         $('.<?php echo $this->type; ?>_tagss').html(result);
                                         $('.<?php echo $this->type; ?>_tagss').show();
                                 } else {
-                                        $('.<?php echo $this->type; ?>_tagss').html('<div>This category is not available in our list</div>');
+                                        $('.<?php echo $this->type; ?>_tagss').html('<div>This category is not available in our list. Please contact our site admin to add your category.</div>');
                                         $('.<?php echo $this->type; ?>_tagss').show();
                                 }
                         }

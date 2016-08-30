@@ -28,6 +28,7 @@
 
             <div class="col-md-12 pdg">
 
+
                 <div class="new_form2">
 
                     <p>Don’t worry! just fill in your email and we’ll help you recover your password.</p>
@@ -74,7 +75,12 @@
 
                             <?php $this->endWidget(); ?>
 
-
+                            <!--flash message-->
+                            <?php if (Yii::app()->user->hasFlash('resetFailed')): ?>
+                                <div class="alert alert-info fade in">
+                                    <?php echo Yii::app()->user->getFlash('resetFailed'); ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
 

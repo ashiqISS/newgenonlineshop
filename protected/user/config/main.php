@@ -40,7 +40,7 @@ return array(
     ),
     // application components
     'components' => array(
-      //  'clientScript' => array('scriptMap' => array('jquery-1.11.3.min.js' => false,)),
+        //  'clientScript' => array('scriptMap' => array('jquery-1.11.3.min.js' => false,)),
         'Upload' => array('class' => 'UploadFile'),
 //        'booster' => array(
 //            'class' => 'booster.components.Booster',
@@ -54,7 +54,7 @@ return array(
         ),
         'mail' => array(
             'class' => 'user.extensions.yii-mail.YiiMail',
-           'transportType' => 'smtp',
+            'transportType' => 'smtp',
             'transportOptions' => array(
 //                'host' => 'mail.ecareagora.com',
                 'host' => 'mail.intersmarthosting.in',
@@ -102,8 +102,10 @@ return array(
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params' => array(
-        // this is used in contact page
-        'adminEmail' => 'webmaster@example.com',
+        // mail ids for sending mail
+        'adminEmail' => 'aathira@intersmart.com', // admin mail
+        'infoEmail' => 'aathira@intersmart.com',
+        'contactEmail' => 'aathira@intersmart.com', // contact mail
     ),
 );
 

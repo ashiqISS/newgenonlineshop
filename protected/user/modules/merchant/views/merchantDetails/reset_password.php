@@ -1,3 +1,17 @@
+<style>
+    input[type=submit]  {
+        float: left;
+        background-color: #f06e4b;
+        padding: 7px;
+        min-width: 80px;
+        margin-right: 10px;
+        text-align: center;
+        color: #FFFFFF;
+        border-radius: 5px;
+        border: none;
+    }
+</style>
+
 <section class="banner">
 
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?php echo Yii::app()->request->baseUrl; ?>/images/img_inn.jpg)">
@@ -33,63 +47,48 @@
 
                 <div class="left-content">
 
+                    <!--flash message-->
                     <?php if (Yii::app()->user->hasFlash('passwordReset')): ?>
-                        <div class="">
+                        <div class="alert alert-info fade in">
                             <?php echo Yii::app()->user->getFlash('passwordReset'); ?>
-                        </div>
+                        </div><br>
                     <?php endif; ?>
 
+
                     <?php
-                    /* @var $this ResetPasswordController */
-                    /* @var $model ResetPassword */
-                    /* @var $form CActiveForm */
+                    $form = $this->beginWidget('CActiveForm', array(
+                        'id' => 'reset-password-reset_password-form',
+                        // Please note: When you enable ajax validation, make sure the corresponding
+                        // controller action is handling ajax validation correctly.
+                        // See class documentation of CActiveForm for details on this,
+                        // you need to use the performAjaxValidation()-method described there.
+                        'enableAjaxValidation' => false,
+                    ));
                     ?>
 
+                    <?php // echo $form->errorSummary($model); ?>
 
-                    <div class="form">
+                    <div class="form-group">
+                        <?php echo $form->passwordField($model, 'currentPassword', array('class' => "form-news", 'placeholder' => 'Current Password')); ?>
+                        <?php echo $form->error($model, 'currentPassword', array('class' => 'red')); ?>
+                    </div>
 
-                        <?php
-                        $form = $this->beginWidget('CActiveForm', array(
-                            'id' => 'reset-password-reset_password-form',
-                            // Please note: When you enable ajax validation, make sure the corresponding
-                            // controller action is handling ajax validation correctly.
-                            // See class documentation of CActiveForm for details on this,
-                            // you need to use the performAjaxValidation()-method described there.
-                            'enableAjaxValidation' => false,
-                        ));
-                        ?>
+                    <div class="form-group">
+                        <?php echo $form->passwordField($model, 'newPassword', array('class' => "form-news", 'placeholder' => 'New Password')); ?>
+                        <?php echo $form->error($model, 'newPassword', array('class' => 'red')); ?>
+                    </div>
 
-                        <?php // echo $form->errorSummary($model); ?>
-
-                        <div class="form-group">
-                            <?php echo $form->passwordField($model, 'currentPassword', array('class' => "form-news", 'placeholder' => 'Current Password')); ?>
-                            <?php echo $form->error($model, 'currentPassword', array('class' => 'red')); ?>
-                        </div>
-
-                        <div class="form-group">
-                            <?php echo $form->passwordField($model, 'newPassword', array('class' => "form-news", 'placeholder' => 'New Password')); ?>
-                            <?php echo $form->error($model, 'newPassword', array('class' => 'red')); ?>
-                        </div>
-
-                        <div class="form-group">
-                            <?php echo $form->passwordField($model, 'confirmPassword', array('class' => "form-news", 'placeholder' => 'Confirm Password')); ?>
-                            <?php echo $form->error($model, 'confirmPassword', array('class' => 'red')); ?>
-                        </div>
+                    <div class="form-group">
+                        <?php echo $form->passwordField($model, 'confirmPassword', array('class' => "form-news", 'placeholder' => 'Confirm Password')); ?>
+                        <?php echo $form->error($model, 'confirmPassword', array('class' => 'red')); ?>
+                    </div>
 
 
-                        <div class="row buttons">
-                            <?php echo CHtml::submitButton('Submit', array('class' => 'btn continue btn-default delete-btn')); ?>
-                        </div>
+                    <div>
+                        <?php echo CHtml::submitButton('Submit', array('class' => 'btn continue btn-default delete-btn')); ?>
+                    </div>
 
-                        <?php $this->endWidget(); ?>
-
-                    </div><!-- form -->
-
-
-                    <!--                        <button type="submit" class="btn back btn-default edit-btn">Back</button>
-                    
-                                            <button type="submit" class="btn continue btn-default delete-btn">continue</button>-->
-
+                    <?php $this->endWidget(); ?>
 
 
                     <div class="clearfix"></div>
@@ -106,7 +105,7 @@
                     <li><a href="<?php echo CommonUrls::my_products(); ?>"> <i class="fa fa-cube fa-2x" aria-hidden="true"></i> <span>My products</span></a></li>
                     <li><a href=""> <i class="fa fa-cc-diners-club  fa-2x" aria-hidden="true"></i><span>Paid Post</span></a></li>
 
-                   <li><a href="<?php echo CommonUrls::featured(); ?>" > <i class="fa fa-picture-o fa-2x" aria-hidden="true"></i> <span>Featured ads </span></a></li>
+                    <li><a href="<?php echo CommonUrls::featured(); ?>" > <i class="fa fa-picture-o fa-2x" aria-hidden="true"></i> <span>Featured ads </span></a></li>
                     <li><a href="my_sales.php"> <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i> <span>My Sales</span></a></li>
                     <li><a href="payment.php"  > <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i><span>Payment / Payout</span></a></li>
                 </ul>
