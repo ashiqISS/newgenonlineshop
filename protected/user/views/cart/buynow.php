@@ -16,7 +16,7 @@
 <section class="banner">
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?= Yii::app()->baseUrl; ?>/images/img_inn.jpg)">
         <div class="banner_txt">
-            <h1 class="animated fadeInLeft m2">Check <span class="redish"> Out </span></h1>
+            <h1 class="animated fadeInLeft m2">My <span class="redish"> Cart </span></h1>
         </div>
     </div>
 </section>
@@ -27,12 +27,14 @@
     <h2 class="hidden">Feature</h2>
     <div class="container">
         <div class="row">
+
         </div> <!-- end of row -->
     </div> <!-- end of container -->
 </section>
 <section class="cart-main">
     <div class="container">
         <div class="row">
+
             <div class="heading">
             </div>
             <div class="row">
@@ -65,7 +67,7 @@
                                             <tr>
                                                 <td>
                                                     <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $prod_details->canonical_name; ?>">
-                                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php echo $folder; ?>/<?php echo $prod_details->id; ?>/small.<?php echo $prod_details->main_image; ?>" class="img-responsive crt mid" align="absmiddle" style="max-height:300px; max-width:200px;display: block;">
+                                                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php echo $folder; ?>/<?php echo $prod_details->id; ?>/small.<?php echo $prod_details->main_image; ?>" class="img-responsive crt mid" align="absmiddle" style="max-height:300px; max-width:200px;display: block;">
                                                     </a>
                                                 </td>
                                                 <td>
@@ -112,8 +114,9 @@
                     </div>
                     <div class="proceed_inn">
                         <div class="slip-2">
+                            <br>
                             <!--                            <button type="submit" class="btn proceed-btn btn-default" href="checkout.php">proceed to checkout</button>-->
-                            <button class="btn ctn-btn btn-default" >continue shopping</button>
+                            <a style="color:#ff6633" href="<?= Yii::app()->baseUrl; ?>/index.php/products" >Continue Shopping</a>
                         </div>
                         <div class="slip-1">
                             <a class="shop-cart range">Subtotal: <?= Yii::app()->Currency->convert($total); ?></a>
@@ -135,10 +138,10 @@
                         </tbody>
                     </table>
                     <div class="proceed_upmg">
-                        <!--<form method="post" action="<?= Yii::app()->request->baseUrl; ?>/index.php/checkOut/Checkout/" id="checkoutForm">-->
+                        <form method="post" action="<?= Yii::app()->request->baseUrl; ?>/index.php/checkOut/Checkout/" id="checkoutForm">
                             <input type="hidden" value="<?php echo $total; ?>" name="total_amt" />
                             <button class="btn prsd-btn btn-default" id="checkout_btn">proceed to checkout</button>
-                        <!--</form>-->                        
+                        </form>                        
 
                     </div></div>
             </div>

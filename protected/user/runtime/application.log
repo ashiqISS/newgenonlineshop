@@ -13211,3 +13211,447 @@ Stack trace:
 REQUEST_URI=/newgenonlineshop/index.php/products?page=3
 HTTP_REFERER=http://localhost/newgenonlineshop/index.php/products
 ---
+2016/08/30 11:59:42 [error] [php] Creating default object from empty value (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_left_section.php:70)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout.php(32): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(124): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_left_section.php (70)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout.php (32)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (124)
+2016/08/30 12:03:49 [error] [php] Creating default object from empty value (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_left_section.php:70)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout.php(32): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(144): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_left_section.php (70)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout.php (32)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (144)
+2016/08/31 05:30:49 [error] [exception.CException] exception 'CException' with message 'CheckOutController cannot find the requested view "_checkout_left_content".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:878
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(33): CController->renderPartial('_checkout_left_...')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CController->renderPartial('checkout_addres...', Array, true)
+#5 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(150): CController->render('checkout_addres...', Array)
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('Checkout')
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('checkOut/Checko...')
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#14 {main}
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/my-cart
+---
+2016/08/31 05:38:03 [error] [php] Invalid argument supplied for foreach() (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php:37)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(33): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(150): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php (37)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php (33)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (150)
+2016/08/31 05:38:55 [error] [php] Invalid argument supplied for foreach() (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php:37)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(33): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(150): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php (37)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php (33)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (150)
+2016/08/31 05:38:58 [error] [php] Invalid argument supplied for foreach() (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php:37)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(33): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(150): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php (37)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php (33)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (150)
+2016/08/31 05:52:27 [error] [exception.CException] exception 'CException' with message 'Property "Users.first_name" is not defined.' in D:\installs\Ampps\www\newgenonlineshop\framework\base\CComponent.php:130
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\db\ar\CActiveRecord.php(145): CComponent->__get('first_name')
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php(58): CActiveRecord->__get('first_name')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#5 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(32): CController->renderPartial('_checkout_addre...', Array)
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CController->renderPartial('checkout_addres...', Array, true)
+#10 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(151): CController->render('checkout_addres...', Array)
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#14 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('Checkout')
+#16 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('checkOut/Checko...')
+#17 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/my-cart
+---
+2016/08/31 05:57:47 [error] [php] Invalid argument supplied for foreach() (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php:35)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(39): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(152): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php (35)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php (39)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (152)
+2016/08/31 05:58:17 [error] [php] Creating default object from empty value (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php:58)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(39): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(152): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php (58)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php (39)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (152)
+2016/08/31 05:58:37 [error] [php] Creating default object from empty value (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php:58)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(39): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(152): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php (58)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php (39)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (152)
+2016/08/31 06:01:04 [error] [php] Creating default object from empty value (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php:58)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(39): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(153): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php (58)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php (39)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (153)
+2016/08/31 06:07:23 [error] [php] Creating default object from empty value (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php:58)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(39): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(202): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php (58)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php (39)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (202)
+2016/08/31 06:08:08 [error] [exception.CException] exception 'CException' with message 'Property "Users.country" is not defined.' in D:\installs\Ampps\www\newgenonlineshop\framework\base\CComponent.php:130
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\db\ar\CActiveRecord.php(145): CComponent->__get('country')
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php(60): CActiveRecord->__get('country')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#5 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(40): CController->renderPartial('_checkout_addre...', Array)
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CController->renderPartial('checkout_addres...', Array, true)
+#10 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(203): CController->render('checkout_addres...', Array)
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#14 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('Checkout')
+#16 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('checkOut/Checko...')
+#17 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/my-cart
+---
+2016/08/31 06:08:30 [error] [exception.CException] exception 'CException' with message 'Property "BuyerDetails.country" is not defined.' in D:\installs\Ampps\www\newgenonlineshop\framework\base\CComponent.php:130
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\db\ar\CActiveRecord.php(145): CComponent->__get('country')
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php(60): CActiveRecord->__get('country')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#5 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(40): CController->renderPartial('_checkout_addre...', Array)
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CController->renderPartial('checkout_addres...', Array, true)
+#10 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(203): CController->render('checkout_addres...', Array)
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#14 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('Checkout')
+#16 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('checkOut/Checko...')
+#17 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/my-cart
+---
+2016/08/31 06:22:44 [error] [php] Creating default object from empty value (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php:170)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(40): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(203): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php (170)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php (40)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (203)
+2016/08/31 06:36:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "Getcountry".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:483
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(270): CController->missingAction('Getcountry')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('Getcountry')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('CheckOut/Getcou...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/newgenonlineshop/index.php/CheckOut/Getcountry
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/checkOut/Checkout/
+---
+2016/08/31 06:38:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "Getcountry".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:483
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(270): CController->missingAction('Getcountry')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('Getcountry')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('CheckOut/Getcou...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/newgenonlineshop/index.php/CheckOut/Getcountry
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/checkOut/Checkout/
+---
+2016/08/31 07:39:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "Chec".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:483
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(270): CController->missingAction('Chec')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('Chec')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('CheckOut/Chec')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/newgenonlineshop/index.php/CheckOut/Chec/
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/checkOut/Checkout/
+---
+2016/08/31 07:47:18 [error] [exception.CException] exception 'CException' with message 'CheckOutController and its behaviors do not have a method or closure named "subtotal".' in D:\installs\Ampps\www\newgenonlineshop\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(177): CComponent->__call('subtotal', Array)
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(177): CheckOutController->subtotal()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('Checkout')
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('checkOut/Checko...')
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/my-cart
+---
+2016/08/31 07:47:33 [error] [exception.CException] exception 'CException' with message 'CheckOutController and its behaviors do not have a method or closure named "subtotal".' in D:\installs\Ampps\www\newgenonlineshop\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(177): CComponent->__call('subtotal', Array)
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(177): CheckOutController->subtotal()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('Checkout')
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('checkOut/Checko...')
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/my-cart
+---
+2016/08/31 07:58:25 [error] [php] Invalid argument supplied for foreach() (D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php:39)
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php(50): CheckOutController->renderPartial()
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require()
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CheckOutController->renderInternal()
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CheckOutController->renderFile()
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CheckOutController->renderPartial()
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php(202): CheckOutController->render()
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): CheckOutController->actionCheckout()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CheckOutController->runAction()
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CheckOutController->runActionWithFilters()
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CheckOutController->run()
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CWebApplication->run()
+REQUEST_URI=/newgenonlineshop/index.php/checkOut/Checkout/
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\_checkout_address_left_content.php (39)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\views\checkOut\checkout_address.php (50)
+in D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\CheckOutController.php (202)
+2016/08/31 09:49:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "cart".' in D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php:483
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(270): CController->missingAction('cart')
+#1 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('cart')
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('CheckOut/cart/M...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/newgenonlineshop/index.php/CheckOut/cart/Mycart
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/checkOut/Checkout/
+---
+2016/08/31 10:11:55 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\installs\Ampps\www\newgenonlineshop\protected\user\extensions\yiinfinite-scroll\YiinfiniteScroller.php:47
+Stack trace:
+#0 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(173): YiinfiniteScroller->run()
+#1 D:\installs\Ampps\www\newgenonlineshop\protected\user\views\product\products.php(83): CBaseController->widget('application.use...', Array)
+#2 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(126): require('D:\\installs\\Amp...')
+#3 D:\installs\Ampps\www\newgenonlineshop\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\installs\\Amp...', Array, true)
+#4 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(869): CBaseController->renderFile('D:\\installs\\Amp...', Array, true)
+#5 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(782): CController->renderPartial('products', Array, true)
+#6 D:\installs\Ampps\www\newgenonlineshop\protected\user\controllers\ProductController.php(158): CController->render('products', Array)
+#7 D:\installs\Ampps\www\newgenonlineshop\framework\web\actions\CInlineAction.php(49): ProductController->actionProducts()
+#8 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 D:\installs\Ampps\www\newgenonlineshop\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(282): CController->run('products')
+#12 D:\installs\Ampps\www\newgenonlineshop\framework\web\CWebApplication.php(141): CWebApplication->runController('product/product...')
+#13 D:\installs\Ampps\www\newgenonlineshop\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\installs\Ampps\www\newgenonlineshop\index.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/newgenonlineshop/index.php/products?page=3
+HTTP_REFERER=http://localhost/newgenonlineshop/index.php/products
+---

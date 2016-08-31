@@ -111,6 +111,9 @@ class Footer extends CWidget {
         Yii::app()->clientScript->registerScript(
                 'myHideEffect', '$(".alert-info").animate({opacity: 1.0}, 10000).fadeOut("slow");', CClientScript::POS_READY
         );
+        Yii::app()->clientScript->registerScript(
+                'myHideEffect', '$(".alert-danger").animate({opacity: 1.0}, 10000).fadeOut("slow");', CClientScript::POS_READY
+        );
         ?>
         <?php $jquery = Yii::app()->request->baseUrl . '/js/jquery-1.11.3.min.js'; ?>
         <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
