@@ -1,24 +1,24 @@
 a.back-to-top {
-   display: none;
-   width: 50px;
-   height: 50px;
-   line-height: 50px;
-   text-align: center;
-   position: fixed;
-   z-index: 999;
-   right: 40px;
-   bottom: 31px;
-   background-color: rgba(0, 0, 0, 0.7);
-   background-position: center 43%;
-   line-height: 65px;
-   color: #fff;
+    display: none;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    position: fixed;
+    z-index: 999;
+    right: 40px;
+    bottom: 31px;
+    background-color: rgba(0, 0, 0, 0.7);
+    background-position: center 43%;
+    line-height: 65px;
+    color: #fff;
 }
 a.back-to-top i {
-   position: absolute;
-   left: 50%;
-   top: 50%;
-   -webkit-transform: translate(-50%, -50%);
-   transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .control-labelz-2 {
@@ -66,9 +66,11 @@ span.required {
 
 .errorMessage
 {
-     color: red;
+    color: red;
 }
-
+.tdd {
+    border: 1px solid #a9a4a4;
+}
 /*
 -------------------------
 Product Details
