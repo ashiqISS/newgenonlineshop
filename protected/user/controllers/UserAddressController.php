@@ -130,7 +130,7 @@ class UserAddressController extends Controller {
             if (UserAddress::model()->deleteByPk($_GET['id'])) {
                 Yii::app()->user->setFlash('address_updation', "Address deleted.");
             } else {
-                Yii::app()->user->setFlash('address_updation', "Cannot remove address.");
+                Yii::app()->user->setFlash('address_updation', "Cannot remove address.Already in use");
             }
             $this->redirect(array('buyerDetails/AddressBook'));
         }

@@ -22,8 +22,8 @@
                 </div>
             </div>
         <?php endif; ?>
-        
-        
+
+
         <div class="row">
 
             <div class="col-md-9">
@@ -187,6 +187,10 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1
                 success: function (data)
                 {
                     window.location.replace("<?= Yii::app()->baseUrl; ?>/user.php/address-book");
+                },
+                error: function (request, error) {
+//                    console.log(arguments);
+                    alert(" Can't delete : Address already in use. ");
                 }
             });
 

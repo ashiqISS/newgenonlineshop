@@ -26,127 +26,22 @@ class CheckOutController extends Controller {
     }
 
     public function actionCheckout() {
-        print_r($_POST);
 
+        $bill_address_id = $ship_address_id = $defaultShipping = $defaultBilling = $address = '';
         $user = Users::model()->findByPk(Yii::app()->user->getId());
         $buyer = BuyerDetails::model()->findByAttributes(array('user_id' => Yii::app()->user->getId()));
-
-        $order = Order::model()->findByPk(Yii::app()->session['orderid']);
         $cart = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
-//        if (!empty($cart)) {
-//            $deafult_shipping = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_shipping_address' => 1));
-//            $addresss = UserAddress::model()->findAllByAttributes(array('userid' => Yii::app()->user->getId()));
-//            $billing = new UserAddress;
-//            $shipping = new UserAddress;
-//            $address_id = '';
-//            if ($_POST['yt0']) {
-//
-//                $post_total_pay = $_POST['total_pay'];
-//
-//
-//                if ($_REQUEST['bill_address'] == 0) {
-//                    if (isset($_POST['UserAddress']['bill'])) {
-//                        $billing_address = $this->addAddress($billing, $_POST['UserAddress']['bill']);
-//                        $bill_address_id = $billing_address;
-//                    }
-//                } else {
-//                    $bill_address_id = $_REQUEST['bill_address'];
-//                }
-//                if ($_REQUEST['billing_same'] == NULL) {
-//                    if ($_REQUEST['ship_address'] == 0) {
-//                        if (isset($_POST['UserAddress']['ship'])) {
-//                            $shipping_address = $this->addAddress($shipping, $_POST['UserAddress']['ship']);
-//                            $ship_address_id = $shipping_address;
-//                        }
-//                    } else {
-//                        $ship_address_id = $_REQUEST['ship_address'];
-//                    }
-//                } else {
-//                    $ship_address_id = $bill_address_id;
-//                }
-//                $shipp_address = UserAddress::model()->findByPk($ship_address_id);
-//
-//                if (isset(Yii::app()->session['currency'])) {
-//                    $currency_rate = Yii::app()->session['currency']['rate'];
-//                } else {
-//                    $currency_rate = 1;
-//                }
-//                $subtotal = $this->subtotal();
-//
-//                $granttotal = round(($currency_rate * $subtotal), 2);
-//
-//
-//                if (isset(Yii::app()->session['currency'])) {
-//                    if (Yii::app()->session['currency']['rate'] == 1) {
-//                        $total_balance_to_pay = $granttotal;
-//                    } else {
-//                        $total_balance_to_pay = ceil($granttotal / Yii::app()->session['currency']['rate']);
-//                    }
-//                }
-//            }
-//
-//
-//                if ($bill_address_id != '' && $ship_address_id != '') {
-//
-//                    $order_id = Yii::app()->session['orderid'];
-//
-//                    $this->addOrder($bill_address_id, $ship_address_id, $cart, $order_id);
-//                    $order->shipping_method = '';
-//                 
-//
-//
-//                        $order->payment_mode = $_POST['payment_method'];
-//
-//
-//                        $order->bill_address_id = $bill_address_id;
-//                        $order->ship_address_id = $ship_address_id;
-//                        $order_billing_details = UserAddress::model()->findBypk($bill_address_id);
-//                        $order_shipping_detils = UserAddress::model()->findBypk($ship_address_id);
-//
-//                        if ($order->validate()) {
-////                            if (Yii::app()->user->hasFlash('shipp_availability') != 1) {
-//
-//                                if ($order->save()) {
-//                                    Cart::model()->deleteAllByAttributes(array('user_id' => Yii::app()->user->getId()));
-//
-//                                    $this->updateorderproduct($order->id);
-//
-//
-//                                    $this->redirect(array('OrderSuccess'));
-//                                }
-////                            }
-//                        } else {
-//                            var_dump($order->getErrors());
-//                            exit;
-//                        }
-////
-//                    
-//                }
-//            }
-////            print_r($billing);exit;
-//            $this->render('checkout', array('carts' => $cart, 'user' => $user,'buyer' => $buyer, 'deafult_shipping' => $deafult_shipping, 'addresss' => $addresss, 'shipping' => $shipping, 'orderid' => $order_id, 'billing' => $billing));
-//        } else {
-//            $this->redirect(array('Cart/Mycart'));
-//
-////todo render a cart empty page here
-//        }
-//
-////todo invalid user message
+
         $params = array();
-        $defaultShipping = $defaultBilling = $address = '';
         if (isset($_POST['total_amt'])) {
             $total_amt = $_POST['total_amt'];
             $user_id = Yii::app()->user->getState('user_id');
             $cart = Cart::model()->findAllByAttributes(array('user_id' => $user_id));
             if (!empty($cart)) {
-                $defaultShipping = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_shipping_address' => 1));
-                $defaultBilling = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_billing_address' => 1));
-                $address = UserAddress::model()->findAllByAttributes(array('userid' => Yii::app()->user->getId()));
+
                 $billing = new UserAddress;
                 $shipping = new UserAddress;
                 $address_id = '';
-
-
 
                 if ($_REQUEST['bill_address'] == 0) {
                     if (isset($_POST['UserAddress']['bill'])) {
@@ -175,8 +70,6 @@ class CheckOutController extends Controller {
                 } else {
                     $currency_rate = 1;
                 }
-//                    $subtotal = $this->subtotal();
-
                 $granttotal = round(($currency_rate * $subtotal), 2);
 
 
@@ -187,63 +80,20 @@ class CheckOutController extends Controller {
                         $total_balance_to_pay = ceil($granttotal / Yii::app()->session['currency']['rate']);
                     }
                 }
-                
-                
-                if (isset($_POST['bill_address'])) {
 
-            $bill_address_id = $ship_address_id = '';
-            // get billing address
-            if ($_POST['bill_address'] == 0) {
-                // todo insertion into address table
+
+                if (($bill_address_id != '') && ($ship_address_id != '')) {
+                    // redirection into final checkout page
+                    $this->createOrder($ship_address_id, $bill_address_id, $cart);
+                }
             } else {
-
-                $bill_address_id = $_POST['bill_address'];
+                echo 'cart empty !!';
             }
+            $defaultShipping = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_shipping_address' => 1));
+            $defaultBilling = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_billing_address' => 1));
+            $address = UserAddress::model()->findAllByAttributes(array('userid' => Yii::app()->user->getId()));
 
-            if (isset($_POST['billing_same'])) {
-
-                if ($_POST['billing_same'] == 1) {  // if billing address is same as shippig address
-                    $ship_address_id = $bill_address_id;
-                } else {
-                    // get shipping address
-                    if ($_POST['ship_address'] == 0) {
-
-                        // todo insertion into address table
-                    } else {
-
-                        $ship_address_id = $_POST['ship_address'];
-                    }
-                }
-            }
-
-            if (($bill_address_id != '') && ($ship_address_id != '')) {
-                date_default_timezone_set('Asia/Calcutta');
-                $order = new Order;
-                $order->user_id = Yii::app()->user->getId();
-                $order->user_id = Yii::app()->user->getId();
-                $order->total_amount = $_POST['total_amt'];
-                $order->order_date = date('Y-m-d H:i:s');
-                $order->ship_address_id = $ship_address_id;
-                $order->bill_address_id = $bill_address_id;
-                $order->payment_status = 0;
-                $order->status = 0;
-                $order->DOC = date('Y-m-d');                
-                if ($order->save()) {
-//                    $this->redirect('checkoutFinal');
-                } else {
-                    Yii::app()->user->setFlash('order_failure', "Sorry, your checkout is not able to proceed now. Please ensure your shipping details are provided correctly.");
-//                    $this->redirect('../cart/Mycart');
-                }
-            }
-        }
-                
-                
-                
-                
-                
-                
-            }
-
+            Yii::app()->user->setState('total_amt', $total_amt);
             $params['total_amt'] = $total_amt;
             $params['carts'] = $cart;
             $params['defaultShipping'] = $defaultShipping;
@@ -253,64 +103,148 @@ class CheckOutController extends Controller {
             $params['buyer'] = $buyer;
             $params['billing'] = $billing;
             $params['shipping'] = $shipping;
-
+            $params['selected_billing'] = $bill_address_id;
+            $params['selected_shipping'] = $ship_address_id;
             $this->render('checkout_address', $params);
-        }
-    }
-
-    public function actionCheckoutAddress() {
-
-        if (isset($_POST['bill_address'])) {
-
-            $bill_address_id = $ship_address_id = '';
-            // get billing address
-            if ($_POST['bill_address'] == 0) {
-                // todo insertion into address table
-            } else {
-
-                $bill_address_id = $_POST['bill_address'];
-            }
-
-            if (isset($_POST['billing_same'])) {
-
-                if ($_POST['billing_same'] == 1) {  // if billing address is same as shippig address
-                    $ship_address_id = $bill_address_id;
-                } else {
-                    // get shipping address
-                    if ($_POST['ship_address'] == 0) {
-
-                        // todo insertion into address table
-                    } else {
-
-                        $ship_address_id = $_POST['ship_address'];
-                    }
-                }
-            }
-
-            if (($bill_address_id != '') && ($ship_address_id != '')) {
-                date_default_timezone_set('Asia/Calcutta');
-                $order = new Order;
-                $order->user_id = Yii::app()->user->getId();
-                $order->user_id = Yii::app()->user->getId();
-                $order->total_amount = $_POST['total_amt'];
-                $order->order_date = date('Y-m-d H:i:s');
-                $order->ship_address_id = $ship_address_id;
-                $order->bill_address_id = $bill_address_id;
-                $order->payment_status = 0;
-                $order->status = 0;
-                $order->DOC = date('Y-m-d');                
-                if ($order->save()) {
-                    $this->redirect('checkoutFinal');
-                } else {
-                    Yii::app()->user->setFlash('order_failure', "Sorry, your checkout is not able to proceed now. Please ensure your shipping details are provided correctly.");
-                    $this->redirect('../cart/Mycart');
-                }
-            }
+        } else {
+            $this->redirect('../../cart/Mycart');
         }
     }
 
     public function actionCheckoutFinal() {
-        $this->render('checkoutFinal');
+        $cart = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
+        $this->render('checkoutFinal', array('carts' => $cart));
+    }
+
+    public function actionCompleteCheckOut() {
+        if ($_POST['p_type']) {
+            $payment_type = $_POST['p_type'];
+            if ($payment_type = 'card') {
+                $ptype = 2;
+            } else if ($payment_type = 'paypal') {
+                $ptype = 3;
+            } else {
+                $ptype = 0;
+            }
+            
+            // update order table
+            $order_id = Yii::app()->user->getState('order_id');
+            $order = Order::model()->findByPk($order_id);
+            $order->payment_mode = $ptype;
+            $order->transaction_id = 'sample123';
+            $order->payment_status = 1;
+            $order->payment_status = 2; // success
+            $order->update();
+            
+          // update orderproducts table
+            $orderProducts = OrderProducts::model()->findAllByAttributes(array('order_id' => $order_id));
+            foreach ($orderProducts as $product_order)
+            {
+                $product_order->status = 3; // payment done
+                $product_order->update();
+            }
+            
+            // insertion into order history table
+            $orderHistory = new OrderHistory;
+            $orderHistory->order_id = $order_id;
+            $orderHistory->order_status_comment = 'Order Placed';
+            $orderHistory->order_status = 1;
+            $orderHistory->date = date('Y-m-d');
+            $orderHistory->status = 1;
+            $orderHistory->cb = 1;
+            $orderHistory->ub = 1;
+            $orderHistory->save();
+            
+                        // delete from carts table
+            $this->removeFromCart();
+            
+            // todo check payment success or fail
+            $this->redirect('orderPlaced');
+            
+        } else {
+            $this->redirect('checkoutFinal');
+        }
+    }
+    
+    public function actionOrderPlaced()
+    {
+        $this->render('order_placed');
+    }
+
+    public function addAddress($model, $data) {
+
+        $model->attributes = $data;
+        $model->address_1 = $data['address_1'];
+        $model->address_2 = $data['address_2'];
+        $model->contact_number = $data['contact_number'];
+        $model->CB = Yii::app()->user->getId();
+        $model->DOC = date('Y-m-d');
+        $model->userid = Yii::app()->user->getId();
+        if ($model->validate()) {
+            if ($model->save()) {
+                return $model->id;
+            } else {
+
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    // insertion into order table on confirming user address before final checkout
+    public function createOrder($ship_address_id, $bill_address_id, $cart) {
+
+        date_default_timezone_set('Asia/Calcutta');
+        $order = new Order;
+        $order->user_id = Yii::app()->user->getId();
+        $order->total_amount = Yii::app()->user->getState('total_amt');
+        $order->order_date = date('Y-m-d H:i:s');
+        $order->ship_address_id = $ship_address_id;
+        $order->bill_address_id = $bill_address_id;
+        $order->payment_status = 0;
+        $order->status = 0;
+        $order->DOC = date('Y-m-d');
+//
+        if ($order->save()) {
+            $order_id = $order->id;
+            Yii::app()->user->setState('order_id', $order_id);
+            $this->addOrderProducts($cart, $order);
+       
+            $this->redirect('checkoutFinal');
+        } else {
+            Yii::app()->user->setFlash('order_failure', "Sorry, your checkout is not able to proceed now. Please ensure your shipping details are provided correctly.");
+//                    $this->redirect('../cart/Mycart');
+        }
+    }
+
+    // insertion into order_products table on insertion into order table
+    public function addOrderProducts($cart, $order) {
+        if (isset(Yii::app()->session['currency'])) {
+            $currency_rate = Yii::app()->session['currency']['rate'];
+        } else {
+            $currency_rate = 1;
+        }
+
+        foreach ($cart as $product) {
+            $unit_price = Products::model()->findByPk($product->product_id)->price;
+            $model = new OrderProducts;
+            $model->order_id = $order->id;
+            $model->product_id = $product->product_id;
+            $model->quantity = $product->quantity;
+            $model->amount = $unit_price;
+            $model->status = 1; // not placed
+            $model->DOC = date('Y-m-d');
+            $model->rate = $unit_price * $currency_rate * $product->quantity;
+            $model->save();
+        }
+    }
+
+    public function removeFromCart() {
+         $carts = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
+        foreach ($carts as $cart) {
+            Cart::model()->deleteByPk($cart->id);
+        }
     }
 
 }

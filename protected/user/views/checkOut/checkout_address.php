@@ -30,10 +30,10 @@
             <div class="heading">
 
             </div>
-                     <!--flash message-->
+            <!--flash message-->
             <?php if (Yii::app()->user->hasFlash('order_failure')): ?>
                 <div class="alert alert-danger fade in">
-                    <?php echo Yii::app()->user->getFlash('order_failure'); ?>uytgyujg byjgyi iuiu
+                    <?php echo Yii::app()->user->getFlash('order_failure'); ?>
                 </div>
             <?php endif; ?>
             <div class="row">
@@ -43,6 +43,9 @@
 
                         <?php
                         $params = array();
+
+                        $params['selected_billing'] = $selected_billing;
+                        $params['selected_shipping'] = $selected_shipping;
                         $params['total_amt'] = $total_amt;
                         $params['carts'] = $carts;
                         $params['defaultShipping'] = $defaultShipping;
@@ -95,7 +98,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1
             $('.shipping_form').hide();
         } else
         {
-            $('.shipping_form').show();
+            $('.shipping_form_select').show();
         }
 
 
@@ -110,7 +113,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1
         if ($('.bill_same').is(":checked"))
         {
 
-            $('.ship_form').hide();
+            $('.shipping_form').hide();
             var select_val = $(".select_bill_exist").val();
 
             if (select_val != 0) {
@@ -147,7 +150,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1
                 }
             });
         } else {
-            $('.ship_form').show();
+            $('.shipping_form_select').show();
             var select_ship_val = $(".select_ship_exist").val();
 
             if (select_ship_val != 0) {
@@ -186,6 +189,16 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1
             });
         }
 
+
+<?php if ($shipping->hasErrors()) { ?>
+            $('.bill_same').prop('checked', false);
+            $('.ship_form_content').show();
+<?php } ?>
+<?php if ($billing->hasErrors()) { ?>
+            //        $('.bill_same').prop('checked', false);
+            $('.bill_form').show();
+<?php } ?>
+
     });
 
     $('.bill_same').change(function () {
@@ -223,20 +236,24 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1
 
 <?php if ($shipping->hasErrors()) { ?>
         $('.bill_same').prop('checked', false);
-        $('.ship_form').show();
+        $('.ship_form_content').show();
+<?php } ?>
+<?php if ($billing->hasErrors()) { ?>
+        //        $('.bill_same').prop('checked', false);
+        $('.bill_form').show();
 <?php } ?>
     $('.bill_same').click(function () {
 
         if ($(this).is(":checked"))
         {
 
-            $('.ship_form').hide();
+            $('.shipping_form').hide();
             var select_val = $(".select_bill_exist").val();
             if (select_val != 0) {
 //                getcountry(select_val);
-                $('.bill_form').hide();
+                $('.ship_form_content').hide();
             } else {
-                $('.bill_form').show();
+                $('.ship_form_content').show();
 //                var country = $('.billing_country').val();
 //                getshipmethod(country);
 //
@@ -264,7 +281,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1
 
         } else {
 
-            $('.ship_form').show();
+            $('.shipping_form_select').show();
             var select_ship_val = $(".select_ship_exist").val();
 
             if (select_ship_val != 0) {

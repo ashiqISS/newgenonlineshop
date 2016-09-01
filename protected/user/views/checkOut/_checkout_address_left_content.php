@@ -35,12 +35,16 @@ $form = $this->beginWidget('CActiveForm', array(
             <div class="form-group form_mrg">
                 <select  name="bill_address" class="select_bill_exist form-control" id="bill_exist">
                     <option  value="0">New Address</option>
-                    <?php
+                    <?php                                        
                     foreach ($addresss as $address) {
                         ?>
                         <option <?php
-                        if ($address->default_billing_address == 1) {
+                        if ($selected_billing == $address->id) {
                             echo 'selected';
+                        } else {
+                            if ($address->default_billing_address == 1) {
+                                echo 'selected';
+                            }
                         }
                         ?>  value="<?php echo $address->id; ?>"><?php echo $address->first_name; ?> <?php echo $data->last_name; ?> ,   <?php echo $address->address_1; ?>
                             <?php echo $address->address_2; ?> , <?php echo $address->city; ?> ,
@@ -58,7 +62,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
             <div class=" bill_form" style="padding-top: 1em;">
 
-                <?php //echo $form->errorSummary($billing); ?>
+                <?php // echo $form->errorSummary($billing);  ?>
                 <?php $billing->first_name = $buyer->first_name; ?>
                 <?php $billing->last_name = $buyer->last_name; ?>
                 <?php $billing->contact_number = $user->phone_number; ?>
@@ -105,6 +109,11 @@ $form = $this->beginWidget('CActiveForm', array(
                     <?php echo $form->textField($billing, '[bill]city', array('placeholder' => 'City ', 'class' => 'form-control aik')); ?>
                     <?php echo $form->error($billing, '[bill]city'); ?>
                 </div>
+                <div class="form-group form_mrg">
+                    <?php echo $form->labelEx($shipping, '[bill]district ', array('class' => 'control-label')); ?>
+                    <?php echo $form->textField($shipping, '[bill]district', array('placeholder' => 'district ', 'class' => 'form-control aik1')); ?>
+                    <?php echo $form->error($shipping, '[bill]district'); ?>
+                </div>
 
                 <div class="form-group form_mrg">
                     <?php echo $form->labelEx($billing, 'Zip code', array('class' => 'control-label')); ?>
@@ -131,6 +140,7 @@ $form = $this->beginWidget('CActiveForm', array(
             </div>
 
             <div class="shipping_form">
+            <div class="shipping_form_select">
 
                 <div class="bx1">
 
@@ -162,8 +172,12 @@ $form = $this->beginWidget('CActiveForm', array(
                             ?>
                             <option 
                             <?php
-                            if ($address->default_shipping_address == 1) {
+                            if ($selected_shipping == $address->id) {
                                 echo 'selected';
+                            } else {
+                                if ($address->default_billing_address == 1) {
+                                    echo 'selected';
+                                }
                             }
                             ?> 
                                 value="<?php echo $address->id; ?>">
@@ -180,8 +194,10 @@ $form = $this->beginWidget('CActiveForm', array(
                         ?>
                     </select>
                 </div>
+            </div>
                 <div class="ship_form" style="padding-top: 1em;">
                     <div class="ship_form_content">
+                        <?php // echo $form->errorSummary($shipping);  ?>
                         <?php $shipping->first_name = $buyer->first_name; ?>
                         <?php $shipping->last_name = $buyer->last_name; ?>
                         <?php $shipping->contact_number = $user->phone_number; ?>
@@ -241,6 +257,12 @@ $form = $this->beginWidget('CActiveForm', array(
                             <?php echo $form->error($shipping, '[ship]state'); ?>
                         </div>
 
+                        <div class="form-group form_mrg">
+                            <?php echo $form->labelEx($shipping, '[ship]district ', array('class' => 'control-label')); ?>
+                            <?php echo $form->textField($shipping, '[ship]district', array('placeholder' => 'district ', 'class' => 'form-control aik1')); ?>
+                            <?php echo $form->error($shipping, '[ship]district'); ?>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -254,7 +276,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
     <div class="clearfix"></div>
     <div style="    text-align: right;padding-right: 3em;">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Proceed to Checkout', array('class' => "btn btn-default btn-sm bt_up2 ")); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Continue', array('class' => "btn btn-default btn-sm bt_up2 ")); ?>
     </div>
 </div>
 
