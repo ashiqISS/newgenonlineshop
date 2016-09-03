@@ -102,7 +102,7 @@
                                                     <!--June 12, 2017--> 
                                                     <?php
                                                     $date = $orderHistory->date;
-                                                    date_format( new DateTime($date), 'd/m/y');
+                                                    echo date_format( new DateTime($date), 'd/m/y');
                                                     ?>
                                                 </h3>
                                             </div>
