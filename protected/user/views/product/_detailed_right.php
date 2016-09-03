@@ -6,14 +6,22 @@
             <h3 style="margin-top: 24px;margin-bottom: 10px;"><?= Yii::app()->Currency->convert($product->price); ?></h3>
         <?php } ?>
         <div class="product_quantity">
-            <?= $product->id; ?>
+
             <div class="qunatity">
-                <h4>Quantity</h4>
-                <select class="qty" >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+                <table>
+                    <tr>
+                        <td style="border-bottom: none;"><h4 style="margin-top: 20px;">Quantity</h4></td>
+                        <td style="vertical-align: top;border-bottom: none;">
+                            &nbsp;&nbsp;    <select class="qty" >
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+
+
             </div>
         </div>
 

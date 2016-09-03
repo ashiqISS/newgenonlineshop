@@ -107,7 +107,7 @@ class CheckOutController extends Controller {
             $params['selected_shipping'] = $ship_address_id;
             $this->render('checkout_address', $params);
         } else {
-            $this->redirect('../../cart/Mycart');
+            $this->redirect(Yii::app()->getBaseUrl() . '/user.php/cart/Mycart');
         }
     }
 
@@ -117,6 +117,7 @@ class CheckOutController extends Controller {
     }
 
     public function actionCompleteCheckOut() {
+
         if ($_POST['p_type']) {
             $payment_type = $_POST['p_type'];
             if ($payment_type = 'card') {
@@ -126,48 +127,46 @@ class CheckOutController extends Controller {
             } else {
                 $ptype = 0;
             }
-            
+
             // update order table
-            $order_id = Yii::app()->user->getState('order_id');
-            $order = Order::model()->findByPk($order_id);
-            $order->payment_mode = $ptype;
-            $order->transaction_id = 'sample123';
-            $order->payment_status = 1;
-            $order->status = 2; // success
-            $order->update();
-            
-          // update orderproducts table
-            $orderProducts = OrderProducts::model()->findAllByAttributes(array('order_id' => $order_id));
-            foreach ($orderProducts as $product_order)
-            {
-                $product_order->status = 3; // payment done
-                $product_order->update();
+            $updateOrder = $this->updateOrder($ptype);
+
+            if ($updateOrder == 1) {
+
+                // update orderproducts table
+                 $order_id = Yii::app()->user->getState('order_id');
+                $orderProducts = OrderProducts::model()->findAllByAttributes(array('order_id' => $order_id));
+                foreach ($orderProducts as $product_order) {
+                    $product_order->status = 3; // payment done
+                    if ($product_order->update()) {
+                        $product_id = $product_order->product_id;
+
+                        // insertion into order history table
+                        $this->createOrderHistory($order_id, $product_id);
+                    } else {
+                        echo 'order product not updated';
+//                        print_r($product_order->attributes);
+//                        exit;
+                    }
+                }
+
+
+
+                // delete from carts table
+                $this->removeFromCart();
+
+                // todo check payment success or fail
+                $this->redirect('orderPlaced');
+            } else {
+                echo 'order table not updated';
+//                $this->redirect('checkoutFinal');
             }
-            
-            // insertion into order history table
-            $orderHistory = new OrderHistory;
-            $orderHistory->order_id = $order_id;
-            $orderHistory->order_status_comment = 'Order Placed';
-            $orderHistory->order_status = 1;
-            $orderHistory->date = date('Y-m-d');
-            $orderHistory->status = 1;
-            $orderHistory->cb = 1;
-            $orderHistory->ub = 1;
-            $orderHistory->save();
-            
-                        // delete from carts table
-            $this->removeFromCart();
-            
-            // todo check payment success or fail
-            $this->redirect('orderPlaced');
-            
         } else {
             $this->redirect('checkoutFinal');
         }
     }
-    
-    public function actionOrderPlaced()
-    {
+
+    public function actionOrderPlaced() {
         $this->render('order_placed');
     }
 
@@ -210,7 +209,7 @@ class CheckOutController extends Controller {
             $order_id = $order->id;
             Yii::app()->user->setState('order_id', $order_id);
             $this->addOrderProducts($cart, $order);
-       
+
             $this->redirect('checkoutFinal');
         } else {
             Yii::app()->user->setFlash('order_failure', "Sorry, your checkout is not able to proceed now. Please ensure your shipping details are provided correctly.");
@@ -228,20 +227,56 @@ class CheckOutController extends Controller {
 
         foreach ($cart as $product) {
             $unit_price = Products::model()->findByPk($product->product_id)->price;
+            $merchant = Products::model()->findByPk($product->product_id)->merchant_id;
             $model = new OrderProducts;
             $model->order_id = $order->id;
             $model->product_id = $product->product_id;
+            $model->merchant_id = $merchant;
             $model->quantity = $product->quantity;
             $model->amount = $unit_price;
             $model->status = 1; // not placed
             $model->DOC = date('Y-m-d');
             $model->rate = $unit_price * $currency_rate * $product->quantity;
+//            print_r($model->attributes);exit;
             $model->save();
         }
     }
 
+    public function createOrderHistory($order_id, $product_id) {
+        $orderHistory = new OrderHistory;
+        $orderHistory->order_id = $order_id;
+        $orderHistory->product_id = $product_id;
+        $orderHistory->order_status_comment = 'Order Placed';
+        $orderHistory->order_status = 1;
+        $orderHistory->date = date('Y-m-d');
+        $orderHistory->status = 1;
+        $orderHistory->cb = 1;
+        $orderHistory->ub = 1;
+        if ($orderHistory->save()) {
+            
+        } else {
+//            print_r($orderHistory->attributes);
+//            exit;
+        }
+    }
+
+    public function updateOrder($ptype) {
+        $order_id = Yii::app()->user->getState('order_id');
+        $order = Order::model()->findByPk($order_id);
+        $order->payment_mode = $ptype;
+        $order->transaction_id = 'sample123';
+        $order->payment_status = 1;
+        $order->status = 2; // success
+        if ($order->update()) {
+            return 1;
+        } else {
+//            print_r($order->attributes);exit;
+            return 0;
+        }
+    }
+
     public function removeFromCart() {
-         $carts = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
+        $carts = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
         foreach ($carts as $cart) {
             Cart::model()->deleteByPk($cart->id);
         }

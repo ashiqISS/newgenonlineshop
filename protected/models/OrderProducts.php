@@ -7,16 +7,18 @@
  * @property integer $id
  * @property integer $order_id
  * @property integer $product_id
+ * @property integer $merchant_id
  * @property integer $quantity
- * @property integer $amount
+ * @property double $amount
  * @property string $DOC
  * @property integer $status
  * @property integer $gift_option
  * @property double $rate
  *
  * The followings are the available model relations:
- * @property Products $product
+ * @property MerchantDetails $merchant
  * @property Order $order
+ * @property Products $product
  */
 class OrderProducts extends CActiveRecord
 {
@@ -36,12 +38,12 @@ class OrderProducts extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-//			array('order_id, product_id, quantity, amount, DOC, status, gift_option, rate', 'required'),
-			array('order_id, product_id, quantity, amount, status, gift_option', 'numerical', 'integerOnly'=>true),
-			array('rate', 'numerical'),
+//			array('order_id, product_id, merchant_id, quantity, amount, DOC, status, gift_option, rate', 'required'),
+			array('order_id, product_id, merchant_id, quantity, status, gift_option', 'numerical', 'integerOnly'=>true),
+			array('amount, rate', 'numerical'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, order_id, product_id, quantity, amount, DOC, status, gift_option, rate', 'safe', 'on'=>'search'),
+			array('id, order_id, product_id, merchant_id, quantity, amount, DOC, status, gift_option, rate', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,8 +55,9 @@ class OrderProducts extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'product' => array(self::BELONGS_TO, 'Products', 'product_id'),
+			'merchant' => array(self::BELONGS_TO, 'MerchantDetails', 'merchant_id'),
 			'order' => array(self::BELONGS_TO, 'Order', 'order_id'),
+			'product' => array(self::BELONGS_TO, 'Products', 'product_id'),
 		);
 	}
 
@@ -67,10 +70,11 @@ class OrderProducts extends CActiveRecord
 			'id' => 'ID',
 			'order_id' => 'Order',
 			'product_id' => 'Product',
+			'merchant_id' => 'Merchant',
 			'quantity' => 'Quantity',
 			'amount' => 'Amount',
 			'DOC' => 'Doc',
-			'status' => 'Status',
+			'status' => '1-not placed, 2- payment_pending, 3- payment_done, 4 - completed',
 			'gift_option' => 'Gift Option',
 			'rate' => 'Rate',
 		);
@@ -97,6 +101,7 @@ class OrderProducts extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('order_id',$this->order_id);
 		$criteria->compare('product_id',$this->product_id);
+		$criteria->compare('merchant_id',$this->merchant_id);
 		$criteria->compare('quantity',$this->quantity);
 		$criteria->compare('amount',$this->amount);
 		$criteria->compare('DOC',$this->DOC,true);

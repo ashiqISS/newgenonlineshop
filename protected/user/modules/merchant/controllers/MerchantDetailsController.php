@@ -49,7 +49,9 @@ class MerchantDetailsController extends Controller {
     }
 
     public function actionHome() {
-        $this->render('home');
+         $id = Yii::app()->user->getState('merchant_id');
+        $productOrders = OrderProducts::model()->findAllByAttributes(array('merchant_id'=>$id));        
+        $this->render('home',array('productOrders' => $productOrders));
     }
 
     public function actionProfile() {
