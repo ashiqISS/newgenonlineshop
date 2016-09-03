@@ -201,7 +201,10 @@ class BuyerDetailsController extends Controller {
     }
 
     public function actionMyOrders() {
-        $this->render('my_orders');
+         $user_id = Yii::app()->user->getId();
+         $orders = Order::model()->findAllByAttributes(array('user_id' => $user_id), array('condition' => 'status != 0', 'order' => 'order_date DESC'));
+//         print_r($orders);exit;
+        $this->render('my_orders',array('orders' => $orders));
     }
 
     public function actionAddressBook() {

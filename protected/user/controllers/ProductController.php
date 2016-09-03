@@ -68,42 +68,6 @@ class ProductController extends Controller {
 
     public function actionProducts() {
 
-//        if (isset($_REQUEST['Keyword'])) {
-//            $searchterm = $_REQUEST['Keyword'];
-//            $criteria = new CDbCriteria;
-//            $criteria->condition = "status =1  AND (product_name LIKE '%" . $searchterm . "%'"
-//                    . " OR search_tag LIKE '%" . $searchterm . "%' )";
-////            $criteria->order = 'id desc';
-//            $total = Products::model()->count();
-//
-//            $pages = new CPagination($total);
-//            $pages->pageSize = 6;
-//            $pages->applyLimit($criteria);
-//
-//            $products = Products::model()->findAll($criteria);
-//
-//            $this->render('products', array(
-//                'products' => $products,
-//                'pages' => $pages,
-//                'file_name' => '_searchresult',
-//                'parameter' => $_REQUEST['saerchterm'],
-//                'search_parm' => $category,
-//                'searchterm' => $searchterm
-//            ));
-//
-//
-////            $this->render('searchresult', array('dataProvider' => $dataProvider, 'file_name' => '_searchresult', 'parameter' => $_REQUEST['saerchterm'], 'search_parm' => $category, 'searchterm' => $searchterm));
-////            exit;
-//        }
-////        $dataProvider1 = new CActiveDataProvider('ProductCategory', array(
-////            'criteria' => array(
-////                'condition' => 'status = 1', 'order' => 'id desc', 'limit' => 5),
-////                )
-////        );
-//        //$latest = Books::model()->findAll(['condition' => 'status = 2', 'order' => 'id desc', 'limit' => 5]);
-////        $this->render('searchresult', array('dataProvider' => $dataProvider1, 'file_name' => '_searchresult', 'parameter' => $_REQUEST['saerchterm'], 'search_parm' => $category, 'searchterm' => $searchterm));
-//        //$this->render('search');
-//        echo 'hai';
         $brands = '';
         $price = '';
         $criteria = new CDbCriteria;

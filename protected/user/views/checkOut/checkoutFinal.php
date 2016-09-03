@@ -115,7 +115,8 @@
                             </div>
 
                             <br>
-                            <input type="checkbox" name="confirm_payment" required> By placing an order you agree to our Terms & Policies
+                            <input type="checkbox" name="confirm_payment" required   oninvalid="setCustomValidity('Please agree our terms and conditions to proceed ')"
+    onchange="try{setCustomValidity('')}catch(e){}"> By placing an order you agree to our Terms & Policies
                         </div>
 
 

@@ -133,7 +133,7 @@ class CheckOutController extends Controller {
             $order->payment_mode = $ptype;
             $order->transaction_id = 'sample123';
             $order->payment_status = 1;
-            $order->payment_status = 2; // success
+            $order->status = 2; // success
             $order->update();
             
           // update orderproducts table

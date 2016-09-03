@@ -8,12 +8,12 @@ class Converter extends CApplicationComponent {
                         $cur_val = number_format((float) $pri_val, 2, '.', '');
                         if (Yii::app()->session['currency']->symbol != "") {
 
-                                $result = '<i class="fa ' . Yii::app()->session['currency']->symbol . '"></i>' . $cur_val;
+                                $result = '<i class="fa ' . Yii::app()->session['currency']->symbol . '"></i> ' . $cur_val;
                         } else {
                                 $result = $cur_val . " " . Yii::app()->session['currency']->currency_code;
                         }
                 } else {
-                        $result = '<i class="fa fa-inr"></i>' . number_format((float) $price, 2, '.', '');
+                        $result = '<i class="fa fa-inr"></i> ' . number_format((float) $price, 2, '.', '');
                 }
                 return $result;
         }
