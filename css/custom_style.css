@@ -30,6 +30,27 @@ a.back-to-top i {
     margin-left: 0px; 
 }
 
+.parttt-1 {
+    float: left;
+    width: 20%;
+}
+
+.parttt-2 {
+    float: left;
+    width: 30%;
+}
+
+.parttt-3 {
+    float: left;
+    width: 25%;
+}
+
+.parttt-4 {
+    float: left;
+    width: 25%;
+}
+
+
 /*.form-control {
     color: #ac96a0;
 }*/
