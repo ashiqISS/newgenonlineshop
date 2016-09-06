@@ -2190,7 +2190,7 @@ header .search-box form button {
 
 /*left side*/
 .services .f1 {
-    background: url(../images/c1.jpg) no-repeat 50% 50%;
+    background:  no-repeat 50% 50%;
     background-size: cover;
     height: 290px;
     overflow: hidden;
