@@ -129,7 +129,7 @@
                                             <td><?php echo $productOrder->DOC; ?></td>
                                             <td><?php echo $productOrder->quantity; ?></td>
                                             <td> Nil</td>
-                                            <td><?php echo $productOrder->amount; ?></td>
+                                            <td><?php echo Yii::app()->Currency->convert($productOrder->amount); ?></td>
                                             <td><?php echo $ship_address; ?></td>
                                             <td><?php echo $bill_address; ?></td>
 

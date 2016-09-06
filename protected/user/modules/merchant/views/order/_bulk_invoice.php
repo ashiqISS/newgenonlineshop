@@ -180,16 +180,18 @@
                         </td>
                         <td style="border: 1px solid #ddd; text-align: left;padding: 6px 0px 0px 20px;">
                             <?php
-                            echo $product->price . '.00';
+                            echo Yii::app()->Currency->convert($product->price) . '.00';
                             ?>
                         </td>
                         <td style="border: 1px solid #ddd; text-align: left;padding: 6px 0px 0px 20px;"> 
-                            <?php echo ($productOrder->quantity * $product->price) . '.00'; ?>
+                            <?php $tot = ($productOrder->quantity * $product->price) . '.00';
+                            echo Yii::app()->Currency->convert($tot);
+                            ?>
                         </td>
                     </tr>
                     </br>
                     <tr>
-                        <td align="center">TOTAL</td><td></td><td></td><td><strong  style="padding: 6px 0px 0px 17px;"><?php echo $productOrder->amount . '.00'; ?></strong></td>
+                        <td align="center">TOTAL</td><td></td><td></td><td><strong  style="padding: 6px 0px 0px 17px;"><?php echo Yii::app()->Currency->convert($productOrder->amount) . '.00'; ?></strong></td>
                     </tr>
                 </table>
             <?php } ?>

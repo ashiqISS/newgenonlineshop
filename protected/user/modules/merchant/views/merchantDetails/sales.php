@@ -60,7 +60,7 @@
                                                 <td><?= Products::model()->findByPk($sale->product_id)->product_name; ?></td>
                                                 <td> <?=  date("d/m/Y", strtotime($sale->DOC)); ?></td>
                                                 <td><?= $sale->quantity; ?></td>
-                                                <td><?= $sale->total_amount; ?></td>
+                                                <td><?= Yii::app()->Currency->convert($sale->total_amount); ?></td>
                                             </tr>
                                             <?php
                                         }

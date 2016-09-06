@@ -166,9 +166,11 @@
                         <?php echo $productOrder->quantity; ?>
                     </td>
                     <td style="border: 1px solid #ddd; text-align: left;padding: 6px 0px 0px 20px;"><?php
-                        echo $product->price . '.00';
+                        echo Yii::app()->Currency->convert($product->price). '.00';
                         ?></td>
-                    <td style="border: 1px solid #ddd; text-align: left;padding: 6px 0px 0px 20px;"> <?php echo ($productOrder->quantity * $product->price) . '.00'; ?></td>
+                    <td style="border: 1px solid #ddd; text-align: left;padding: 6px 0px 0px 20px;"> <?php $tot= ($productOrder->quantity * $product->price) . '.00'; 
+                    echo Yii::app()->Currency->convert($tot);
+                    ?></td>
                 </tr>
                 </br>
                 <?php // }
