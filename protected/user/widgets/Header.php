@@ -235,7 +235,7 @@ class Header extends CWidget {
                                                 </div>-->
                                             <ul class="nav navbar-nav">
                                                 <!--<li class="active"><a href="#">Home</a></li>-->
-                                                <?php if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="#">Home</a></li><?php } ?>
+                                                <?php if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Home</a></li><?php } ?>
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about_us">About Us</a></li> 
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
@@ -282,7 +282,7 @@ class Header extends CWidget {
                                                                                                                     </div>
                                                                                                                 </div>-->
                                                     </li>
-                                                    <?php if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="index.html"><span>Home</span></a></li><?php } ?>
+                                                    <?php if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products"><span>Home</span></a></li><?php } ?>
                                                     <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
                                                     <li><a href="<?= Yii::app()->request->baseUrl; ?>/site/AboutUs"><span>About Us</span></a></li>
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 

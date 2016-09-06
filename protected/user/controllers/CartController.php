@@ -175,50 +175,50 @@ class CartController extends Controller {
             }
         }
     }
-    
-            public function actionSelectcart() {
 
-                if(Yii::app()->user->getId()) {
-                        $user_id = Yii::app()->user->getId();
-                        $cart_contents = Cart::model()->findAllByAttributes(array('user_id' => $user_id));
-                        if(!empty($cart_contents)) {
-                                echo ' <div class="drop_cart">';
-                                foreach($cart_contents as $cart_content) {
-                                        $prod_details = Products::model()->findByPk($cart_content->product_id);
-                                        $folder = Yii::app()->Upload->folderName(0, 1000, $prod_details->id);
-                                        $total = $cart_content->quantity * $prod_details->price;
-                                        $this->renderPartial('_cartcontents', array('cart_content' => $cart_content, 'prod_details' => $prod_details, 'folder' => $folder, 'total' => $total));
-                                        $subtotoal = $subtotoal + $total;
-                                }
-                                $this->renderPartial('_cartfooter', array('subtotoal' => $subtotoal));
-                                echo '</div>';
-                        } else {
-                                echo 'Cart box is Empty';
-                        }
-                } else {
-                        if(Yii::app()->user->getId()) {
+    public function actionSelectcart() {
 
-                                $session_id = Yii::app()->session['temp_user'];
-                                $cart_contents = Cart::model()->findAllByAttributes(array('session_id' => $session_id));
-                                if(!empty($cart_contents)) {
-                                        echo ' <div class="drop_cart">';
-                                        foreach($cart_contents as $cart_content) {
-                                                $prod_details = Products::model()->findByPk($cart_content->product_id);
-                                                $folder = Yii::app()->Upload->folderName(0, 1000, $prod_details->id);
-                                                $total = $cart_content->quantity * $prod_details->price;
-                                                $this->renderPartial('_cartcontents', array('cart_content' => $cart_content, 'prod_details' => $prod_details, 'folder' => $folder, 'total' => $total));
-                                                $subtotoal = $subtotoal + $total;
-                                        }
-                                        $this->renderPartial('_cartfooter', array('subtotoal' => $subtotoal));
-                                        echo '</div>';
-                                } else {
-                                        echo 'Cart box is Empty';
-                                }
-                        } else {
-                                echo 'Cart box is Empty';
-                        }
+        if (Yii::app()->user->getId()) {
+            $user_id = Yii::app()->user->getId();
+            $cart_contents = Cart::model()->findAllByAttributes(array('user_id' => $user_id));
+            if (!empty($cart_contents)) {
+                echo ' <div class="drop_cart">';
+                foreach ($cart_contents as $cart_content) {
+                    $prod_details = Products::model()->findByPk($cart_content->product_id);
+                    $folder = Yii::app()->Upload->folderName(0, 1000, $prod_details->id);
+                    $total = $cart_content->quantity * $prod_details->price;
+                    $this->renderPartial('_cartcontents', array('cart_content' => $cart_content, 'prod_details' => $prod_details, 'folder' => $folder, 'total' => $total));
+                    $subtotoal = $subtotoal + $total;
                 }
+                $this->renderPartial('_cartfooter', array('subtotoal' => $subtotoal));
+                echo '</div>';
+            } else {
+                echo 'Cart box is Empty';
+            }
+        } else {
+            if (Yii::app()->user->getId()) {
+
+                $session_id = Yii::app()->session['temp_user'];
+                $cart_contents = Cart::model()->findAllByAttributes(array('session_id' => $session_id));
+                if (!empty($cart_contents)) {
+                    echo ' <div class="drop_cart">';
+                    foreach ($cart_contents as $cart_content) {
+                        $prod_details = Products::model()->findByPk($cart_content->product_id);
+                        $folder = Yii::app()->Upload->folderName(0, 1000, $prod_details->id);
+                        $total = $cart_content->quantity * $prod_details->price;
+                        $this->renderPartial('_cartcontents', array('cart_content' => $cart_content, 'prod_details' => $prod_details, 'folder' => $folder, 'total' => $total));
+                        $subtotoal = $subtotoal + $total;
+                    }
+                    $this->renderPartial('_cartfooter', array('subtotoal' => $subtotoal));
+                    echo '</div>';
+                } else {
+                    echo 'Cart box is Empty';
+                }
+            } else {
+                echo 'Cart box is Empty';
+            }
         }
+    }
 
     public function actionMycart() {
 
@@ -311,6 +311,22 @@ class CartController extends Controller {
         $model->delete();
         if (!isset($_GET['ajax']))
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('Mycart'));
+    }
+
+    public function actionWishlist() {
+        if ($_REQUEST['prod_id'] != '') {
+            $id = $_REQUEST['prod_id'];
+            $user_id = Yii::app()->user->getId();
+            if (Wishlist::model()->findByAttributes(array('user_id' => $user_id, 'product_id' => $id))) {
+                
+            } else {
+                $model = new Wishlist;
+                $model->user_id = $user_id;
+                $model->product_id = $id;
+                $model->DOC = date('Y-m-d');
+                $model->save();
+            }
+        }
     }
 
 }

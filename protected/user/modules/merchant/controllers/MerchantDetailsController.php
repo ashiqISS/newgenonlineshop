@@ -49,9 +49,14 @@ class MerchantDetailsController extends Controller {
     }
 
     public function actionHome() {
-         $id = Yii::app()->user->getState('merchant_id');
-        $productOrders = OrderProducts::model()->findAllByAttributes(array('merchant_id'=>$id));        
-        $this->render('home',array('productOrders' => $productOrders));
+        $id = Yii::app()->user->getState('merchant_id');
+        $productOrders = OrderProducts::model()->findAllByAttributes(array('merchant_id' => $id));
+        if (isset($_POST['filter_status_drpdwn'])) {
+            $status = $_POST['filter_status_drpdwn'];
+//            $orderHistory = OrderHistory::model()->findAllByAttributes(array('merchant_id' => $id, 'order_status'=> $order_status));
+//            $productOrders = OrderProducts::model()->findAllByAttributes(array('merchant_id' => $id));
+        }
+        $this->render('home', array('productOrders' => $productOrders));
     }
 
     public function actionProfile() {
@@ -156,7 +161,6 @@ class MerchantDetailsController extends Controller {
                     Yii::app()->user->setFlash('passwordReset', "Password Changed!");
                     $this->passwordChanged($user);
                     $model = new ResetPassword;
-                    
                 }
             }
         }
@@ -228,11 +232,15 @@ class MerchantDetailsController extends Controller {
     }
 
     public function actionMySales() {
-        $this->render('sales');
+        $merchant_id = Yii::app()->user->getState('merchant_id');
+        $sales = SalesReport::model()->findAllByAttributes(array('merchant_id'=>$merchant_id));
+        $this->render('sales',array('sales' => $sales));
     }
 
     public function actionPaymentRequest() {
         $this->render('payment');
     }
+
+   
 
 }

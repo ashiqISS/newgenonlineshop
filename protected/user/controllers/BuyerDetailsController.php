@@ -214,7 +214,9 @@ class BuyerDetailsController extends Controller {
     }
 
     public function actionWishlist() {
-        $this->render('wishlist');
+         $user_id = Yii::app()->user->getId();
+        $wishlist = Wishlist::model()->findAllByAttributes(array('user_id'=>$user_id));
+        $this->render('wishlist',array('wishlist'=>$wishlist));
     }
 
     public function actionChangePassword() {

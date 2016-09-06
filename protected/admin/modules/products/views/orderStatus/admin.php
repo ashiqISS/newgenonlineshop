@@ -39,12 +39,12 @@
                         'class' => 'booster.widgets.TbButtonColumn',
                         'template' => '{update}',
                     ),
-                    array(
-                        'header' => '<font color="#61625D">Delete</font>',
-                        'htmlOptions' => array('nowrap' => 'nowrap'),
-                        'class' => 'booster.widgets.TbButtonColumn',
-                        'template' => '{delete}',
-                    ),
+//                    array(
+//                        'header' => '<font color="#61625D">Delete</font>',
+//                        'htmlOptions' => array('nowrap' => 'nowrap'),
+//                        'class' => 'booster.widgets.TbButtonColumn',
+//                        'template' => '{delete}',
+//                    ),
                 ),
             ));
             ?>

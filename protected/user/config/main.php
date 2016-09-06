@@ -22,6 +22,7 @@ return array(
         'application.components.*',
         'user.components.*',
         'user.controllers.*',
+        'user.merchant.controllers.*',
         'user.views.*',
         'user.extensions.yii-mail.*',
         'application.user.extensions.yiinfinite-scroll.YiinfiniteScroller',

@@ -87,11 +87,11 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                         <ul id="gal1">
 
                             <?php
-                           $big = dirname(Yii::app()->request->scriptFile). '/uploads/products/' . $folder . '/' . $product->id . '/gallery/big';
+                            $big = dirname(Yii::app()->request->scriptFile) . '/uploads/products/' . $folder . '/' . $product->id . '/gallery/big';
                             $bigg = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $product->id . '/gallery/big/';
-                            $thu = dirname(Yii::app()->request->scriptFile). '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/small';
+                            $thu = dirname(Yii::app()->request->scriptFile) . '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/small';
                             $thumbs = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $product->id . '/gallery/small/';
-                            $zoo = dirname(Yii::app()->request->scriptFile). '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/zoom';
+                            $zoo = dirname(Yii::app()->request->scriptFile) . '/../uploads/products/' . $folder . '/' . $product->id . '/gallery/zoom';
                             $zoom = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $product->id . '/gallery/zoom/';
                             $file_display = array('jpg', 'jpeg', 'png', 'gif');
 
@@ -138,7 +138,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                             
                         }
                         ?>
-                    <div class="product_big_image"> <img src="<?php echo $bigg . $file1; ?>" id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file1; ?>" style="width: 100%" alt=""/>
+                        <div class="product_big_image"> <img src="<?php echo $bigg . $file1; ?>" id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file1; ?>" style="width: 100%" alt=""/>
 
                         </div>
                     <?php } else { ?>
@@ -335,7 +335,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
         $.ajax({
             type: "POST",
             url: baseurl + 'cart/Buynow',
-            data: {prod_id: id,cano_name: canname, qty: qty}
+            data: {prod_id: id, cano_name: canname, qty: qty}
         }).done(function (data) {
             if (data == 9) {
 
@@ -353,7 +353,16 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
         });
     }
 
-
+    function addToWishlist(id)
+    {
+        $.ajax({
+            type: "POST",
+            url: baseurl + 'cart/Wishlist',
+            data: {prod_id: id}
+        }).done(function (data) {
+            alert("Added to wishlist");
+        });
+    }
 
     function showLoader() {
         $('.over-lay').show();
@@ -361,10 +370,8 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
     function hideLoader() {
         $('.over-lay').hide();
     }
-    
-    $('.zoomContainer img').css({"width" : ""});
 
-</script>
+    $('.zoomContainer img').css({"width": ""});</script>
 <script src="<?php echo yii::app()->request->baseUrl; ?>/js/jquery.elevatezoom.js"></script>
 <?php
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1.11.3.min.js');

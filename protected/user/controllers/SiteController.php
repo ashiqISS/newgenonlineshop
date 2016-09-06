@@ -37,6 +37,7 @@ class SiteController extends Controller {
     }
 
     public function actionLogin() {
+        $flag = 0;
         $model = new LoginForm;
 
         // uncomment the following code to enable ajax-based validation
@@ -55,34 +56,51 @@ class SiteController extends Controller {
                 $user_model->last_login = date('Y-m-d H:i:s');
                 $user_model->update();
 
-                if ($user_model->user_type == 1) {
+                if ($user_model->user_status == 1) {
+                    Yii::app()->user->setState('user_mail', null);
+                    Yii::app()->user->setState('user_id', null);
+                    Yii::app()->user->setState('user_type', null);
+                    Yii::app()->user->setState('buyer_id', null);
+                    Yii::app()->user->setState('merchant_id', null);
 
-                    // login buyer
-                    $buyer = BuyerDetails::model()->findByAttributes(array('user_id' => $user_model->id));
-                    $buyer_id = $buyer->id;
-                    $buyer_fname = $buyer->first_name;
-                    Yii::app()->user->setState('buyer_id', $buyer_id);
-                    Yii::app()->user->setState('buyer_fname', $buyer_fname);
-//                    $this->redirect(array('buyer/default/index'));
-                    $this->redirect(array('product/products'));
-                } else if ($user_model->user_type == 2) {
-
-                    // login merchant
-                    $merchant = MerchantDetails::model()->findByAttributes(array('user_id' => $user_model->id));
-                    $merchant_id = $merchant->id;
-                    $merchant_name = $merchant->fullname;
-                    $merchant_type = $merchant->merchant_type;
-                    Yii::app()->user->setState('merchant_name', $merchant_name);
-                    Yii::app()->user->setState('merchant_id', $merchant_id);
-                    Yii::app()->user->setState('merchant_type', $merchant_type);
-                    $this->redirect(array('merchant/merchantDetails/home'));
+                    Yii::app()->user->logout();
+                    $flag = 1;
+//                    $this->render('activationPending',array('email'=>$model->email));
                 } else {
-                    // login invalid
-                    echo 'invalid login';
+
+                    if ($user_model->user_type == 1) {
+
+                        // login buyer
+                        $buyer = BuyerDetails::model()->findByAttributes(array('user_id' => $user_model->id));
+                        $buyer_id = $buyer->id;
+                        $buyer_fname = $buyer->first_name;
+                        Yii::app()->user->setState('buyer_id', $buyer_id);
+                        Yii::app()->user->setState('buyer_fname', $buyer_fname);
+//                    $this->redirect(array('buyer/default/index'));
+                        $this->redirect(array('product/products'));
+                    } else if ($user_model->user_type == 2) {
+
+                        // login merchant
+                        $merchant = MerchantDetails::model()->findByAttributes(array('user_id' => $user_model->id));
+                        $merchant_id = $merchant->id;
+                        $merchant_name = $merchant->fullname;
+                        $merchant_type = $merchant->merchant_type;
+                        Yii::app()->user->setState('merchant_name', $merchant_name);
+                        Yii::app()->user->setState('merchant_id', $merchant_id);
+                        Yii::app()->user->setState('merchant_type', $merchant_type);
+                        $this->redirect(array('merchant/merchantDetails/home'));
+                    } else {
+                        // login invalid
+                        echo 'invalid login';
+                    }
                 }
             }
         }
-        $this->render('login', array('model' => $model));
+        if ($flag == 1) {
+            $this->render('activationPending', array('email' => $model->email));
+        } else {
+            $this->render('login', array('model' => $model));
+        }
     }
 
     public function actionLogout() {
@@ -133,6 +151,39 @@ class SiteController extends Controller {
         } else {
             Yii::app()->user->setFlash('resetFailed', " Sorry, your request cannot be processed now due to some technical problems. Please try after some time.");
         }
+    }
+
+    public function actionResendActivation() {
+//        echo 'hi';exit;
+        $msg = "Not able to send mail now due to some technical problems. Please try after some time.";
+        if (isset($_POST['email'])) {
+            $email = $_POST['email'];
+            $user_model = Users::model()->findByAttributes(array('email' => $email));
+            $utype = $user_model->user_type;
+            Yii::import('user.extensions.yii-mail.YiiMail');
+            $message = new YiiMailMessage;
+            if ($utype == 2) {
+                $view = "_user_activation_mail";
+            } else {
+                $view = "_buyer_activation_mail";
+            }
+            $message->view = $view;
+            $params = array('user_model' => $user_model);
+            $message->subject = 'Welcome To NewGenShop';
+            $message->setBody($params, 'text/html');
+            $message->addTo($user_model->email);
+            $message->from = Yii::app()->params['infoEmail'];
+            if (Yii::app()->mail->send($message)) {
+                $msg = "Activation link send to your mail. Please check";
+            } else {
+                $msg = "Not able to send mail now due to some technical problems. Please try after some time.";
+            }
+        } else {
+            $msg = "Not able to send mail now due to some technical problems. Please try after some time.";
+        }
+//        echo $msg;
+//        $this->render('activation_resend', array('message' => $msg));
+        $this->redirect(array('login'));
     }
 
     public function actionCategoryCat() {

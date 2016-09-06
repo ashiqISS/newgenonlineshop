@@ -27,6 +27,7 @@
 
 
         <button class="cart-b add_to_cart" id="<?= $product->id; ?>"><strong><i class="fa baskets fa-shopping-basket"></i> &nbsp;ADD TO CART</strong></button>                         
+        <button class="cart-b add_to_wishlist" id="<?= $product->id; ?>" onclick="addToWishlist(this.id)"><strong><i class="fa baskets fa-shopping-basket"></i> &nbsp;ADD TO WISHLIST</strong></button>                         
         <input type = "hidden" value = "<?= $product->canonical_name; ?>" id="cano_name_<?= $product->id; ?>" name="cano_name">
         <p><?= $product->description; ?></p>
         <div class="clearfix"></div>

@@ -39,94 +39,61 @@
                     <div class="col-md-12">
 
                         <div class="main_upcmg">
-
-                            <div class="left col col-md-4 col-sm-4 col-xs-6 fill">
-                                <div class="wrap-hover-content f1 facial-left-thumbnail thumbnail">
-                                    <div class="hover-content">
-                                        <div class="">
-                                            <img src="images/des.png" alt="">
-                                            <p>Product Name</p>
-                                        </div>
-                                    </div>
-
+                            <?php
+                            if (empty($wishlist)) {
+                                ?>
+                                <div class="col-xs-6 empty_message">
+                                    <h4 class="fournotfour">You haven't added any items here.</h4>
                                 </div>
-                                <!-- min height set for h2.If dont need pls remove it-->
-                                <h2><a href="#">Lorem ipsum dolor sit amet </a></h2>
-                                <h3>$ 110.00</h3>
-                            </div> <!-- end of left -->
-                            <div class="left col col-md-4 col-sm-4 col-xs-6 fill">
-                                <div class="wrap-hover-content f2 facial-left-thumbnail thumbnail">
-                                    <div class="hover-content">
-                                        <div class="">
-                                            <img src="images/des.png" alt="">
-                                            <p>Product Name</p>
+                                <?php
+                            } else {
+
+                                foreach ($wishlist as $item) {
+                                    $product = Products::model()->findByPk($item->product_id);
+                                    if ($product->main_image == NULL) {
+                                        $main_image = Yii::app()->getBaseUrl(true) . '/uploads/products/no_image.jpg';
+                                    } else {
+                                        $main_image = Yii::app()->getBaseUrl(true) . '/uploads/products/' . Yii::app()->Upload->folderName(0, 1000, $product->id) . '/' . $product->id . '/medium.' . $product->main_image;
+                                    }
+                                    ?>
+
+
+
+
+                                    <div class="left col col-md-4 col-sm-4 col-xs-6 fill">
+                                     <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
+                                        <div class="wrap-hover-content f1 facial-left-thumbnail thumbnail" style="background: url(<?php echo $main_image; ?>)no-repeat 50% 50%">
+                                            <div class="hover-content">
+                                                <div class="">
+                                                    <img src="<?= $main_image ?>" alt="">
+                                                    <p>
+                                                        <?php echo $product->product_name; ?> 
+                                                    </p>
+                                                </div>
+                                            </div>
+
                                         </div>
-                                    </div>
-                                </div>
-                                <!--  min height set for h2.If dont need pls remove it-->
-                                <h2>Lorem ipsum dolor sit amet</h2>
-                                <h3>$ 110.00</h3>
-                            </div> <!-- end of left -->
-
-                            <div class="left col col-md-34 col-sm-4 col-xs-6 fill">
-                                <div class="wrap-hover-content f3 facial-left-thumbnail thumbnail">
-                                    <div class="hover-content">
-                                        <div class="">
-                                            <img src="images/des.png" alt="">
-                                            <p>Product Name</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--   min height set for h2.If dont need pls remove it-->
-                                <h2><a href="#">Lorem ipsum dolor sit amet </a></h2>
-                                <h3>$ 110.00</h3>
-                            </div> <!-- end of left -->
+                                     </a>
+                                        <!--min height set for h2.If dont need pls remove it-->
+                                        <h2>     <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
+                                                <?php echo $product->product_name; ?> 
+                                            </a>
+                                        </h2>
+                                        <h3>  <?php if (Yii::app()->user->getId()) { ?>
+                                                <h3><?php echo Yii::app()->Currency->convert($product->price); ?></h3>
+                                            <?php } ?></h3>
+                                    </div>  
+                                    <!--end of left--> 
 
 
-                            <div class="left col col-md-34 col-sm-4 col-xs-6 fill">
-                                <div class="wrap-hover-content f3 facial-left-thumbnail thumbnail">
-                                    <div class="hover-content">
-                                        <div class="">
-                                            <img src="images/des.png" alt="">
-                                            <p>Product Name</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--   min height set for h2.If dont need pls remove it-->
-                                <h2><a href="#">Lorem ipsum dolor sit amet </a></h2>
-                                <h3>$ 110.00</h3>
-                            </div> <!-- end of left -->
+                                    <!-- end of left -->
 
-                            <div class="left col col-md-34 col-sm-4 col-xs-6 fill">
-                                <div class="wrap-hover-content f3 facial-left-thumbnail thumbnail">
-                                    <div class="hover-content">
-                                        <div class="">
-                                            <img src="images/des.png" alt="">
-                                            <p>Product Name</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--   min height set for h2.If dont need pls remove it-->
-                                <h2><a href="#">Lorem ipsum dolor sit amet </a></h2>
-                                <h3>$ 110.00</h3>
-                            </div> <!-- end of left -->
-
-                            <div class="left col col-md-34 col-sm-4 col-xs-6 fill">
-                                <div class="wrap-hover-content f3 facial-left-thumbnail thumbnail">
-                                    <div class="hover-content">
-                                        <div class="">
-                                            <img src="images/des.png" alt="">
-                                            <p>Product Name</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--   min height set for h2.If dont need pls remove it-->
-                                <h2><a href="#">Lorem ipsum dolor sit amet </a></h2>
-                                <h3>$ 110.00</h3>
-                            </div> <!-- end of left -->
-
-                            <!-- end of left -->
-                        </div></div>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
 
 
 

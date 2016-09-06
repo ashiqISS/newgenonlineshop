@@ -243,10 +243,12 @@ class CheckOutController extends Controller {
     }
 
     public function createOrderHistory($order_id, $product_id) {
+        $orderStatus_comment = OrderStatus::model()->findByPk(1)->description;
         $orderHistory = new OrderHistory;
         $orderHistory->order_id = $order_id;
         $orderHistory->product_id = $product_id;
-        $orderHistory->order_status_comment = 'Order Placed';
+        $orderHistory->merchant_id =  Yii::app()->user->getState('merchant_id');
+        $orderHistory->order_status_comment = $orderStatus_comment;
         $orderHistory->order_status = 1;
         $orderHistory->date = date('Y-m-d');
         $orderHistory->status = 1;
@@ -266,7 +268,7 @@ class CheckOutController extends Controller {
         $order->payment_mode = $ptype;
         $order->transaction_id = 'sample123';
         $order->payment_status = 1;
-        $order->status = 2; // success
+        $order->status = 1; // not delivered
         if ($order->update()) {
             return 1;
         } else {
