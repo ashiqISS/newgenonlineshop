@@ -1,2 +1,7 @@
+/assets/
+/protected/user/runtime/
+/protected/admin/runtime/
+/protected/admin/runtime/application.log
+/protected/user/runtime/application.log
 /nbproject/private/
-/newgenonlineshop/nbproject/private/
+/newgenonlineshop/nbproject/
