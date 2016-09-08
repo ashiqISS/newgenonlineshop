@@ -23,9 +23,27 @@ class Utilities {
         $pw = str_shuffle($pw);
         return $pw;
     }
-    
-    public static function getPriceList(){
-    return array('0 AND 999' => '0 - 999', '1000 AND 4999' => '1000 - 4999', '5000 AND 10000'=> '5000 - 10000');
-}
+
+    public static function getPriceList() {
+        return array('0 AND 999' => '0 - 999', '1000 AND 4999' => '1000 - 4999', '5000 AND 10000' => '5000 - 10000');
+    }
+
+    public static function getStatusMerchantPayout($status) {
+//    1-requested, 2-hold, 3-processing, 4-paid, 5 -rejected
+        switch ($status) {
+            case 1: $state = 'Request Pending';
+                break;
+            case 2: $state = 'Request on Hold';
+                break;
+            case 3: $state = 'Request on Processing';
+                break;
+            case 4: $state = 'Paid';
+                break;
+            case 5: $state = 'Rejected';
+                break;
+            default : $state = 'Invalid';
+        }
+        return $state;
+    }
 
 }

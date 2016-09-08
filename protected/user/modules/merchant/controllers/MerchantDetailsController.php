@@ -233,14 +233,41 @@ class MerchantDetailsController extends Controller {
 
     public function actionMySales() {
         $merchant_id = Yii::app()->user->getState('merchant_id');
-        $sales = SalesReport::model()->findAllByAttributes(array('merchant_id'=>$merchant_id));
-        $this->render('sales',array('sales' => $sales));
+        $sales = SalesReport::model()->findAllByAttributes(array('merchant_id' => $merchant_id));
+        $this->render('sales', array('sales' => $sales));
     }
 
     public function actionPaymentRequest() {
-        $this->render('payment');
+        $merchant_id = Yii::app()->user->getState('merchant_id');
+        $user_id = Yii::app()->user->getId();
+        $account = 0;
+        $model = new RequestPayment;
+        $merchant_account = MerchantAccountMaster::model()->findByAttributes(array('merchant_id' => $merchant_id));
+        $banking_data = BankingDetails::model()->findAllByAttributes(array('user_id' => $user_id));
+        $payoutHistory = MerchantPayoutHistory::model()->findAllByAttributes(array('merchant_id' => $merchant_id));
+//        print_r($_POST);
+        if (isset($_POST['RequestPayment'])) {
+            $model->withdraw_amount = $_POST['RequestPayment']['withdraw_amount'];
+            $account = $_POST['RequestPayment']['account'];
+            if ($model->validate()) {
+                $payoutModel = new MerchantPayoutHistory;
+                $payoutModel->merchant_id = $merchant_id;
+                $payoutModel->available_balance = $merchant_account->available_balance;
+                $payoutModel->requested_amount = $model->withdraw_amount;
+                $payoutModel->payment_account = $account;
+                $payoutModel->status = 1;
+                $payoutModel->DOC = date('Y-m-d');
+                if ($payoutModel->save()) {
+                     $model = new RequestPayment;
+                    // todo send mail to user and admin
+                    Yii::app()->user->setFlash('RequestPayment', "Your request has placed succesfully to admin. Admin will process your request and notify you soon. ");
+                } else {
+                // todo send mail to user
+                    Yii::app()->user->setFlash('RequestPayment', " Sorry, your request is not placed. Please try after some time.");
+                }
+            }
+        }
+        $this->render('payment', array('account_data' => $merchant_account, 'banking_data' => $banking_data, 'model' => $model,'payoutHistory' => $payoutHistory));
     }
-
-   
 
 }

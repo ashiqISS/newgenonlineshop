@@ -8,8 +8,7 @@
  * @property integer $merchant_id
  * @property double $available_balance
  * @property double $requested_amount
- * @property double $bal_left
- * @property integer $payment_mode
+ * @property integer $payment_account
  * @property integer $status
  * @property string $DOC
  * @property string $DOU
@@ -32,12 +31,12 @@ class MerchantPayoutHistory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-//			array('merchant_id, available_balance, requested_amount, bal_left, payment_mode, status, DOC, DOU', 'required'),
-			array('merchant_id, payment_mode, status', 'numerical', 'integerOnly'=>true),
-			array('available_balance, requested_amount, bal_left', 'numerical'),
+//			array('merchant_id, available_balance, requested_amount, payment_account, status, DOC, DOU', 'required'),
+			array('merchant_id, payment_account, status', 'numerical', 'integerOnly'=>true),
+			array('available_balance, requested_amount', 'numerical'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, merchant_id, available_balance, requested_amount, bal_left, payment_mode, status, DOC, DOU', 'safe', 'on'=>'search'),
+			array('id, merchant_id, available_balance, requested_amount, payment_account, status, DOC, DOU', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,8 +61,7 @@ class MerchantPayoutHistory extends CActiveRecord
 			'merchant_id' => 'Merchant',
 			'available_balance' => 'Available Balance',
 			'requested_amount' => 'Requested Amount',
-			'bal_left' => 'Bal Left',
-			'payment_mode' => 'Payment Mode',
+			'payment_account' => 'Payment Mode',
 			'status' => '1-requested, 2-hold, 3-processing, 4-paid',
 			'DOC' => 'Doc',
 			'DOU' => 'Dou',
@@ -92,8 +90,7 @@ class MerchantPayoutHistory extends CActiveRecord
 		$criteria->compare('merchant_id',$this->merchant_id);
 		$criteria->compare('available_balance',$this->available_balance);
 		$criteria->compare('requested_amount',$this->requested_amount);
-		$criteria->compare('bal_left',$this->bal_left);
-		$criteria->compare('payment_mode',$this->payment_mode);
+		$criteria->compare('payment_account',$this->payment_account);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('DOC',$this->DOC,true);
 		$criteria->compare('DOU',$this->DOU,true);

@@ -24,6 +24,8 @@ return array(
     'delete-product' => 'merchant/products/deleteproduct',
     'view-product' => 'merchant/products/View',
     'my-products' => 'merchant/products/myProducts',
+    'banking_accounts' => 'merchant/bankingDetails/details',
+    'add-account' => 'merchant/bankingDetails/create',
     
     'products' => 'product/products',    
     'my-account' => 'buyerDetails/MyAccount',    

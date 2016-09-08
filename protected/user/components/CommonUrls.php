@@ -12,6 +12,12 @@ class CommonUrls {
         $url = Yii::app()->request->baseUrl . "/user.php/add-product";
         return $url;
     }
+    
+    public static function banking()
+    {
+        $url = Yii::app()->request->baseUrl . "/user.php/banking_accounts";
+        return $url;
+    }
 
     public static function change_password() {
         $url = Yii::app()->request->baseUrl . "/user.php/change_password";
