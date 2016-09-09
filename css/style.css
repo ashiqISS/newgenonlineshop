@@ -935,7 +935,10 @@ button:focus {
     font-family: 'Playfair Display', serif;
 }
 
-form select,
+form select
+{
+     -webkit-appearance: menu-list;
+}
 form input[type="number"] {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -1102,7 +1105,7 @@ a.back-to-top i {
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-}*/
+}
 
 
 /*pre loder*/
@@ -6606,7 +6609,8 @@ td {
     cursor: pointer;
 }
 
-.qty{width: 28px;
+.qty{
+    width: 30px;
     text-align: center;margin-top: 20px;
 }
 
@@ -7028,24 +7032,24 @@ img.small_img {
 
 .dtl_dsrpn{ border:1px solid #ccc;}
 
-.dtl_inn{ padding:15px; padding-bottom:58px;}
+.dtl_inn{ padding:15px; padding-bottom:25px;}
 
 .dtl_inn p{color:#626262; font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight:300;
-    text-align: left; padding-top:10px; line-height:24px;}
+    text-align: left; 
+    /*padding-top:10px;*/ 
+    line-height:24px;}
 
 .dtl_inn h3 {
     font-family: 'Roboto', sans-serif;
     font-size: 19px;
     font-weight:bold;
     text-align: left;
-    margin-top: 0px;
-    margin-bottom: 0;
     line-height: 22px;
     color: #e40689;
     /* text-transform: uppercase; */
-    text-align:left; text-transform:uppercase; margin-top:54px; margin-bottom:20px;
+    text-align:left; text-transform:uppercase; margin-top:20px;
 }	
 
 a.cart-b {
@@ -9987,7 +9991,7 @@ a.delete-btn {
     .services .body-right-thumbnail, .services .facial-left-thumbnail, .services .foot-left-thumbnail {
         height: 288px;
     }
-
+}
 
 
     /*--------------------------------------------------------------

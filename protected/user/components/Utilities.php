@@ -24,6 +24,14 @@ class Utilities {
         return $pw;
     }
 
+    public static function get_percentage($total, $number) {
+        if ($total > 0) {
+            return round($number / ($total / 100), 2);
+        } else {
+            return 0;
+        }
+    }   
+
     public static function getPriceList() {
         return array('0 AND 999' => '0 - 999', '1000 AND 4999' => '1000 - 4999', '5000 AND 10000' => '5000 - 10000');
     }

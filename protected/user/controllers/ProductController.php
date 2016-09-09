@@ -108,7 +108,7 @@ class ProductController extends Controller {
         $pages->applyLimit($criteria);
 
         $products = Products::model()->findAll($criteria);
-        
+
 
         $this->render('products', array(
             'products' => $products,
@@ -120,6 +120,36 @@ class ProductController extends Controller {
             'search_parm' => $category,
             'searchterm' => $searchterm
         ));
+    }
+
+    public function actionAddreview() {
+        if (Yii::app()->request->isAjaxRequest) {
+            $name = $_REQUEST['name'];
+            $email = $_REQUEST['email'];
+            $comment = $_REQUEST['comment'];
+            $star = $_REQUEST['star'];
+            $review_product_id = $_REQUEST['review_product_id'];
+            $review_exist = UserReviews::model()->findByAttributes(array('author' => $name, 'email' => $email));
+            if (!empty($review_exist)) {
+                echo 1;
+            } else {
+                $reviews = new UserReviews;
+                if (isset(Yii::app()->session['user'])) {
+                    $reviews->user_id = Yii::app()->user->getId();
+                }
+                $reviews->author = $name;
+                $reviews->email = $email;
+                $reviews->review = $comment;
+                $reviews->rating = $star;
+                $reviews->product_id = $review_product_id;
+
+                if ($reviews->save(false)) {
+                    echo 2;
+                } else {
+                    echo 3;
+                }
+            }
+        }
     }
 
 }
