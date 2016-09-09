@@ -26,7 +26,7 @@ class Utilities {
 
     public static function get_percentage($total, $number) {
         if ($total > 0) {
-            return round($number / ($total / 100), 2);
+            return round($number / ($total / 100), 1);
         } else {
             return 0;
         }

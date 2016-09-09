@@ -25,9 +25,20 @@ class ProductController extends Controller {
 
         $prduct = Products::model()->findByAttributes(array('canonical_name' => $name, 'status' => 1));
         $related_products = explode(",", $prduct->related_products);
+
         if (!empty($prduct)) {
             $this->AddProductViewed($prduct);
-            $this->render('detailed', array('product' => $prduct, 'related_products' => $related_products));
+
+            $value = trim($prduct->category_id, ",");
+            $category = explode(",", $value);
+            foreach ($category as $cats) {
+                $condition .= 'category_id like "%' . $cats . '%" OR ';
+            }
+            $condition = trim($condition, " OR ");
+            $you_may_also_like = Products::model()->findAll(array('condition' => 'status = 1 AND is_admin_approved = 1 AND (' . $condition . ')'));
+
+
+            $this->render('detailed', array('product' => $prduct, 'related_products' => $related_products,'you_may_also_like' => $you_may_also_like));
         } else {
             $this->redirect(array('Site/Error'));
         }

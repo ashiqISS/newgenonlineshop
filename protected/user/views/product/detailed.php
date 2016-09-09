@@ -17,7 +17,7 @@
         -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
         -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-}
+    }
     .stars ul {
         list-style: none;
         padding-left: 0;
@@ -272,7 +272,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
 
             </div>
 
-        
+
 
             <div class="row">      
                 <?php echo $this->renderPartial('_detailed_description', array('product' => $product)); ?>              
@@ -305,7 +305,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                             <input type="text" required="" class="form-review" id="review_name" value="<?= $name ?>" placeholder="Name">
                         </div>
                         <div class="form-group">
-                            <input type="email" required="" class="form-review" id="review_email" value="<?= $email?>" placeholder="Email address">
+                            <input type="email" required="" class="form-review" id="review_email" value="<?= $email ?>" placeholder="Email address">
                         </div>
                         <div class="form-group">
                             <textarea class="form-review" rows="5" id="review_comment" placeholder="Comment"></textarea>
@@ -337,6 +337,62 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
             </div></div>
     </div>
 </section> <!-- end of facial -->
+
+
+
+
+
+<section class="more">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1><span class="redish">You May Also Like</span></h1>
+                <img class="img-responsive lis" src="<?= Yii::app()->baseUrl; ?>/images/border.jpg">
+                <div class="part-4">
+
+
+                    <?php
+                    $i = 1;
+                    foreach ($you_may_also_like as $product) {
+                        if ($product->main_image == NULL) {
+                            $main_image = Yii::app()->getBaseUrl(true) . '/uploads/products/no_image.jpg';
+                        } else {
+                            $main_image = Yii::app()->getBaseUrl(true) . '/uploads/products/' . Yii::app()->Upload->folderName(0, 1000, $product->id) . '/' . $product->id . '/medium.' . $product->main_image;
+                        }
+                        ?>
+                        <div class="item effects">
+                            <div class="main">
+                                <div class="zoom-img"> 
+                                    <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>"><img src="<?= $main_image; ?>" class="img-responsive" style="height: 250px;"></a> 
+                                </div>
+                                <h2>
+                                    <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
+                                        <?php echo $product->product_name; ?> 
+                                    </a>
+                                </h2>
+                                <?php if (Yii::app()->user->getId()) { ?>
+                                    <h3><?php echo Yii::app()->Currency->convert($product->price); ?></h3>
+                                <?php } ?>
+
+                            </div>
+                        </div>
+
+                    <?php } ?>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
 <!-- end of container -->
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/slick.min.js"></script>
 <script>
@@ -547,3 +603,43 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1.11.3.min.js');
 //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/bootstrap.min.js');
 ?>
+<script>
+
+    $(document).ready(function () {
+
+        $('.part-4').slick({
+            slidesToShow: 4,
+            autoplay: true,
+            autoplaySpeed: 7000,
+            slidesToScroll: 1,
+            pauseOnHover: true,
+            prevArrow: '<i id="prev_slide_2" class="fa fa-chevron-left"></i>',
+            nextArrow: '<i id="next_slide_2" class="fa fa-chevron-right"></i>',
+            responsive: [
+                {
+                    breakpoint: 1000,
+                    settings: {
+                        centerMode: false,
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 550,
+                    settings: {
+                        centerMode: false,
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 500,
+                    settings: {
+                        centerMode: false,
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+
+    });
+
+</script>
