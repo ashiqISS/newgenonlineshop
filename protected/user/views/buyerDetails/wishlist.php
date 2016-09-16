@@ -38,6 +38,15 @@
 
                     <div class="col-md-12">
 
+                        <!--flash message-->
+                        <?php if (Yii::app()->user->hasFlash('removeWishlist')): ?>
+                            <div class="row" style="padding-bottom: 1em;">
+                                <div class="alert alert-info fade in">
+                                    <?php echo Yii::app()->user->getFlash('removeWishlist'); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="main_upcmg">
                             <?php
                             if (empty($wishlist)) {
@@ -61,19 +70,19 @@
 
 
                                     <div class="left col col-md-4 col-sm-4 col-xs-6 fill">
-                                     <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
-                                        <div class="wrap-hover-content f1 facial-left-thumbnail thumbnail" style="background: url(<?php echo $main_image; ?>)no-repeat 50% 50%">
-                                            <div class="hover-content">
-                                                <div class="">
-                                                    <img src="<?= $main_image ?>" alt="">
-                                                    <p>
-                                                        <?php echo $product->product_name; ?> 
-                                                    </p>
+                                        <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
+                                            <div class="wrap-hover-content f1 facial-left-thumbnail thumbnail" style="background: url(<?php echo $main_image; ?>)no-repeat 50% 50%">
+                                                <div class="hover-content">
+                                                    <div class="">
+                                                        <img src="<?= $main_image ?>" alt="">
+                                                        <p>
+                                                            <?php echo $product->product_name; ?> 
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                        </div>
-                                     </a>
+                                            </div>
+                                        </a>
                                         <!--min height set for h2.If dont need pls remove it-->
                                         <h2>     <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
                                                 <?php echo $product->product_name; ?> 
@@ -82,11 +91,13 @@
                                         <h3>  <?php if (Yii::app()->user->getId()) { ?>
                                                 <h3><?php echo Yii::app()->Currency->convert($product->price); ?></h3>
                                             <?php } ?></h3>
+                                        <div class="proceed_upmg">
+                                            <button class="btn dlt-btn btn-default" onclick="removeFromWishlist(<?= $item->product_id?>)">delete</button>
+
+                                        </div>
                                     </div>  
+
                                     <!--end of left--> 
-
-
-                                    <!-- end of left -->
 
                                     <?php
                                 }
@@ -121,7 +132,21 @@
 </section> <!-- end of facial -->
 
 
+<script>
+    function removeFromWishlist(id)
+    {
+        $.ajax({
+            type: "POST",
+                url: baseurl + 'cart/RemoveWishlist',
+                data: {prod_id: id}
+        }).done(function (data) {
+            location.reload();
+            //            alert("Removed from wishlist");
+        });
+    }
 
+
+</script>
 
 <!-- end of container -->
 

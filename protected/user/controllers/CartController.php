@@ -329,4 +329,50 @@ class CartController extends Controller {
         }
     }
 
+    public function actionRemoveWishlist() {
+        if ($_REQUEST['prod_id'] != '') {
+            $id = $_REQUEST['prod_id'];
+            $user_id = Yii::app()->user->getId();
+            $model = Wishlist::model()->findByAttributes(array('user_id' => $user_id, 'product_id' => $id));
+            if ($model->delete()) {
+                Yii::app()->user->setFlash('removeWishlist', "Item removed from wishlist");
+            } else {
+                Yii::app()->user->setFlash('removeWishlist', "Cannot remove item now. Please try later!");
+            }
+        } else {
+            Yii::app()->user->setFlash('removeWishlist', "Product not found. Please try later!");
+        }
+    }
+
+    public function actioncatMnu() {
+//        $query = mysql_query('SELECT * FROM `product_category`');
+        $categories = ProductCategory::model()->findAll();
+//        $count = count($categories);
+//        for($i = 0;$i<= $count; $i++)
+        foreach ($categories as $category) {
+                   if ($category->id == $category->parent) {
+                echo '<br>=========================================<br>';
+                echo $category->category_name;
+                $this->showCategory($category->id);
+            } 
+        }
+
+
+    }
+
+    public function showCategory($parent) {
+
+        if ($subcats = ProductCategory::model()->findAllByAttributes(array('parent' => $parent), array('condition' => "id != $parent"))) {
+
+
+            foreach ($subcats as $subcategory) {
+
+                echo '<br>';
+                echo '--' . $subcategory->category_name;
+                $this->showCategory($subcategory->id);
+            }
+        }
+
+    }
+
 }

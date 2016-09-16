@@ -55,7 +55,6 @@
                             <form id="filters" method="POST" action="<?php echo Yii::app()->request->baseUrl . '/user.php/merchant/merchantDetails/home' ?>">
                                 <input type="hidden" name="filter_status_drpdwn" id="filter_status_drpdwn" value="">
                                 <?php
-                                $filterSelected = 1;
                                 echo CHtml::dropDownList('filter_status', '', CHtml::listData(OrderStatus::model()->findAll(), 'id', 'title'), array('empty' => '--Order Status--',
                                     'class' => 'dt',
                                     'options' => array($filterSelected => array('selected' => true)),
@@ -63,24 +62,50 @@
                                     'onchange' => 'filterlist(this.value)'
                                 ));
                                 ?>
-                                <!--
-                                
-                                                            <select name="item_status" style="width:150px;" onchange="location = this.options[this.selectedIndex].value;" class="dt">
-                                                                <option value="orders" selected="selected">Show all Pending</option>
-                                                                <option value="order_cancel">Show all Cancelled</option>
-                                                                <option value="order_shipped">Show all Shipped</option>
-                                                                <option value="order_hold">Show all On Hold</option>
-                                                            </select>-->
-                                <!--
-                                                            &nbsp;&nbsp;&nbsp;&nbsp; Narrow Results by Date &nbsp;
-                                                            
-                                                            <input class="date_pick date_input_first hasDatepicker dt" placeholder="From" type="text" id="custom_design_from" style="width:95px; float:none; background-position:70px 3px!important;" value="" name="order_from">
-                                                            &nbsp;&nbsp;
-                                                            <input class="date_pick date_input_first hasDatepicker dt" placeholder="To" type="text" id="custom_design_to" name="order_to" style="width:95px; float:none; background-position:70px 3px!important;" value="">
-                                
-                                                            <input type="submit" value="Submit" style="width:100px; margin:0px; text-transform:uppercase; margin-left: 5px;" class="submit_btn sbbt" name="order_submit">
-                                                            <a href="#"><span class="prnt2"> <img class="fives" src="<?php echo Yii::app()->request->baseUrl; ?>/images/print.png">print</span></a>-->
+<!--                            &nbsp;&nbsp;&nbsp;&nbsp; Narrow Results by Date &nbsp;
+
+                                <?php
+//                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+//                                    'name' => 'filter_date_from',
+//                                    'id' => 'filter_date_from',
+//                                    'options' => array(
+//                                        'dateFormat' => 'yy-mm-dd',
+//                                        'changeYear' => true, // can change year
+//                                        'changeMonth' => true, // can change month
+//                                        'yearRange' => '2000:2099', // range of year
+//                                        'showButtonPanel' => true, // show button panel
+//                                    ),
+//                                    'htmlOptions' => array(
+//                                        'placeholder' => 'From',
+//                                        'style' => 'padding:.2em'
+//                                    ),
+//                                ));
+                                ?>
+                                <?php
+//                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+//                                    'name' => 'filter_date_to',
+//                                    'id' => 'filter_date_to',
+//                                    'options' => array(
+//                                        'dateFormat' => 'yy-mm-dd',
+//                                        'changeYear' => true, // can change year
+//                                        'changeMonth' => true, // can change month
+//                                        'yearRange' => '2000:2099', // range of year
+//                                        'showButtonPanel' => true, // show button panel
+//                                    ),
+//                                    'htmlOptions' => array(
+//                                        'placeholder' => 'To',
+//                                        'style' => 'padding:.2em'
+//                                    ),
+//                                ));
+                                ?>
+                                        <input class="date_pick date_input_first hasDatepicker dt" placeholder="From" type="text" id="custom_design_from" style="width:95px; float:none; background-position:70px 3px!important;" value="" name="order_from">
+                                        &nbsp;&nbsp;
+                                        <input class="date_pick date_input_first hasDatepicker dt" placeholder="To" type="text" id="custom_design_to" name="order_to" style="width:95px; float:none; background-position:70px 3px!important;" value="">
+
+                                <input type="submit" value="Submit" style="width:100px; margin:0px; text-transform:uppercase; margin-left: 5px;" class="submit_btn sbbt" name="order_submit">
+                                <a href="#"><span class="prnt2"> <img class="fives" src="<?php echo Yii::app()->request->baseUrl; ?>/images/print.png"></span></a>-->
                             </form>
+
                         </div>
                     </div>
 
@@ -137,7 +162,7 @@
 
                                             <td>
                                                 <?php
-                                                 $sel = $orderHistory->order_status;
+                                                $sel = $orderHistory->order_status;
                                                 $pid = $productOrder->product_id;
                                                 $oid = $productOrder->order_id;
                                                 if ($sel == 5) {

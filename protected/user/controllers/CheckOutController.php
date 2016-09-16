@@ -26,88 +26,91 @@ class CheckOutController extends Controller {
     }
 
     public function actionCheckout() {
+        if (Yii::app()->user->getId()) {
+            $bill_address_id = $ship_address_id = $defaultShipping = $defaultBilling = $address = '';
+            $user = Users::model()->findByPk(Yii::app()->user->getId());
+            $buyer = BuyerDetails::model()->findByAttributes(array('user_id' => Yii::app()->user->getId()));
+            $cart = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
 
-        $bill_address_id = $ship_address_id = $defaultShipping = $defaultBilling = $address = '';
-        $user = Users::model()->findByPk(Yii::app()->user->getId());
-        $buyer = BuyerDetails::model()->findByAttributes(array('user_id' => Yii::app()->user->getId()));
-        $cart = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
+            $params = array();
+            if (isset($_POST['total_amt'])) {
+                $total_amt = $_POST['total_amt'];
+                $user_id = Yii::app()->user->getState('user_id');
+                $cart = Cart::model()->findAllByAttributes(array('user_id' => $user_id));
+                if (!empty($cart)) {
 
-        $params = array();
-        if (isset($_POST['total_amt'])) {
-            $total_amt = $_POST['total_amt'];
-            $user_id = Yii::app()->user->getState('user_id');
-            $cart = Cart::model()->findAllByAttributes(array('user_id' => $user_id));
-            if (!empty($cart)) {
+                    $billing = new UserAddress;
+                    $shipping = new UserAddress;
+                    $address_id = '';
 
-                $billing = new UserAddress;
-                $shipping = new UserAddress;
-                $address_id = '';
-
-                if ($_REQUEST['bill_address'] == 0) {
-                    if (isset($_POST['UserAddress']['bill'])) {
-                        $billing_address = $this->addAddress($billing, $_POST['UserAddress']['bill']);
-                        $bill_address_id = $billing_address;
-                    }
-                } else {
-                    $bill_address_id = $_REQUEST['bill_address'];
-                }
-                if ($_REQUEST['billing_same'] == NULL) {
-                    if ($_REQUEST['ship_address'] == 0) {
-                        if (isset($_POST['UserAddress']['ship'])) {
-                            $shipping_address = $this->addAddress($shipping, $_POST['UserAddress']['ship']);
-                            $ship_address_id = $shipping_address;
+                    if ($_REQUEST['bill_address'] == 0) {
+                        if (isset($_POST['UserAddress']['bill'])) {
+                            $billing_address = $this->addAddress($billing, $_POST['UserAddress']['bill']);
+                            $bill_address_id = $billing_address;
                         }
                     } else {
-                        $ship_address_id = $_REQUEST['ship_address'];
+                        $bill_address_id = $_REQUEST['bill_address'];
                     }
-                } else {
-                    $ship_address_id = $bill_address_id;
-                }
-                $shipp_address = UserAddress::model()->findByPk($ship_address_id);
-
-                if (isset(Yii::app()->session['currency'])) {
-                    $currency_rate = Yii::app()->session['currency']['rate'];
-                } else {
-                    $currency_rate = 1;
-                }
-                $granttotal = round(($currency_rate * $subtotal), 2);
-
-
-                if (isset(Yii::app()->session['currency'])) {
-                    if (Yii::app()->session['currency']['rate'] == 1) {
-                        $total_balance_to_pay = $granttotal;
+                    if ($_REQUEST['billing_same'] == NULL) {
+                        if ($_REQUEST['ship_address'] == 0) {
+                            if (isset($_POST['UserAddress']['ship'])) {
+                                $shipping_address = $this->addAddress($shipping, $_POST['UserAddress']['ship']);
+                                $ship_address_id = $shipping_address;
+                            }
+                        } else {
+                            $ship_address_id = $_REQUEST['ship_address'];
+                        }
                     } else {
-                        $total_balance_to_pay = ceil($granttotal / Yii::app()->session['currency']['rate']);
+                        $ship_address_id = $bill_address_id;
                     }
-                }
+                    $shipp_address = UserAddress::model()->findByPk($ship_address_id);
+
+                    if (isset(Yii::app()->session['currency'])) {
+                        $currency_rate = Yii::app()->session['currency']['rate'];
+                    } else {
+                        $currency_rate = 1;
+                    }
+                    $granttotal = round(($currency_rate * $subtotal), 2);
 
 
-                if (($bill_address_id != '') && ($ship_address_id != '')) {
-                    // redirection into final checkout page
-                    $this->createOrder($ship_address_id, $bill_address_id, $cart);
+                    if (isset(Yii::app()->session['currency'])) {
+                        if (Yii::app()->session['currency']['rate'] == 1) {
+                            $total_balance_to_pay = $granttotal;
+                        } else {
+                            $total_balance_to_pay = ceil($granttotal / Yii::app()->session['currency']['rate']);
+                        }
+                    }
+
+
+                    if (($bill_address_id != '') && ($ship_address_id != '')) {
+                        // redirection into final checkout page
+                        $this->createOrder($ship_address_id, $bill_address_id, $cart);
+                    }
+                } else {
+                    echo 'cart empty !!';
                 }
+                $defaultShipping = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_shipping_address' => 1));
+                $defaultBilling = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_billing_address' => 1));
+                $address = UserAddress::model()->findAllByAttributes(array('userid' => Yii::app()->user->getId()));
+
+                Yii::app()->user->setState('total_amt', $total_amt);
+                $params['total_amt'] = $total_amt;
+                $params['carts'] = $cart;
+                $params['defaultShipping'] = $defaultShipping;
+                $params['defaultBilling'] = $defaultBilling;
+                $params['addresss'] = $address;
+                $params['user'] = $user;
+                $params['buyer'] = $buyer;
+                $params['billing'] = $billing;
+                $params['shipping'] = $shipping;
+                $params['selected_billing'] = $bill_address_id;
+                $params['selected_shipping'] = $ship_address_id;
+                $this->render('checkout_address', $params);
             } else {
-                echo 'cart empty !!';
+                $this->redirect(Yii::app()->getBaseUrl() . '/user.php/cart/Mycart');
             }
-            $defaultShipping = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_shipping_address' => 1));
-            $defaultBilling = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_billing_address' => 1));
-            $address = UserAddress::model()->findAllByAttributes(array('userid' => Yii::app()->user->getId()));
-
-            Yii::app()->user->setState('total_amt', $total_amt);
-            $params['total_amt'] = $total_amt;
-            $params['carts'] = $cart;
-            $params['defaultShipping'] = $defaultShipping;
-            $params['defaultBilling'] = $defaultBilling;
-            $params['addresss'] = $address;
-            $params['user'] = $user;
-            $params['buyer'] = $buyer;
-            $params['billing'] = $billing;
-            $params['shipping'] = $shipping;
-            $params['selected_billing'] = $bill_address_id;
-            $params['selected_shipping'] = $ship_address_id;
-            $this->render('checkout_address', $params);
         } else {
-            $this->redirect(Yii::app()->getBaseUrl() . '/user.php/cart/Mycart');
+            $this->redirect(Yii::app()->getBaseUrl() . '/user.php/login');
         }
     }
 
@@ -134,15 +137,16 @@ class CheckOutController extends Controller {
             if ($updateOrder == 1) {
 
                 // update orderproducts table
-                 $order_id = Yii::app()->user->getState('order_id');
+                $order_id = Yii::app()->user->getState('order_id');
                 $orderProducts = OrderProducts::model()->findAllByAttributes(array('order_id' => $order_id));
                 foreach ($orderProducts as $product_order) {
                     $product_order->status = 3; // payment done
+                    $order_product_id = $product_order->id; // payment done
                     if ($product_order->update()) {
                         $product_id = $product_order->product_id;
 
                         // insertion into order history table
-                        $this->createOrderHistory($order_id, $product_id);
+                        $this->createOrderHistory($order_id, $product_id, $order_product_id);
                     } else {
                         echo 'order product not updated';
 //                        print_r($product_order->attributes);
@@ -242,12 +246,13 @@ class CheckOutController extends Controller {
         }
     }
 
-    public function createOrderHistory($order_id, $product_id) {
+    public function createOrderHistory($order_id, $product_id, $order_product_id) {
         $orderStatus_comment = OrderStatus::model()->findByPk(1)->description;
         $orderHistory = new OrderHistory;
         $orderHistory->order_id = $order_id;
+        $orderHistory->order_products_id = $order_product_id;
         $orderHistory->product_id = $product_id;
-        $orderHistory->merchant_id =  Yii::app()->user->getState('merchant_id');
+        $orderHistory->merchant_id = Yii::app()->user->getState('merchant_id');
         $orderHistory->order_status_comment = $orderStatus_comment;
         $orderHistory->order_status = 1;
         $orderHistory->date = date('Y-m-d');

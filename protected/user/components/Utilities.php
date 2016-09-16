@@ -30,7 +30,7 @@ class Utilities {
         } else {
             return 0;
         }
-    }   
+    }
 
     public static function getPriceList() {
         return array('0 AND 999' => '0 - 999', '1000 AND 4999' => '1000 - 4999', '5000 AND 10000' => '5000 - 10000');
@@ -48,6 +48,20 @@ class Utilities {
             case 4: $state = 'Paid';
                 break;
             case 5: $state = 'Rejected';
+                break;
+            default : $state = 'Invalid';
+        }
+        return $state;
+    }
+
+    public static function getPaymentStatus($status) {
+        //  0=notpay,1=success,2=failed
+        switch ($status) {
+            case 0: $state = 'Payment not Done';
+                break;
+            case 1: $state = 'Payment Success';
+                break;
+            case 2: $state = 'Payment Failed';
                 break;
             default : $state = 'Invalid';
         }

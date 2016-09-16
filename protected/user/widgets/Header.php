@@ -134,8 +134,35 @@ class Header extends CWidget {
                                         <li><a class="mycart" href="#"  data-toggle="modal" data-target="#myModal"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/wallet2.png">Wallet</a>
                                         </li>
                                     <?php } ?>
-                                    <li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-cart"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">MyCart</a></li>
-                                    <!--<li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-cart"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">Wishlist</a></li>-->
+                                    <li class="has_dropdown">
+                                        <a class="mycart" href="javascript:void(0)"><img class="shop" src="<?php echo Yii::app()->request->baseUrl; ?>/images/shop.png">Mycart</a>
+                                        <div class="ng_dropdown cart_box" id="cart_box" style="display: none;">
+
+                                            <div class="drop_cart">
+                                                <div class="my_cart_item cart_product_detail cart_item">
+<!--                                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/small.jpg">
+                                                    <h3>demo</h3>
+                                                    <p><span>Qty:</span>	1</p>
+                                                    <p><span>Price:</span>	
+
+                                                        <i class="fa fa-inr"></i>3750.00</p>
+                                                    <div class="clearfix"></div>
+                                                    <div class="remove_item" canname="anaya" cartid="342"><a class="cart_close1">Remove</a></div>-->
+                                                </div>
+
+                                                <div class="sub_total">
+                                                    <div class="pull-left">ORDER SUB TOTAL</div>
+                                                    <div class="pull-right"><i class="fa fa-inr"></i>3750.00</div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <a class="btn-dark btn-full" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/cart/Mycart/">VIEW SHOPPING BAG / CHECKOUT</a>
+                                                <div class="text-center"><a class="btn-continue" href="<?php echo Yii::app()->request->baseUrl; ?>/products/category?name=women">CONTINUE SHOPPING</a></div></div>
+
+
+                                        </div>
+                                    </li>
+                                                <!--<li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-cart"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">MyCart</a></li>-->
+                                    <li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-wishlist"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">Wishlist</a></li>
 
                                     <?php
                                     if (Yii::app()->user->hasState('user_id')) {
@@ -148,6 +175,7 @@ class Header extends CWidget {
                                             </button>
                                             <ul class="dropdown-menu categories">
                                                 <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/my-account"> My Account</a></li>
+                                                <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/my-wishlist"> My Wishlist</a></li>
                                                 <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/change-password"> Change Password</a></li>
                                                 <li><a href="<?php echo Yii::app()->request->baseUrl . '/user.php/logout'; ?>">Sign Out</a></li>
                                             </ul>
@@ -288,26 +316,26 @@ class Header extends CWidget {
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                     <li><a href="#"><span>Offers & Deals</span></a></li>
 
-                                                                <!--                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
-                                                                                                                        <ul>
-                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                        <!--                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
+                                                                                                                                <ul>
+                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
 
-                                                                                                                        </ul>
-                                                                                                                    </li>
-                                                                                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
-                                                                                                                        <ul>
-                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                </ul>
+                                                                                                                            </li>
+                                                                                                                            <li class="has-sub"><a href="#"><span>categories</span></a>
+                                                                                                                                <ul>
+                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
 
-                                                                                                                        </ul>
-                                                                                                                    </li>-->
-                                                        <!--                                                    <li><a href="#"><span>categories</span></a></li>
-                                                                                                            <li><a href="#"><span>categories</span></a></li>-->
+                                                                                                                                </ul>
+                                                                                                                            </li>-->
+                                                                <!--                                                    <li><a href="#"><span>categories</span></a></li>
+                                                                                                                    <li><a href="#"><span>categories</span></a></li>-->
 
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/site/faq"><span>faqs</span></a></li>
 

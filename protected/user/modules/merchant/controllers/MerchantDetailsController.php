@@ -50,13 +50,41 @@ class MerchantDetailsController extends Controller {
 
     public function actionHome() {
         $id = Yii::app()->user->getState('merchant_id');
-        $productOrders = OrderProducts::model()->findAllByAttributes(array('merchant_id' => $id));
-        if (isset($_POST['filter_status_drpdwn'])) {
-            $status = $_POST['filter_status_drpdwn'];
-//            $orderHistory = OrderHistory::model()->findAllByAttributes(array('merchant_id' => $id, 'order_status'=> $order_status));
-//            $productOrders = OrderProducts::model()->findAllByAttributes(array('merchant_id' => $id));
+        $filterSelected = '';
+        $criteria = new CDbCriteria;
+//        $criteria->condition = "t.merchant_id = $id";
+//        print_r($_POST);
+        $criteria->order = "t.id desc";
+//        $productOrders = OrderProducts::model()->findAllByAttributes(array('merchant_id' => $id));
+        if (isset($_POST['filter_status_drpdwn']) && ($_POST['filter_status_drpdwn']) != '') {
+            $filterSelected = $status = $_POST['filter_status_drpdwn'];
+            $criteria->join = "JOIN order_history as h ON t.id = h.order_products_id AND h.order_status = $status AND t.merchant_id = $id";
         }
-        $this->render('home', array('productOrders' => $productOrders));
+        if (isset($_POST['filter_date_from']) && ($_POST['filter_date_from']) != '') {
+            $from_date = $_POST['filter_date_from'];
+            $date_to = $_POST['filter_date_to'];
+            if ($date_to == '') {
+                $date_to = '2099-12-31';
+            }
+//            $criteria->addBetweenCondition('t.DOC', $from_date, $date_to, 'AND');
+            $criteria->addCondition("t.DOC >= '$from_date' AND t.DOC <= '$date_to'");
+                
+        }
+        if (isset($_POST['filter_date_to']) && ($_POST['filter_date_to']) != '') {
+            $date_to = $_POST['filter_date_to'];
+            $from_date = $_POST['filter_date_from'];
+            if ($from_date == '') {
+                $from_date = '2099-12-31';
+            }
+//            $criteria->addBetweenCondition('t.DOC', $from_date, $date_to, 'AND');
+           $criteria->addCondition("t.DOC >= '$from_date' AND t.DOC <= '$date_to'");
+            
+        }
+
+        $criteria->condition = "t.merchant_id = $id";
+    
+        $productOrders = OrderProducts::model()->findAll($criteria);
+        $this->render('home', array('productOrders' => $productOrders, 'filterSelected' => $filterSelected));
     }
 
     public function actionProfile() {
@@ -258,16 +286,16 @@ class MerchantDetailsController extends Controller {
                 $payoutModel->status = 1;
                 $payoutModel->DOC = date('Y-m-d');
                 if ($payoutModel->save()) {
-                     $model = new RequestPayment;
+                    $model = new RequestPayment;
                     // todo send mail to user and admin
                     Yii::app()->user->setFlash('RequestPayment', "Your request has placed succesfully to admin. Admin will process your request and notify you soon. ");
                 } else {
-                // todo send mail to user
+                    // todo send mail to user
                     Yii::app()->user->setFlash('RequestPayment', " Sorry, your request is not placed. Please try after some time.");
                 }
             }
         }
-        $this->render('payment', array('account_data' => $merchant_account, 'banking_data' => $banking_data, 'model' => $model,'payoutHistory' => $payoutHistory));
+        $this->render('payment', array('account_data' => $merchant_account, 'banking_data' => $banking_data, 'model' => $model, 'payoutHistory' => $payoutHistory));
     }
 
 }

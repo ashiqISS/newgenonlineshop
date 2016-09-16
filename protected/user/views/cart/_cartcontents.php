@@ -3,7 +3,8 @@
     <h3><?php echo $prod_details->product_name; ?></h3>
     <p><span>Qty:</span>	<?php echo $cart_content->quantity; ?></p>
     <p><span>Price:</span>	<?php echo $total; ?></p>
-    <div class="clearfix"></div>
-    <div class="remove_item" canname="<?php echo $prod_details->canonical_name; ?>" cartid="<?php echo $cart_content->id; ?>"><a  class="cart_close1" >Remove</a></div>
-</div>
+   <div class="clearfix"></div>
+    <!--<div class="remove_item" canname="<?php echo $prod_details->canonical_name; ?>" cartid="<?php echo $cart_content->id; ?>"><a  class="cart_close1" >Remove</a></div>-->
 
+</div>
+<div class="clearfix"></div>

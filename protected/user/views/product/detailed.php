@@ -589,7 +589,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
             alert("Added to wishlist");
         });
     }
-
+    
     function showLoader() {
         $('.over-lay').show();
     }

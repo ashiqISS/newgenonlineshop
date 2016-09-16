@@ -95,12 +95,18 @@
                                                     <!--June 12, 2017--> 
                                                     <?php
                                                     $date = $orderHistory->date;
-                                                    echo date_format( new DateTime($date), 'd/m/y');
+                                                    echo date_format(new DateTime($date), 'd/m/y');
                                                     ?>
                                                 </h3>
                                             </div>
                                             <div class="parttt-4">
-                                                <h3><?= $orderHistory->order_status_comment ?></h3>
+
+                                                <h3>  
+                                                    <span style="color: #797979;"><?= Utilities::getPaymentStatus($order->status) ?></span><br>
+                                                   <br><br>
+
+                                                    <?= $orderHistory->order_status_comment ?>
+                                                </h3>
                                             </div>
                                         </div>
                                     </div>
