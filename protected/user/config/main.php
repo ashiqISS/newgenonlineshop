@@ -104,9 +104,9 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         // mail ids for sending mail
-        'adminEmail' => 'aathira@intersmart.com', // admin mail
-        'infoEmail' => 'aathira@intersmart.com',
-        'contactEmail' => 'aathira@intersmart.com', // contact mail
+        'adminEmail' => 'aathira@intersmart.in', // admin mail
+        'infoEmail' => 'aathira@intersmart.in',
+        'contactEmail' => 'aathira@intersmart.in', // contact mail
     ),
 );
 

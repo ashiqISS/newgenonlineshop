@@ -270,10 +270,12 @@ class MerchantDetailsController extends Controller {
         $model = new RequestPayment;
         $merchant_account = MerchantAccountMaster::model()->findByAttributes(array('merchant_id' => $merchant_id));
         $banking_data = BankingDetails::model()->findAllByAttributes(array('user_id' => $user_id));
-        $payoutHistory = MerchantPayoutHistory::model()->findAllByAttributes(array('merchant_id' => $merchant_id));
+
+
         if (isset($_POST['RequestPayment'])) {
             $model->withdraw_amount = $_POST['RequestPayment']['withdraw_amount'];
-            $account = $_POST['RequestPayment']['account'];
+            $account = $_POST['account'];
+
             if ($model->validate()) {
                 $payoutModel = new MerchantPayoutHistory;
                 $payoutModel->merchant_id = $merchant_id;
@@ -282,35 +284,53 @@ class MerchantDetailsController extends Controller {
                 $payoutModel->payment_account = $account;
                 $payoutModel->status = 1;
                 $payoutModel->DOC = date('Y-m-d');
+
                 if ($payoutModel->save()) {
                     $model = new RequestPayment;
-                    // todo send mail to user and admin
+                    $payoutModel1 = $payoutModel;
+                    $payoutModel = new MerchantPayoutHistory;
+
                     Yii::app()->user->setFlash('RequestPayment', "Your request has placed succesfully to admin. Admin will process your request and notify you soon. ");
                     $requestStatus = 1;
+                    $this->mailPayoutRequest($requestStatus, $payoutModel1);
                 } else {
-                    // todo send mail to user
+                    $payoutModel1 = $payoutModel;
+
                     Yii::app()->user->setFlash('RequestPayment', " Sorry, your request is not placed. Please try after some time.");
                     $requestStatus = 0;
+                    $this->mailPayoutRequest($requestStatus, $payoutModel1);
                 }
             }
         }
+        $payoutHistory = MerchantPayoutHistory::model()->findAllByAttributes(array('merchant_id' => $merchant_id));
         $this->render('payment', array('account_data' => $merchant_account, 'banking_data' => $banking_data, 'model' => $model, 'payoutHistory' => $payoutHistory));
     }
 
-    public function mailPayoutRequest($requestStatus,$payoutModel) {
+    public function mailPayoutRequest($requestStatus, $payoutModel) {
+        Yii::import('user.extensions.yii-mail.YiiMail');
         $user_id = Yii::app()->user->getId();
         $user_model = Users::model()->findByPk($user_id);
         if ($requestStatus == 1) {
             $subject = "Payout Request Placed";
             $status = "placed";
+            // mail to admin
+            $message = new YiiMailMessage;
+            $message->view = "_payout_request";
+            $params = array('user_model' => $user_model, 'payoutModel' => $payoutModel);
+            $message->subject = "NewGen Shop : $subject";
+            $message->setBody($params, 'text/html');
+            $message->addTo(Yii::app()->params['adminEmail']);
+            $message->from = $user_model->email;
+            Yii::app()->mail->send($message);
+            
         } else {
             $subject = "Payout Request Failed";
             $status = "failed";
         }
-        Yii::import('user.extensions.yii-mail.YiiMail');
+        // mail to user
         $message = new YiiMailMessage;
         $message->view = "_info_payout_request";
-        $params = array('user_model' => $user_model, 'status' => $status, '$payoutModel');
+        $params = array('user_model' => $user_model, 'status' => $status, 'payoutModel' => $payoutModel);
         $message->subject = "NewGen Shop : $subject";
         $message->setBody($params, 'text/html');
         $message->addTo($user_model->email);

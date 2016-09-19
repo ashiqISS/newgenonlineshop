@@ -93,7 +93,7 @@
                                         <label for="textinput" class="control-label" style="font-size: 16px;">:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <?php echo $form->textField($model, 'withdraw_amount', array('class' => 'form-control')); ?>
+                                        <?php echo $form->textField($model, 'withdraw_amount', array('class' => 'form-control', 'onpaste' => 'return false;')); ?>
                                         <?php echo $form->error($model, 'withdraw_amount'); ?>      
                                     </div> 
                                 </div>
@@ -238,5 +238,11 @@
 <?php
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1.11.3.min.js');
 //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/bootstrap.min.js');
-
+?>
+<script>
+document.getElementById('RequestPayment_withdraw_amount').addEventListener('keyup', function(){
+    if(this.value.charAt(0) === '0')
+        this.value = this.value.slice(1);
+});
+</script>
     

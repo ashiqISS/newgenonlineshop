@@ -19,10 +19,9 @@ $accountdata = BankingDetails::model()->findByPk($payoutModel->payment_account);
 
                         <div style="padding: 2em">
                             <?php
-                            echo 'Hi ' . MerchantDetails::getFullname($user_model->id) . ',';
+                            echo 'New payout Request from ' . MerchantDetails::getFullname($user_model->id) . '.';
                             ?>
-                            <br><br>
-                            Your payout request is <?= $status ?>.
+                          
                             <br><br>
                             <table width="50%" id="mail_content_tbl">
                                 <tr>

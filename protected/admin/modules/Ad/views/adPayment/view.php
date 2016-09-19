@@ -25,17 +25,17 @@ $this->widget('zii.widgets.CDetailView', array(
 //		'id',
         array('name' => 'position',
             'value' => function($data) {
-                    return $data->position0->ad_location;
+                return $data->position0->ad_location;
             },),
         array('name' => 'image',
             'value' => function ($data) {
-                    $folder = Yii::app()->Upload->folderName(0, 1000, $data->id);
-                    return '<img style="width:100px;height:100px;" src="' . yii::app()->baseUrl . '/uploads/ads/' . $folder . '/' . $data->id . '/small.' . $data->image . '">';
+                $folder = Yii::app()->Upload->folderName(0, 1000, $data->id);
+                return '<img style="width:100px;height:100px;" src="' . yii::app()->baseUrl . '/uploads/ads/' . $folder . '/' . $data->id . '/small.' . $data->image . '">';
             },
             'type' => 'raw'),
         array('name' => 'vendor_name',
             'value' => function($data) {
-                    return $data->vendorName->first_name;
+                return $data->vendorName->fullname;
             },),
 //        'sort_order',
         'display_from',

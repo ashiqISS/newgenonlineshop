@@ -39,7 +39,7 @@
                         'type' => 'raw'),
                     array('name' => 'vendor_name',
                         'value' => function($data) {
-                                return $data->vendorName->first_name;
+                                return $data->vendorName->fullname;
                         },
                         'filter' => CHtml::listData(MerchantDetails::model()->findAll(array('condition' => 'id in (select vendor_name from ad_payment)')), 'id', 'fullname'),
                     ),

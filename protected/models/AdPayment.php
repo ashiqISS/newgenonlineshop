@@ -54,7 +54,7 @@ class AdPayment extends CActiveRecord {
                 // NOTE: you may need to adjust the relation name and the related
                 // class name for the relations automatically generated below.
                 return array(
-                    'vendorName' => array(self::BELONGS_TO, 'Merchant', 'vendor_name'),
+                    'vendorName' => array(self::BELONGS_TO, 'MerchantDetails', 'vendor_name'),
                     'position0' => array(self::BELONGS_TO, 'MasterAdLocation', 'position'),
                 );
         }
