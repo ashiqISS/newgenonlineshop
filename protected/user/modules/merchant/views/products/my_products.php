@@ -58,8 +58,9 @@
                                             <th>Product Name</th>
                                             <th>Price</th>
                                             <th>Description</th> 
+                                            <th style="color: #e40689 !important">Admin Approved</th> 
                                             <th></th>
-                                            <th></th>
+                                        
 
                                         </tr>
                                     </thead>

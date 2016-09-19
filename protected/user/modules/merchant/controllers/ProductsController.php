@@ -56,14 +56,14 @@ class ProductsController extends Controller {
             $model->attributes = $_POST['Products'];
             $model->description = $_POST['Products']['description'];
             $model->meta_description = $_POST['Products']['meta_description'];
-            $model->new_from = $_POST['Products']['new_from'];
-            $model->new_to = $_POST['Products']['new_to'];
-            $model->sale_from = $_POST['Products']['sale_from'];
-            $model->sale_to = $_POST['Products']['sale_to'];
-            $model->special_price_from = $_POST['Products']['special_price_from'];
-            $model->special_price_to = $_POST['Products']['special_price_to'];
-            $model->DOC = $_POST['Products']['DOC'];
-            $model->DOU = $_POST['Products']['DOU'];
+//            $model->new_from = $_POST['Products']['new_from'];
+//            $model->new_to = $_POST['Products']['new_to'];
+//            $model->sale_from = $_POST['Products']['sale_from'];
+//            $model->sale_to = $_POST['Products']['sale_to'];
+//            $model->special_price_from = $_POST['Products']['special_price_from'];
+//            $model->special_price_to = $_POST['Products']['special_price_to'];
+//            $model->DOC = $_POST['Products']['DOC'];
+//            $model->DOU = $_POST['Products']['DOU'];
 
             $image = CUploadedFile::getInstance($model, 'main_image');
             $hover_image = CUploadedFile::getInstance($model, 'hover_image');
@@ -127,6 +127,7 @@ class ProductsController extends Controller {
 
             $model->CB = 0;
             $model->UB = 0;
+            $model->is_admin_approved = 0;
             $model->DOC = date('Y-m-d');
             $model->DOU = date('Y-m-d');
 
@@ -135,7 +136,7 @@ class ProductsController extends Controller {
 
 
                 if ($model->save()) {
-                    
+
                     if ($image != "") {
                         $id = $model->id;
                         $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
@@ -196,13 +197,13 @@ class ProductsController extends Controller {
             $model->attributes = $_POST['Products'];
             $model->description = $_POST['Products']['description'];
             $model->meta_description = $_POST['Products']['meta_description'];
-            $model->new_from = $_POST['Products']['new_from'];
-            $model->new_to = $_POST['Products']['new_to'];
-            $model->sale_from = $_POST['Products']['sale_from'];
-            $model->sale_to = $_POST['Products']['sale_to'];
-            $model->special_price_from = $_POST['Products']['special_price_from'];
-            $model->special_price_to = $_POST['Products']['special_price_to'];
-            $model->DOC = $doc;
+//            $model->new_from = $_POST['Products']['new_from'];
+//            $model->new_to = $_POST['Products']['new_to'];
+//            $model->sale_from = $_POST['Products']['sale_from'];
+//            $model->sale_to = $_POST['Products']['sale_to'];
+//            $model->special_price_from = $_POST['Products']['special_price_from'];
+//            $model->special_price_to = $_POST['Products']['special_price_to'];
+//            $model->DOC = $doc;
 
             $image = CUploadedFile::getInstance($model, 'main_image');
             $hover_image = CUploadedFile::getInstance($model, 'hover_image');
@@ -265,7 +266,7 @@ class ProductsController extends Controller {
 
 
             $model->UB = 0;
-            $model->DOU = date('Y-m-d');
+//            $model->DOU = date('Y-m-d');
 //            $model->DOC = date('Y-m-d');
             $model->DOU = date('Y-m-d');
             if ($image != "") {
@@ -313,6 +314,67 @@ class ProductsController extends Controller {
         $this->render('add_product', array(
             'model' => $model,
         ));
+    }
+
+    public function actionCloneProduct($id) {
+        echo 'id....' . $id;
+        $model = new Products;
+        $model1 = Products::model()->findByPk($id);
+        $model->attributes = $model1->attributes;
+
+        $model->DOC = date('Y-m-d H:i:s');
+        $model->status = 1;
+        $model->merchant_id = Yii::app()->user->getState('merchant_id');
+        $model->merchant_type = Yii::app()->user->getState('merchant_type');
+        $model->description = $model1->description;
+        $model->meta_description = $model1->meta_description;
+        $model->discount_from = $model1->discount_from;
+        $model->discount_to = $model1->discount_to;
+        $model->meta_description = $model1->meta_description;
+        $model->new_from = $model1->new_from;
+        $model->new_to = $model1->new_to;
+        $model->sale_from = $model1->sale_from;
+        $model->sale_to = $model1->sale_to;
+        $model->special_price_from = $model1->special_price_from;
+        $model->special_price = $model1->special_price;
+        $model->special_price_to = $model1->special_price_to;
+//
+//        print_r($model1->attributes);
+//        echo '<br><br>';
+//        print_r($model->attributes);
+//        echo '<br>  <br>';
+//        exit;
+        if ($model->save(FALSE)) {
+            $model->canonical_name = str_replace(" ", "-", $model->product_name) . '-' . $model->id;
+//            $model->save();
+//            echo 'model1<br><br>';
+//            print_r($model1->attributes);
+//            echo '<br><br> model<br>';
+//            print_r($model->attributes);
+            $folder = Yii::app()->Upload->folderName(0, 1000, $model->id) . '/';
+        echo    '<br>'.$src = yii::app()->basePath . '/../uploads/products/' . $folder . $id . '/';
+          echo  '<br>'.$dst = yii::app()->basePath . '/../uploads/products/' . $folder . $model->id. '/';
+//            echo 'dst<br><br>';
+//            var_dump($dst);
+//                        exit;
+            $this->recurse_copy($src, $dst);
+            $this->redirect(array('../my-products'));
+        }
+    }
+
+    public function recurse_copy($src, $dst) {
+        $dir = opendir($src);
+        @mkdir($dst);
+        while (false !== ( $file = readdir($dir))) {
+            if (( $file != '.' ) && ( $file != '..' )) {
+                if (is_dir($src . '/' . $file)) {
+                    $this->recurse_copy($src . '/' . $file, $dst . '/' . $file);
+                } else {
+                    copy($src . '/' . $file, $dst . '/' . $file);
+                }
+            }
+        }
+        closedir($dir);
     }
 
     public function actionDeleteProduct($product) {

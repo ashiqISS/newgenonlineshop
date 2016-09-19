@@ -23,7 +23,7 @@
         <div class="heading">
 
 
-           Product View
+            Product View
 
         </div>
 
@@ -55,7 +55,14 @@
                             'brand_id',
                             array(
                                 'name' => 'description',
-                                'value' => $data->description,
+                                'value' => function($data) {
+                                    if ($data->description == "") {
+                                        return;
+                                    } else {
+                                        $description = str_replace('background-color: rgb(255, 255, 255)', ' ', $data->description);
+                                        return $description;
+                                    }
+                                },
                                 'type' => 'html'
                             ),
                             array(
@@ -65,13 +72,35 @@
                                         return;
                                     } else {
                                         $folder = Yii::app()->Upload->folderName(0, 1000, $data->id);
-                                        return '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $data->id . '/' . $data->id . '.' . $data->main_image . '" />';
+                                        return '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $data->id . '/small.' . $data->main_image . '" />';
                                     }
                                 },
                                 'type' => 'raw'
                             ),
-                           
-                            'gallery_images',
+//                            'gallery_images',
+//                                        $dirname = "media/images/iconized/";
+//$images = glob($dirname."*.png");
+//foreach($images as $image) {
+//echo '<img src="'.$image.'" /><br />';
+//}
+                            array(
+                                'name' => 'gallery_images',
+                                'value' => function($data) {
+                                    if ($data->gallery_images == "") {
+                                        return;
+                                    } else {
+                                        $folder = Yii::app()->Upload->folderName(0, 1000, $data->id);
+                                        $folder = $folder . '/gallery';
+                                        $images = glob($folder . "*.png");
+                                        foreach ($images as $image) {
+                                            $img = '<img src="' . $image . '" /><br />';
+                                        }
+                                        return $img;
+//                    return '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $data->id . '/hover/hover.' . $data->hover_image . '" />';
+                                    }
+                                },
+                                'type' => 'raw'
+                            ),
                             array(
                                 'name' => 'hover_image',
                                 'value' => function($data) {

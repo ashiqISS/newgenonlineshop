@@ -199,6 +199,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             $action19 = "active";
                             $actionn4 = "active";
                             break;
+                        case "merchantPayoutHistory":
+                            $actionn6 = "active";
+                            break;
+                         case "masterAdLocation":
+                            $action20 = "active";
+                            $actionn7 = "active";
+                            break;
+                         case "adPayment":
+                            $action21 = "active";
+                            $actionn7 = "active";
+                            break;
 
                         case "site":
                             if (Yii::app()->controller->action->id == "home") {
@@ -273,6 +284,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>                         
 
                         <?php } ?>
+                               <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                            <li class="<?php echo $actionn6 ?> treeview">
+                                <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/payouts/MerchantPayoutHistory/admin"><i class="fa fa-user-secret"></i> <span>Payout Requests</span></a>                              
+                            </li>
+                        <?php } ?>
+                             <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                                                        <li class="<?php echo $actionn7 ?> treeview">
+                                                                <a href="#"><i class="fa fa-database"></i> <span>Advertisement</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                                                <ul class="treeview-menu">
+                                                                        <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/Ad/masterAdLocation/admin"><i class="fa fa-circle-o"></i>Ad Position,prize and size</a></li>
+                                                                        <li class="<?php echo $action21 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/Ad/adPayment/admin"><i class="fa fa-circle-o"></i>Ad Payment</a></li>
+                                                                </ul>
+                                                        </li>
+
+                                                <?php } ?>
+                            
 
                     </ul><!-- /.sidebar-menu -->
                 </section>

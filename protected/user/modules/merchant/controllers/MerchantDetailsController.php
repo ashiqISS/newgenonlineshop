@@ -68,7 +68,6 @@ class MerchantDetailsController extends Controller {
             }
 //            $criteria->addBetweenCondition('t.DOC', $from_date, $date_to, 'AND');
             $criteria->addCondition("t.DOC >= '$from_date' AND t.DOC <= '$date_to'");
-                
         }
         if (isset($_POST['filter_date_to']) && ($_POST['filter_date_to']) != '') {
             $date_to = $_POST['filter_date_to'];
@@ -77,12 +76,11 @@ class MerchantDetailsController extends Controller {
                 $from_date = '2099-12-31';
             }
 //            $criteria->addBetweenCondition('t.DOC', $from_date, $date_to, 'AND');
-           $criteria->addCondition("t.DOC >= '$from_date' AND t.DOC <= '$date_to'");
-            
+            $criteria->addCondition("t.DOC >= '$from_date' AND t.DOC <= '$date_to'");
         }
 
         $criteria->condition = "t.merchant_id = $id";
-    
+
         $productOrders = OrderProducts::model()->findAll($criteria);
         $this->render('home', array('productOrders' => $productOrders, 'filterSelected' => $filterSelected));
     }
@@ -273,7 +271,6 @@ class MerchantDetailsController extends Controller {
         $merchant_account = MerchantAccountMaster::model()->findByAttributes(array('merchant_id' => $merchant_id));
         $banking_data = BankingDetails::model()->findAllByAttributes(array('user_id' => $user_id));
         $payoutHistory = MerchantPayoutHistory::model()->findAllByAttributes(array('merchant_id' => $merchant_id));
-//        print_r($_POST);
         if (isset($_POST['RequestPayment'])) {
             $model->withdraw_amount = $_POST['RequestPayment']['withdraw_amount'];
             $account = $_POST['RequestPayment']['account'];
@@ -289,13 +286,36 @@ class MerchantDetailsController extends Controller {
                     $model = new RequestPayment;
                     // todo send mail to user and admin
                     Yii::app()->user->setFlash('RequestPayment', "Your request has placed succesfully to admin. Admin will process your request and notify you soon. ");
+                    $requestStatus = 1;
                 } else {
                     // todo send mail to user
                     Yii::app()->user->setFlash('RequestPayment', " Sorry, your request is not placed. Please try after some time.");
+                    $requestStatus = 0;
                 }
             }
         }
         $this->render('payment', array('account_data' => $merchant_account, 'banking_data' => $banking_data, 'model' => $model, 'payoutHistory' => $payoutHistory));
+    }
+
+    public function mailPayoutRequest($requestStatus,$payoutModel) {
+        $user_id = Yii::app()->user->getId();
+        $user_model = Users::model()->findByPk($user_id);
+        if ($requestStatus == 1) {
+            $subject = "Payout Request Placed";
+            $status = "placed";
+        } else {
+            $subject = "Payout Request Failed";
+            $status = "failed";
+        }
+        Yii::import('user.extensions.yii-mail.YiiMail');
+        $message = new YiiMailMessage;
+        $message->view = "_info_payout_request";
+        $params = array('user_model' => $user_model, 'status' => $status, '$payoutModel');
+        $message->subject = "NewGen Shop : $subject";
+        $message->setBody($params, 'text/html');
+        $message->addTo($user_model->email);
+        $message->from = Yii::app()->params['infoEmail'];
+        Yii::app()->mail->send($message);
     }
 
 }

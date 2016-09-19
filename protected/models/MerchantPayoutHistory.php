@@ -62,7 +62,8 @@ class MerchantPayoutHistory extends CActiveRecord
 			'available_balance' => 'Available Balance',
 			'requested_amount' => 'Requested Amount',
 			'payment_account' => 'Payment Mode',
-			'status' => '1-requested, 2-hold, 3-processing, 4-paid',
+//			'status' => '1-requested, 2-hold, 3-processing, 4-paid',
+			'status' => 'Status',
 			'DOC' => 'Doc',
 			'DOU' => 'Dou',
 		);
@@ -99,8 +100,26 @@ class MerchantPayoutHistory extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public static function getStatus($val)
+        {
+//            	'status' => '1-requested, 2-hold, 3-processing, 4-paid',
+            switch ($val)
+            {
+                case 1 : $status = 'New Request';
+                    break;
+                case 2 : $status = 'On Hold';
+                    break;
+                case 3 : $status = 'Processing';
+                    break;
+                case 4 : $status = 'Paid';
+                    break;
+                default : $status = 'Unknown';
+            }
+            return $status;
+        }
 
-	/**
+        /**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
