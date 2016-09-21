@@ -49,6 +49,7 @@ return array(
         'Currency' => array('class' => 'Converter'),
         'category' => array('class' => 'selectCategory'),
         'Menu' => array('class' => 'MenuCategory'),
+        'Discount' => array('class' => 'DiscountPrice'),
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,

@@ -2,339 +2,348 @@
 
 class SiteController extends Controller {
 
-    /**
-     * Declares class-based actions.
-     */
-    public function actions() {
-        return array(
-            // captcha action renders the CAPTCHA image displayed on the contact page
-            'captcha' => array(
-                'class' => 'CCaptchaAction',
-                'backColor' => 0xFFFFFF,
-            ),
-            // page action renders "static" pages stored under 'protected/views/site/pages'
-            // They can be accessed via: index.php?r=site/page&view=FileName
-            'page' => array(
-                'class' => 'CViewAction',
-            ),
-        );
-    }
+        /**
+         * Declares class-based actions.
+         */
+        public function init() {
+                date_default_timezone_set('Asia/Calcutta');
+        }
 
-    /**
-     * This is the default 'index' action that is invoked
-     * when an action is not explicitly requested by users.
-     */
-    public function actionIndex() {
+        public function actions() {
+                return array(
+                    // captcha action renders the CAPTCHA image displayed on the contact page
+                    'captcha' => array(
+                        'class' => 'CCaptchaAction',
+                        'backColor' => 0xFFFFFF,
+                    ),
+                    // page action renders "static" pages stored under 'protected/views/site/pages'
+                    // They can be accessed via: index.php?r=site/page&view=FileName
+                    'page' => array(
+                        'class' => 'CViewAction',
+                    ),
+                );
+        }
+
+        /**
+         * This is the default 'index' action that is invoked
+         * when an action is not explicitly requested by users.
+         */
+        public function actionIndex() {
 //                $this->layout = 'test';
 //        $this->render('index');
-        $this->layout = 'main';
-        $this->render('home');
-    }
-
-    public function actionHome() {
-        $this->layout = 'main';
-        $this->render('home');
-    }
-
-    public function actionLogin() {
-        $flag = 0;
-        $model = new LoginForm;
-
-        // uncomment the following code to enable ajax-based validation
-
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
+                $this->layout = 'main';
+                $this->render('home');
         }
 
-        if (isset($_POST['LoginForm'])) {
-            $model->attributes = $_POST['LoginForm'];
-            if ($model->validate()) {
+        public function actionHome() {
+                $this->layout = 'main';
+                $this->render('home');
+        }
 
-                $user_model = Users::model()->findByAttributes(array('email' => $model->email));
-                date_default_timezone_set('Asia/Calcutta');
-                $user_model->last_login = date('Y-m-d H:i:s');
-                $user_model->update();
+        public function actionLogin() {
+                $flag = 0;
+                $model = new LoginForm;
 
-                if ($user_model->user_status == 1) {
-                    Yii::app()->user->setState('user_mail', null);
-                    Yii::app()->user->setState('user_id', null);
-                    Yii::app()->user->setState('user_type', null);
-                    Yii::app()->user->setState('buyer_id', null);
-                    Yii::app()->user->setState('merchant_id', null);
+                // uncomment the following code to enable ajax-based validation
 
-                    Yii::app()->user->logout();
-                    $flag = 1;
+                if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
+                        echo CActiveForm::validate($model);
+                        Yii::app()->end();
+                }
+
+                if (isset($_POST['LoginForm'])) {
+                        $model->attributes = $_POST['LoginForm'];
+                        if ($model->validate()) {
+
+                                $user_model = Users::model()->findByAttributes(array('email' => $model->email));
+                                date_default_timezone_set('Asia/Calcutta');
+                                $user_model->last_login = date('Y-m-d H:i:s');
+                                $user_model->update();
+
+                                if ($user_model->user_status == 1) {
+                                        Yii::app()->user->setState('user_mail', null);
+                                        Yii::app()->user->setState('user_id', null);
+                                        Yii::app()->user->setState('user_type', null);
+                                        Yii::app()->user->setState('buyer_id', null);
+                                        Yii::app()->user->setState('merchant_id', null);
+
+                                        Yii::app()->user->logout();
+                                        $flag = 1;
 //                    $this->render('activationPending',array('email'=>$model->email));
-                } else {
+                                } else {
 
-                    if ($user_model->user_type == 1) {
+                                        if ($user_model->user_type == 1) {
 
-                        // login buyer
-                        $buyer = BuyerDetails::model()->findByAttributes(array('user_id' => $user_model->id));
-                        $buyer_id = $buyer->id;
-                        $buyer_fname = $buyer->first_name;
-                        Yii::app()->user->setState('buyer_id', $buyer_id);
-                        Yii::app()->user->setState('buyer_fname', $buyer_fname);
+                                                // login buyer
+                                                $buyer = BuyerDetails::model()->findByAttributes(array('user_id' => $user_model->id));
+                                                $buyer_id = $buyer->id;
+                                                $buyer_fname = $buyer->first_name;
+                                                Yii::app()->user->setState('buyer_id', $buyer_id);
+                                                Yii::app()->user->setState('buyer_fname', $buyer_fname);
 //                    $this->redirect(array('buyer/default/index'));
-                        $this->redirect(array('product/products'));
-                    } else if ($user_model->user_type == 2) {
+                                                $this->redirect(array('product/products'));
+                                        } else if ($user_model->user_type == 2) {
 
-                        // login merchant
-                        $merchant = MerchantDetails::model()->findByAttributes(array('user_id' => $user_model->id));
-                        $merchant_id = $merchant->id;
-                        $merchant_name = $merchant->fullname;
-                        $merchant_type = $merchant->merchant_type;
-                        Yii::app()->user->setState('merchant_name', $merchant_name);
-                        Yii::app()->user->setState('merchant_id', $merchant_id);
-                        Yii::app()->user->setState('merchant_type', $merchant_type);
-                        $this->redirect(array('merchant/merchantDetails/home'));
-                    } else {
-                        // login invalid
-                        echo 'invalid login';
-                    }
+                                                // login merchant
+                                                $merchant = MerchantDetails::model()->findByAttributes(array('user_id' => $user_model->id));
+                                                $merchant_id = $merchant->id;
+                                                $merchant_name = $merchant->fullname;
+                                                $merchant_type = $merchant->merchant_type;
+                                                Yii::app()->user->setState('merchant_name', $merchant_name);
+                                                Yii::app()->user->setState('merchant_id', $merchant_id);
+                                                Yii::app()->user->setState('merchant_type', $merchant_type);
+                                                $this->redirect(array('merchant/merchantDetails/home'));
+                                        } else {
+                                                // login invalid
+                                                echo 'invalid login';
+                                        }
+                                }
+                                if ($flag == 1) {
+                                        $this->render('activationPending', array('email' => $model->email));
+                                } else {
+                                        $this->render('login', array('model' => $model));
+                                }
+                        }
                 }
-            }
+                $this->render('login', array('model' => $model));
         }
-        if ($flag == 1) {
-            $this->render('activationPending', array('email' => $model->email));
-        } else {
-            $this->render('login', array('model' => $model));
+
+        public function actionLogout() {
+                Yii::app()->user->setState('user_mail', null);
+                Yii::app()->user->setState('user_id', null);
+                Yii::app()->user->setState('user_type', null);
+                Yii::app()->user->setState('buyer_id', null);
+                Yii::app()->user->setState('merchant_id', null);
+
+                Yii::app()->user->logout();
+
+                $this->redirect(Yii::app()->homeUrl);
         }
-    }
 
-    public function actionLogout() {
-        Yii::app()->user->setState('user_mail', null);
-        Yii::app()->user->setState('user_id', null);
-        Yii::app()->user->setState('user_type', null);
-        Yii::app()->user->setState('buyer_id', null);
-        Yii::app()->user->setState('merchant_id', null);
-
-        Yii::app()->user->logout();
-
-        $this->redirect(Yii::app()->homeUrl);
-    }
-
-    public function actionForgotPassword() {
-        $model = new ForgotPassword;
-        if (isset($_POST['ForgotPassword'])) {
-            $model->attributes = $_POST['ForgotPassword'];
-            if ($model->validate()) {
-                $email = $_POST['ForgotPassword']['email'];
-                if ($user = Users::model()->findByAttributes(array('email' => $email))) {
-                    $user->password = Utilities::genPassword();
-                    $user->update();
-                    $model = new ForgotPassword;
-                    $this->resetPasswordMail($user);
+        public function actionForgotPassword() {
+                $model = new ForgotPassword;
+                if (isset($_POST['ForgotPassword'])) {
+                        $model->attributes = $_POST['ForgotPassword'];
+                        if ($model->validate()) {
+                                $email = $_POST['ForgotPassword']['email'];
+                                if ($user = Users::model()->findByAttributes(array('email' => $email))) {
+                                        $user->password = Utilities::genPassword();
+                                        $user->update();
+                                        $model = new ForgotPassword;
+                                        $this->resetPasswordMail($user);
+                                }
+                        }
                 }
-            }
+                $this->render('forgot_password', array('model' => $model));
         }
-        $this->render('forgot_password', array('model' => $model));
-    }
 
-    public function actionResetPassword() {
-        $this->render('password_reset');
-    }
+        public function actionResetPassword() {
+                $this->render('password_reset');
+        }
 
-    public function resetPasswordMail($user) {
-        Yii::import('user.extensions.yii-mail.YiiMail');
-        $message = new YiiMailMessage;
-        $message->view = "_reset_password";
-        $params = array('user' => $user);
-        $message->subject = 'NewGenShop : Recover Password';
-        $message->setBody($params, 'text/html');
+        public function resetPasswordMail($user) {
+                Yii::import('user.extensions.yii-mail.YiiMail');
+                $message = new YiiMailMessage;
+                $message->view = "_reset_password";
+                $params = array('user' => $user);
+                $message->subject = 'NewGenShop : Recover Password';
+                $message->setBody($params, 'text/html');
 //        $message->addTo('aathira@intersmart.in');
-        $message->addTo($user->email);
-        $message->from = Yii::app()->params['infoEmail'];
-        if (Yii::app()->mail->send($message)) {
-            $this->redirect(array('ResetPassword'));
-        } else {
-            Yii::app()->user->setFlash('resetFailed', " Sorry, your request cannot be processed now due to some technical problems. Please try after some time.");
+                $message->addTo($user->email);
+                $message->from = Yii::app()->params['infoEmail'];
+                if (Yii::app()->mail->send($message)) {
+                        $this->redirect(array('ResetPassword'));
+                } else {
+                        Yii::app()->user->setFlash('resetFailed', " Sorry, your request cannot be processed now due to some technical problems. Please try after some time.");
+                }
         }
-    }
 
-    public function actionResendActivation() {
+        public function actionResendActivation() {
 //        echo 'hi';exit;
-        $msg = "Not able to send mail now due to some technical problems. Please try after some time.";
-        if (isset($_POST['email'])) {
-            $email = $_POST['email'];
-            $user_model = Users::model()->findByAttributes(array('email' => $email));
-            $utype = $user_model->user_type;
-            Yii::import('user.extensions.yii-mail.YiiMail');
-            $message = new YiiMailMessage;
-            if ($utype == 2) {
-                $view = "_user_activation_mail";
-            } else {
-                $view = "_buyer_activation_mail";
-            }
-            $message->view = $view;
-            $params = array('user_model' => $user_model);
-            $message->subject = 'Welcome To NewGenShop';
-            $message->setBody($params, 'text/html');
-            $message->addTo($user_model->email);
-            $message->from = Yii::app()->params['infoEmail'];
-            if (Yii::app()->mail->send($message)) {
-                $msg = "Activation link send to your mail. Please check";
-            } else {
                 $msg = "Not able to send mail now due to some technical problems. Please try after some time.";
-            }
-        } else {
-            $msg = "Not able to send mail now due to some technical problems. Please try after some time.";
-        }
+                if (isset($_POST['email'])) {
+                        $email = $_POST['email'];
+                        $user_model = Users::model()->findByAttributes(array('email' => $email));
+                        $utype = $user_model->user_type;
+                        Yii::import('user.extensions.yii-mail.YiiMail');
+                        $message = new YiiMailMessage;
+                        if ($utype == 2) {
+                                $view = "_user_activation_mail";
+                        } else {
+                                $view = "_buyer_activation_mail";
+                        }
+                        $message->view = $view;
+                        $params = array('user_model' => $user_model);
+                        $message->subject = 'Welcome To NewGenShop';
+                        $message->setBody($params, 'text/html');
+                        $message->addTo($user_model->email);
+                        $message->from = Yii::app()->params['infoEmail'];
+                        if (Yii::app()->mail->send($message)) {
+                                $msg = "Activation link send to your mail. Please check";
+                        } else {
+                                $msg = "Not able to send mail now due to some technical problems. Please try after some time.";
+                        }
+                } else {
+                        $msg = "Not able to send mail now due to some technical problems. Please try after some time.";
+                }
 //        echo $msg;
 //        $this->render('activation_resend', array('message' => $msg));
-        $this->redirect(array('login'));
-    }
+                $this->redirect(array('login'));
+        }
 
-    public function actionCategoryCat() {
+        public function actionCategoryCat() {
 
-        if (Yii::app()->request->isAjaxRequest) {
+                if (Yii::app()->request->isAjaxRequest) {
 
-            $criteria = new CDbCriteria();
-            $criteria->addSearchCondition('category_name', $_REQUEST['tag'], 'AND');
+                        $criteria = new CDbCriteria();
+                        $criteria->addSearchCondition('category_name', $_REQUEST['tag'], 'AND');
 
-            //$criteria->compare('category_id',$_REQUEST['category'],true,'AND');
-            if ($_REQUEST['taged'] != '') {
+                        //$criteria->compare('category_id',$_REQUEST['category'],true,'AND');
+                        if ($_REQUEST['taged'] != '') {
 
-                $arrs = explode(',', $_REQUEST['taged']);
-                $criteria->addNotInCondition('category_name', $arrs, 'AND');
-            }
-            $tags = ProductCategory::model()->findAll($criteria);
-            $options = array();
-            $_SESSION['category'][0] = '';
-            foreach ($tags as $tag) {
-                unset($_SESSION['category']);
-                $cat_parent = $this->findParent(ProductCategory::model()->findByPk($tag->id));
-                //echo $cat_parent;
+                                $arrs = explode(',', $_REQUEST['taged']);
+                                $criteria->addNotInCondition('category_name', $arrs, 'AND');
+                        }
+                        $tags = ProductCategory::model()->findAll($criteria);
+                        $options = array();
+                        $_SESSION['category'][0] = '';
+                        foreach ($tags as $tag) {
+                                unset($_SESSION['category']);
+                                $cat_parent = $this->findParent(ProductCategory::model()->findByPk($tag->id));
+                                //echo $cat_parent;
 
-                if ($_REQUEST['type'] == 'category') {
-                    
+                                if ($_REQUEST['type'] == 'category') {
+
+                                }
+                                echo '<div class="' . $_REQUEST['type'] . '_tag-sub" id="' . $tag->id . '">' . $cat_parent . '</div>';
+                        }
                 }
-                echo '<div class="' . $_REQUEST['type'] . '_tag-sub" id="' . $tag->id . '">' . $cat_parent . '</div>';
-            }
         }
-    }
 
-    public function findParent($data) {
+        public function findParent($data) {
 
-        $index = count($_SESSION['category']);
-        if ($data->id == $data->parent) {
-            $_SESSION['category'][$index + 1] = $data->category_name;
-        } else {
-            $results = ProductCategory::model()->findByPk($data->parent);
-            $_SESSION['category'][$index + 1] = $data->category_name;
-            return $this->findParent($results);
-        }
-        $return = '';
-        $category_arr = array_reverse($_SESSION['category']);
-        foreach ($category_arr as $cat) {
-            $return .=$cat . '>';
-        }
-        return rtrim($return, '>');
-    }
-
-    public function actionCategoryTagAdd() {
-
-        if (Yii::app()->request->isAjaxRequest) {
-
-            if (isset($_REQUEST['tag'])) {
-                $model = new MasterCategoryTags;
-                $model->category_tag = $_REQUEST['tag'];
-                $model->CB = Yii::app()->session['admin']['id'];
-                $model->UB = Yii::app()->session['admin']['id'];
-                $model->DOC = date('Y-m-d');
-                $model->save(false);
-            }
-        }
-    }
-
-    public function actionCategoryTag() {
-
-        if (Yii::app()->request->isAjaxRequest) {
-
-            $criteria = new CDbCriteria();
-            $criteria->addSearchCondition('category_tag', $_REQUEST['tag'], 'AND');
-
-            //$criteria->compare('category_id',$_REQUEST['category'],true,'AND');
-            if ($_REQUEST['taged'] != '') {
-
-                $arrs = explode(',', $_REQUEST['taged']);
-                $criteria->addNotInCondition('category_tag', $arrs, 'AND');
-            }
-            $tags = MasterCategoryTags::model()->findAll($criteria);
-            foreach ($tags as $tag) {
-                if ($_REQUEST['type'] == 'category') {
-                    
+                $index = count($_SESSION['category']);
+                if ($data->id == $data->parent) {
+                        $_SESSION['category'][$index + 1] = $data->category_name;
+                } else {
+                        $results = ProductCategory::model()->findByPk($data->parent);
+                        $_SESSION['category'][$index + 1] = $data->category_name;
+                        return $this->findParent($results);
                 }
-                echo '<div class="' . $_REQUEST['type'] . '_tag-sub">' . $tag->category_tag . '</div>';
-            }
+                $return = '';
+                $category_arr = array_reverse($_SESSION['category']);
+                foreach ($category_arr as $cat) {
+                        $return .=$cat . '>';
+                }
+                return rtrim($return, '>');
         }
-    }
 
-    public function actionProduct($id) {
-        $products = ProductCategory::model()->findByPk($id);
-        $this->render('products', array('products' => $products));
-    }
+        public function actionCategoryTagAdd() {
 
-    public function actionCurrencyChange($id) {
-        $data = Currency::model()->findByPk($id);
-        Yii::app()->session['currency'] = $data;
-        $this->redirect(Yii::app()->request->urlReferrer);
-    }
+                if (Yii::app()->request->isAjaxRequest) {
 
-    /**
-     * This is the action to handle external exceptions.
-     */
-    public function actionError() {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1.11.3.min.js');
+                        if (isset($_REQUEST['tag'])) {
+                                $model = new MasterCategoryTags;
+                                $model->category_tag = $_REQUEST['tag'];
+                                $model->CB = Yii::app()->session['admin']['id'];
+                                $model->UB = Yii::app()->session['admin']['id'];
+                                $model->DOC = date('Y-m-d');
+                                $model->save(false);
+                        }
+                }
+        }
+
+        public function actionCategoryTag() {
+
+                if (Yii::app()->request->isAjaxRequest) {
+
+                        $criteria = new CDbCriteria();
+                        $criteria->addSearchCondition('category_tag', $_REQUEST['tag'], 'AND');
+
+                        //$criteria->compare('category_id',$_REQUEST['category'],true,'AND');
+                        if ($_REQUEST['taged'] != '') {
+
+                                $arrs = explode(',', $_REQUEST['taged']);
+                                $criteria->addNotInCondition('category_tag', $arrs, 'AND');
+                        }
+                        $tags = MasterCategoryTags::model()->findAll($criteria);
+                        foreach ($tags as $tag) {
+                                if ($_REQUEST['type'] == 'category') {
+
+                                }
+                                echo '<div class="' . $_REQUEST['type'] . '_tag-sub">' . $tag->category_tag . '</div>';
+                        }
+                }
+        }
+
+        public function actionProduct($id) {
+                $products = ProductCategory::model()->findByPk($id);
+                $this->render('products', array('products' => $products));
+        }
+
+        public function actionCurrencyChange($id) {
+
+                $data = Currency::model()->findByPk($id);
+//                var_dump($data);
+//                exit;
+
+                Yii::app()->session['currency'] = $data;
+                $this->redirect(Yii::app()->request->urlReferrer);
+        }
+
+        /**
+         * This is the action to handle external exceptions.
+         */
+        public function actionError() {
+                Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1.11.3.min.js');
 //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/bootstrap.min.js');
-        if ($error = Yii::app()->errorHandler->error) {
-            if (Yii::app()->request->isAjaxRequest)
-                echo $error['message'];
-            else
-                $this->render('error', $error);
-        }
-    }
-
-    public function actionfaq() {
-        $this->render('faq');
-    }
-
-    public function actionAboutUs() {
-        $this->render('about');
-    }
-
-    public function actionContactUs() {
-        $model = new ContactUs;
-        if (isset($_POST['ContactUs'])) {
-            $model->attributes = $_POST['ContactUs'];
-            date_default_timezone_set('Asia/Calcutta');
-            $model->date = date('Y-m-d H:i:s');
-            if ($model->validate()) {
-                if ($model->save()) {
-                    $this->sendContactMail($model);
-                    $model = new ContactUs;
+                if ($error = Yii::app()->errorHandler->error) {
+                        if (Yii::app()->request->isAjaxRequest)
+                                echo $error['message'];
+                        else
+                                $this->render('error', $error);
                 }
-            }
         }
-        $this->render('contact', array('model' => $model));
-    }
 
-    public function sendContactMail($model) {
-        Yii::import('user.extensions.yii-mail.YiiMail');
-        $message = new YiiMailMessage;
-        $message->view = "_contact_us";
-        $params = array('model' => $model);
-        $message->subject = 'NewGenShop : Contact Us';
-        $message->setBody($params, 'text/html');
-        $message->addTo(Yii::app()->params['contactEmail']);
-//       change to admin email
-        $message->from = $model->email;
-        if (Yii::app()->mail->send($message)) {
-            Yii::app()->user->setFlash('contactus', " Your message has sent to admin. We will contact you soon..");
-        } else {
-            Yii::app()->user->setFlash('contactus', " Sorry, your message was not sent due to some technical problems. Please try after some time.");
+        public function actionfaq() {
+                $this->render('faq');
         }
-    }
+
+        public function actionAboutUs() {
+                $this->render('about');
+        }
+
+        public function actionContactUs() {
+                $model = new ContactUs;
+                if (isset($_POST['ContactUs'])) {
+                        $model->attributes = $_POST['ContactUs'];
+                        date_default_timezone_set('Asia/Calcutta');
+                        $model->date = date('Y-m-d H:i:s');
+                        if ($model->validate()) {
+                                if ($model->save()) {
+                                        $this->sendContactMail($model);
+                                        $model = new ContactUs;
+                                }
+                        }
+                }
+                $this->render('contact', array('model' => $model));
+        }
+
+        public function sendContactMail($model) {
+                Yii::import('user.extensions.yii-mail.YiiMail');
+                $message = new YiiMailMessage;
+                $message->view = "_contact_us";
+                $params = array('model' => $model);
+                $message->subject = 'NewGenShop : Contact Us';
+                $message->setBody($params, 'text/html');
+                $message->addTo(Yii::app()->params['contactEmail']);
+//       change to admin email
+                $message->from = $model->email;
+                if (Yii::app()->mail->send($message)) {
+                        Yii::app()->user->setFlash('contactus', " Your message has sent to admin. We will contact you soon..");
+                } else {
+                        Yii::app()->user->setFlash('contactus', " Sorry, your message was not sent due to some technical problems. Please try after some time.");
+                }
+        }
 
 }
