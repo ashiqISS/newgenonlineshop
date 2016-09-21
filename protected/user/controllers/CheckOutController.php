@@ -147,6 +147,9 @@ class CheckOutController extends Controller {
 
                         // insertion into order history table
                         $this->createOrderHistory($order_id, $product_id, $order_product_id);
+                        // add money to merchnat account
+                        $this->updateMerchantAccount($product_order->merchant_id, $product_order->rate);
+                        // update money deposit transaction to transaction history table                
                     } else {
                         echo 'order product not updated';
 //                        print_r($product_order->attributes);
@@ -240,7 +243,7 @@ class CheckOutController extends Controller {
             $model->amount = $unit_price;
             $model->status = 1; // not placed
             $model->DOC = date('Y-m-d');
-            $model->rate = $unit_price * $currency_rate * $product->quantity;
+            $model->rate = $unit_price * $currency_rate * $product->quantity; // total rate
 //            print_r($model->attributes);exit;
             $model->save();
         }
@@ -287,6 +290,40 @@ class CheckOutController extends Controller {
         foreach ($carts as $cart) {
             Cart::model()->deleteByPk($cart->id);
         }
+    }
+
+    public function updateMerchantAccount($merchant_id, $amount) {
+        $acc_update = 0;
+        $prev_bal = 0;
+        if ($model = MerchantAccountMaster::model()->findByAttributes(array('merchant_id' => $merchant_id))) {
+            $prev_bal = $model->available_balance;
+            $model->available_balance += $amount;
+
+            if ($model->update()) {
+                $acc_update = 1;
+            }
+        } else {
+            $model = new MerchantAccountMaster;
+            $model->merchant_id = $merchant_id;
+            $model->available_balance = $amount;
+            if ($model->save()) {
+                $acc_update = 1;
+            }
+        }
+        if ($acc_update == 1) {
+
+            $this->updateTransactionHistory($merchant_id, $amount);
+            // todo : send mail to merchant with prev balance and new balance
+        }
+    }
+
+    public function updateTransactionHistory($merchant_id, $amount) {
+        $history = new MerchantTransactionMaster;
+        $history->merchant_id = $merchant_id;
+        $history->transaction_type = 1; // deposit
+        $history->amount = $amount;
+        $history->DOC = date('Y-m-d');
+        $history->save();
     }
 
 }

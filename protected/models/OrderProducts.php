@@ -74,7 +74,8 @@ class OrderProducts extends CActiveRecord
 			'quantity' => 'Quantity',
 			'amount' => 'Amount',
 			'DOC' => 'Doc',
-			'status' => '1-not placed, 2- payment_pending, 3- payment_done, 4 - completed',
+			'status' => 'Status',
+//			'status' => '1-not placed, 2- payment_pending, 3- payment_done, 4 - completed',
 			'gift_option' => 'Gift Option',
 			'rate' => 'Rate',
 		);

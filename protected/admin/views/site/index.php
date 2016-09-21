@@ -2,8 +2,7 @@
         <h1>
                 Dashboard
         </h1>
-    
-    Transaction request
+
     
     
     

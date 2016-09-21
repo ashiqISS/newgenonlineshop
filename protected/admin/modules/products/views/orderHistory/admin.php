@@ -66,18 +66,14 @@
                                  array(
                         'htmlOptions' => array('nowrap' => 'nowrap'),
                         'class' => 'booster.widgets.TbButtonColumn',
-                        'template' => '{delete}',
+                        'template' => '{update}',
                     ),
                                  array(
                         'htmlOptions' => array('nowrap' => 'nowrap'),
                         'class' => 'booster.widgets.TbButtonColumn',
                         'template' => '{delete}',
                     ),
-                                array(
-                                    'htmlOptions' => array('nowrap' => 'nowrap'),
-                                    'class' => 'booster.widgets.TbButtonColumn',
-                                    'template' => '{update}{delete}',
-                                ),
+                            
                             ),
                         ));
                         ?>

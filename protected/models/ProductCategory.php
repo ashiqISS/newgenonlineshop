@@ -134,5 +134,49 @@ class ProductCategory extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
+    
+    public function loadCategory() {
+                $returnhtml = '<ul>';
+                $mainCat = new CDbCriteria();
+                $mainCat->select = array('id', 'parent', 'category_name');
+                $mainCat->addCondition('t.id = t.parent');
+                $categories = ProductCategory::model()->findAll($mainCat);
+                foreach ($categories as $category) {
+                        $returnhtml .= "<li>$category->category_name";
+                        $childCat = new CDbCriteria();
+                        $childCat->select = array('id', 'parent', 'category_name');
+                        $childCat->addCondition('parent=' . $category->id);
+                        $childCat->addCondition('id !=' . $category->id);
+                        $childs = ProductCategory::model()->findAll($childCat);
+                        if (count($childs) > 0) {
+                                $returnhtml .= '<ul>';
+                                for ($j = 0; $j < count($childs); $j++) {
+                                        $returnhtml .='<li>' . $childs[$j]["category_name"];
+                                        $returnhtml .=$this->listCategory($childs[$j]["id"]);
+                                }
+                                $returnhtml .= '</li></ul></li>';
+                        }
+                }
+                $returnhtml .= '</ul>';
+                return $returnhtml;
+        }
+
+        public function listCategory($parent) {
+                $html = '';
+                $subCat = new CDbCriteria();
+                $subCat->select = array('id', 'parent', 'category_name');
+                $subCat->addCondition('parent=' . $parent);
+                $subCat->addCondition('id !=' . $parent);
+                $subcats = ProductCategory::model()->findAll($subCat);
+                if (count($subcats) > 0) {
+                        $html = "<ul>";
+                        foreach ($subcats as $subcategory) {
+                                $html .='<li>' . $subcategory->category_name . '</li>';
+                                $html .=$this->listCategory($subcategory->id);
+                        }
+                        $html .= "</ul>";
+                }
+                return $html;
+        }
 
 }

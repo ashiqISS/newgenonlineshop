@@ -32,6 +32,7 @@ class MerchantPayoutHistory extends CActiveRecord
 		// will receive user inputs.
 		return array(
 //			array('merchant_id, available_balance, requested_amount, payment_account, status, DOC, DOU', 'required'),
+			array('merchant_id, available_balance, requested_amount, status', 'required','on'=> 'create'),
 			array('merchant_id, payment_account, status', 'numerical', 'integerOnly'=>true),
 			array('available_balance, requested_amount', 'numerical'),
 			// The following rule is used by search().
@@ -48,6 +49,7 @@ class MerchantPayoutHistory extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'merchant' => array(self::BELONGS_TO, 'MerchantDetails', 'merchant_id'),
 		);
 	}
 

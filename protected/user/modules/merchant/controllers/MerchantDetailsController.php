@@ -286,19 +286,22 @@ class MerchantDetailsController extends Controller {
                 $payoutModel->DOC = date('Y-m-d');
 
                 if ($payoutModel->save()) {
+                    // to create history , we refer request id
+                    MerchantPayoutHistory::model()->updateByPk($payoutModel->id, array('request_id' => $payoutModel->id));
+                    // to avoid form submissions
                     $model = new RequestPayment;
                     $payoutModel1 = $payoutModel;
                     $payoutModel = new MerchantPayoutHistory;
 
                     Yii::app()->user->setFlash('RequestPayment', "Your request has placed succesfully to admin. Admin will process your request and notify you soon. ");
                     $requestStatus = 1;
-                    $this->mailPayoutRequest($requestStatus, $payoutModel1);
+//                    $this->mailPayoutRequest($requestStatus, $payoutModel1);
                 } else {
                     $payoutModel1 = $payoutModel;
 
                     Yii::app()->user->setFlash('RequestPayment', " Sorry, your request is not placed. Please try after some time.");
                     $requestStatus = 0;
-                    $this->mailPayoutRequest($requestStatus, $payoutModel1);
+//                    $this->mailPayoutRequest($requestStatus, $payoutModel1);
                 }
             }
         }
@@ -322,7 +325,6 @@ class MerchantDetailsController extends Controller {
             $message->addTo(Yii::app()->params['adminEmail']);
             $message->from = $user_model->email;
             Yii::app()->mail->send($message);
-            
         } else {
             $subject = "Payout Request Failed";
             $status = "failed";

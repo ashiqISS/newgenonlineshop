@@ -66,31 +66,33 @@
                 <?php echo $form->labelEx($model,'status'); ?>
             </div>
             <div class="col-sm-10">
-                <?php echo $form->textField($model,'status',array('class' => 'form-control')); ?>
+                <!--1-requested, 2-hold, 3-processing, 4-paid, 5 -rejected-->
+                  <?php echo $form->dropDownList($model, 'status', array('' => "---Set Status---", '1' => "New Request", '2' => "Hold", '3' => "Processing", '4' => "Paid", '5' => "Rejected"), array('class' => 'form-control')); ?>
                 <?php echo $form->error($model,'status'); ?>
             </div>
         </div>
-
-                <div class="form-group">
+    
+               <div class="form-group">
             <div class="col-sm-2 control-label"> 
-                <?php echo $form->labelEx($model,'DOC'); ?>
+                <?php echo $form->labelEx($model,'transaction_reference'); ?>
             </div>
             <div class="col-sm-10">
-                <?php echo $form->textField($model,'DOC',array('class' => 'form-control')); ?>
-                <?php echo $form->error($model,'DOC'); ?>
+                <?php echo $form->textField($model,'transaction_reference',array('class' => 'form-control')); ?>
+                <?php echo $form->error($model,'transaction_reference'); ?>
+            </div>
+        </div>
+    
+               <div class="form-group">
+            <div class="col-sm-2 control-label"> 
+                <?php echo $form->labelEx($model,'comment'); ?>
+            </div>
+            <div class="col-sm-10">
+                <?php echo $form->textArea($model,'comment',array('class' => 'form-control','rows'=>5)); ?>
+                <?php echo $form->error($model,'comment'); ?>
             </div>
         </div>
 
-                <div class="form-group">
-            <div class="col-sm-2 control-label"> 
-                <?php echo $form->labelEx($model,'DOU'); ?>
-            </div>
-            <div class="col-sm-10">
-                <?php echo $form->textField($model,'DOU',array('class' => 'form-control')); ?>
-                <?php echo $form->error($model,'DOU'); ?>
-            </div>
-        </div>
-
+      
             <!--</div>-->
     <div class="box-footer">
         <label>&nbsp;</label><br/>

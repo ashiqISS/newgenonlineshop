@@ -59,6 +59,7 @@ class MerchantTransactionMaster extends CActiveRecord
 			'merchant_id' => 'Merchant',
 			'transaction_type' => '1:Deposit, 2= Withdraw',
 			'amount' => 'Amount',
+			'transaction_reference' => 'Transaction Reference',
 			'DOC' => 'Doc',
 			'DOU' => 'Dou',
 		);

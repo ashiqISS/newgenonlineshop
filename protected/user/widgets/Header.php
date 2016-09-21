@@ -56,9 +56,9 @@ class Header extends CWidget {
 
             <body id="home-1">
                 <?php if ($_SERVER['REQUEST_URI'] == Yii::app()->request->baseUrl . '/') { ?>
-                    <div class="pre-loder">
+<!--                    <div class="pre-loder">
                         <div class="loding"> </div>
-                    </div> <!-- end of pre-loder -->
+                    </div>  end of pre-loder -->
                 <?php } ?>
                 <header class="cf visible-xs visible-sm">
                 </header>
@@ -130,10 +130,10 @@ class Header extends CWidget {
                             <div class="col-md-4">
                                 <ul class="list-inline list-unstyled">
 
-                                    <?php if (Yii::app()->user->hasState('user_id')) { ?>
+                                    <?php  /*if (Yii::app()->user->hasState('user_id')) { ?>
                                         <li><a class="mycart" href="#"  data-toggle="modal" data-target="#myModal"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/wallet2.png">Wallet</a>
                                         </li>
-                                    <?php } ?>
+                                    <?php } */?>
                                     <li class="has_dropdown">
                                         <a class="mycart" href="javascript:void(0)"><img class="shop" src="<?php echo Yii::app()->request->baseUrl; ?>/images/shop.png">Mycart</a>
                                         <div class="ng_dropdown cart_box" id="cart_box" style="display: none;">
@@ -240,15 +240,19 @@ class Header extends CWidget {
                                     <div class="dropdown">
                                         <button class="btn btn-primary cat dropdown-toggle" type="button" data-toggle="dropdown"><img class="bars" src="<?= Yii::app()->request->baseUrl; ?>/images/bars.png">Categories
                                         </button>
+                                        <?php // Utilities::loadCategory();
+                                            ?>
                                         <ul class="dropdown-menu categories">
                                             <?php
-                                            $menus = ProductCategory::model()->findAllByAttributes(array(), array('condition' => 'header_visibility = 1 and id=parent order by sort_order'));
-                                            foreach ($menus as $menu) {
+                                                echo ProductCategory::model()->loadCategory();
+//                                            Utilities::loadCategory();
+//                                            $menus = ProductCategory::model()->findAllByAttributes(array(), array('condition' => 'header_visibility = 1 and id=parent order by sort_order'));
+//                                            foreach ($menus as $menu) {
                                                 ?>
 
-                                                <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/product/category/name/<?php echo $menu->canonical_name; ?>"><?php echo $menu->category_name; ?></a></li>
+                                                <!--<li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/product/category/name/<?php echo $menu->canonical_name; ?>"><?php echo $menu->category_name; ?></a></li>-->
                                                 <?php
-                                            }
+//                                            }
                                             ?>
 
                                         </ul>

@@ -58,15 +58,29 @@ class MerchantPayoutHistoryController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new MerchantPayoutHistory;
+        $model = new MerchantPayoutHistory('create');
 
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
 
         if (isset($_POST['MerchantPayoutHistory'])) {
             $model->attributes = $_POST['MerchantPayoutHistory'];
-            if ($model->save())
-                $this->redirect(array('admin'));
+            $model->DOC = date('Y-m-d');
+            if ($model->status == 5) {
+                $model->validatorList->add(
+                        CValidator::createValidator('required', $model, 'comment')
+                );
+            }
+            if ($model->status == 4) {
+                $model->validatorList->add(
+                        CValidator::createValidator('required', $model, 'transaction_reference')
+                );
+            }
+            if ($model->validate()) {
+
+                if ($model->save())
+                    $this->redirect(array('admin'));
+            }
         }
 
         $this->render('create', array(
@@ -81,14 +95,49 @@ class MerchantPayoutHistoryController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $prev_status = $model->status;
 
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
 
         if (isset($_POST['MerchantPayoutHistory'])) {
+            print_r($_POST);
             $model->attributes = $_POST['MerchantPayoutHistory'];
-            if ($model->save())
-                $this->redirect(array('update', 'id' => $model->id));
+            $model->transaction_reference = $_POST['MerchantPayoutHistory']['transaction_reference'];
+            if ($model->status == 5) {
+                $model->validatorList->add(
+                        CValidator::createValidator('required', $model, 'comment')
+                );
+            }
+            if ($model->status == 4) {
+                $model->validatorList->add(
+                        CValidator::createValidator('required', $model, 'transaction_reference')
+                );
+            }
+            if ($model->validate()) {
+                if ($prev_status != $model->status) {
+                  
+                    if ($model->status == 4) {
+
+                        // approved
+                        $avail_balance = $model->available_balance;
+                        $req_amount = $model->requested_amount;
+                        if ($avail_balance > $req_amount) {
+                            $acc_bal = $avail_balance - $req_amount;
+                            $model->available_balance = $acc_bal;
+                        } else {
+                            $model->addError('requested_amount', 'Requested Amount is greater than Available Balance');
+                        }
+                    }
+                }
+
+                if ($model->save()) {
+                    $this->updateMerchantAccountmaster($model->merchant_id, $model->available_balance);
+                    $this->updateMerchantTransactionMaster($model->merchant_id, $model->requested_amount);
+                    // todo send mail to user status changed
+                    $this->redirect(array('view', 'id' => $model->id));
+                }
+            }
         }
 
         $this->render('update', array(
@@ -157,5 +206,63 @@ class MerchantPayoutHistoryController extends Controller {
             Yii::app()->end();
         }
     }
+
+    public function updateMerchantAccountmaster($merchant_id, $avail_balance) {
+        $accMaster = MerchantAccountMaster::model()->findByAttributes(array('merchant_id' => $merchant_id));
+        $accMaster->available_balance = $avail_balance;
+        if($accMaster->update())
+        {
+            // todo send mail
+        }
+    }
+    
+    public function updateMerchantTransactionMaster($merchant_id, $req_amount)
+    {
+       $transactionModel = new MerchantTransactionMaster;
+       $transactionModel->merchant_id = $merchant_id;
+       $transactionModel->transaction_type = 3;// payout credit
+       $transactionModel->amount = $req_amount;
+       $transactionModel->DOC = $req_amount;
+       
+       
+    }
+
+//    public function mailRequestStatusChanged($history) {
+//        Yii::import('user.extensions.yii-mail.YiiMail');
+//        $message = new YiiMailMessage;
+//        $message->view = "_info_buyer_password_changed";
+//        $params = array('user_model' => $user_model);
+//        $message->subject = 'NewGen Shop : Password Changed';
+//        $message->setBody($params, 'text/html');
+//        $message->addTo($user_model->email);
+//        $message->from = Yii::app()->params['infoEmail'];
+//        if (Yii::app()->mail->send($message)) {
+////            echo 'message send';
+////            exit;
+//        } else {
+////            echo 'message not send';
+////            exit;
+//        }
+//    }
+    
+    public function mailPayoutStatusChanged($history) {
+        Yii::import('user.extensions.yii-mail.YiiMail');
+        $message = new YiiMailMessage;
+        $message->view = "_info_buyer_password_changed";
+        $params = array('user_model' => $user_model);
+        $message->subject = 'NewGen Shop : Payout Request Status Changed';
+        $message->setBody($params, 'text/html');
+        $message->addTo($user_model->email);
+        $message->from = Yii::app()->params['infoEmail'];
+        if (Yii::app()->mail->send($message)) {
+//            echo 'message send';
+//            exit;
+        } else {
+//            echo 'message not send';
+//            exit;
+        }
+    }
+    
+    
 
 }

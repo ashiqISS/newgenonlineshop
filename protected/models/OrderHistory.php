@@ -64,6 +64,7 @@ class OrderHistory extends CActiveRecord
 			'order_id' => 'Order',
 			'order_status_comment' => 'Order Status Comment',
 			'order_status' => 'Order Status',
+                    'Product Id' => 'product_id',
 			'shipping_type' => 'Shipping Type',
 			'tracking_id' => 'Tracking',
 			'date' => 'Date',
@@ -96,6 +97,7 @@ class OrderHistory extends CActiveRecord
 		$criteria->compare('order_status_comment',$this->order_status_comment,true);
 		$criteria->compare('order_status',$this->order_status);
 		$criteria->compare('shipping_type',$this->shipping_type);
+                $criteria->compare('product_id', $this->product_id);
 		$criteria->compare('tracking_id',$this->tracking_id,true);
 		$criteria->compare('date',$this->date,true);
 		$criteria->compare('status',$this->status);
