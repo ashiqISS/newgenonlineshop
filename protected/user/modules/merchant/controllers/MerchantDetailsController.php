@@ -254,6 +254,7 @@ class MerchantDetailsController extends Controller {
         }
 
         public function actionFeaturedAds() {
+
                 if (Yii::app()->user->getId()) {
                         if (Yii::app()->user->getState('user_type') == "2") {
                                 $model = new AdPayment('create');
