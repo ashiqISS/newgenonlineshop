@@ -143,14 +143,14 @@
                                         <?php if (!empty($payoutHistory)) {
                                                 ?>
                                                 <br>
-                                                <span style="font-size: 17px;">Transaction history : </span>
+                                                <span style="font-size: 17px;">Request history : </span>
                                                 <br> <br>
 
                                                 <div class="table-responsive ac_up" style="max-height: 50em;overflow: auto">
                                                         <table class="table ac">
                                                                 <thead class="thead-inverse ac_bg">
                                                                         <tr>
-                                                                                <th>PayOutId</th>
+                                                                                <th>Request Id</th>
                                                                                 <th>Request Date </th>
                                                                                 <th>Account Balance </th>
                                                                                 <th>Requested Amount</th>
@@ -163,7 +163,7 @@
                                                                         <?php foreach ($payoutHistory as $payOut) {
                                                                                 ?>
                                                                                 <tr>
-                                                                                        <td><?= $payOut->id; ?></td>
+                                                                                        <td><?= $payOut->request_id; ?></td>
                                                                                         <td>
                                                                                                 <?php
                                                                                                 $doc = strtotime($payOut->DOC);

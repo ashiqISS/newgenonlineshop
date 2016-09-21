@@ -66,6 +66,8 @@ class MerchantPayoutHistoryController extends Controller {
         if (isset($_POST['MerchantPayoutHistory'])) {
             $model->attributes = $_POST['MerchantPayoutHistory'];
             $model->DOC = date('Y-m-d');
+            $model->transaction_reference = $_POST['MerchantPayoutHistory']['transaction_reference'];
+            $model->comment = $_POST['MerchantPayoutHistory']['comment'];
             if ($model->status == 5) {
                 $model->validatorList->add(
                         CValidator::createValidator('required', $model, 'comment')
@@ -97,13 +99,14 @@ class MerchantPayoutHistoryController extends Controller {
         $model = $this->loadModel($id);
         $prev_status = $model->status;
 
+
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
 
         if (isset($_POST['MerchantPayoutHistory'])) {
-            print_r($_POST);
             $model->attributes = $_POST['MerchantPayoutHistory'];
             $model->transaction_reference = $_POST['MerchantPayoutHistory']['transaction_reference'];
+            $model->comment = $_POST['MerchantPayoutHistory']['comment'];
             if ($model->status == 5) {
                 $model->validatorList->add(
                         CValidator::createValidator('required', $model, 'comment')
@@ -116,7 +119,7 @@ class MerchantPayoutHistoryController extends Controller {
             }
             if ($model->validate()) {
                 if ($prev_status != $model->status) {
-                  
+
                     if ($model->status == 4) {
 
                         // approved
@@ -130,12 +133,14 @@ class MerchantPayoutHistoryController extends Controller {
                         }
                     }
                 }
-
-                if ($model->save()) {
-                    $this->updateMerchantAccountmaster($model->merchant_id, $model->available_balance);
-                    $this->updateMerchantTransactionMaster($model->merchant_id, $model->requested_amount);
+                $new_history = new MerchantPayoutHistory;
+                $new_history->attributes = $model->attributes;
+                 $new_history->DOC = date('Y-m-d');
+                if ($new_history->save()) {
+                    $this->updateMerchantAccountmaster($model->merchant_id, $new_history->available_balance);
+                    $this->updateMerchantTransactionMaster($model->merchant_id, $new_history->requested_amount);
                     // todo send mail to user status changed
-                    $this->redirect(array('view', 'id' => $model->id));
+                    $this->redirect(array('view','id' =>$new_history->id));
                 }
             }
         }
@@ -210,21 +215,18 @@ class MerchantPayoutHistoryController extends Controller {
     public function updateMerchantAccountmaster($merchant_id, $avail_balance) {
         $accMaster = MerchantAccountMaster::model()->findByAttributes(array('merchant_id' => $merchant_id));
         $accMaster->available_balance = $avail_balance;
-        if($accMaster->update())
-        {
+        if ($accMaster->update()) {
             // todo send mail
         }
     }
-    
-    public function updateMerchantTransactionMaster($merchant_id, $req_amount)
-    {
-       $transactionModel = new MerchantTransactionMaster;
-       $transactionModel->merchant_id = $merchant_id;
-       $transactionModel->transaction_type = 3;// payout credit
-       $transactionModel->amount = $req_amount;
-       $transactionModel->DOC = $req_amount;
-       
-       
+
+    public function updateMerchantTransactionMaster($merchant_id, $req_amount) {
+        $transactionModel = new MerchantTransactionMaster;
+        $transactionModel->merchant_id = $merchant_id;
+        $transactionModel->transaction_type = 3; // payout credit
+        $transactionModel->amount = $req_amount;
+        $transactionModel->DOC = $req_amount;
+        $transactionModel->save();
     }
 
 //    public function mailRequestStatusChanged($history) {
@@ -244,7 +246,7 @@ class MerchantPayoutHistoryController extends Controller {
 ////            exit;
 //        }
 //    }
-    
+
     public function mailPayoutStatusChanged($history) {
         Yii::import('user.extensions.yii-mail.YiiMail');
         $message = new YiiMailMessage;
@@ -262,7 +264,5 @@ class MerchantPayoutHistoryController extends Controller {
 //            exit;
         }
     }
-    
-    
 
 }

@@ -24,7 +24,7 @@
                 'id' => 'merchant-payout-history-grid',
                 'dataProvider' => $model->search(),
                 'filter' => $model,
-                'columns' => array(
+                'columns' => array(                   
                     'id',
                     'merchant_id',
                     array('name' => 'available_balance',
@@ -41,32 +41,32 @@
                                 'value' => function($data) {
                                     return MerchantPayoutHistory::getStatus($data->status);
                                 },
-                            ),
+                                    ),
                             /*
                               'DOC',
                               'DOU',
                              */
-                            array(
-                                'header' => '<font color="#61625D">Edit</font>',
-                                'htmlOptions' => array('nowrap' => 'nowrap'),
-                                'class' => 'booster.widgets.TbButtonColumn',
-                                'template' => '{update}',
-                            ),
-                            array(
-                                'header' => '<font color="#61625D">Delete</font>',
-                                'htmlOptions' => array('nowrap' => 'nowrap'),
-                                'class' => 'booster.widgets.TbButtonColumn',
-                                'template' => '{delete}',
-                            ),
-                            array(
-                                'header' => '<font color="#61625D">View</font>',
-                                'htmlOptions' => array('nowrap' => 'nowrap'),
-                                'class' => 'booster.widgets.TbButtonColumn',
-                                'template' => '{view}',
-                            ),
-                        ),
-                    ));
-                    ?>
+                                    array(
+                                        'header' => '<font color="#61625D">Edit</font>',
+                                        'htmlOptions' => array('nowrap' => 'nowrap'),
+                                        'class' => 'booster.widgets.TbButtonColumn',
+                                        'template' => '{update}',
+                                    ),
+                                    array(
+                                        'header' => '<font color="#61625D">Delete</font>',
+                                        'htmlOptions' => array('nowrap' => 'nowrap'),
+                                        'class' => 'booster.widgets.TbButtonColumn',
+                                        'template' => '{delete}',
+                                    ),
+                                    array(
+                                        'header' => '<font color="#61625D">View</font>',
+                                        'htmlOptions' => array('nowrap' => 'nowrap'),
+                                        'class' => 'booster.widgets.TbButtonColumn',
+                                        'template' => '{view}',
+                                    ),
+                                ),
+                            ));
+                            ?>
         </div>
 
     </div>

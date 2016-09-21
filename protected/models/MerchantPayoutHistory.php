@@ -33,11 +33,11 @@ class MerchantPayoutHistory extends CActiveRecord
 		return array(
 //			array('merchant_id, available_balance, requested_amount, payment_account, status, DOC, DOU', 'required'),
 			array('merchant_id, available_balance, requested_amount, status', 'required','on'=> 'create'),
-			array('merchant_id, payment_account, status', 'numerical', 'integerOnly'=>true),
+			array('merchant_id, payment_account,request_id, status', 'numerical', 'integerOnly'=>true),
 			array('available_balance, requested_amount', 'numerical'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, merchant_id, available_balance, requested_amount, payment_account, status, DOC, DOU', 'safe', 'on'=>'search'),
+			array('id, request_id, merchant_id, available_balance, requested_amount, payment_account, status, DOC, DOU', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,9 +63,11 @@ class MerchantPayoutHistory extends CActiveRecord
 			'merchant_id' => 'Merchant',
 			'available_balance' => 'Available Balance',
 			'requested_amount' => 'Requested Amount',
-			'payment_account' => 'Payment Mode',
+			'payment_account' => 'Payment Mode',                    
 //			'status' => '1-requested, 2-hold, 3-processing, 4-paid',
 			'status' => 'Status',
+			'transaction_reference' => 'Transaction Reference',
+			'request_id' => 'Request Id',
 			'DOC' => 'Doc',
 			'DOU' => 'Dou',
 		);
@@ -88,16 +90,55 @@ class MerchantPayoutHistory extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+                       $criteria->distinct = true;
+               $criteria->select = array(
+                   't.request_id',
+               );
+
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('merchant_id',$this->merchant_id);
 		$criteria->compare('available_balance',$this->available_balance);
 		$criteria->compare('requested_amount',$this->requested_amount);
+		$criteria->compare('request_id',$this->request_id);
 		$criteria->compare('payment_account',$this->payment_account);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('transaction_reference',$this->transaction_reference);
 		$criteria->compare('DOC',$this->DOC,true);
 		$criteria->compare('DOU',$this->DOU,true);
 
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+        
+	public function searchAdmin()
+	{
+//             $sql = "SELECT * FROM ( SELECT * from merchant_payout_history order by `DOU` desc) AS tmp_table GROUP BY `request_id`";
+//
+//    $data = Yii::app()->db
+//        ->createCommand($sql)
+//        ->queryAll();
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+//                $criteria->select = "";
+                $criteria->distinct = true;
+               $criteria->select = array(
+                   't.request_id',
+               );
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('merchant_id',$this->merchant_id);
+		$criteria->compare('available_balance',$this->available_balance);
+		$criteria->compare('requested_amount',$this->requested_amount);
+		$criteria->compare('request_id',$this->request_id);
+		$criteria->compare('payment_account',$this->payment_account);
+		$criteria->compare('status',$this->status);
+		$criteria->compare('transaction_reference',$this->transaction_reference);
+		$criteria->compare('DOC',$this->DOC,true);
+		$criteria->compare('DOU',$this->DOU,true);
+                var_dump($criteria);exit;
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
@@ -115,6 +156,8 @@ class MerchantPayoutHistory extends CActiveRecord
                 case 3 : $status = 'Processing';
                     break;
                 case 4 : $status = 'Paid';
+                    break;
+                case 5 : $status = 'Rejected';
                     break;
                 default : $status = 'Unknown';
             }
