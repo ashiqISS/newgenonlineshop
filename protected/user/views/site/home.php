@@ -10,7 +10,33 @@
     <div class="hero-slider">
 
 
-        <!--        <div class="row item item-6">
+
+
+
+        <?php
+        $criteria = new CDbCriteria;
+        $criteria->addCondition('display_from <= "' . date('Y-m-d') . '" ');
+        $criteria->addCondition('display_to >= "' . date('Y-m-d') . '" ');
+        $top = AdPayment::model()->findAllByAttributes(array('position' => '4', 'admin_approve' => '1', 'status' => 1), $criteria);
+        if (!empty($top)) {
+                foreach ($top as $tp) {
+                        $folder = Yii::app()->Upload->folderName(0, 1000, $tp->id);
+                        ?>
+
+                        <div class="row item item-5" style=" background: url(<?= Yii::app()->request->baseUrl . '/uploads/ads/' . $folder . '/' . $tp->id . '/big.' . $tp->image ?>) no-repeat 50% 50%; background-size: cover;">
+                            <div class="title">
+                                <div>
+                                    <span class="playfair">Wedding &amp; Jewellery</span>
+                                    <h2>Lorem Ipsum is simply dummy text of simply dummy text </h2>
+                                    <p>In you won <span>"secret snactuary"</span></p>
+                                </div>
+                            </div> <!-- end of title -->
+                        </div>
+                        <?php
+                }
+        } else {
+                ?>
+                <div class="row item item-6">
                     <div class="title">
                         <div>
                             <span class="playfair">Wedding &amp; Jewellery</span>
@@ -48,31 +74,8 @@
                             <p>In you won <span>"secret snactuary"</span></p>
                         </div>
                     </div>  end of title
-                </div>-->
-
-
-        <?php
-        $criteria = new CDbCriteria;
-        $criteria->addCondition('display_from <= "' . date('Y-m-d') . '" ');
-        $criteria->addCondition('display_to >= "' . date('Y-m-d') . '" ');
-        $top = AdPayment::model()->findAllByAttributes(array('position' => '4', 'admin_approve' => '1', 'status' => 1), $criteria);
-        if (!empty($top)) {
-                foreach ($top as $tp) {
-                        $folder = Yii::app()->Upload->folderName(0, 1000, $tp->id);
-                        ?>
-
-                        <div class="row item item-5" style=" background: url(<?= Yii::app()->request->baseUrl . '/uploads/ads/' . $folder . '/' . $tp->id . '/big.' . $tp->image ?>) no-repeat 50% 50%; background-size: cover;">
-                            <div class="title">
-                                <div>
-                                    <span class="playfair">Wedding &amp; Jewellery</span>
-                                    <h2>Lorem Ipsum is simply dummy text of simply dummy text </h2>
-                                    <p>In you won <span>"secret snactuary"</span></p>
-                                </div>
-                            </div> <!-- end of title -->
-                        </div>
-                        <?php
-                }
-        }
+                </div>
+        <?php }
         ?>
 
 
@@ -105,11 +108,13 @@
                 $criteria = new CDbCriteria;
                 $criteria->addCondition('display_from <= "' . date('Y-m-d') . '" ');
                 $criteria->addCondition('display_to >= "' . date('Y-m-d') . '" ');
-                $top_left = AdPayment::model()->findByAttributes(array('position' => '5', 'admin_approve' => '1', 'status' => 1), $criteria);
+                $top_left = AdPayment::model()->findByAttributes(array('position' => '5', 'admin_approve' => '1', 'status' => 1), $criteria, array('order' => 'id DESC', 'limit' => 2));
                 if (!empty($top_left)) {
                         $folder = Yii::app()->Upload->folderName(0, 1000, $top_left->id);
                         ?>
                         <img class="img-responsive v1" src="<?= Yii::app()->baseUrl . '/uploads/ads/' . $folder . '/' . $top_left->id . '/big.' . $top_left->image ?>"/>
+                <?php } else { ?>
+                        <img class="img-responsive v1" src="<?php echo Yii::app()->request->baseUrl; ?>/images/bgs.png">
                 <?php } ?>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 nop lifted rotated">
@@ -143,11 +148,13 @@
                 $criteria = new CDbCriteria;
                 $criteria->addCondition('display_from <= "' . date('Y-m-d') . '" ');
                 $criteria->addCondition('display_to >= "' . date('Y-m-d') . '" ');
-                $top_right = AdPayment::model()->findByAttributes(array('position' => '6', 'admin_approve' => '1', 'status' => 1), $criteria);
+                $top_right = AdPayment::model()->findByAttributes(array('position' => '6', 'admin_approve' => '1', 'status' => 1), $criteria, array('order' => 'id DESC', 'limit' => 2));
                 if (!empty($top_right)) {
                         $folder = Yii::app()->Upload->folderName(0, 1000, $top_right->id);
                         ?>
                         <img class="img-responsive v1" src="<?= Yii::app()->baseUrl . '/uploads/ads/' . $folder . '/' . $top_right->id . '/big.' . $top_right->image ?>"/>
+                <?php } else { ?>
+                        <img class="img-responsive v1" src="<?php echo Yii::app()->request->baseUrl; ?>/images/bgs2.png">
                 <?php } ?>
             </div>
 
@@ -187,19 +194,20 @@
                                     </div>
                                     <?php
                             }
-                    }
-                    ?>
+                    } else {
+                            ?>
 
-                    <!--                    <div class="item pos">
-                                            <div class="main">
-                                                <div class="texted">
-                                                    <h1>New Arrivals</h1>
-                                                    <p> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
-                                                </div>
-                                                <img class="women img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/women2.png">
-                                                <a href="#" class="bt">Shop Now</a>
-                                            </div>
-                                        </div>-->
+                            <div class="item pos">
+                                <div class="main">
+                                    <div class="texted">
+                                        <h1>New Arrivals</h1>
+                                        <p> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+                                    </div>
+                                    <img class="women img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/women2.png">
+                                    <a href="#" class="bt">Shop Now</a>
+                                </div>
+                            </div>
+                    <?php } ?>
 
 
                 </div>
@@ -208,29 +216,43 @@
 
             <div class="col-md-6 col-sm-12 nop">
                 <div class="gold">
-                    <div class="item ban">
-                        <div class="main">
+                    <?php
+                    $criteria = new CDbCriteria;
+                    $criteria->addCondition('display_from <= "' . date('Y-m-d') . '" ');
+                    $criteria->addCondition('display_to >= "' . date('Y-m-d') . '" ');
+                    $top_Right2 = AdPayment::model()->findAllByAttributes(array('position' => '8', 'admin_approve' => '1', 'status' => 1), $criteria);
+                    if (!empty($top_Right2)) {
+                            foreach ($top_Right2 as $tpL) {
+                                    $folder = Yii::app()->Upload->folderName(0, 1000, $tpL->id);
+                                    ?>
+                                    <div class="item ban">
+                                        <div class="main">
 
-                            <img class="img-responsive golds" src="<?php echo Yii::app()->request->baseUrl; ?>/images/gold.jpg">
-                            <div class="mid_text">
-                                <h2>Best sellers</h2>
-                                <h3>Forum Novelties Glitter Tiara</h3>
+                                            <img class="img-responsive golds" src="<?= Yii::app()->baseUrl . '/uploads/ads/' . $folder . '/' . $tpL->id . '/big.' . $tpL->image ?>">
+                                            <div class="mid_text">
+                                                <h2>Best sellers</h2>
+                                                <h3>Forum Novelties Glitter Tiara</h3>
+                                            </div>
+                                            <a href="#" class="slicks" tabindex="0">Shop Now</a>
+                                        </div>
+                                    </div>
+                                    <?php
+                            }
+                    } else {
+                            ?>
+
+                            <div class="item ban">
+                                <div class="main">
+
+                                    <img class="img-responsive golds" src="<?php echo Yii::app()->request->baseUrl; ?>/images/gold2.jpg">
+                                    <div class="mid_text">
+                                        <h2>Best sellers</h2>
+                                        <h3>Forum Novelties Glitter Tiara</h3>
+                                    </div>
+                                    <a href="#" class="slicks" tabindex="0">Shop Now</a>
+                                </div>
                             </div>
-                            <a href="#" class="slicks" tabindex="0">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <div class="item ban">
-                        <div class="main">
-
-                            <img class="img-responsive golds" src="<?php echo Yii::app()->request->baseUrl; ?>/images/gold2.jpg">
-                            <div class="mid_text">
-                                <h2>Best sellers</h2>
-                                <h3>Forum Novelties Glitter Tiara</h3>
-                            </div>
-                            <a href="#" class="slicks" tabindex="0">Shop Now</a>
-                        </div>
-                    </div>
+                    <?php } ?>
 
 
                 </div>
