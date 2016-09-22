@@ -36,7 +36,7 @@ class HeaderMerchant extends CWidget {
                 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/slick-theme.css" rel="stylesheet">
                 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/contact.css" rel="stylesheet">
                 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/custom_style.css" rel="stylesheet">
-
+                <link href="<?= Yii::app()->request->baseUrl; ?>/css/menu.css" rel="stylesheet">
                 <style>
 
                     .red {
@@ -53,16 +53,16 @@ class HeaderMerchant extends CWidget {
             </head>
 
             <body id="home-1">
-                   <?php if ($_SERVER['REQUEST_URI'] == Yii::app()->request->baseUrl . '/') { ?>
+                <?php if ($_SERVER['REQUEST_URI'] == Yii::app()->request->baseUrl . '/') { ?>
                     <div class="pre-loder">
                         <div class="loding"> </div>
                     </div> <!-- end of pre-loder -->
                 <?php } ?>
                 <header class="cf visible-xs visible-sm">
                 </header>
-                <section class="faq hidden-xs">    
+                <section class="faq hidden-xs hidden-sm">    
                     <div class="container">
-                                             <div class="row">
+                        <div class="row">
                             <div class="col-md-12">  
                                 <div class="col-md-11">  
                                     <a class="faqs" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/faq">FAQ'S<i class="fa infos fa-exclamation-circle"></i></a>
@@ -110,7 +110,7 @@ class HeaderMerchant extends CWidget {
                                     <img class="zee" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png">
                                 </a>
                             </div>
-                            <div class="col-md-2 col-xs-6 hidden-xs">
+                            <div class="col-md-2 col-xs-6 hidden-xs hidden-sm">
                             </div>
                             <div class="col-md-6">
 
@@ -137,7 +137,7 @@ class HeaderMerchant extends CWidget {
                                         <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/user-registration">Register</a></li>
                                     <?php }
                                     ?>
-                                    
+
                                 </ul>
                             </div>
 

@@ -16,6 +16,7 @@ return array(
     // preloading 'log' component
 //    'preload' => array('log', 'booster'),
     'preload' => array('log'),
+     'preload' => array('log', 'booster'),
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
@@ -43,9 +44,9 @@ return array(
     'components' => array(
         //  'clientScript' => array('scriptMap' => array('jquery-1.11.3.min.js' => false,)),
         'Upload' => array('class' => 'UploadFile'),
-//        'booster' => array(
-//            'class' => 'booster.components.Booster',
-//        ),
+        'booster' => array(
+            'class' => 'booster.components.Booster',
+        ),
         'Currency' => array('class' => 'Converter'),
         'category' => array('class' => 'selectCategory'),
         'Menu' => array('class' => 'MenuCategory'),

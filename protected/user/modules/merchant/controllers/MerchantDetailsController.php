@@ -406,5 +406,16 @@ class MerchantDetailsController extends Controller {
                 $message->from = Yii::app()->params['infoEmail'];
                 Yii::app()->mail->send($message);
         }
+  public function actionViewPayouts($id) {
+        $this->render('view_payout_history', array(
+            'model' => $this->loadPayoutHistory($id),
+        ));
+    }
 
+    public function loadPayoutHistory($id) {
+        $model = MerchantPayoutHistory::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404, 'The requested history does not exist.');
+        return $model;
+    }
 }

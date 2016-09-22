@@ -8343,6 +8343,9 @@ button.btn.dlt-btn.btn-default :hover {
 
 
 @media (max-width: 1199px) and (min-width: 992px) {
+    a {
+        color: #000;
+        font-size: 13px;}
 
     .address-2 {
         float: left;
@@ -8357,7 +8360,9 @@ button.btn.dlt-btn.btn-default :hover {
 
 @media (max-width: 1023px) and (min-width: 992px) {
 
-
+    a {
+        color: #000;
+        font-size: 13px;}
 
     .bx3{width:85% !important;}
 

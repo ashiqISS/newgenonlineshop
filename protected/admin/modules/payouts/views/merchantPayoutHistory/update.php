@@ -16,7 +16,7 @@
     <div class="box box-info">
 
         <div class="box-body">
-            <?php $this->renderPartial('_form', array('model'=>$model)); ?>
+            <?php $this->renderPartial('_form', array('model'=>$model,'update'=> 'true')); ?>
         </div>
 
     </div>

@@ -100,6 +100,7 @@ header {
 .navigation nav ul {
   padding-bottom: 40px;
   overflow-y: auto;
+  background-color: rgb(226, 129, 151);
 }
 
 .navigation nav ul li, .navigation nav ul li a { width: 100%; }

@@ -31,12 +31,14 @@ class Header extends CWidget {
                 <link href="<?= Yii::app()->request->baseUrl; ?>/css/css3-animation.css" rel="stylesheet">
                 <link href="<?= Yii::app()->request->baseUrl; ?>/css/new.css" rel="stylesheet">
                 <link href="<?= Yii::app()->request->baseUrl; ?>/css/style.css" rel="stylesheet">
+
                 <link href="<?= Yii::app()->request->baseUrl; ?>/css/responsive.css" rel="stylesheet">
                 <link rel="stylesheet" type="text/css" href="<?= Yii::app()->request->baseUrl; ?>/css/simpleMobileMenu.css" />
                 <link href="<?= Yii::app()->request->baseUrl; ?>/css/slick.css" rel="stylesheet">
                 <link href="<?= Yii::app()->request->baseUrl; ?>/css/slick-theme.css" rel="stylesheet">
                 <link href="<?= Yii::app()->request->baseUrl; ?>/css/contact.css" rel="stylesheet">
                 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/custom_style.css" rel="stylesheet">
+                <link href="<?= Yii::app()->request->baseUrl; ?>/css/menu.css" rel="stylesheet">
 
                 <style>
 
@@ -56,13 +58,13 @@ class Header extends CWidget {
 
             <body id="home-1">
                 <?php if ($_SERVER['REQUEST_URI'] == Yii::app()->request->baseUrl . '/') { ?>
-<!--                    <div class="pre-loder">
-                        <div class="loding"> </div>
-                    </div>  end of pre-loder -->
+                    <!--                    <div class="pre-loder">
+                                            <div class="loding"> </div>
+                                        </div>  end of pre-loder -->
                 <?php } ?>
                 <header class="cf visible-xs visible-sm">
                 </header>
-                <section class="faq hidden-xs">    
+                <section class="faq hidden-xs hidden-sm">    
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">  
@@ -109,7 +111,7 @@ class Header extends CWidget {
                             <div class="col-md-4 col-xs-6">
                                 <a href="<?= Yii::app()->request->baseUrl; ?>">  <img class="zee" src="<?= Yii::app()->request->baseUrl; ?>/images/logo.png"></a>
                             </div>
-                            <div class="col-md-4 col-xs-6 hidden-xs">
+                            <div class="col-md-4 col-xs-6 hidden-xs hidden-sm">
 
                                 <form action="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products" method="post">
 
@@ -130,17 +132,18 @@ class Header extends CWidget {
                             <div class="col-md-4">
                                 <ul class="list-inline list-unstyled">
 
-                                    <?php  /*if (Yii::app()->user->hasState('user_id')) { ?>
-                                        <li><a class="mycart" href="#"  data-toggle="modal" data-target="#myModal"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/wallet2.png">Wallet</a>
-                                        </li>
-                                    <?php } */?>
+                                    <?php /* if (Yii::app()->user->hasState('user_id')) {  ?>
+                                    <li>
+                                        <a class="mycart" href="#"  data-toggle="modal" data-target="#myModal"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/wallet2.png">Wallet</a>
+                                    </li>
+                                    <?php  } */?>
                                     <li class="has_dropdown">
                                         <a class="mycart" href="javascript:void(0)"><img class="shop" src="<?php echo Yii::app()->request->baseUrl; ?>/images/shop.png">Mycart</a>
                                         <div class="ng_dropdown cart_box" id="cart_box" style="display: none;">
 
                                             <div class="drop_cart">
                                                 <div class="my_cart_item cart_product_detail cart_item">
-<!--                                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/small.jpg">
+        <!--                                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/small.jpg">
                                                     <h3>demo</h3>
                                                     <p><span>Qty:</span>	1</p>
                                                     <p><span>Price:</span>	
@@ -234,33 +237,147 @@ class Header extends CWidget {
 
                 <div id="static_cnt" class="">      
                     <section class="main-head">    
-                        <div class="container">
+                        <div class="container zeroz">
                             <div class="row">
-                                <div class="col-md-7 col-sm-4 hidden-xs">
+                                <div class="col-md-7 col-sm-4 hidden-xs hidden-sm">
                                     <div class="dropdown">
-                                        <button class="btn btn-primary cat dropdown-toggle" type="button" data-toggle="dropdown"><img class="bars" src="<?= Yii::app()->request->baseUrl; ?>/images/bars.png">Categories
-                                        </button>
-                                        <?php // Utilities::loadCategory();
-                                            ?>
-                                        <ul class="dropdown-menu categories">
-                                            <?php
-                                                echo ProductCategory::model()->loadCategory();
+                                        <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
+                                            <img class="bars" src="images/bars.png">Categories
+                                        </a>
+                                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1" href="#">Baby Products</a>
+                                                <ul class="dropdown-menu ss menu-2">
+                                                    <li><a tabindex="-1" href="#">Second level</a></li>
+                                                    <li class="dropdown-submenu menu-3">
+                                                        <a href="#">Even More..</a>
+                                                        <ul class="dropdown-menu ss levels">
+                                                            <li class="dropdown-submenu menu-3">
+                                                                <a href="#">3rd level</a>
+                                                                <ul class="dropdown-menu ss levels">
+                                                                    <li><a href="#">4th level</a></li>
+                                                                    <li><a href="#">4th level</a></li>
+                                                                    <li><a href="#">4th level</a></li>
+                                                                    <li><a href="#">4th level</a></li>
+                                                                </ul>
+                                                            </li>
+
+                                                            <li class="dropdown-submenu menu-3">
+                                                                <a href="#">3rd level</a>
+                                                                <ul class="dropdown-menu ss levels">
+                                                                    <li><a href="#">4th level</a></li>
+                                                                    <li><a href="#">4th level</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Second level</a></li>
+                                                    <li><a href="#">Second level</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1" href="#">Baby Products</a>
+                                                <ul class="dropdown-menu ss menu-2">
+                                                    <li><a tabindex="-1" href="#">Second level</a></li>
+                                                    <li class="dropdown-submenu menu-3">
+                                                        <a href="#">Even More..</a>
+                                                        <ul class="dropdown-menu ss levels">
+                                                            <li><a href="#">3rd level</a></li>
+                                                            <li><a href="#">3rd level</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Second level</a></li>
+                                                    <li><a href="#">Second level</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1" href="#">Baby Products</a>
+                                                <ul class="dropdown-menu ss menu-2">
+                                                    <li><a tabindex="-1" href="#">Second level</a></li>
+                                                    <li class="dropdown-submenu menu-3">
+                                                        <a href="#">Even More..</a>
+                                                        <ul class="dropdown-menu ss levels">
+                                                            <li class="dropdown-submenu menu-3">
+                                                                <a href="#">lakshmi</a>
+                                                                <ul class="dropdown-menu ss levels">
+                                                                    <li><a href="#">3rd level</a></li>
+                                                                    <li><a href="#">3rd level</a></li>
+                                                                </ul>
+                                                            </li>
+
+                                                            <li class="dropdown-submenu menu-3">
+                                                                <a href="#">lakshmi</a>
+                                                                <ul class="dropdown-menu ss levels">
+                                                                    <li><a href="#">3rd level</a></li>
+                                                                    <li><a href="#">3rd level</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Second level</a></li>
+                                                    <li><a href="#">Second level</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1" href="#">Baby Products</a>
+                                                <ul class="dropdown-menu ss menu-2">
+                                                    <li><a tabindex="-1" href="#">Second level</a></li>
+                                                    <li class="dropdown-submenu menu-3">
+                                                        <a href="#">Even More..</a>
+                                                        <ul class="dropdown-menu ss levels">
+                                                            <li><a href="#">3rd level</a></li>
+                                                            <li><a href="#">3rd level</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Second level</a></li>
+                                                    <li><a href="#">Second level</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1" href="#">Baby Products</a>
+                                                <ul class="dropdown-menu ss menu-2">
+                                                    <li><a tabindex="-1" href="#">Second level</a></li>
+                                                    <li class="dropdown-submenu menu-3">
+                                                        <a href="#">Even More..</a>
+                                                        <ul class="dropdown-menu ss levels">
+                                                            <li><a href="#">3rd level</a></li>
+                                                            <li><a href="#">3rd level</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Second level</a></li>
+                                                    <li><a href="#">Second level</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <!--                                <div class="col-md-7 col-sm-4 hidden-xs hidden-sm">
+                                                                    <div class="dropdown">
+                                                                        <button class="btn btn-primary cat dropdown-toggle" type="button" data-toggle="dropdown"><img class="bars" src="<?= Yii::app()->request->baseUrl; ?>/images/bars.png">Categories
+                                                                        </button>
+                                <?php // Utilities::loadCategory();
+                                ?>
+                                                                        <ul class="dropdown-menu categories">
+                                <?php
+//                                echo ProductCategory::model()->loadCategory();
 //                                            Utilities::loadCategory();
 //                                            $menus = ProductCategory::model()->findAllByAttributes(array(), array('condition' => 'header_visibility = 1 and id=parent order by sort_order'));
 //                                            foreach ($menus as $menu) {
-                                                ?>
-
-                                                <!--<li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/product/category/name/<?php echo $menu->canonical_name; ?>"><?php echo $menu->category_name; ?></a></li>-->
-                                                <?php
+                                ?>
+                                
+                                                                                <li><a href="<?php // echo Yii::app()->request->baseUrl; ?>/index.php/product/category/name/<?php // echo $menu->canonical_name; ?>"><?php echo $menu->category_name; ?></a></li>
+                                <?php
 //                                            }
-                                            ?>
-
-                                        </ul>
-                                    </div>
-                                </div>
+                                ?>
+                                
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>-->
 
                                 <div class="col-md-5 col-sm-8">
-                                    <nav class="navbar navbar-inverse hidden-xs">
+                                    <nav class="navbar navbar-inverse hidden-xs hidden-sm">
                                         <div class="nop">
                                             <!--    <div class="navbar-header">
                                                   <a class="navbar-brand" href="#">WebSiteName</a>
@@ -281,7 +398,7 @@ class Header extends CWidget {
                                 </div>
 
 
-                                <div class="navigation hidden-sm hidden-md hidden-lg">
+                                <div class="navigation hidden-md hidden-lg">
                                     <nav>
                                         <a href="javascript:void(0)" class="smobitrigger ion-navicon-round"><span><i class="fa fa-align-justify"></i></span></a>
                                         <ul class="mobimenu">
@@ -320,26 +437,26 @@ class Header extends CWidget {
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                     <li><a href="#"><span>Offers & Deals</span></a></li>
 
-                                                                        <!--                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
-                                                                                                                                <ul>
-                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
+                                                                                <!--                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
+                                                                                                                                        <ul>
+                                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
 
-                                                                                                                                </ul>
-                                                                                                                            </li>
-                                                                                                                            <li class="has-sub"><a href="#"><span>categories</span></a>
-                                                                                                                                <ul>
-                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
-                                                                                                                                    <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                        </ul>
+                                                                                                                                    </li>
+                                                                                                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
+                                                                                                                                        <ul>
+                                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
+                                                                                                                                            <li><a href="#"><span>Sub</span></a></li>
 
-                                                                                                                                </ul>
-                                                                                                                            </li>-->
-                                                                <!--                                                    <li><a href="#"><span>categories</span></a></li>
-                                                                                                                    <li><a href="#"><span>categories</span></a></li>-->
+                                                                                                                                        </ul>
+                                                                                                                                    </li>-->
+                                                                        <!--                                                    <li><a href="#"><span>categories</span></a></li>
+                                                                                                                            <li><a href="#"><span>categories</span></a></li>-->
 
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/site/faq"><span>faqs</span></a></li>
 

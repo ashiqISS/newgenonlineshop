@@ -189,10 +189,22 @@ class MerchantDetails extends CActiveRecord {
         return parent::model($className);
     }
     
-    public static function getFullname($id)
+    public static function getFullname($userid)
     {
-        $model = MerchantDetails::model()->findByAttributes(array('user_id'=>$id));
+        $model = MerchantDetails::model()->findByAttributes(array('user_id'=>$userid));
         $name = $model->fullname;
+        return $name;
+    }
+    public static function getMerchantname($merchantid)
+    {
+        $model = MerchantDetails::model()->findByPk($merchantid);
+        $name = $model->fullname;
+        return $name;
+    }
+    public static function getShopname($merchantid)
+    {
+         $model = MerchantDetails::model()->findByPk($merchantid);
+        $name = $model->shop_name;
         return $name;
     }
 
