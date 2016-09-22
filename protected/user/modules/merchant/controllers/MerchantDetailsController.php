@@ -193,6 +193,28 @@ class MerchantDetailsController extends Controller {
                 $this->render('reset_password', array('model' => $model));
         }
 
+        public function actionMessages() {
+                if (Yii::app()->user->getState('user_type') == 2) {
+                        $model = new MerchantMessage();
+                        if (isset($_POST['MerchantMessage'])) {
+                                $model->attributes = $_POST['MerchantMessage'];
+                                $model->merchant_id = Yii::app()->getId();
+                                $model->doc = date('Y-m-d H:i:s');
+                                $model->from_to = 1;
+                                if ($model->validate()) {
+                                        if ($model->save()) {
+                                                $this->redirect(array('Messages'));
+                                        }
+                                }
+                        }
+                        $message = MerchantMessage::model()->findAllByAttributes(array('merchant_id' => Yii::app()->getId()), array('order' => 'id DESC'));
+                        $this->render('messages', array(
+                            'model' => $model, 'messages' => $message
+                        ));
+                }
+//                $this->render('messages');
+        }
+
         public function passwordChanged($user_model) {
                 Yii::import('user.extensions.yii-mail.YiiMail');
                 $message = new YiiMailMessage;

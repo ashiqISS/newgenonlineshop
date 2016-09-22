@@ -1,17 +1,10 @@
+
 <style>
-    input[type=submit]  {
-        float: left;
-        background-color: #f06e4b;
-        padding: 7px;
-        min-width: 80px;
-        margin-right: 10px;
-        text-align: center;
-        color: #FFFFFF;
-        border-radius: 5px;
-        border: none;
+    .messages{
+        height: 350px !important;
+        overflow: scroll;
     }
 </style>
-
 <section class="banner">
 
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?php echo Yii::app()->request->baseUrl; ?>/images/img_inn.jpg)">
@@ -37,7 +30,7 @@
         <div class="heading">
 
 
-            change password
+            Messages
 
         </div>
 
@@ -45,19 +38,41 @@
         <div class="form-group">
             <div class="col-md-9">
 
-                <div class="left-content">
+                <div class="left-content messages">
+                    <?php
+                    foreach ($messages as $mes) {
+                            $to = $mes->from_to;
+                            if ($to == 1) {
+                                    ?>
+                                    <div class="message-left">
+                                        <div class="mess-1">
+                                            <img class="msg" src="<?php echo yii::app()->baseUrl ?>/images/merchant.jpg">
+                                        </div>
+                                        <div class="mess-2">
+                                            <span class="industry"><?php echo $mes->message ?>.</span>
+                                            <span class="dat"><?php echo $mes->doc ?></span>
+                                        </div>
+                                    </div>
+                            <?php } else if ($to == 0) { ?>
+                                    <div class="message-right">
 
-                    <!--flash message-->
-                    <?php if (Yii::app()->user->hasFlash('passwordReset')): ?>
-                            <div class="alert alert-info fade in">
-                                <?php echo Yii::app()->user->getFlash('passwordReset'); ?>
-                            </div><br>
-                    <?php endif; ?>
+                                        <div class="mess-22">
+                                            <span class="industry2"><?php echo $mes->message ?>.</span>
+                                            <span class="dat2"><?php echo $mes->doc ?></span>
+                                        </div>
+                                        <div class="mess-1">
+                                            <img class="msgd" src="<?php echo yii::app()->baseUrl ?>/images/admin_.jpg">
+                                        </div>
 
+                                    </div>
 
+                                    <?php
+                            }
+                    }
+                    ?>
                     <?php
                     $form = $this->beginWidget('CActiveForm', array(
-                        'id' => 'reset-password-reset_password-form',
+                        'id' => 'merchant-message-maas-form',
                         // Please note: When you enable ajax validation, make sure the corresponding
                         // controller action is handling ajax validation correctly.
                         // See class documentation of CActiveForm for details on this,
@@ -66,32 +81,19 @@
                     ));
                     ?>
 
-                    <?php // echo $form->errorSummary($model); ?>
+                    <?php echo $form->errorSummary($model); ?>
 
-                    <div class="form-group">
-                        <?php echo $form->passwordField($model, 'currentPassword', array('class' => "form-news", 'placeholder' => 'Current Password')); ?>
-                        <?php echo $form->error($model, 'currentPassword', array('class' => 'red')); ?>
+
+                    <div class="form-group form-group-full">
+
+                        <?php echo $form->textArea($model, 'message', array('rows' => 3, 'cols' => 10, 'class' => 'form-control', 'placeholder' => 'Type Your Message Here!')); ?>
                     </div>
-
-                    <div class="form-group">
-                        <?php echo $form->passwordField($model, 'newPassword', array('class' => "form-news", 'placeholder' => 'New Password')); ?>
-                        <?php echo $form->error($model, 'newPassword', array('class' => 'red')); ?>
-                    </div>
-
-                    <div class="form-group">
-                        <?php echo $form->passwordField($model, 'confirmPassword', array('class' => "form-news", 'placeholder' => 'Confirm Password')); ?>
-                        <?php echo $form->error($model, 'confirmPassword', array('class' => 'red')); ?>
-                    </div>
-
-
-                    <div>
-                        <?php echo CHtml::submitButton('Submit', array('class' => 'btn continue btn-default delete-btn')); ?>
+                    <div class="form-group form-group-full">
+                        <?php echo CHtml::submitButton('Submit', array('class' => 'up1 btn')); ?>
                     </div>
 
                     <?php $this->endWidget(); ?>
 
-
-                    <div class="clearfix"></div>
                 </div>
 
             </div>
@@ -102,8 +104,8 @@
                     <li ><a href="<?php echo CommonUrls::merchant_profile(); ?>"> <i class="fa fa-user fa-2x" aria-hidden="true"></i> <span>Profile</span></a></li>
                     <li><a href="<?php echo CommonUrls::banking(); ?>"> <i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i></i> <span>Banking Accounts</span></a></li>
                     <li><a href="<?php echo CommonUrls::add_product(); ?>" > <i class="fa fa-cart-arrow-down  fa-2x" aria-hidden="true"></i> <span>Add product</span></a></li>
-                    <li><a href="<?php echo CommonUrls::change_password(); ?>"    class="act "> <i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i></i> <span>Change Password</span></a></li>
-                    <li><a href="<?php echo CommonUrls::message(); ?>"> <i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i></i> <span>Messages</span></a></li>
+                    <li><a href="<?php echo CommonUrls::change_password(); ?>" > <i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i></i> <span>Change Password</span></a></li>
+                    <li><a href="<?php echo CommonUrls::message(); ?>"    class="act "> <i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i></i> <span>Messages</span></a></li>
                     <li><a href="<?php echo CommonUrls::my_products(); ?>"> <i class="fa fa-cube fa-2x" aria-hidden="true"></i> <span>My products</span></a></li>
                     <li><a href="<?php echo CommonUrls::featured(); ?>" > <i class="fa fa-picture-o fa-2x" aria-hidden="true"></i> <span>Featured ads </span></a></li>
                     <li><a href="my_sales.php"> <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i> <span>My Sales</span></a></li>
