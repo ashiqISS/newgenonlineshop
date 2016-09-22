@@ -1,7 +1,7 @@
 
 <style>
     .women{
-        height: 552px;
+        max-height: 552px;
     }
 </style>
 <div class="hero row" id="main-hero">
@@ -187,7 +187,7 @@
                                                 <h1>New Arrivals</h1>
                                                 <p> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
                                             </div>
-                                            <img class="women img-responsive" height="42" src="<?= Yii::app()->baseUrl . '/uploads/ads/' . $folder . '/' . $tpL->id . '/big.' . $tpL->image ?>" >
+                                            <img class="women img-responsive"  src="<?= Yii::app()->baseUrl . '/uploads/ads/' . $folder . '/' . $tpL->id . '/big.' . $tpL->image ?>" >
                                             <a href="#" class="bt">Shop Now</a>
 
                                         </div>
