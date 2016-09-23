@@ -9,6 +9,27 @@ class SiteController extends Controller {
                 date_default_timezone_set('Asia/Calcutta');
         }
 
+        public function actionNewsletter() {
+                if (isset($_POST['email'])) {
+                        $email = Newsletter::model()->findByAttributes(array('email' => $_POST['email']));
+                        if (empty($email)) {
+                                $model = new Newsletter();
+                                $model->email = $_POST['email'];
+                                $model->date = date('Y-m-d');
+                                if ($model->save()) {
+                                        echo '1';
+                                        exit;
+                                } else {
+                                        echo '2';
+                                        exit;
+                                }
+                        } else {
+                                echo '3';
+                                exit;
+                        }
+                }
+        }
+
         public function actions() {
                 return array(
                     // captcha action renders the CAPTCHA image displayed on the contact page

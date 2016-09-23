@@ -1,8 +1,48 @@
 
 <style>
     .messages{
-        height: 350px !important;
-        overflow: scroll;
+        height: 430px !important;
+        overflow: auto;
+    }
+    .message-right {
+        background-color: #fff;
+        padding: 12px;
+        float: right;
+        width: 93%;
+        margin-bottom: 10px;
+        border:1px solid #ccc;
+    }
+
+    .mess-22 {
+        float: left;
+        width: 90%;
+    }
+
+    .mess-1 {
+        float: left;
+        width: 10%;
+    }
+    .mess-2 {
+        float: right;
+        width: 90%;
+    }
+    .message-left {
+        background-color: whitesmoke;
+        padding: 12px;
+        float: left;
+        width: 90%;
+        margin-bottom: 10px;
+        border:1px solid #ccc;
+    }
+    img.msg {
+        float: left;
+        max-width: 100%;
+        height: auto;
+
+    }
+    img.msgd {
+        float: right;
+        max-width: 100%;
     }
 </style>
 <section class="banner">
@@ -40,6 +80,29 @@
 
                 <div class="left-content messages">
                     <?php
+                    $form = $this->beginWidget('CActiveForm', array(
+                        'id' => 'merchant-message-maas-form',
+                        // Please note: When you enable ajax validation, make sure the corresponding
+                        // controller action is handling ajax validation correctly.
+                        // See class documentation of CActiveForm for details on this,
+                        // you need to use the performAjaxValidation()-method described there.
+                        'enableAjaxValidation' => false,
+                    ));
+                    ?>
+
+                    <?php echo $form->errorSummary($model); ?>
+
+
+                    <div class="form-group form-group-full">
+
+                        <?php echo $form->textArea($model, 'message', array('rows' => 3, 'cols' => 10, 'class' => 'form-control', 'placeholder' => 'Type Your Message Here!')); ?>
+                    </div>
+                    <div class="form-group form-group-full">
+                        <?php echo CHtml::submitButton('Submit', array('class' => 'up1 btn')); ?>
+                    </div>
+
+                    <?php $this->endWidget(); ?>
+                    <?php
                     foreach ($messages as $mes) {
                             $to = $mes->from_to;
                             if ($to == 1) {
@@ -70,35 +133,13 @@
                             }
                     }
                     ?>
-                    <?php
-                    $form = $this->beginWidget('CActiveForm', array(
-                        'id' => 'merchant-message-maas-form',
-                        // Please note: When you enable ajax validation, make sure the corresponding
-                        // controller action is handling ajax validation correctly.
-                        // See class documentation of CActiveForm for details on this,
-                        // you need to use the performAjaxValidation()-method described there.
-                        'enableAjaxValidation' => false,
-                    ));
-                    ?>
 
-                    <?php echo $form->errorSummary($model); ?>
-
-
-                    <div class="form-group form-group-full">
-
-                        <?php echo $form->textArea($model, 'message', array('rows' => 3, 'cols' => 10, 'class' => 'form-control', 'placeholder' => 'Type Your Message Here!')); ?>
-                    </div>
-                    <div class="form-group form-group-full">
-                        <?php echo CHtml::submitButton('Submit', array('class' => 'up1 btn')); ?>
-                    </div>
-
-                    <?php $this->endWidget(); ?>
 
                 </div>
 
             </div>
 
-      <?php echo $this->renderPartial('_rightMenu'); ?>
+            <?php echo $this->renderPartial('_rightMenu'); ?>
         </div>
 
     </div>

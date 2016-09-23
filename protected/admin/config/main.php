@@ -26,6 +26,7 @@ return array(
         'admin.components.*',
         'admin.controllers.*',
         'admin.views.*',
+        'admin.extensions.yii-mail.*',
         'admin.modules.*',
         'admin.extensions.easyimage.EasyImage',
 //        'admin.extensions.NavaJcrop.ImageJcrop',
@@ -54,13 +55,28 @@ return array(
             'allowAutoLogin' => true,
         ),
         'clientScript' => array(
-            'packages' => array(
-                'jquery' => array(
-                    'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/',
-                    'js' => array('jquery.min.js'),
-                )
+            'class' => 'CClientScript',
+            'scriptMap' => array(
+                'jquery.js' => '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js',
+                'jquery.min.js' => '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js',
+                'jquery-ui.js' => '//ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js',
+                'jquery-ui.min.js' => '//ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js'
             ),
-        // other clientScript config
+        ),
+        'mail' => array(
+            'class' => 'application.admin.extensions.yii-mail.YiiMail',
+            'transportType' => 'smtp',
+            'transportOptions' => array(
+//                'host' => 'mail.ecareagora.com',
+                'host' => 'mail.intersmarthosting.in',
+                // 'encryption'=>'ssl', // use ssl
+                'username' => "develop@intersmarthosting.in",
+                'password' => "develop@123",
+                'port' => '25', // ssl port for gmail
+            ),
+            'viewPath' => 'application.admin.template',
+            'logging' => true,
+            'dryRun' => false
         ),
         // uncomment the following to enable URLs in path-format
         'urlManager' => array(

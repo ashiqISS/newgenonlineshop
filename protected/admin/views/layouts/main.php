@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title><?php echo Yii::app()->name; ?></title>
         <!-- Tell the browser to be responsive to screen width -->
-        <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                ?>/css/admin.css">-->
+        <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                    ?>/css/admin.css">-->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.5 -->
 
@@ -295,6 +295,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
                                 <li class="<?php echo $actionn6 ?> treeview">
                                     <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/merchantMessage/admin"><i class="fa fa-user-secret"></i> <span>Messages</span></a>
+                                </li>
+                        <?php } ?>
+                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                                <li class="<?php echo $actionn6 ?> treeview">
+                                    <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/newsletterContent/admin"><i class="fa fa-newspaper-o"></i> <span>Newsletter</span></a>
                                 </li>
                         <?php } ?>
                         <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
