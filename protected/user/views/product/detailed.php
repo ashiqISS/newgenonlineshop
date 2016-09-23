@@ -603,43 +603,4 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1.11.3.min.js');
 //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/bootstrap.min.js');
 ?>
-<script>
 
-        $(document).ready(function () {
-
-                $('.part-4').slick({
-                        slidesToShow: 4,
-                        autoplay: true,
-                        autoplaySpeed: 7000,
-                        slidesToScroll: 1,
-                        pauseOnHover: true,
-                        prevArrow: '<i id="prev_slide_2" class="fa fa-chevron-left"></i>',
-                        nextArrow: '<i id="next_slide_2" class="fa fa-chevron-right"></i>',
-                        responsive: [
-                                {
-                                        breakpoint: 1000,
-                                        settings: {
-                                                centerMode: false,
-                                                slidesToShow: 2
-                                        }
-                                },
-                                {
-                                        breakpoint: 550,
-                                        settings: {
-                                                centerMode: false,
-                                                slidesToShow: 2
-                                        }
-                                },
-                                {
-                                        breakpoint: 500,
-                                        settings: {
-                                                centerMode: false,
-                                                slidesToShow: 1
-                                        }
-                                }
-                        ]
-                });
-
-        });
-
-</script>

@@ -122,7 +122,7 @@ class HeaderMerchant extends CWidget {
                                         $text = 'Sign Out';
                                         $state = 'logout';
                                         ?>
-                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/merchant-profile"><?php echo Yii::app()->user->getState('merchant_name'); ?></a></li>
+                                        <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/merchant-dashboard"><?php echo Yii::app()->user->getState('merchant_name'); ?></a></li>
                                         <li><a href="<?php echo Yii::app()->request->baseUrl . '/user.php/merchant-home'; ?>">My Orders</a></li>
                                         <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/merchant-profile">My Account</a></li>
                                         <?php

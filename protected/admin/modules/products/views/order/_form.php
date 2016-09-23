@@ -20,7 +20,7 @@
 
     <div class="form-group">
         <?php echo $form->labelEx($model, 'user_id', array('class' => 'col-sm-2 control-label')); ?>
-        <div class="col-sm-10"><?php echo $form->textField($model, 'user_id', array('class' => 'form-control', 'value' => $model->user->first_name, 'readonly' => true)); ?>
+        <div class="col-sm-10"><?php echo $form->textField($model, 'user_id', array('class' => 'form-control', 'value' => BuyerDetails::getFullname($model->user_id), 'readonly' => true)); ?>
         </div>
         <?php echo $form->error($model, 'user_id'); ?>
     </div>

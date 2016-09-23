@@ -135,14 +135,14 @@ class ProductCategory extends CActiveRecord {
         return parent::model($className);
     }
     
-    public function loadCategory() {
-                $returnhtml = '<ul>';
+     public function loadCategory() {
+                $returnhtml = '<ul class="dropdown-menu multi-level loadcat" role="menu" aria-labelledby="dropdownMenu">';
                 $mainCat = new CDbCriteria();
                 $mainCat->select = array('id', 'parent', 'category_name');
                 $mainCat->addCondition('t.id = t.parent');
                 $categories = ProductCategory::model()->findAll($mainCat);
                 foreach ($categories as $category) {
-                        $returnhtml .= "<li>$category->category_name";
+                        $returnhtml .= "<li><a tabindex='-1' href='#'>" . $category->category_name . "</a>";
                         $childCat = new CDbCriteria();
                         $childCat->select = array('id', 'parent', 'category_name');
                         $childCat->addCondition('parent=' . $category->id);
@@ -151,7 +151,7 @@ class ProductCategory extends CActiveRecord {
                         if (count($childs) > 0) {
                                 $returnhtml .= '<ul>';
                                 for ($j = 0; $j < count($childs); $j++) {
-                                        $returnhtml .='<li>' . $childs[$j]["category_name"];
+                                        $returnhtml .="<li><a tabindex='-1' href='#'>" . $childs[$j]["category_name"] . "</a>";
                                         $returnhtml .=$this->listCategory($childs[$j]["id"]);
                                 }
                                 $returnhtml .= '</li></ul></li>';
@@ -171,12 +171,11 @@ class ProductCategory extends CActiveRecord {
                 if (count($subcats) > 0) {
                         $html = "<ul>";
                         foreach ($subcats as $subcategory) {
-                                $html .='<li>' . $subcategory->category_name . '</li>';
+                                $html .="<li><a tabindex='-1' href='#'>" . $subcategory->category_name . '</a>';
                                 $html .=$this->listCategory($subcategory->id);
                         }
-                        $html .= "</ul>";
+                        $html .= "</li></ul>";
                 }
                 return $html;
         }
-
 }

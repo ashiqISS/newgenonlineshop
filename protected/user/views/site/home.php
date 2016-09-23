@@ -39,7 +39,8 @@
                         <h2>Lorem Ipsum is simply dummy text of simply dummy text </h2>
                         <p>In you won <span>"secret snactuary"</span></p>
                     </div>
-                </div>  end of title
+                </div> 
+                <!--end of title-->
             </div>
 
             <div class="row item item-1">
@@ -50,7 +51,8 @@
                         <h2>Lorem Ipsum is simply dummy text of simply dummy text</h2>
                         <p>In you won <span>"secret snactuary"</span></p>
                     </div>
-                </div>  end of title
+                </div> 
+                <!--end of title-->
             </div>
             <div class="row item item-2">
                 <div class="title">
@@ -59,7 +61,8 @@
                         <h2>Lorem Ipsum is simply dummy text of simply dummy text </h2>
                         <p>In you won <span>"secret snactuary"</span></p>
                     </div>
-                </div>  end of title
+                </div>  
+                <!--end of title-->
             </div>
 
             <div class="row item item-3">
@@ -69,7 +72,8 @@
                         <h2>Lorem Ipsum is simply dummy text of simply dummy text </h2>
                         <p>In you won <span>"secret snactuary"</span></p>
                     </div>
-                </div>  end of title
+                </div> 
+                <!--end of title-->
             </div>
         <?php }
         ?>

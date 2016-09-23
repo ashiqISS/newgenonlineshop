@@ -155,7 +155,8 @@ class SiteController extends Controller {
                                                 Yii::app()->user->setState('merchant_name', $merchant_name);
                                                 Yii::app()->user->setState('merchant_id', $merchant_id);
                                                 Yii::app()->user->setState('merchant_type', $merchant_type);
-                                                $this->redirect(array('merchant/merchantDetails/home'));
+                                                $this->redirect(array('merchant/merchantDetails/dashBoard'));
+//                                                $this->redirect(array('merchant/merchantDetails/home'));
                                         } else {
                                                 // login invalid
                                                 echo 'invalid login';
