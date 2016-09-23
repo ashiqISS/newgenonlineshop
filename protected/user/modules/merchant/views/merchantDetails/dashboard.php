@@ -68,7 +68,8 @@
                                         <td><?= $products_name->product_name; ?></td>
                                         <td><?= date('d - m - Y', strtotime($order_id->order_date)); ?></td>
                                         <td><?= $products_name->price; ?></td>                                           
-                                        <td><?php
+                                        <td>
+                                            <?php
                                             if ($order_id->status == 0) {
                                                 echo 'Not Placed';
                                             } elseif ($order_id->status == 1) {
@@ -80,9 +81,11 @@
                                             } else {
                                                 echo 'Error';
                                             }
-                                            ?></td>
-                                        <td><?php echo CHtml::link('<i class="fa fa-eye"  style="max-width:15%;font-size: 19px;
-    color: #000;"></i>', array('Myaccount/OrderViewDetail', 'id' => CHtml::encode($sales->id))); ?></td>
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php echo CHtml::link('<i class="fa fa-eye"  style="max-width:15%;font-size: 19px;color: #000;"></i>', array('MerchantDetails/ViewHistory', 'id' => CHtml::encode($sales->id))); ?>
+                                        </td>
 
                                     </tr>
 

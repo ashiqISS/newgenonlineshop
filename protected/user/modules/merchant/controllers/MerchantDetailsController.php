@@ -431,5 +431,79 @@ class MerchantDetailsController extends Controller {
                         throw new CHttpException(404, 'The requested history does not exist.');
                 return $model;
         }
+ public function actionViewHistory($id) {
+        $model = OrderProducts::model()->findByPk($id);
+        if (!empty($model)) {
+            $this->render('view_order', array(
+                'model' => $model,
+            ));
+        } else {
+            echo 'No History Available';
+            // to do add error page
+        }
+    }
 
+    public function actionNewOrderHistory($id) {
+        $model = new OrderHistory;
+        $order_product = OrderProducts::model()->findByPk($id);
+// Uncomment the following line if AJAX validation is needed
+// $this->performAjaxValidation($model);
+
+        if (isset($_POST['OrderHistory'])) {
+            $model->attributes = $_POST['OrderHistory'];
+            $model->product_id = $order_product->product_id;
+            $model->order_id = $order_product->order_id;
+            $model->date = $_POST['OrderHistory']['date'];
+            if ($model->save()) {
+                $this->redirect(['ViewHistory', 'id' => $id]);
+            }
+        }
+
+        $this->render('create_new_order_history', array(
+            'model' => $model,
+            'order_product' => $order_product,
+        ));
+    }
+    
+         public function actionPrintProductInvoice($id) {
+                $product_order_id = $id;
+                if (isset($product_order_id)) {
+                        $productOrder = OrderProducts::model()->findByPk($product_order_id);
+                        $product = Products::model()->findByPk($productOrder->product_id);
+                        $order = Order::model()->findByPk($productOrder->order_id);
+                        $user_address = UserAddress::model()->findByPk($order->ship_address_id);
+                        $bill_address = UserAddress::model()->findByPk($order->bill_address_id);
+
+                        $params = array();
+                        $params['productOrder'] = $productOrder;
+                        $params['order'] = $order;
+                        $params['product'] = $product;
+                        $params['user_address'] = $user_address;
+                        $params['bill_address'] = $bill_address;
+
+//            $order_details = OrderProducts::model()->findAllByAttributes(array('order_id' => $id));
+                        $this->renderPartial('_product_invoice', $params);
+                }
+        }
+        
+          public function actionPrintShippingDetail($id) {
+                $product_order_id = $id;
+                if (isset($product_order_id)) {
+                        $productOrder = OrderProducts::model()->findByPk($product_order_id);
+                        $product = Products::model()->findByPk($productOrder->product_id);
+                        $order = Order::model()->findByPk($productOrder->order_id);
+                        $user_address = UserAddress::model()->findByPk($order->ship_address_id);
+                        $bill_address = UserAddress::model()->findByPk($order->bill_address_id);
+
+                        $params = array();
+                        $params['productOrder'] = $productOrder;
+                        $params['order'] = $order;
+                        $params['product'] = $product;
+                        $params['user_address'] = $user_address;
+                        $params['bill_address'] = $bill_address;
+
+//            $order_details = OrderProducts::model()->findAllByAttributes(array('order_id' => $id));
+                        $this->renderPartial('_product_ship_invoice', $params);
+                }
+        }
 }
