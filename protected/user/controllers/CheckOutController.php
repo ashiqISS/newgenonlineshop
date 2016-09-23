@@ -33,8 +33,25 @@ class CheckOutController extends Controller {
                 if (Yii::app()->user->getId()) {
                         $bill_address_id = $ship_address_id = $defaultShipping = $defaultBilling = $address = '';
                         $user = Users::model()->findByPk(Yii::app()->user->getId());
+                        $id = $user->id;
                         $buyer = BuyerDetails::model()->findByAttributes(array('user_id' => Yii::app()->user->getId()));
                         $cart = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
+                        if (isset(Yii::app()->session['temp_user'])) {
+                                $condition = "user_id = " . $id . " AND session_id = " . Yii::app()->session['temp_user'];
+                        } else {
+                                Yii::app()->session['temp_user'] = microtime(true);
+                                $condition = "user_id = " . $id . " AND session_id = " . Yii::app()->session['temp_user'];
+                        }
+
+
+                        $coupon = CouponHistory::model()->find(array('condition' => $condition));
+                        if (!empty($coupon)) {
+                                $coupen_details = Coupons::model()->findByPk($coupon->coupon_id);
+                                $coupon_amount = Coupons::model()->findByPk($coupon->coupon_id)->discount;
+                        } else {
+                                $coupen_details = NULL;
+                                $coupon_amount = 0;
+                        }
 
                         $params = array();
                         if (isset($_POST['total_amt'])) {
@@ -96,9 +113,8 @@ class CheckOutController extends Controller {
                                 $defaultShipping = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_shipping_address' => 1));
                                 $defaultBilling = UserAddress::model()->findByAttributes(array('userid' => Yii::app()->user->getId(), 'default_billing_address' => 1));
                                 $address = UserAddress::model()->findAllByAttributes(array('userid' => Yii::app()->user->getId()));
-
-                                Yii::app()->user->setState('total_amt', $total_amt);
-                                $params['total_amt'] = $total_amt;
+                                //  Yii::app()->user->setState('total_amt', $total_amt);
+                                $params['coupon_amount'] = $coupon_amount;
                                 $params['carts'] = $cart;
                                 $params['defaultShipping'] = $defaultShipping;
                                 $params['defaultBilling'] = $defaultBilling;
@@ -120,7 +136,7 @@ class CheckOutController extends Controller {
 
         public function actionCheckoutFinal() {
                 $cart = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
-                $this->render('checkoutFinal', array('carts' => $cart));
+                $this->render('checkoutFinal', array('carts' => $cart, 'coupon_amount' => $coupon_amount));
         }
 
         public function actionCompleteCheckOut() {

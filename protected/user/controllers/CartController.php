@@ -233,13 +233,28 @@ class CartController extends Controller {
                         $id = $user_details->id;
 
                         $cart_items = Cart::model()->findAllByAttributes(array('user_id' => $id));
+                        if (isset(Yii::app()->session['temp_user'])) {
+                                $condition = "user_id = " . $id . " AND session_id = " . Yii::app()->session['temp_user'];
+                        } else {
+                                Yii::app()->session['temp_user'] = microtime(true);
+                                $condition = "user_id = " . $id . " AND session_id = " . Yii::app()->session['temp_user'];
+                        }
                 } else {
                         $temp_id = Yii::app()->session['temp_user'];
                         $cart_items = Cart::model()->findAllByAttributes(array('session_id' => $temp_id));
+                        $condition = "session_id = " . $temp_id;
                 }
 
+                $coupon = CouponHistory::model()->find(array('condition' => $condition));
+                if (!empty($coupon)) {
+                        $coupen_details = Coupons::model()->findByPk($coupon->coupon_id);
+                        $coupon_amount = Coupons::model()->findByPk($coupon->coupon_id)->discount;
+                } else {
+                        $coupen_details = NULL;
+                        $coupon_amount = 0;
+                }
                 if (!empty($cart_items)) {
-                        $this->render('buynow', array('carts' => $cart_items));
+                        $this->render('buynow', array('carts' => $cart_items, 'coupen_details' => $coupen_details, 'coupon_amount' => $coupon_amount));
                 } else {
                         $this->render('empty_cart', array());
                 }
@@ -268,16 +283,83 @@ class CartController extends Controller {
                 }
         }
 
+        public function actionUpdateCoupon() {
+                $coupon_code = $_POST['coupon_code'];
+                if (Yii::app()->user->getId()) {
+
+                        $user_details = Users::model()->findByPk(Yii::app()->user->getState('user_id'));
+                        $user_id = $user_details->id;
+
+                        if (isset(Yii::app()->session['temp_user'])) {
+
+                                $condition = "user_id = " . $user_id . " AND session_id = " . Yii::app()->session['temp_user'];
+                        } else {
+                                echo "2";
+                                exit;
+                                Yii::app()->session['temp_user'] = microtime(true);
+                                $condition = "user_id = " . $user_id . " AND session_id = " . Yii::app()->session['temp_user'];
+                        }
+                } else {
+                        $user_id = Yii::app()->session['temp_user'];
+                        $condition = "session_id = " . $user_id;
+                }
+
+                $coupon_validation = Coupons::model()->find(array('condition' => "code = '" . $coupon_code . "'"));
+
+                if (!empty($coupon_validation)) {
+
+                        //  $is_coupon_exist = CouponHistory::model()->findByAttributes(array('coupon_id' => $coupon_validation->id), array('condition' => $condition));
+                        $is_coupon_exist = CouponHistory::model()->find(array('condition' => $condition));
+                        if (empty($is_coupon_exist)) {
+                                $new_coupen_value = new CouponHistory;
+                                $new_coupen_value->coupon_id = $coupon_validation->id;
+                                $new_coupen_value->total_amount = $coupon_validation->discount;
+                                $new_coupen_value->status = 1;
+                                if (Yii::app()->user->getId()) {
+                                        $new_coupen_value->user_id = $user_id;
+                                        $new_coupen_value->session_id = Yii::app()->session['temp_user'];
+                                } else {
+                                        $new_coupen_value->session_id = $user_id;
+                                }
+                                if ($new_coupen_value->save(false)) {
+                                        Yii::app()->user->setFlash('success', "Successfully Added Your Coupen Code");
+                                        $this->redirect(array('cart/MyCart'));
+                                }
+                        } else {
+                                Yii::app()->user->setFlash('error', "The Entered Coupen You Already Used");
+                                $this->redirect(array('cart/MyCart'));
+                        }
+                } else {
+                        Yii::app()->user->setFlash('error', "The Entered Coupen Is Invalid");
+                        $this->redirect(array('cart/MyCart'));
+                }
+        }
+
         public function actionTotal() {
 
                 if (Yii::app()->user->getState('user_id') != '' && Yii::app()->user->getState('user_id') != NULL) {
                         $id = Yii::app()->user->getState('user_id');
                         $cart_items = Cart::model()->findAllByAttributes(array('user_id' => $id));
+                        if (isset(Yii::app()->session['temp_user'])) {
+                                $condition = "user_id = " . $user_id . " AND session_id = " . Yii::app()->session['temp_user'];
+                        } else {
+                                Yii::app()->session['temp_user'] = microtime(true);
+                                $condition = "user_id = " . $user_id . " AND session_id = " . Yii::app()->session['temp_user'];
+                        }
                 } else {
                         $temp_id = Yii::app()->session['temp_user'];
                         $cart_items = Cart::model()->findAllByAttributes(array('session_id' => $temp_id));
+                        $condition = "session_id = " . $user_id;
                 }
                 $total = 0;
+                $coupon = CouponHistory::model()->find(array('condition' => $condition));
+                if (!empty($coupon)) {
+                        $coupen_details = Coupons::model()->findByPk($coupon->coupon_id);
+                        $coupon_amount = Coupons::model()->findByPk($coupon->coupon_id)->discount;
+                } else {
+                        $coupen_details = NULL;
+                        $coupon_amount = 0;
+                }
                 foreach ($cart_items as $items) {
 
                         $product = Products::model()->findByAttributes(array('id' => $items->product_id));
@@ -291,7 +373,8 @@ class CartController extends Controller {
 
                         $total+= $price;
                 }
-                echo Yii::app()->Currency->convert($total);
+                $sub = $total - $coupon_amount;
+                echo Yii::app()->Currency->convert($sub);
         }
 
         public function actionEmptyCart() {
@@ -373,6 +456,18 @@ class CartController extends Controller {
                                 echo '--' . $subcategory->category_name;
                                 $this->showCategory($subcategory->id);
                         }
+                }
+        }
+
+        public function actionRemoveCoupon() {
+                if (isset(Yii::app()->session['couponid'])) {
+                        if (isset(Yii::app()->session['user']))
+                                $data = CouponHistory::model()->findByAttributes(array('user_id' => Yii::app()->session['user'], 'coupon_id' => Yii::app()->session['couponid']));
+                        elseif (isset(Yii::app()->session['temp_user']))
+                                $data = CouponHistory::model()->findByAttributes(array('session_id' => Yii::app()->session['temp_user'], 'coupon_id' => Yii::app()->session['couponid']));
+                        if ($data->delete())
+                                unset(Yii::app()->session['couponid']);
+                        $this->redirect(Yii::app()->request->urlReferrer);
                 }
         }
 
