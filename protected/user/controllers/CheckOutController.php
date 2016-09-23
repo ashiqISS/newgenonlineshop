@@ -55,9 +55,11 @@ class CheckOutController extends Controller {
 
                         $params = array();
                         if (isset($_POST['total_amt'])) {
+
                                 $total_amt = $_POST['total_amt'];
                                 $user_id = Yii::app()->user->getState('user_id');
                                 $cart = Cart::model()->findAllByAttributes(array('user_id' => $user_id));
+
                                 if (!empty($cart)) {
 
                                         $billing = new UserAddress;
@@ -86,6 +88,7 @@ class CheckOutController extends Controller {
                                         }
                                         $shipp_address = UserAddress::model()->findByPk($ship_address_id);
 
+
                                         if (isset(Yii::app()->session['currency'])) {
                                                 $currency_rate = Yii::app()->session['currency']['rate'];
                                         } else {
@@ -104,8 +107,10 @@ class CheckOutController extends Controller {
 
 
                                         if (($bill_address_id != '') && ($ship_address_id != '')) {
+
                                                 // redirection into final checkout page
-                                                $this->createOrder($ship_address_id, $bill_address_id, $cart);
+                                                $coupon_id = $coupon->coupon_id;
+                                                $this->createOrder($ship_address_id, $bill_address_id, $cart, $coupon_id, $coupon_amount);
                                         }
                                 } else {
                                         echo 'cart empty !!';
@@ -136,6 +141,19 @@ class CheckOutController extends Controller {
 
         public function actionCheckoutFinal() {
                 $cart = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
+
+                $id = Yii::app()->user->getId();
+                if (isset(Yii::app()->session['temp_user'])) {
+                        $condition = "user_id = " . $id . " AND session_id = " . Yii::app()->session['temp_user'];
+                }
+                $coupon = CouponHistory::model()->find(array('condition' => $condition));
+                if (!empty($coupon)) {
+                        $coupen_details = Coupons::model()->findByPk($coupon->coupon_id);
+                        $coupon_amount = Coupons::model()->findByPk($coupon->coupon_id)->discount;
+                } else {
+                        $coupen_details = NULL;
+                        $coupon_amount = 0;
+                }
                 $this->render('checkoutFinal', array('carts' => $cart, 'coupon_amount' => $coupon_amount));
         }
 
@@ -181,7 +199,8 @@ class CheckOutController extends Controller {
 
                                 // delete from carts table
                                 $this->removeFromCart();
-
+                                unset(Yii::app()->session['temp_user']);
+                                unset(Yii::app()->session['orderid']);
                                 // todo check payment success or fail
                                 $this->redirect('orderPlaced');
                         } else {
@@ -206,8 +225,10 @@ class CheckOutController extends Controller {
                 $model->CB = Yii::app()->user->getId();
                 $model->DOC = date('Y-m-d');
                 $model->userid = Yii::app()->user->getId();
-                if ($model->validate()) {
-                        if ($model->save()) {
+                if ($model->validate(false)) {
+
+                        if ($model->save(false)) {
+
                                 return $model->id;
                         } else {
 
@@ -219,7 +240,7 @@ class CheckOutController extends Controller {
         }
 
         // insertion into order table on confirming user address before final checkout
-        public function createOrder($ship_address_id, $bill_address_id, $cart) {
+        public function createOrder($ship_address_id, $bill_address_id, $cart, $coupon_id, $coupon_amount) {
 
                 date_default_timezone_set('Asia/Calcutta');
                 $order = new Order;
@@ -228,9 +249,12 @@ class CheckOutController extends Controller {
                 $order->order_date = date('Y-m-d H:i:s');
                 $order->ship_address_id = $ship_address_id;
                 $order->bill_address_id = $bill_address_id;
+                $order->coupon_id = $coupon_id;
+                $order->discount_rate = $coupon_amount;
                 $order->payment_status = 0;
                 $order->status = 0;
                 $order->DOC = date('Y-m-d');
+
 //
                 if ($order->save()) {
                         $order_id = $order->id;

@@ -34,6 +34,7 @@ class CartController extends Controller {
                 }
 
                 $cart = Cart::model()->findByAttributes(array(), array('condition' => ($condition . ' and product_id=' . $id)));
+
                 if (!empty($cart)) {
                         $cart->quantity = $cart->quantity + $qty;
                         $cart->update();
@@ -200,9 +201,8 @@ class CartController extends Controller {
                                 echo 'Cart box is Empty';
                         }
                 } else {
-                        if (Yii::app()->user->getId()) {
-
-                                $session_id = Yii::app()->session['temp_user'];
+                        $session_id = Yii::app()->session['temp_user'];
+                        if ($session_id) {
                                 $cart_contents = Cart::model()->findAllByAttributes(array('session_id' => $session_id));
                                 if (!empty($cart_contents)) {
                                         echo ' <div class="drop_cart">';
@@ -229,9 +229,7 @@ class CartController extends Controller {
                 if (Yii::app()->user->getId()) {
 
                         $user_details = Users::model()->findByPk(Yii::app()->user->getState('user_id'));
-
                         $id = $user_details->id;
-
                         $cart_items = Cart::model()->findAllByAttributes(array('user_id' => $id));
                         if (isset(Yii::app()->session['temp_user'])) {
                                 $condition = "user_id = " . $id . " AND session_id = " . Yii::app()->session['temp_user'];
@@ -241,7 +239,9 @@ class CartController extends Controller {
                         }
                 } else {
                         $temp_id = Yii::app()->session['temp_user'];
+
                         $cart_items = Cart::model()->findAllByAttributes(array('session_id' => $temp_id));
+
                         $condition = "session_id = " . $temp_id;
                 }
 
