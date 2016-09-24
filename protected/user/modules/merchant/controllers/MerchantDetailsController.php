@@ -341,9 +341,7 @@ class MerchantDetailsController extends Controller {
         }
 
         public function actionMySales() {
-                public
-
-                function actionMySales() {
+          
                         $merchant_id = Yii::app()->user->getState('merchant_id');
                         $criteria = new CDbCriteria();
                         $sumary = new CDbCriteria();
@@ -368,7 +366,7 @@ class MerchantDetailsController extends Controller {
                         $this->render('sales', array('sales' => $sales, 'slaesSummary' => $salesSummary, 'fromdt' => $fromdate, 'todate' => $todate));
                 }
 
-        }
+       
 
         public function actionPaymentRequest() {
                 $merchant_id = Yii::app()->user->getState('merchant_id');

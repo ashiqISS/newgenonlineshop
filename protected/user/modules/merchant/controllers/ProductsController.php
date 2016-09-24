@@ -399,7 +399,7 @@ class ProductsController extends Controller {
         $criteria->select = "*";
         $criteria->condition = "merchant_id = $merchant_id";
         $criteria->order = 'id DESC';
-        $data = new CActiveDataProvider('Products', array('criteria' => $criteria, 'pagination' => array('pageSize' =>4)));
+        $data = new CActiveDataProvider('Products', array('criteria' => $criteria, 'pagination' => array('pageSize' =>10)));
         $this->render('my_products', array(
             'ModelInstance' => Products::model()->findAll($criteria),
             'dataProvider' => $data

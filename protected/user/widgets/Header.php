@@ -242,7 +242,7 @@ class Header extends CWidget {
                                 <div class="col-md-7 col-sm-4 hidden-xs hidden-sm">
                                     <div class="dropdown">
                                         <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">
-                                            <img class="bars" src="images/bars.png">Categories
+                                            <img class="bars" src="<?= Yii::app()->request->baseUrl ?>/images/bars.png">Categories
                                         </a>
                                          <?php echo ProductCategory::model()->loadCategory();?>
                                     </div>

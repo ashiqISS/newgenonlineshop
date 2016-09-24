@@ -42,15 +42,15 @@
                         <div class="panel-body sis">
                             <div class="table-responsive">
                                 <table class="table" style="text-align:left">
-                                    <thead>
+                                    <thead style="text-align: left">
                                         <tr>
                                             <th class="tb"> Image</th>
-                                            <th>Product Code</th>
-                                            <th>Product Name</th>
-                                            <th>Price</th>
-                                            <th>Description</th> 
+                                            <th style="text-align: left">Product Code</th>
+                                            <th style="text-align: left">Product Name</th>
+                                            <th style="text-align: left">Price</th>
+                                            <!--<th>Description</th>--> 
                                             <th style="color: #e40689 !important">Admin Approved</th> 
-                                            <th></th>
+                                            <th style="text-align: left"></th>
                                         
 
                                         </tr>

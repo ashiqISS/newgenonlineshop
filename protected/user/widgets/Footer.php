@@ -147,6 +147,14 @@ class Footer extends CWidget {
 
                 <script>
                         $(document).ready(function () {
+                            
+                                       $('.dropdown').click(function () {
+                                $('.dropdown').addClass('open');
+                                
+                              });
+                              
+                            
+                            
                             $('.ok').click(function () {
                                 var email = $('#email').val();
                                 var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;

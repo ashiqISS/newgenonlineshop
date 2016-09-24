@@ -15,17 +15,17 @@ $id = $data->id;
     <td><?php echo $data->product_code; ?></td>
     <td><?php echo $data->product_name; ?></td>
     <td style="width: 10%;"><?php echo Yii::app()->Currency->convert($data->price); ?></td>
-    <td>
+<!--    <td>
         <?php
-        $servicedesc = strip_tags($data->description);
-        $servicedesc = SUBSTR($servicedesc, 0, 200);
-        if ((strlen($data->description)) > 200) {
-            echo $servicedesc . '...';
-        } else {
-            echo $servicedesc;
-        }
+//        $servicedesc = strip_tags($data->description);
+//        $servicedesc = SUBSTR($servicedesc, 0, 200);
+//        if ((strlen($data->description)) > 200) {
+//            echo $servicedesc . '...';
+//        } else {
+//            echo $servicedesc;
+//        }
         ?>
-    </td>
+    </td>-->
     <td style="text-align: center;color: #e40689 !important"> <?php
         if ($data->is_admin_approved == 1) {
             echo 'Yes';

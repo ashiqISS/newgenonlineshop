@@ -277,19 +277,21 @@ if (!empty($featured_products)) {
                     }
                     ?>
                     <div class="left col col-md-3 col-sm-3 col-xs-6 fill">
-                        <div class="wrap-hover-content f1 facial-left-thumbnail thumbnail" style="background: url(<?php echo $main_image; ?>)no-repeat 50% 50%">
-                            <div class="hover-content">
-                                <div class="">
-                                    <!--<a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>"><img src="<?= $main_image; ?>"></a>-->
-                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/des.png" alt="">
-                                    <p>  
-                                        <?php echo $product->product_name; ?>
+                        <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
+                            <div class="wrap-hover-content f1 facial-left-thumbnail thumbnail" style="background: url(<?php echo $main_image; ?>)no-repeat 50% 50%">
+                                <div class="hover-content">
+                                    <div class="">
+                                        <!--<a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>"><img src="<?= $main_image; ?>"></a>-->
+                                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/des.png" alt="">
+                                        <p>  
+                                            <?php echo $product->product_name; ?>
 
-                                    </p>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div>
+                            </div>
+                        </a>
                         <!-- min height set for h2.If dont need pls remove it-->
                         <h2>
                             <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
