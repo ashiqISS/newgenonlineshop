@@ -82,7 +82,7 @@
         </style>
     </head>
     <script>
-        window.print();
+            window.print();
     </script>
     <body>
         <div class="invoice-box">
@@ -108,34 +108,50 @@
 
                 <tr class="information">
                     <td colspan="2">
-                        <table >
-                            <thead>
+                        <table class="table ac">
+                            <thead class="thead-inverse ac_bg">
                                 <tr>
-                                    <th>Sales Id</th>
-                                    <th>Product Id</th>
+                                    <th>Order Id</th>
+                                    <th>Customer Name</th>
                                     <th>Product Name </th>
-                                    <th>Date </th>
-                                    <th>Sales	</th>
-                                    <th>Total Amount </th>
+                                    <th>Amount </th>
+                                    <th>date of Order</th>
+                                    <th>Quantity </th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <?php
                                 foreach ($sales as $sale) {
-                                    ?>
+                                        $order_produ = Order::model()->findByPk($sale->order_id);
+                                        $order_products = Products::model()->findByPk($sale->product_id);
+                                        $user = BuyerDetails::model()->findByAttributes(array('user_id' => $order_produ->user_id));
+                                        ?>
 
-                                    <tr>
-                                        <td><?= $sale->id; ?></td>
-                                        <td><?= $sale->product_id; ?></td>
-                                        <td><?= Products::model()->findByPk($sale->product_id)->product_name; ?></td>
-                                        <td> <?= date("d/m/Y", strtotime($sale->DOC)); ?></td>
-                                        <td><?= $sale->quantity; ?></td>
-                                        <td><?= Yii::app()->Currency->convert($sale->total_amount); ?></td>
-                                    </tr>
-                                    <?php
+                                        <tr>
+                                            <td>ID-<?= $order_produ->id; ?></td>
+                                            <td>
+                                                <?php
+                                                if ($order_produ->user_id == '' || $order_produ->user_id == 0) {
+                                                        echo 'Unknown';
+                                                } else {
+                                                        echo $user->first_name . ' ' . $user->last_name;
+                                                }
+                                                ?>
+                                            </td>
+                                            <td><?= $order_products->product_name; ?></td>
+                                            <td> <?= $sale->amount; ?></td>
+                                            <td><?= date('d-m-Y', strtotime($order_produ->order_date)); ?></td>
+                                            <td><?= $sale->quantity; ?></td>
+                                        </tr>
+                                        <?php
                                 }
                                 ?>
+                                <tr>
+                                    <td colspan="1">Total Order </td> <td colspan="2"><? print_r($salesSummary->cnt) ?></td>
+                                    <td colspan="1">Total Amount</td> <td colspan="2"><? print_r($salesSummary->amt) ?></td>
+
+                                </tr>
 
                             </tbody>
                         </table>
@@ -146,7 +162,7 @@
                 <tr class="pro_info">
                     <th class="new">PRODUCT NAME</th><th class="new"> QUANTITY  </th><th class="new"> UNIT PRICE  </th><th class="new"> TOTAL  </th>
                 </tr>
-            <?php // foreach ($productOrder as $orders) { ?>
+            <?php // foreach ($productOrder as $orders) {  ?>
             <?php
 //                        $product = Products::model()->findByPk($orders->product_id);
 //                        print_r($product_names);exit;
