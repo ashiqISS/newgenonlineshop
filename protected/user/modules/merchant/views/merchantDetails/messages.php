@@ -44,6 +44,50 @@
         float: right;
         max-width: 100%;
     }
+    span.industry {
+        font-size: 12px;
+        font-weight: 400;
+        font-family: 'Lato', sans-serif;
+        text-align: left;
+        margin-bottom: 3px;
+        margin-top: 3px;
+        line-height: 23px;
+        color: #333;
+        display: block;
+    }
+    span.dat {
+        font-size: 12px;
+        font-weight: 400;
+        font-family: 'Lato', sans-serif;
+        text-align: left;
+        margin-bottom: 0px;
+        margin-top: 3px;
+        line-height: 21px;
+        color: #333;
+        display: block;
+    }
+    span.industry2 {
+        font-size: 12px;
+        font-weight: 400;
+        font-family: 'Lato', sans-serif;
+        text-align: right;
+        margin-bottom: 3px;
+        margin-top: 3px;
+        line-height: 23px;
+        color: #333;
+        display: block;
+    }
+    span.dat2 {
+        font-size: 12px;
+        font-weight: 400;
+        font-family: 'Lato', sans-serif;
+        text-align: right;
+        margin-bottom: 0px;
+        margin-top: 3px;
+        line-height: 21px;
+        color: #333;
+        display: block;
+    }
 </style>
 <section class="banner">
 

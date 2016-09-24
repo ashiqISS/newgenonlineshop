@@ -89,12 +89,12 @@ class Footer extends CWidget {
                                 <form class="form-inline" role="form">
                                     <div class="form-group">
 
-                                        <button type="button" class="btn btn-default ok">Send</button><br>
-                                        <span class="email_error" style="color: red"></span>
+                                        <input type="email" class="form-control2" id="email" placeholder="Enter Your Email">
                                     </div>
 
 
-                                    <button type="submit" class="btn btn-default ok">Send</button>
+                                    <button type="button" class="btn btn-default ok">Send</button><br>
+                                    <span class="email_error" style="color: red"></span>
                                 </form>
 
 
@@ -132,8 +132,8 @@ class Footer extends CWidget {
                 <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
                 <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
 
-                                                                                                                                                                                                                                                <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
-                                                                                                                                                                                                                                                <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
+                                                                                                                                                                                                                                                                <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.11.3.min.js"></script>-->
+                                                                                                                                                                                                                                                                <!--<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.min.js"></script>-->
                 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
                 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom.js"></script>
                 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/owl.carousel.min.js"></script>
@@ -269,10 +269,10 @@ class Footer extends CWidget {
 
 
 
-                                                                                                                                                                            <!--<script>
-                                                                                                                                                                            $.noConflict();
-                                                                                                                                                                            // Code that uses other library's $ can follow here.
-                                                                                                                                                                            </script>-->
+                                                                                                                                                                                            <!--<script>
+                                                                                                                                                                                            $.noConflict();
+                                                                                                                                                                                            // Code that uses other library's $ can follow here.
+                                                                                                                                                                                            </script>-->
                 <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/simpleMobileMenu.js"></script>
                 <script type="text/javascript">
 
