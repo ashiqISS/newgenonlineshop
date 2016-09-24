@@ -490,7 +490,7 @@
 
                 <div class="form-group">
                         <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'special_price'); ?>
+                                <?php echo $form->labelEx($model, 'Shipping Price'); ?>
                         </div>
                         <div class="col-sm-10">
                                 <?php echo $form->textField($model, 'special_price', array('class' => 'form-control')); ?>
@@ -498,69 +498,69 @@
                         </div>
                 </div>
 
-                <div class="form-group">
-                        <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'special_price_from'); ?>
-                        </div>
-                        <div class="col-sm-10">
-                                <?php
-                                $from = date('Y') - 2;
-                                $to = date('Y') + 20;
-                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                                    'model' => $model,
-                                    'attribute' => 'special_price_from',
-                                    'value' => 'special_price_from',
-                                    'options' => array(
-                                        'minDate' => '0', // this will disable previous dates from datepicker
-                                        'dateFormat' => 'dd-mm-yy',
-                                        'changeYear' => true, // can change year
-                                        'changeMonth' => true, // can change month
-                                        'yearRange' => $from . ':' . $to, // range of year
-                                        'showButtonPanel' => true, // show button panel
-                                    ),
-                                    'htmlOptions' => array(
-                                        'size' => '10', // textField size
-                                        'maxlength' => '10', // textField maxlength
-                                        'class' => 'form-control',
-                                        'placeholder' => 'special_price_from',
-                                    ),
-                                ));
-                                ?>
-                                <?php echo $form->error($model, 'special_price_from'); ?>
-                        </div>
-                </div>
+                <!--   <div class="form-group">
+                          <div class="col-sm-2 control-label">
+                <?php echo $form->labelEx($model, 'special_price_from'); ?>
+                          </div>
+                          <div class="col-sm-10">
+                <?php
+                $from = date('Y') - 2;
+                $to = date('Y') + 20;
+                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                    'model' => $model,
+                    'attribute' => 'special_price_from',
+                    'value' => 'special_price_from',
+                    'options' => array(
+                        'minDate' => '0', // this will disable previous dates from datepicker
+                        'dateFormat' => 'dd-mm-yy',
+                        'changeYear' => true, // can change year
+                        'changeMonth' => true, // can change month
+                        'yearRange' => $from . ':' . $to, // range of year
+                        'showButtonPanel' => true, // show button panel
+                    ),
+                    'htmlOptions' => array(
+                        'size' => '10', // textField size
+                        'maxlength' => '10', // textField maxlength
+                        'class' => 'form-control',
+                        'placeholder' => 'special_price_from',
+                    ),
+                ));
+                ?>
+                <?php echo $form->error($model, 'special_price_from'); ?>
+                          </div>
+                  </div>
 
-                <div class="form-group">
-                        <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'special_price_to'); ?>
-                        </div>
-                        <div class="col-sm-10">
-                                <?php
-                                $from = date('Y') - 2;
-                                $to = date('Y') + 20;
-                                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                                    'model' => $model,
-                                    'attribute' => 'special_price_to',
-                                    'value' => 'special_price_to',
-                                    'options' => array(
-                                        'minDate' => '0', // this will disable previous dates from datepicker
-                                        'dateFormat' => 'dd-mm-yy',
-                                        'changeYear' => true, // can change year
-                                        'changeMonth' => true, // can change month
-                                        'yearRange' => $from . ':' . $to, // range of year
-                                        'showButtonPanel' => true, // show button panel
-                                    ),
-                                    'htmlOptions' => array(
-                                        'size' => '10', // textField size
-                                        'maxlength' => '10', // textField maxlength
-                                        'class' => 'form-control',
-                                        'placeholder' => 'special_price_to',
-                                    ),
-                                ));
-                                ?>
-                                <?php echo $form->error($model, 'special_price_to'); ?>
-                        </div>
-                </div>
+                  <div class="form-group">
+                          <div class="col-sm-2 control-label">
+                <?php echo $form->labelEx($model, 'special_price_to'); ?>
+                          </div>
+                          <div class="col-sm-10">
+                <?php
+                $from = date('Y') - 2;
+                $to = date('Y') + 20;
+                $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                    'model' => $model,
+                    'attribute' => 'special_price_to',
+                    'value' => 'special_price_to',
+                    'options' => array(
+                        'minDate' => '0', // this will disable previous dates from datepicker
+                        'dateFormat' => 'dd-mm-yy',
+                        'changeYear' => true, // can change year
+                        'changeMonth' => true, // can change month
+                        'yearRange' => $from . ':' . $to, // range of year
+                        'showButtonPanel' => true, // show button panel
+                    ),
+                    'htmlOptions' => array(
+                        'size' => '10', // textField size
+                        'maxlength' => '10', // textField maxlength
+                        'class' => 'form-control',
+                        'placeholder' => 'special_price_to',
+                    ),
+                ));
+                ?>
+                <?php echo $form->error($model, 'special_price_to'); ?>
+                          </div>
+                  </div>-->
 
                 <div class="form-group">
                         <div class="col-sm-2 control-label">
@@ -592,25 +592,25 @@
                         </div>
                 </div>
 
-                <div class="form-group">
-                        <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'sort_order'); ?>
-                        </div>
-                        <div class="col-sm-10">
-                                <?php echo $form->textField($model, 'sort_order', array('class' => 'form-control')); ?>
-                                <?php echo $form->error($model, 'sort_order'); ?>
-                        </div>
-                </div>
+                <!--  <div class="form-group">
+                          <div class="col-sm-2 control-label">
+                <?php echo $form->labelEx($model, 'sort_order'); ?>
+                          </div>
+                          <div class="col-sm-10">
+                <?php echo $form->textField($model, 'sort_order', array('class' => 'form-control')); ?>
+                <?php echo $form->error($model, 'sort_order'); ?>
+                          </div>
+                  </div>
 
-                <div class="form-group">
-                        <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'requires_shipping'); ?>
-                        </div>
-                        <div class="col-sm-10">
-                                <?php echo $form->dropDownList($model, 'requires_shipping', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
-                                <?php echo $form->error($model, 'requires_shipping'); ?>
-                        </div>
-                </div>
+                  <div class="form-group">
+                          <div class="col-sm-2 control-label">
+                <?php echo $form->labelEx($model, 'requires_shipping'); ?>
+                          </div>
+                          <div class="col-sm-10">
+                <?php echo $form->dropDownList($model, 'requires_shipping', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
+                <?php echo $form->error($model, 'requires_shipping'); ?>
+                          </div>
+                  </div>-->
 
                 <?php /*
                   <div class="form-group">
@@ -624,45 +624,45 @@
                   </div> */ ?>
 
 
-                <div class="form-group">
-                        <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'gift_option'); ?>
-                        </div>
-                        <div class="col-sm-10">
-                                <?php echo $form->dropDownList($model, 'gift_option', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
-                                <?php echo $form->error($model, 'gift_option'); ?>
-                        </div>
-                </div>
+                <!--   <div class="form-group">
+                           <div class="col-sm-2 control-label">
+                <?php echo $form->labelEx($model, 'gift_option'); ?>
+                           </div>
+                           <div class="col-sm-10">
+                <?php echo $form->dropDownList($model, 'gift_option', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
+                <?php echo $form->error($model, 'gift_option'); ?>
+                           </div>
+                   </div>
 
-                <div class="form-group">
-                        <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'stock_availability'); ?>
-                        </div>
-                        <div class="col-sm-10">
-                                <?php echo $form->dropDownList($model, 'stock_availability', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
-                                <?php echo $form->error($model, 'stock_availability'); ?>
-                        </div>
-                </div>
+                   <div class="form-group">
+                           <div class="col-sm-2 control-label">
+                <?php echo $form->labelEx($model, 'stock_availability'); ?>
+                           </div>
+                           <div class="col-sm-10">
+                <?php echo $form->dropDownList($model, 'stock_availability', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
+                <?php echo $form->error($model, 'stock_availability'); ?>
+                           </div>
+                   </div>
 
-                <div class="form-group">
-                        <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'video_link'); ?>
-                        </div>
-                        <div class="col-sm-10">
-                                <?php echo $form->textField($model, 'video_link', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control')); ?>
-                                <?php echo $form->error($model, 'video_link'); ?>
-                        </div>
-                </div>
+                   <div class="form-group">
+                           <div class="col-sm-2 control-label">
+                <?php echo $form->labelEx($model, 'video_link'); ?>
+                           </div>
+                           <div class="col-sm-10">
+                <?php echo $form->textField($model, 'video_link', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control')); ?>
+                <?php echo $form->error($model, 'video_link'); ?>
+                           </div>
+                   </div>
 
-                <div class="form-group">
-                        <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'exchange'); ?>
-                        </div>
-                        <div class="col-sm-10">
-                                <?php echo $form->dropDownList($model, 'exchange', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
-                                <?php echo $form->error($model, 'exchange'); ?>
-                        </div>
-                </div>
+                   <div class="form-group">
+                           <div class="col-sm-2 control-label">
+                <?php echo $form->labelEx($model, 'exchange'); ?>
+                           </div>
+                           <div class="col-sm-10">
+                <?php echo $form->dropDownList($model, 'exchange', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
+                <?php echo $form->error($model, 'exchange'); ?>
+                           </div>
+                   </div>-->
 
                 <div class="form-group">
                         <div class="col-sm-2 control-label">
@@ -708,25 +708,25 @@
                         </div>
                 </div>
 
-                <div class="form-group">
-                        <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'is_cod_available'); ?>
-                        </div>
-                        <div class="col-sm-10">
-                                <?php echo $form->dropDownList($model, 'is_cod_available', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
-                                <?php echo $form->error($model, 'is_cod_available'); ?>
-                        </div>
-                </div>
+                <!--    <div class="form-group">
+                            <div class="col-sm-2 control-label">
+                <?php echo $form->labelEx($model, 'is_cod_available'); ?>
+                            </div>
+                            <div class="col-sm-10">
+                <?php echo $form->dropDownList($model, 'is_cod_available', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
+                <?php echo $form->error($model, 'is_cod_available'); ?>
+                            </div>
+                    </div>
 
-                <div class="form-group">
-                        <div class="col-sm-2 control-label">
-                                <?php echo $form->labelEx($model, 'is_available'); ?>
-                        </div>
-                        <div class="col-sm-10">
-                                <?php echo $form->dropDownList($model, 'is_available', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
-                                <?php echo $form->error($model, 'is_available'); ?>
-                        </div>
-                </div>
+                    <div class="form-group">
+                            <div class="col-sm-2 control-label">
+                <?php echo $form->labelEx($model, 'is_available'); ?>
+                            </div>
+                            <div class="col-sm-10">
+                <?php echo $form->dropDownList($model, 'is_available', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
+                <?php echo $form->error($model, 'is_available'); ?>
+                            </div>
+                    </div>-->
 
                 <div class="form-group">
                         <div class="col-sm-2 control-label">
@@ -781,14 +781,14 @@
 
         </div><!-- form -->
         <script>
-                $(document).ready(function () {
-                        $('.slug').keyup(function () {
+                $(document).ready(function() {
+                        $('.slug').keyup(function() {
                                 $('#Products_canonical_name').val(slug($(this).val()));
                         });
 
 
                 });
-                $(document).ready(function () {
+                $(document).ready(function() {
                         var name1 = $(".type_change").val();
                         if (name1 == 1 || name1 == 3) {
                                 $(".deal_link").show();
@@ -802,7 +802,7 @@
                                 $(".bargain").hide();
 
                         }
-                        $(".type_change").change(function () {
+                        $(".type_change").change(function() {
                                 var name = $(this).val();
                                 if (name == 1 || name == 3) {
                                         $(".deal_link").show();
@@ -821,7 +821,7 @@
 
 
                 });
-                var slug = function (str) {
+                var slug = function(str) {
                         var $slug = '';
                         var trimmed = $.trim(str);
                         $slug = trimmed.replace(/[^a-z0-9-]/gi, '-').

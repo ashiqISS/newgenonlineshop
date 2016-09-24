@@ -41,8 +41,11 @@
                                                         } else {
                                                                 $price = $prod_details->price;
                                                         }
+                                                        $shipprice = $prod_details->special_price;
                                                         $cart_qty = $cart->quantity;
                                                         $tot_price = $cart_qty * $price;
+                                                        $ship = $cart_qty * $shipprice;
+                                                        $gt = $tot_price + $ship;
                                                         ?>
 
                                                         <div>   <!-- ordered item start -->
@@ -73,8 +76,10 @@
                                                                 </div>
                                                         </div>  <!-- ordered items end -->
                                                         <?php
+                                                        $subt+=$tot_price;
+                                                        $total += $gt;
+                                                        $sp += $ship;
                                                 }
-                                                $total_amt+=$tot_price;
                                                 ?>
 
 
@@ -91,13 +96,25 @@
                                                 <tbody>
                                                         <tr>
                                                                 <td class="tdd">Sub-Total :</td>
-                                                                <td class="tdd"><?= Yii::app()->Currency->convert($total_amt); ?></td>
+                                                                <td class="tdd"><?= Yii::app()->Currency->convert($subt); ?></td>
 
                                                         </tr>
 
                                                         <?php
+                                                        foreach (Yii::app()->Discount->Taxcalculate($carts) as $key11 => $value11) {
+                                                                ?>
+                                                                <tr>
+                                                                        <td class="tdd"><?php echo $key11; ?></span></td>
+                                                                        <td class="tdd range"><?php echo Yii::app()->Currency->convert($value11); ?></span></td>
+                                                                </tr>
+                                                        <?php } ?>
+                                                        <tr>
+                                                                <td class="tdd">Shipping Charge</td>
+                                                                <td class="tdd range"><span class="colors1"><?php echo Yii::app()->Currency->convert($sp); ?></span></td>
+                                                        </tr>
+                                                        <?php
                                                         if ($coupon_amount > 0) {
-                                                                $tot = $total_amt;
+                                                                $tot = $total;
                                                                 $coup = $coupon_amount;
                                                                 $grant = $tot - $coup;
                                                                 ?>
@@ -107,20 +124,20 @@
                                                                 </tr>
                                                                 <?php
                                                         } else {
-                                                                $tot = $total_amt;
+                                                                $tot = $total;
                                                                 $grant = $tot;
                                                         }
                                                         ?>
                                                         <tr>
                                                                 <td class="tdd">Total :</td>
-                                                                <td class="tdd"><?= Yii::app()->Currency->convert($grant); ?></td>
+                                                                <td class="tdd"><?= Yii::app()->Currency->convert($granttotal); ?></td>
 
 
                                                         </tr>
                                                 </tbody>
                                         </table>
                                         <div style="padding-top: 2em;">
-                                                <h2 style="font-weight: 500;font-size: 21px;color: black">Total Amount to pay : <?= Yii::app()->Currency->convert($grant); ?></h2>
+                                                <h2 style="font-weight: 500;font-size: 21px;color: black">Total Amount to pay : <?= Yii::app()->Currency->convert($granttotal); ?></h2>
                                         </div>
                                         <form method="POST" action="<?= Yii::app()->request->baseUrl; ?>/index.php/CheckOut/CompleteCheckOut">
                                                 <div style="padding-top: 2em;color: #635c5c;">

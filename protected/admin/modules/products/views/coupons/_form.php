@@ -31,27 +31,27 @@
         <?php echo $form->textField($model, 'user_id', array('size' => 20, 'maxlength' => 20, 'class' => 'form-control')); ?>
         <?php echo $form->error($model, 'user_id'); ?>
            </div>
-       </div>
+       </div>-->
 
-               <div class="form-group">
-           <div class="col-sm-2 control-label">
-        <?php echo $form->labelEx($model, 'cash_limit'); ?>
-           </div>
-           <div class="col-sm-10">
-        <?php echo $form->textField($model, 'cash_limit', array('class' => 'form-control')); ?>
-        <?php echo $form->error($model, 'cash_limit'); ?>
-           </div>
-       </div>
+        <div class="form-group">
+                <div class="col-sm-2 control-label">
+                        <?php echo $form->labelEx($model, 'cash_limit'); ?>
+                </div>
+                <div class="col-sm-10">
+                        <?php echo $form->textField($model, 'cash_limit', array('class' => 'form-control')); ?>
+                        <?php echo $form->error($model, 'cash_limit'); ?>
+                </div>
+        </div>
 
-               <div class="form-group">
-           <div class="col-sm-2 control-label">
+        <!--   <div class="form-group">
+       <div class="col-sm-2 control-label">
         <?php echo $form->labelEx($model, 'gift_card_amount'); ?>
-           </div>
-           <div class="col-sm-10">
+       </div>
+       <div class="col-sm-10">
         <?php echo $form->textField($model, 'gift_card_amount', array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'gift_card_amount'); ?>
-           </div>
-       </div>-->
+       </div>
+   </div>-->
 
         <div class="form-group">
                 <div class="col-sm-2 control-label">

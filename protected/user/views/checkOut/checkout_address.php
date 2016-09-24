@@ -46,8 +46,9 @@
 
                                                 $params['selected_billing'] = $selected_billing;
                                                 $params['selected_shipping'] = $selected_shipping;
-                                                //$params['total_amt'] = $total_amt;
+                                                $params['total_amt'] = $total_amt;
                                                 $params['coupon_amount'] = $coupon_amount;
+                                                $params['coupon_code'] = $coupon_code;
                                                 $params['carts'] = $carts;
                                                 $params['defaultShipping'] = $defaultShipping;
                                                 $params['defaultBilling'] = $defaultBilling;
@@ -69,7 +70,9 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                        <?php echo $this->renderPartial('_checkout_address_right_content', array('carts' => $carts, 'coupon_amount' => $coupon_amount)) ?>
+                                        <?php
+                                        echo $this->renderPartial('_checkout_address_right_content', array('carts' => $carts, 'coupon_amount' => $coupon_amount, 'coupon_code' => $coupon_code))
+                                        ?>
 
 
                                 </div>

@@ -65,7 +65,7 @@
                                 $grant = $tot - $coup;
                                 ?>
                                 <tr>
-                                        <td class="tdd">Coupon Code (<span style="font-size: 9px;"><?php echo $coupen_details->code; ?></span>)</td>
+                                        <td class="tdd">Coupon Code (<span style="font-size: 9px;"><?php echo $coupon_code; ?></span>)</td>
                                         <td class="tdd range"><?php echo Yii::app()->Currency->convert($coupon_amount); ?></td>
                                 </tr>
                                 <?php

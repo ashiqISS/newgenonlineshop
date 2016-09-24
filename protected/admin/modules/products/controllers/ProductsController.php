@@ -71,6 +71,7 @@ class ProductsController extends Controller {
                         $model->meta_description = $_POST['Products']['meta_description'];
                         $model->new_from = $_POST['Products']['new_from'];
                         $model->new_to = $_POST['Products']['new_to'];
+                        $model->special_price = $_POST['Products']['special_price'];
                         $model->sale_from = $_POST['Products']['sale_from'];
                         $model->sale_to = $_POST['Products']['sale_to'];
                         $model->special_price_from = $_POST['Products']['special_price_from'];
@@ -217,6 +218,7 @@ class ProductsController extends Controller {
                         $model->meta_description = $_POST['Products']['meta_description'];
                         $model->new_from = $_POST['Products']['new_from'];
                         $model->new_to = $_POST['Products']['new_to'];
+                        $model->special_price = $_POST['Products']['special_price'];
                         $model->sale_from = $_POST['Products']['sale_from'];
                         $model->sale_to = $_POST['Products']['sale_to'];
                         $model->special_price_from = $_POST['Products']['special_price_from'];

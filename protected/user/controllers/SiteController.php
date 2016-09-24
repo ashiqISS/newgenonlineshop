@@ -50,6 +50,7 @@ class SiteController extends Controller {
          * when an action is not explicitly requested by users.
          */
         public function actionIndex() {
+                Yii::app()->session['currency'] = Currency::model()->findByPk(1);
 //                $this->layout = 'test';
 //        $this->render('index');
                 $this->layout = 'main';

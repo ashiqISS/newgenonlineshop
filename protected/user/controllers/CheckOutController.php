@@ -120,6 +120,7 @@ class CheckOutController extends Controller {
                                 $address = UserAddress::model()->findAllByAttributes(array('userid' => Yii::app()->user->getId()));
                                 //  Yii::app()->user->setState('total_amt', $total_amt);
                                 $params['coupon_amount'] = $coupon_amount;
+                                $params['coupon_code'] = $coupen_details->code;
                                 $params['carts'] = $cart;
                                 $params['defaultShipping'] = $defaultShipping;
                                 $params['defaultBilling'] = $defaultBilling;
@@ -146,6 +147,7 @@ class CheckOutController extends Controller {
                 if (isset(Yii::app()->session['temp_user'])) {
                         $condition = "user_id = " . $id . " AND session_id = " . Yii::app()->session['temp_user'];
                 }
+
                 $coupon = CouponHistory::model()->find(array('condition' => $condition));
                 if (!empty($coupon)) {
                         $coupen_details = Coupons::model()->findByPk($coupon->coupon_id);
@@ -154,7 +156,45 @@ class CheckOutController extends Controller {
                         $coupen_details = NULL;
                         $coupon_amount = 0;
                 }
-                $this->render('checkoutFinal', array('carts' => $cart, 'coupon_amount' => $coupon_amount));
+                $granttotal = Yii::app()->Discount->Granttotal();
+                $this->render('checkoutFinal', array('carts' => $cart, 'coupon_amount' => $coupon_amount, 'coupen_details' => $coupen_details, 'granttotal' => $granttotal));
+        }
+
+        public function granttotal() {
+                if (Yii::app()->user->getId()) {
+                        $cart_items = cart::model()->findAllByAttributes(array('user_id' => Yii::app()->user->getId()));
+                        $user_id = Yii::app()->user->getId();
+                        if (isset(Yii::app()->session['temp_user'])) {
+                                $condition = "user_id = " . $user_id . " AND session_id = " . Yii::app()->session['temp_user'];
+                        } else {
+                                Yii::app()->session['temp_user'] = microtime(true);
+                                $condition = "user_id = " . $user_id . " AND session_id = " . Yii::app()->session['temp_user'];
+                        }
+                } else if (isset(Yii::app()->session['temp_user'])) {
+                        $cart_items = cart::model()->findAllByAttributes(array('session_id' => Yii::app()->session['temp_user']));
+                        $user_id = Yii::app()->session['temp_user'];
+                        $condition = "session_id = " . $user_id;
+                }
+                $coupon = CouponHistory::model()->find(array('condition' => $condition));
+                if (!empty($coupon)) {
+                        $coupen_details = Coupons::model()->findByPk($coupon->coupon_id);
+                        $coupon_amount = Coupons::model()->findByPk($coupon->coupon_id)->discount;
+                } else {
+                        $coupen_details = NULL;
+                        $coupon_amount = 0;
+                }
+
+                $tax = Yii::app()->Discount->Taxcalculate($cart_items);
+                foreach ($cart_items as $cart_item) {
+                        $product = Products::model()->findByPk($cart_item->product_id);
+                        $ship +=$product->special_price;
+                        $price = Yii::app()->Discount->DiscountAmount($product);
+                        $subtotal += ($price * $cart_item->quantity);
+                }
+                foreach ($tax as $taxs => $value) {
+                        $val +=$value;
+                }
+                return $subtotal - $coupon_amount + $ship + $val;
         }
 
         public function actionCompleteCheckOut() {

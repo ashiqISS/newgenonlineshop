@@ -17,7 +17,7 @@ return array(
     // preloading 'log' component
 //    'preload' => array('log', 'booster'),
     'preload' => array('log'),
-     'preload' => array('log', 'booster'),
+    'preload' => array('log', 'booster'),
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
@@ -52,6 +52,7 @@ return array(
         'category' => array('class' => 'selectCategory'),
         'Menu' => array('class' => 'MenuCategory'),
         'Discount' => array('class' => 'DiscountPrice'),
+        'Shipping' => array('class' => 'Shipping'),
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,

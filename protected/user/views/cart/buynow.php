@@ -72,7 +72,7 @@
                                                                                         <th>Price</th>
                                                                                         <th>Qty</th>
                                                                                         <th>Delete</th>
-                                                                                        <th>Subtotal</th>
+                                                                                        <th>Total</th>
                                                                                 </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -103,19 +103,25 @@
                                                                                                 } else {
                                                                                                         $price = $prod_details->price;
                                                                                                 }
+                                                                                                $shipprice = $prod_details->special_price;
                                                                                                 $cart_qty = $cart->quantity;
                                                                                                 $tot_price = $cart_qty * $price;
+                                                                                                $ship = $cart_qty * $shipprice;
+                                                                                                $gt = $tot_price + $ship;
                                                                                                 ?>
                                                                                                 <td><h2><?= Yii::app()->Currency->convert($price); ?></h2></td>
                                                                                                 <td class="">
-                                                                                                        <select  class="quantity qty" cart="<?php echo $cart->id; ?>" style="width: 35px !important">
-                                                                                                                <?php for ($i = 1; $i < 5; $i++) {
-                                                                                                                        ?>
-                                                                                                                        <option <?= $cart->quantity == $i ? 'selected' : '' ?> value="<?= $i; ?>" class="jsNumeric jsQty p0  qty" "><?= $i; ?> </option>
-                                                                                                                <?php }
-                                                                                                                ?>
-                                                                                                        </select>
+                                                                                                        <form action="<?php echo Yii::app()->request->baseUrl; ?>/index.php/cart/updatecart" method="post" id="qty_<?php echo $cart->id; ?>">
+                                                                                                                <input type="hidden" value="<?php echo $cart->id; ?>" name="cart_id" />
 
+                                                                                                                <select  class="quantity qty" id="<?php echo $cart->id; ?>" name="cart_quantity" cart="<?php echo $cart->id; ?>" style="width: 35px !important">
+                                                                                                                        <?php for ($i = 1; $i < 5; $i++) {
+                                                                                                                                ?>
+                                                                                                                                <option <?= $cart->quantity == $i ? 'selected' : '' ?> value="<?= $i; ?>" class="jsNumeric jsQty p0  qty"><?= $i; ?> </option>
+                                                                                                                        <?php }
+                                                                                                                        ?>
+                                                                                                                </select>
+                                                                                                        </form>
 
                                                                                                 </td>
                                                                                                 <td><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/cart/Delete?id=<?= $cart->id; ?>"><img class="bin" src="<?= Yii::app()->baseUrl; ?>/images/ben.png"></a></td>
@@ -123,7 +129,9 @@
                                                                                 <input type="hidden" id="cart_<?php echo $cart->id; ?>" value="<?php echo $prod_details->id; ?>">
                                                                                 </tr>
                                                                                 <?php
-                                                                                $total+= $tot_price;
+                                                                                $subt+=$tot_price;
+                                                                                $total += $gt;
+                                                                                $sp += $ship;
                                                                         }
                                                                         ?>
                                                                         </tbody>
@@ -149,7 +157,20 @@
                                                 <tbody>
                                                         <tr>
                                                                 <td class="tdd">Sub-Total :</td>
-                                                                <td class="tdd range"><?= Yii::app()->Currency->convert($total); ?></td>
+                                                                <td class="tdd range"><?= Yii::app()->Currency->convert($subt); ?></td>
+                                                        </tr>
+
+                                                        <?php
+                                                        foreach (Yii::app()->Discount->Taxcalculate($carts) as $key11 => $value11) {
+                                                                ?>
+                                                                <tr>
+                                                                        <td class="tdd"><?php echo $key11; ?></span></td>
+                                                                        <td class="tdd range"><?php echo Yii::app()->Currency->convert($value11); ?></span></td>
+                                                                </tr>
+                                                        <?php } ?>
+                                                        <tr>
+                                                                <td class="tdd">Shipping Charge</td>
+                                                                <td class="tdd range"><span class="colors1"><?php echo Yii::app()->Currency->convert($sp); ?></span></td>
                                                         </tr>
                                                         <?php
                                                         if ($coupon_amount > 0) {
@@ -170,7 +191,7 @@
 
                                                         <tr>
                                                                 <td class="tdd">Total :</td>
-                                                                <td class="tdd range"><?= Yii::app()->Currency->convert($grant); ?></td>
+                                                                <td class="tdd range"><?= Yii::app()->Currency->convert($granttotal); ?></td>
 
                                                         </tr>
                                                 </tbody>
@@ -219,21 +240,29 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
         $(document).ready(function() {
+
+                $(".quantity").change(function() {
+
+                        var id = $(this).attr("id");
+                        $("#qty_" + id).submit();
+                });
+        });
+        $(document).ready(function() {
                 // submit checkout form
                 $('#checkout_btn').click(function() {
                         $('#checkoutForm').submit();
                 });
 
-                $('.quantity').change(function() {
+                $('.quantity1').change(function() {
                         var cart = $(this).attr('cart');
                         var qty = this.value;
                         var product_id = $('#cart_' + cart).val();
-                        quantityChange(cart, qty, product_id);
+                        quantityChange1(cart, qty, product_id);
                         total();
                 });
 
         });
-        function quantityChange(cart, qty, product_id) {
+        function quantityChange1(cart, qty, product_id) {
 
                 $.ajax({
                         type: "POST",

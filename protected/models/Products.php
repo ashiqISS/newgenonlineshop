@@ -113,6 +113,7 @@ class Products extends CActiveRecord {
                     'brand_id' => 'Brand',
                     'merchant_id' => 'Merchant',
                     'merchant_type' => 'Merchant Type',
+                    'wholesale_quantity' => 'Wholesale Quantity',
                     'description' => 'Description',
                     'main_image' => 'Main Image',
                     'gallery_images' => 'Gallery Images',
@@ -184,6 +185,7 @@ class Products extends CActiveRecord {
                 $criteria->compare('product_code', $this->product_code, true);
                 $criteria->compare('brand_id', $this->brand_id);
                 $criteria->compare('merchant_id', $this->merchant_id);
+                $criteria->compare('wholesale_quantity', $this->wholesale_quantity);
                 $criteria->compare('merchant_type', $this->merchant_type);
                 $criteria->compare('description', $this->description, true);
                 $criteria->compare('main_image', $this->main_image, true);
