@@ -398,8 +398,8 @@ class ProductsController extends Controller {
         $criteria = new CDbCriteria();
         $criteria->select = "*";
         $criteria->condition = "merchant_id = $merchant_id";
-        $criteria->order = 'DOC DESC';
-        $data = new CActiveDataProvider('Products', array('criteria' => $criteria, 'pagination' => array('pageSize' => 10)));
+        $criteria->order = 'id DESC';
+        $data = new CActiveDataProvider('Products', array('criteria' => $criteria, 'pagination' => array('pageSize' =>4)));
         $this->render('my_products', array(
             'ModelInstance' => Products::model()->findAll($criteria),
             'dataProvider' => $data

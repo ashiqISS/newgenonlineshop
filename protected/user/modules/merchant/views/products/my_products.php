@@ -1,6 +1,9 @@
-   
-
-
+<style>
+    .pagination {
+        float: right;
+        margin-top: 0;
+    }
+</style>
 <section class="banner">
 
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?php echo Yii::app()->request->baseUrl; ?>/images/img_inn.jpg)">
@@ -16,27 +19,16 @@
 
 </section>
 
-
 <div class="clearfix"></div>
-
-
 
 <section class="cart-main">
     <div class="container">
 
-
-
-        <div class="heading">
-
-
-
-
-        </div>
-
-
         <div class="row">
             <div class="col-md-9">
-
+  <div class="heading">
+            My Products
+        </div>
                 <div class="left-my_acnt">
 
                     <?php
@@ -45,10 +37,9 @@
                     } else {
                         ?>
 
-
+               
 
                         <div class="panel-body sis">
-
                             <div class="table-responsive">
                                 <table class="table" style="text-align:left">
                                     <thead>
@@ -68,15 +59,14 @@
 
 
                                         <?php
-                                        $this->widget('zii.widgets.CListView', array(
+                                        $this->widget('booster.widgets.TbListView', array(
                                             'id' => 'product-list',
                                             'dataProvider' => $dataProvider,
                                             'itemView' => 'product_list',
-                                            //        'sortableAttributes' => $sortAttr,
-                                            'template' => '{items}{pager}',
+                                            'template'=>'{items}{pager}',
                                             'emptyText' => ' <center><div style="vertical-align: central;padding-top: 8em;padding-bottom: 8em">No products added yet.</div></center>',
                                         ));
-                                        echo '<br>';
+//                                        echo '<br>';
                                         ?>
 
 

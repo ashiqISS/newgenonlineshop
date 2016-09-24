@@ -1,10 +1,15 @@
+<style>
+    .input-fldd {
+    color: #555;  
+}
+</style>
 <section class="banner">
 
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?php echo Yii::app()->request->baseUrl; ?>/images/img_inn.jpg)">
 
 
         <div class="banner_txt">
-            <h1 class="animated fadeInLeft m2">Add <span class="redish">Product </span></h1>
+            <h1 class="animated fadeInLeft m2">Featured <span class="redish">Ads </span></h1>
 
         </div>
 
@@ -154,7 +159,7 @@
                                                     'htmlOptions' => array(
                                                         'size' => '10', // textField size
                                                         'maxlength' => '10', // textField maxlength
-                                                        'class' => 'form-set',
+                                                        'class' => 'form-control input-fldd',
                                                     ),
                                                 ));
                                                 ?>
@@ -192,7 +197,7 @@
                                                     'htmlOptions' => array(
                                                         'size' => '10', // textField size
                                                         'maxlength' => '10', // textField maxlength
-                                                        'class' => 'form-set',
+                                                        'class' => 'form-control input-fldd',
                                                     ),
                                                 ));
                                                 ?>

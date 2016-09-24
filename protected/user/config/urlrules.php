@@ -13,6 +13,7 @@ return array(
     'buyer-activation' => 'registration/buyerDetails/UserActivation',
     'user-registration' => 'registration/buyerDetails/create',
     'merchant-home' => 'merchant/merchantDetails/home',
+    'orders' => 'merchant/merchantDetails/myOrders',
     'merchant-dashboard' => 'merchant/merchantDetails/dashboard',
     'merchant-profile' => 'merchant/merchantDetails/profile',
     'merchant-editProfile' => 'merchant/merchantDetails/editProfile',

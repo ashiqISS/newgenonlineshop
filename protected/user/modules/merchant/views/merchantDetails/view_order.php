@@ -146,7 +146,7 @@
                                                 array('name' => 'status',
 //                        'filter' => CHtml::listData(Products::model()->findAll(), 'id', 'product_name'),
                                                     'value' => function($data) {
-                                                            return OrderStatus::model()->findByPk($data->order_status)->title . ' ' . OrderStatus::model()->findByPk($data->order_status)->description;
+                                                            return OrderStatus::model()->findByPk($data->order_status)->title . ' : ' . OrderStatus::model()->findByPk($data->order_status)->description;
                                                     },
                                                     'type' => 'raw',
                                                 ),

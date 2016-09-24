@@ -40,75 +40,15 @@
                 </div>
 
             </div>       
-
+            <hr>
             <div class="row">
                 <h2>Recent Orders</h2>
-                <?php if (!empty($sale)) { ?>
-                    <div class="table-responsive ord_a">
-                        <table class="table ac">
-                            <thead class="thead-inverse ">
-                                <tr>
-                                    <th>Order id</th>
-                                    <th>Product Name </th>
-                                    <th> Ordered date	</th>
-                                    <th>Total price</th>
-                                    <th> Status</th>
-                                    <th>View details</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <?php
-                                foreach ($sale as $sales) {
-                                    $order_id = Order::model()->findByPk($sales->order_id);
-                                    $products_name = Products::model()->findByAttributes(array('id' => $sales->product_id));
-                                    ?>
-                                    <tr>
-                                        <td>#<?= $sales->order_id; ?></td>
-                                        <td><?= $products_name->product_name; ?></td>
-                                        <td><?= date('d - m - Y', strtotime($order_id->order_date)); ?></td>
-                                        <td><?= $products_name->price; ?></td>                                           
-                                        <td>
-                                            <?php
-                                            if ($order_id->status == 0) {
-                                                echo 'Not Placed';
-                                            } elseif ($order_id->status == 1) {
-                                                echo 'Not Delivered';
-                                            } elseif ($order_id->status == 2) {
-                                                echo 'Success';
-                                            } elseif ($order_id->status == 3) {
-                                                echo 'Failed';
-                                            } else {
-                                                echo 'Error';
-                                            }
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php echo CHtml::link('<i class="fa fa-eye"  style="max-width:15%;font-size: 19px;color: #000;"></i>', array('MerchantDetails/ViewHistory', 'id' => CHtml::encode($sales->id))); ?>
-                                        </td>
-
-                                    </tr>
-
-                                <?php } ?>
-
-                            </tbody>
-                        </table>
-                    </div>
-                <?php } ?>
-
             </div>
+            <?php echo $this->renderPartial('_my_orders', array('sale' => $sale)); ?>
         </div>
 
     </div>
 </div>
-</section> <!-- end of facial -->
-
-<section class="facial services">
-    <div class="container">
-        <div class="row">
-
-        </div>
-    </div>
 </section> <!-- end of facial -->
 
 <!-- end of container -->

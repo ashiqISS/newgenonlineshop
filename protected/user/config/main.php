@@ -13,6 +13,7 @@ return array(
     'controllerPath' => $user . '/controllers',
     'viewPath' => $user . '/views',
     'name' => 'NewGen Shop',
+    'timeZone' => 'Asia/Calcutta',
     // preloading 'log' component
 //    'preload' => array('log', 'booster'),
     'preload' => array('log'),
