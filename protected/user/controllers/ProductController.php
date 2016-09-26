@@ -3,28 +3,11 @@
 class ProductController extends Controller {
 
     public function actionCategory($name) {
-        $parent = ProductCategory::model()->findByAttributes(array('canonical_name' => $name));
-        if (empty($parent)) {
-            $msg = "Product Not Found";
-            $this->render('/site/error',array('message'=>$msg));
-//            echo 'Product not found';
-            return FALSE;
-        }
-        if (isset($_GET['brand'])) {
-            $brand = $_GET['brand'];
-        } else {
-            $brand = '';
-        }
-
-        $category = ProductCategory::model()->findAllByAttributes(array('parent' => $parent->parent));
-        $cats = ProductCategory::model()->findAllByattributes(array('parent' => $parent->id), array('condition' => "id != $parent->id"));
-        $dataProvider = Yii::app()->Menu->MenuCategories($cats, $parent, $brand);
-        $this->render('index', array('dataProvider' => $dataProvider, 'parent' => $parent, 'category' => $category, 'name' => $name, 'brand' => $brand));
-        exit;
+        $this->redirect(array('products', 'cat_name' => $name));
     }
-
-    public function init() {
-        date_default_timezone_set('Asia/Calcutta');
+    
+    public function actionOffers() {
+        $this->redirect(array('products', 'offers' => 1));
     }
 
     public function actionDetail($name) {
@@ -41,13 +24,13 @@ class ProductController extends Controller {
             $value = trim($prduct->category_id, ",");
             $category = explode(",", $value);
             foreach ($category as $cats) {
-                 $condition .= 'category_id like "%' . $cats . '%" OR ';
+                $condition .= 'category_id like "%' . $cats . '%" OR ';
             }
             $condition = trim($condition, " OR ");
             $criteria->having = '`product_id` IN (SELECT `id` FROM `products` WHERE ' . $condition . ')';
             $criteria->order = '`value_occurrence` DESC';
             $bestsellers = OrderProducts::model()->findAll($criteria);
-            
+
             $you_may_also_like = Products::model()->findAll(array('condition' => 'status = 1 AND is_admin_approved = 1 AND (' . $condition . ')'));
 
 
@@ -91,39 +74,68 @@ class ProductController extends Controller {
     }
 
     public function actionProducts() {
-
-        $brands = '';
-        $price = '';
+//        print_r($_POST);
+        $brands = $price = $category = $category_name = '';
+        $def_min = $min = 50;
+        $def_max = $max = 20000;
+//        echo $def_min = Yii::app()->db->createCommand("SELECT min(`price`) FROM `products`")->queryScalar();
+//        echo $def_max = Yii::app()->db->createCommand('SELECT max(`price`) FROM `products`')->queryScalar();
         $criteria = new CDbCriteria;
         $criteria->condition = 'status = 1';
+//        is_discount_available
+         if (isset($_GET['offers']) && $_GET['offers'] == 1) {
+             $criteria->addCondition("`is_discount_available` = 1");
+        }
+        
+        if (isset($_GET['cat_name']) && $_GET['cat_name'] != "" || (isset($_POST['category']) && $_POST['category'] != '')) {
+            $category = $_GET['cat_name'];
+            if (isset($_POST['category'])) {
+                $category = $_POST['category'];
+            }
 
-        if (isset($_POST['brand_inputs'])) {
-            $brands = $_POST['brand_inputs'];
-            if ($brands != '') {
-                $brs = explode(', ', $brands);
-                foreach ($brs as $brand) {
-                    $find_in_set .= "FIND_IN_SET('$brand',`brand_id`) OR ";
-                }
-                $find_in_set = rtrim($find_in_set, ' OR');
-                $criteria->addCondition($find_in_set);
+            $cat_details = ProductCategory::model()->findByAttributes(array('canonical_name' => $category));
+            if (!empty($cat_details)) {
+                $criteria->addCondition("`category_id` like '%$cat_details->id%' ");
             }
         }
 
+        if (isset($_POST['brand_inputs']) && $_POST['brand_inputs'] != "") {
+            $brands = $_POST['brand_inputs'];
+            $brs = explode(',', $brands);
+            foreach ($brs as $brand) {
+//                $find_in_set .= "FIND_IN_SET('$brand',`brand_id`) OR ";
+                $condition .= "`brand_id` = $brand OR";
+            }
+            $condition = rtrim($condition, ' OR');
+            $criteria->condition = $condition;
+        }
 
-        if (isset($_POST['priceRange'])) {
+        if (isset($_POST['priceRange']) && $_POST['priceRange'] != '') {
             $price = $_POST['priceRange'];
 
+
             if ($price != '') {
-                $prc = explode(', ', $price);
-                foreach ($prc as $price) {
-                    $price_condition .= "price BETWEEN $price OR ";
-                }
+                $new_price = explode(',', $price);
+                $min = $new_price[0];
+                $max = $new_price[1];
+                $price = str_replace(",", " AND ", $price);
+                $price_condition .= "price BETWEEN $price OR ";
                 $price_condition = rtrim($price_condition, ' OR');
                 $criteria->addCondition($price_condition);
+//                                var_dump($criteria->addCondition($price_condition));
+//                                exit;
             }
         }
-
-
+//        if (isset($_POST['priceRange']) && $_POST['priceRange'] != '') {
+//            $price = $_POST['priceRange'];
+//            $prc = explode(', ', $price);
+//            foreach ($prc as $price) {
+//                $price_condition .= "price BETWEEN $price OR ";
+//            }
+//            $price_condition = rtrim($price_condition, ' OR');
+//            $criteria->addCondition($price_condition);
+//        }
+//        var_dump($criteria);
         $criteria->order = 'id desc';
         $total = Products::model()->count($criteria);
 
@@ -133,7 +145,6 @@ class ProductController extends Controller {
 
         $products = Products::model()->findAll($criteria);
 
-
         $this->render('products', array(
             'products' => $products,
             'pages' => $pages,
@@ -141,8 +152,13 @@ class ProductController extends Controller {
             'parameter' => $_REQUEST['saerchterm'],
             'brandsel' => $brands,
             'price' => $price,
+            'category' => $category,
+            'cat_details' => $cat_details,
             'search_parm' => $category,
-            'searchterm' => $searchterm
+            'min' => $min,
+            'max' => $max,
+            'def_min' => $def_min,
+            'def_max' => $def_max
         ));
     }
 

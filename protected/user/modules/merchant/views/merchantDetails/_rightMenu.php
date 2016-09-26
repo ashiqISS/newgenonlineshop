@@ -34,6 +34,8 @@
         <li><a href="<?php echo CommonUrls::featured(); ?>" class="<?= $active7 ?>"> <i class="fa fa-picture-o fa-2x" aria-hidden="true"></i> <span>Featured ads </span></a></li>
         <li><a href="<?php echo CommonUrls::my_sales(); ?>" class="<?= $active8 ?>"> <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i> <span>My Sales</span></a></li>
         <li><a href="<?php echo CommonUrls::request_pay(); ?>"  class="<?= $active9 ?>"> <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i><span>Payment / Payout</span></a></li>
+        <li><a href="<?php echo CommonUrls::message(); ?>"  class="<?= $active5 ?>"> <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i><span>Messages</span></a></li>
+        <li><a href="<?php // echo CommonUrls::plans(); ?>"  class="<?= $active5 ?>"> <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i><span>Plans</span></a></li>
     </ul>
 
 </div>

@@ -32,7 +32,12 @@ if ($product->main_image == NULL) {
     </h2>
     <?php if (Yii::app()->user->getId()) { ?>
         <h3><?php echo Yii::app()->Currency->convert($product->price); ?></h3>
-    <?php } ?>
+    <?php }
+    else
+    {
+        echo '<br>';
+    }
+    ?>
 
 </div>
 

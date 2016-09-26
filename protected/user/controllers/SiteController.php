@@ -161,7 +161,8 @@ class SiteController extends Controller {
                                                         CouponHistory::model()->updateAll(array("user_id" => $buyer->user_id), 'session_id=' . Yii::app()->session['temp_user']);
                                                         $default_billing = UserAddress::model()->findByAttributes(array('userid' => $buyer->user_id, 'default_billing_address' => 1));
                                                         if (!empty($default_billing)) {
-                                                                Order::model()->updateAll(array("user_id" => $buyer->user_id, "bill_address_id" => $default_billing->id), 'session_id=' . Yii::app()->session['temp_user']);
+                                                                Order::model()->updateAll(array("user_id" => $buyer->user_id, "bill_address_id" => $default_billing->id));
+//                                                                Order::model()->updateAll(array("user_id" => $buyer->user_id, "bill_address_id" => $default_billing->id), 'session_id=' . Yii::app()->session['temp_user']);
                                                         }
                                                         $this->redirect(array('checkOut/Checkout'));
                                                 } else {

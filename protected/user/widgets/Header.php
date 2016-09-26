@@ -283,7 +283,7 @@ class Header extends CWidget {
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about_us">About Us</a></li> 
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
-                                                <li><a href="#">Offers & Deals</a></li> 
+                                                <li><a href="<?= Yii::app()->request->baseUrl . "/index.php/product/offers "?>">Offers & Deals</a></li> 
 
 
 

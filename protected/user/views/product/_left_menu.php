@@ -1,93 +1,111 @@
+<style>
+    span.panel-title 
+    {
+        color: white;
+    }
+    .panel-heading.headz, span.panel-title 
+    {
+        background-color: #c47c65;
+    }
+
+</style>
 <div class="col-md-3 categ" >
     <form id="products_search" method="POST" action="<?= Yii::app()->request->baseUrl . "/index.php/product/products"; ?>">
+        <?php /* ?>
+          <!--<span class="filter">Category</span>-->
+          <!--        <div class="category-ui">
 
-        <span class="filter">Category</span>
-        <div class="category-ui">
+          <ul class="catmenu">
+          <span class="da">Category</span>
+          <?php
+          $category_name = Yii::app()->request->getParam('name');
+          //        $get_parant = ProductCategory::model()->
+          $main_cats = ProductCategory::model()->findAllByAttributes(array(), array('condition' => 'id = parent'));
+          foreach ($main_cats as $main_cat) {
+          ?>
+          <li class="<?= $main_cat->canonical_name == $category_name ? 'open catselected' : '' ?>maincat_<?= $main_cat->canonical_name; ?>">
+          <a href="#"><?= $main_cat->category_name; ?><i class="fa <?= $main_cat->canonical_name == $category_name ? 'fa-angle-down' : 'fa-angle-up idown_' . $main_cat->canonical_name; ?> pull-right" style="padding-right: 1em;"></i></a>
+          <ul class="subcat">
+          <?php
+          $subcats = ProductCategory::model()->findAllByAttributes(array('parent' => $main_cat->id), array('condition' => 'id !=' . $main_cat->id));
+          foreach ($subcats as $subcat) {
 
-            <ul class="catmenu">
-                <!--<span class="da">Category</span>-->
-                <?php
-                $category_name = Yii::app()->request->getParam('name');
-//        $get_parant = ProductCategory::model()->
-                $main_cats = ProductCategory::model()->findAllByAttributes(array(), array('condition' => 'id = parent'));
-                foreach ($main_cats as $main_cat) {
-                    ?>
-                    <li class="<?= $main_cat->canonical_name == $category_name ? 'open catselected' : '' ?>maincat_<?= $main_cat->canonical_name; ?>">
-                        <a href="#"><?= $main_cat->category_name; ?><i class="fa <?= $main_cat->canonical_name == $category_name ? 'fa-angle-down' : 'fa-angle-up idown_' . $main_cat->canonical_name; ?> pull-right" style="padding-right: 1em;"></i></a>
-                        <ul class="subcat">
-                            <?php
-                            $subcats = ProductCategory::model()->findAllByAttributes(array('parent' => $main_cat->id), array('condition' => 'id !=' . $main_cat->id));
-                            foreach ($subcats as $subcat) {
+          if ($subcat->canonical_name == $category_name) {
+          $selected = 'catselected';
+          $open = $main_cat->canonical_name;
+          } else {
+          $selected = '';
+          }
+          echo "<li class ='" . $selected . "'> <a href = '" . Yii::app()->request->baseUrl . "/index.php/product/category/name/" . $subcat->canonical_name . "'>" . $subcat->category_name . "</a></li>";
+          }
+          ?>
+          </ul>
+          </li>
 
-                                if ($subcat->canonical_name == $category_name) {
-                                    $selected = 'catselected';
-                                    $open = $main_cat->canonical_name;
-                                } else {
-                                    $selected = '';
-                                }
-                                echo "<li class ='" . $selected . "'> <a href = '" . Yii::app()->request->baseUrl . "/index.php/product/category/name/" . $subcat->canonical_name . "'>" . $subcat->category_name . "</a></li>";
-                            }
-                            ?>
-                        </ul>
-                    </li>
-
-                <?php }
-                ?>
+          <?php }
+          ?>
 
 
-            </ul>
+          </ul>
 
-            <?php
-            if (isset($open)) {
-                ?>
-                <script>
+          <?php
+          if (isset($open)) {
+          ?>
+          <script>
 
-                    $(document).ready(function () {
-                        $('.maincat_<?= $open ?>').addClass('open');
-                        $('.idown_<?= $open ?>').removeClass('fa-angle-up').addClass('fa-angle-down');
-                    });
-                </script>
-            <?php } ?>
-        </div>
-        <br><br>
+          $(document).ready(function () {
+          $('.maincat_<?= $open ?>').addClass('open');
+          $('.idown_<?= $open ?>').removeClass('fa-angle-up').addClass('fa-angle-down');
+          });
+          </script>
+          <?php } ?>
+          </div>-->
+          <?php */ ?>
         <div class="panel-group" >
-            <div class="panel panel-default">
-                <a class="accordion-toggle"  aria-expanded="true">
-                    <div class="panel-heading headz">
+            <?php
+            if (!empty($cat_details)) {
+                $brands = MasterBrands::model()->findAllByAttributes(array(), array('condition' => " category_id like '%$cat_details->id%' "));
+            } else {
+                $brands = MasterBrands::model()->findAll();
+            }
+            if (!empty($brands)) {
+                ?>
+                <div class="panel panel-default">
+                    <a class="accordion-toggle"  aria-expanded="true">
+                        <div class="panel-heading headz">
 
-                        <span class="panel-title">
-                            <!--<i class="glyphicon gly glyphicon-minus"></i>--> 
-                            Brands
-                            <?php
-                            $brnd_sel = array();
-                            if ($brandsel != '') {
-                                $brnd_sel = explode(',', $brandsel);
-                            }
-                            ?>
-                        </span>
-
-
-                    </div>
-                </a>
-                <div id="panel1" class="panel-collapse collapse in" aria-expanded="true" style="max-height: 20em;overflow: auto">
-                    <div class="panel-body">
-
-                        <ul class="list-unstyled">
-                            <?php
-                            $brands = MasterBrands::model()->findAll();
-                            foreach ($brands as $brand) {
+                            <span class="panel-title">
+                                <!--<i class="glyphicon gly glyphicon-minus"></i>--> 
+                                Brands
+                                <?php
+                                $brnd_sel = array();
+                                if ($brandsel != '') {
+                                    $brnd_sel = explode(',', $brandsel);
+                                }
                                 ?>
+                            </span>
 
 
-                                <li>
-                                    <input type="checkbox" class="chk brands" name="brand" onchange="searchProduct()" value="<?php echo $brand['id']; ?>" <?php if (in_array($brand['id'], $brnd_sel)) { ?> checked="checked" <?php } ?> ><?php echo $brand['brand_name']; ?>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <br><br>
+                        </div>
+                    </a>
+
+                    <div id="panel1" class="panel-collapse collapse in" aria-expanded="true" style="max-height: 20em;overflow: auto">
+                        <div class="panel-body">
+
+                            <ul class="list-unstyled">
+                                <?php
+                                foreach ($brands as $brand) {
+                                    ?>
+                                    <li>
+                                        <input type="checkbox" class="chk brands" name="brand" onchange="searchProduct()" value="<?php echo $brand['id']; ?>" <?php if (in_array($brand['id'], $brnd_sel)) { ?> checked="checked" <?php } ?> ><?php echo $brand['brand_name']; ?>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>               
+                </div>            
+                <br><br>
+            <?php } ?>
             <div class="panel panel-default">
                 <a class="accordion-toggle collapsed" aria-expanded="true"> 
                     <div class="panel-heading headz">
@@ -103,22 +121,31 @@
                 <!--<div id="panel2" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">-->
                 <div id="panel2" class="panel-collapse collapse in" aria-expanded="true">
                     <div class="panel-body">
+                        <input id="ex16b" name="priceRange" type="text"/>
                         <?php
-                        echo CHtml::dropDownList('price', $select, Utilities::getPriceList(), array('empty' => 'Price Range', 'class' => "form-control", 'onchange' => 'searchProduct()', 'options' => array($price => array('selected' => true))));
+//                        echo CHtml::dropDownList('price', $select, Utilities::getPriceList(), array('empty' => 'Price Range', 'class' => "form-control", 'onchange' => 'searchProduct()', 'options' => array($price => array('selected' => true))));
                         ?>
                     </div>
                 </div>
             </div>
         </div>
+        <!--<input id="ex16bs" name="priceRange" type="hidden"/>-->
         <input type="hidden" id="brand_inputs" name="brand_inputs" value="<?= $brandsel ?>">
-        <input type="hidden" id="priceRange" name ="priceRange" value="<?= $price ?>">
-        <input type="hidden" id="categories">
+        <!--<input type="hidden" id="priceRange" name ="priceRange" value="<?= $price ?>">-->
+        <input type="hidden" id="category" name="category" value="<?= $category ?>">
     </form>
 </div>
 
 
 
 <script>
+    $(document).ready(function () {
+        $(".slider-horizontal").click(function () {
+             var inputElements = document.getElementsByClassName('brands');
+            $('#products_search').submit();
+        });
+    });
+
     function searchProduct()
     {
         // get value of selected barnds
@@ -138,21 +165,21 @@
         // set value to hidden field
         $("#brand_inputs").val(checkedValue);
 
-        // get value of selected priceRange
-        var e = document.getElementById("price");
-        var priceRange = e.options[e.selectedIndex].value;
-
-        // set value of selected price range        
-        $("#priceRange").val(priceRange);
+//        // get value of selected priceRange
+//        var e = document.getElementById("price");
+//        var priceRange = e.options[e.selectedIndex].value;
+//
+//        // set value of selected price range        
+//        $("#priceRange").val(priceRange);
 
         $('#products_search').submit();
     }
 
-    function addPriceRange(val)
-    {
-        $("#priceRange").val(val);
-        searchProduct();
-    }
+//    function addPriceRange(val)
+//    {
+//        $("#priceRange").val(val);
+//        searchProduct();
+//    }
 
 
     function brandcheck()
@@ -172,6 +199,5 @@
         $("#brand_inputs").val(checkedValue);
         searchProduct();
     }
-
 
 </script>
