@@ -62,8 +62,8 @@ class Footer extends CWidget {
 
                                 <ul>
                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/user-registration">Join Our Shop</a></li>
-                                    <!--                                <li><a href="#">Merchant</a></li>
-                                                                    <li><a href="#">Local Vendors</a></li>-->
+                                                                    <li><a href="#">Merchant</a></li>
+                                                                    <li><a href="#">Local Vendors</a></li>
 
                                 </ul>
                             </div> <!-- end of explore  -->
@@ -74,8 +74,8 @@ class Footer extends CWidget {
                                     <li><a href="#">Shipping Return</a></li>
                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/contact_us">Contact us</a></li>
                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/faq">Faq</a></li>
-                                    <!--                                <li><a href="#">Affiliates</a></li>
-                                                                    <li><a href="#">Specials</a></li>-->
+                                                                    <li><a href="#">Affiliates</a></li>
+                                                                    <li><a href="#">Specials</a></li>
                                 </ul>
 
                             </div> <!-- end of usefull-links  -->
