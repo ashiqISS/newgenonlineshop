@@ -307,6 +307,15 @@ class SiteController extends Controller {
                 }
         }
 
+        public function actionStatic($page) {
+                if (!empty($page)) {
+                        $model = StaticPage::model()->findByAttributes(array('canonical_name' => $page));
+                        $this->render('static_page', array('model' => $model));
+                } else {
+                        $this->redirect(array('Site/Error'));
+                }
+        }
+
         public function findParent($data) {
 
                 $index = count($_SESSION['category']);
@@ -393,7 +402,8 @@ class SiteController extends Controller {
         }
 
         public function actionfaq() {
-                $this->render('faq');
+                $faq = Faq::model()->findAllByAttributes(array('status' => '1'), array('order' => 'id DESC', 'limit' => '4'));
+                $this->render('faq', ['faq' => $faq]);
         }
 
         public function actionAboutUs() {
