@@ -210,6 +210,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         $action21 = "active";
                                                         $actionn7 = "active";
                                                         break;
+                                                case "salesReport":
+                                                        $action22 = "active";
+                                                        $actionn8 = "active";
+                                                        break;
+                                                case "productViewed":
+                                                        $action23 = "active";
+                                                        $actionn8 = "active";
+                                                        break;
 
                                                 case "site":
                                                         if (Yii::app()->controller->action->id == "home") {
@@ -309,6 +317,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <ul class="treeview-menu">
                                                                         <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/Ad/masterAdLocation/admin"><i class="fa fa-circle-o"></i>Ad Position,prize and size</a></li>
                                                                         <li class="<?php echo $action21 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/Ad/adPayment/admin"><i class="fa fa-circle-o"></i>Ad Payment</a></li>
+                                                                </ul>
+                                                        </li>
+
+                                                <?php } ?>
+                                                               <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                                                        <li class="<?php echo $actionn8 ?> treeview">
+                                                                <a href="#"><i class="fa fa-mail-reply-all"></i> <span>Reports </span> <i class="fa fa-angle-left pull-right"></i></a>
+                                                                <ul class="treeview-menu">
+                                                                        <li class="<?php echo $action22 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/reports/productViewed/admin"><i class="fa fa-circle-o"></i>Sales Report</a></li>
+                                                                        <li class="<?php echo $action23 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/reports/productViewed/admin"><i class="fa fa-circle-o"></i>Product Viewed</a></li>
+
                                                                 </ul>
                                                         </li>
 
