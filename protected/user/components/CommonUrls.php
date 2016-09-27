@@ -39,12 +39,16 @@ class CommonUrls {
         }
 
         public static function my_sales() {
-                $url = Yii::app()->request->baseUrl . "/user.php/my-sales";
+                $url = Yii::app()->request->baseUrl . "/user.php/reports";
                 return $url;
         }
 
         public static function request_pay() {
                 $url = Yii::app()->request->baseUrl . "/user.php/request-pay";
+                return $url;
+        }
+        public static function plans() {
+                $url = Yii::app()->request->baseUrl . "/user.php/plans";
                 return $url;
         }
 

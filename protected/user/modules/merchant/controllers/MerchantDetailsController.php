@@ -339,6 +339,11 @@ class MerchantDetailsController extends Controller {
                         }
                 }
         }
+        
+        public function actionReports()
+        {
+            $this->render('reports');
+        }
 
         public function actionMySales() {
           
@@ -674,6 +679,18 @@ class MerchantDetailsController extends Controller {
                 $array = array('plan_date' => $plan_date, 'newdates' => $newdates);
                 $json = CJSON::encode($array);
                 echo $json;
+        }
+        
+            public function actionMerchantPlanDetail($plan) {
+                $model = MerchantPlans::model()->findByPk($plan);
+
+                $this->render('merchant_plans_details', array('model' => $model));
+        }
+
+        public function actionPlanDetail($plan) {
+                $model = PlanDetails::model()->findByPk($plan);
+
+                $this->render('plan_details', array('model' => $model));
         }
 
 }

@@ -1,5 +1,4 @@
 <?php
-
   $active_menu = Yii::app()->controller->id . '/' . Yii::app()->controller->action->id;
         if ($active_menu == 'merchantDetails/profile' || $active_menu == 'merchantDetails/editProfile') {
                 $active1 = 'act';
@@ -15,12 +14,13 @@
                 $active6 = 'act';
         } else if ($active_menu == 'merchantDetails/featuredAds') {
                 $active7 = 'act';
-        } else if ($active_menu == 'merchantDetails/mySales') {
+        } else if ($active_menu == 'merchantDetails/Reports') {
                 $active8 = 'act';
         } else if ($active_menu == 'merchantDetails/paymentRequest' || $active_menu == 'merchantDetails/ViewPayouts') {
                 $active9 = 'act';
-        } 
-
+        }  else if ($active_menu == 'merchantDetails/UpgradePlan') {
+                $active10 = 'act';
+        }
 ?>
 
 <div class="col-md-3 sidebar ">
@@ -35,7 +35,7 @@
         <li><a href="<?php echo CommonUrls::my_sales(); ?>" class="<?= $active8 ?>"> <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i> <span>My Sales</span></a></li>
         <li><a href="<?php echo CommonUrls::request_pay(); ?>"  class="<?= $active9 ?>"> <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i><span>Payment / Payout</span></a></li>
         <li><a href="<?php echo CommonUrls::message(); ?>"  class="<?= $active5 ?>"> <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i><span>Messages</span></a></li>
-        <li><a href="<?php // echo CommonUrls::plans(); ?>"  class="<?= $active5 ?>"> <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i><span>Plans</span></a></li>
+        <li><a href="<?php echo CommonUrls::plans(); ?>"  class="<?= $active10 ?>"> <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i><span>Plans</span></a></li>
     </ul>
 
 </div>

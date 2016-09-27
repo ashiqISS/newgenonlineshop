@@ -80,8 +80,8 @@
                             ));
                             ?>
 
-                            <?php echo CHtml::submitButton('GO'); ?>
-                            <?php echo CHtml::Button('Reset', array('id' => 'resetSalesReport')); ?>
+                            <?php echo CHtml::submitButton('GO' ,array('class' => "submit_btn sbbt")); ?>
+                            <?php echo CHtml::Button('Reset', array('id' => 'resetSalesReport', 'class' => "submit_btn sbbt")); ?>
                             <?php echo CHtml::endForm(); ?>
 
 
