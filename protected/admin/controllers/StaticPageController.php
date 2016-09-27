@@ -100,11 +100,31 @@ class StaticPageController extends Controller {
 
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
-
+                $bannerImage = $model->banner;
+                $bigImage = $model->big_image;
                 if (isset($_POST['StaticPage'])) {
                         $model->attributes = $_POST['StaticPage'];
+                        $model->big_content = $_POST['StaticPage']['big_content'];
+                        $banner = CUploadedFile::getInstance($model, 'banner');
+                        $big_image = CUploadedFile::getInstance($model, 'big_image');
+                        if (isset($banner)) {
+                                $model->banner = $banner->extensionName;
+                        } else {
+                                $model->banner = $bannerImage;
+                        }
+                        if (isset($big_image)) {
+                                $model->big_image = $big_image->extensionName;
+                        } else {
+                                $model->big_image = $bigImage;
+                        }
                         if ($model->save())
-                                $this->redirect(array('update', 'id' => $model->id));
+                                if ($model->banner != "") {
+                                        $this->ImageUpload($banner, 'static', $model->id, 'banner');
+                                }
+                        if ($model->big_image != "") {
+                                $this->ImageUpload($big_image, 'static', $model->id, 'big_image');
+                        }
+                        $this->redirect(array('admin'));
                 }
 
                 $this->render('update', array(
