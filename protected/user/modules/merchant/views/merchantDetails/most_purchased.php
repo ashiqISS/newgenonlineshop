@@ -19,7 +19,7 @@
     <div class="container">
 
         <div class="heading">
-            
+Most Purchased Products
         </div>
 
 
@@ -27,15 +27,14 @@
             <div class="col-md-9">
 
                 <div class="left-content">
-
-                
-
-                    <div class="clearfix"></div>
+                    
+                    <?php  echo $this->renderPartial('_reports_sub_menu');?>
+         
                 </div>
 
             </div>
 
-     <?php echo $this->renderPartial('_rightMenu'); ?>
+            <?php echo $this->renderPartial('_rightMenu'); ?>
         </div>
 
     </div>

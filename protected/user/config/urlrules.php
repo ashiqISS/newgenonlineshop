@@ -21,6 +21,8 @@ return array(
     'change_password' => 'merchant/merchantDetails/changePassword',
     'featured-ads' => 'merchant/merchantDetails/featuredAds',
     'my-sales' => 'merchant/merchantDetails/mySales',
+    'most-purchased' => 'merchant/merchantDetails/mostPurchased',
+    'most-viewed' => 'merchant/merchantDetails/mostViewed',
     'reports' => 'merchant/merchantDetails/Reports',
     'request-pay' => 'merchant/merchantDetails/paymentRequest',
     'add-product' => 'merchant/products/addProduct',

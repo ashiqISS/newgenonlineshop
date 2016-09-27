@@ -26,12 +26,15 @@
 <section class="cart-main">
     <div class="container">
         <div class="heading">
-            Selling report
+            Sales report
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-9 his">
 
                 <div class="left-my_acnt">
+                    <div style="padding: 2em;">
+                    <?php  echo $this->renderPartial('_reports_sub_menu');?>
+                    </div>
 
                     <div class="panel-body sis">
                         <div class="m_filter_left">

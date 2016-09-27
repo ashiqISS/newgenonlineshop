@@ -14,7 +14,7 @@
                 $active6 = 'act';
         } else if ($active_menu == 'merchantDetails/featuredAds') {
                 $active7 = 'act';
-        } else if ($active_menu == 'merchantDetails/Reports') {
+        } else if ($active_menu == 'merchantDetails/mySales' || $active_menu == 'merchantDetails/mostPurchased' || $active_menu == 'merchantDetails/mostViewed' ) {
                 $active8 = 'act';
         } else if ($active_menu == 'merchantDetails/paymentRequest' || $active_menu == 'merchantDetails/ViewPayouts') {
                 $active9 = 'act';
