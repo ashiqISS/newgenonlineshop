@@ -34,53 +34,91 @@
 
                     <div class="ctnf">
                         <h2>Contact info</h2>
+                        <?php if ($contact->company_name) { ?>
+                                <div class="kk">
+                                    <div class="add-left">
+                                        <i class="fa tack fa-thumb-tack"></i>
+                                    </div>
+                                    <div class="add-right">
+                                        <p><?php echo $contact->company_name ?></p>
+                                    </div>
 
-                        <div class="kk">
-                            <div class="add-left">
-                                <i class="fa tack fa-thumb-tack"></i>
-                            </div>
-                            <div class="add-right">
-                                <p>The Company Name Inc. 9870 </p>
-                            </div>
+                                    <div style="clear:both"></div>
 
-                            <div style="clear:both"></div>
+                                </div>
+                        <?php } if ($contact->telephone) { ?>
 
-                        </div>
+                                <div class="kk">
 
-                        <div class="kk">
-
-                            <div class="add-left">
-                                <i class="fa tack fa-phone"></i>
-                            </div>
-                            <div class="add-right">
-                                <p><strong>Telephone:</strong> +1 800 603 6035</p>
-
-
-                            </div><div style="clear:both"></div></div>
-                        <div class="kk">
-
-                            <div class="add-left">
-                                <i class="fa tack fa-fax"></i>
-                            </div>
-                            <div class="add-right">
-                                <p><strong>FAX: </strong> +1 800 889 9898</p>
-
-                            </div>
-                            <div style="clear:both"></div>
-                        </div>
-
-                        <div class="kk">
+                                    <div class="add-left">
+                                        <i class="fa tack fa-phone"></i>
+                                    </div>
+                                    <div class="add-right">
+                                        <p><strong>Telephone:</strong> <?php echo $contact->telephone ?></p>
 
 
-                            <div class="add-left">
-                                <i class="fa tack fa-envelope"></i>
-                            </div>
-                            <div class="add-right">
-                                <p><strong>E-mail: </strong> mail@demolink.org</p>
+                                    </div><div style="clear:both"></div></div>
+                        <?php } if ($contact->mobile1) { ?>
+                                <div class="kk">
+
+                                    <div class="add-left">
+                                        <i class="fa tack fa-mobile"></i>
+                                    </div>
+                                    <div class="add-right">
+                                        <p><strong>Mobile: </strong> <?php echo $contact->mobile1 ?></p>
+
+                                    </div>
+                                    <div style="clear:both"></div>
+                                </div>
+                        <?php } if ($contact->mobile2) { ?>
+                                <div class="kk">
+
+                                    <div class="add-left">
+                                        <i class="fa tack fa-mobile"></i>
+                                    </div>
+                                    <div class="add-right">
+                                        <p><strong>Mobile: </strong> <?php echo $contact->mobile2 ?></p>
+
+                                    </div>
+                                    <div style="clear:both"></div>
+                                </div>
+                        <?php } if ($contact->fax) { ?>
+
+                                <div class="kk">
+
+                                    <div class="add-left">
+                                        <i class="fa tack fa-fax"></i>
+                                    </div>
+                                    <div class="add-right">
+                                        <p><strong>FAX: </strong> <?php echo $contact->fax ?></p>
+
+                                    </div>
+                                    <div style="clear:both"></div>
+                                </div>
+                        <?php } if ($contact->email1) { ?>
+
+                                <div class="kk">
+                                    <div class="add-left">
+                                        <i class="fa tack fa-envelope"></i>
+                                    </div>
+                                    <div class="add-right">
+                                        <p><strong>E-mail: </strong> <?php echo $contact->email1 ?></p>
 
 
-                            </div> <div style="clear:both"></div>
-                        </div>
+                                    </div> <div style="clear:both"></div>
+                                </div>
+                        <?php } if ($contact->email2) { ?>
+                                <div class="kk">
+                                    <div class="add-left">
+                                        <i class="fa tack fa-envelope"></i>
+                                    </div>
+                                    <div class="add-right">
+                                        <p><strong>E-mail: </strong> <?php echo $contact->email2 ?></p>
+
+
+                                    </div> <div style="clear:both"></div>
+                                </div>
+                        <?php } ?>
                     </div>
 
                 </div>
@@ -89,7 +127,8 @@
 
                     <div class="row">
                         <div class="g_map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62871.24482347028!2d76.29922780198503!3d9.979404659830088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d08f976f3a9%3A0xe9cdb444f06ed454!2sErnakulam%2C+Kerala+682011!5e0!3m2!1sen!2sin!4v1470136600874" width="100%" height="279" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <iframe src="<?php echo $contact->map_link ?>" width="100%" height="279" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62871.24482347028!2d76.29922780198503!3d9.979404659830088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d08f976f3a9%3A0xe9cdb444f06ed454!2sErnakulam%2C+Kerala+682011!5e0!3m2!1sen!2sin!4v1470136600874" width="100%" height="279" frameborder="0" style="border:0" allowfullscreen></iframe>-->
                         </div> </div>
 
                 </div>
@@ -100,11 +139,11 @@
 
                 <!--flash message-->
                 <?php if (Yii::app()->user->hasFlash('contactus')): ?>
-                    <div class="alert alert-info fade in">
-                        <?php echo Yii::app()->user->getFlash('contactus'); ?>
-                    </div>
+                        <div class="alert alert-info fade in">
+                            <?php echo Yii::app()->user->getFlash('contactus'); ?>
+                        </div>
                 <?php endif; ?>
-      
+
 
                 <?php
                 $form = $this->beginWidget('CActiveForm', array(
@@ -171,7 +210,7 @@
 
                         <?php $this->endWidget(); ?>
 
-                    </div>                       
+                    </div>
                 </fieldset>
 
 
@@ -211,7 +250,7 @@
 
 
 
-<div class="banner"> 
+<div class="banner">
     <img class="img-responsive" src="<?= Yii::app()->baseUrl ?>/images/layer.jpg" alt="">
     <h2>Turning your visions into realities<br><span class="wis">Top Event managers</span></h2>
     <div class="bottoms">

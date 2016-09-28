@@ -412,6 +412,7 @@ class SiteController extends Controller {
 
         public function actionContactUs() {
                 $model = new ContactUs;
+                $contact_details = ContactDetails::model()->findByAttributes(array('status' => 1));
                 if (isset($_POST['ContactUs'])) {
                         $model->attributes = $_POST['ContactUs'];
                         date_default_timezone_set('Asia/Calcutta');
@@ -423,7 +424,7 @@ class SiteController extends Controller {
                                 }
                         }
                 }
-                $this->render('contact', array('model' => $model));
+                $this->render('contact', array('model' => $model, 'contact' => $contact_details));
         }
 
         public function sendContactMail($model) {

@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title><?php echo Yii::app()->name; ?></title>
         <!-- Tell the browser to be responsive to screen width -->
-        <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                              ?>/css/admin.css">-->
+        <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                                  ?>/css/admin.css">-->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.5 -->
 
@@ -228,6 +228,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             case "newsletterContent":
                                     $actionn11 = "active";
                                     break;
+                            case "contactDetails":
+                                    $actionn25 = "active";
+                                    $actionn4 = "active";
+                                    break;
 
                             case "site":
                                     if (Yii::app()->controller->action->id == "home") {
@@ -310,6 +314,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/materTaxRates/admin"><i class="fa fa-circle-o"></i> Tax Rates</a></li>
                                         <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/masterTaxClass/admin"><i class="fa fa-circle-o"></i> Tax Classes</a></li>
                                         <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/social/admin"><i class="fa fa-circle-o"></i> Social Media</a></li>
+                                        <li class="<?php echo $actionn25 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/contactDetails/admin"><i class="fa fa-circle-o"></i> Contact Details</a></li>
                                     </ul>
                                 </li>
 
