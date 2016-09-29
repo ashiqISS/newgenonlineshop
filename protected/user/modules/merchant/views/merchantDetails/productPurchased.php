@@ -40,8 +40,8 @@
                         <?php
                         $this->widget('booster.widgets.TbGridView', array(
                             'type' => ' bordered condensed hover',
-                            'id' => 'product-viewed-grid',
-                            'dataProvider' => $model->merchantSearch(),
+                            'id' => 'purchased-viewed-grid',
+                            'dataProvider' => $model->MostPurchasedProducts(),
                             'filter' => $model,
                             'columns' => array(
                                 array(
@@ -61,31 +61,32 @@
                                     },
                                     'type' => 'raw'
                                 ),
-                                array(
-                                    'name' => 'product_id',
-                                    'header' => 'No.Of Viewers',
-                                    'value' => function($data) {
-                                            $product_count = ProductViewed::model()->findAll(array('condition' => 'product_id = ' . $data->product_id));
-                                            return count($product_count);
-                                    },
-                                            'type' => 'raw'
-                                        ),
-                                    ),
-                                ));
-                                ?>
+                                'value_occurrence'
+//                                array(
+//                                    'name' => 'product_id',
+//                                    'header' => 'No.Of Viewers',
+//                                    'value' => function($data) {
+//                                            $product_count = ProductViewed::model()->findAll(array('condition' => 'product_id = ' . $data->product_id));
+//                                            return count($product_count);
+//                                    },
+//                                            'type' => 'raw'
+//                                        ),
+                            ),
+                        ));
+                        ?>
 
-
-                            </div>
-
-
-
-
-                            <div class="clearfix"></div>
-                        </div>
 
                     </div>
 
-                    <?php echo $this->renderPartial('_rightMenu'); ?>
+
+
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+
+            <?php echo $this->renderPartial('_rightMenu'); ?>
         </div>
 
     </div>

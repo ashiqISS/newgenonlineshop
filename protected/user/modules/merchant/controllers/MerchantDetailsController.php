@@ -341,7 +341,7 @@ class MerchantDetailsController extends Controller {
         }
 
         public function actionMostViewed() {
-                $model = new ProductViewed('search');
+                $model = new ProductViewed('merchantSearch');
                 $model->unsetAttributes();  // clear any default values
                 if (isset($_GET['ProductViewed']))
                         $model->attributes = $_GET['ProductViewed'];
@@ -349,12 +349,19 @@ class MerchantDetailsController extends Controller {
                 $this->render('productViewed', array(
                     'model' => $model,
                 ));
-
-
-                $this->render('most_viewed');
         }
 
         public function actionMostPurchased() {
+                $model = new OrderProducts('MostPurchasedProducts');
+                $model->unsetAttributes();  // clear any default values
+                if (isset($_GET['ProductViewed']))
+                        $model->attributes = $_GET['MostPurchasedProducts'];
+
+                $this->render('productPurchased', array(
+                    'model' => $model,
+                ));
+
+
                 $this->render('most_purchased');
         }
 
