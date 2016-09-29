@@ -81,6 +81,34 @@ class OrderController extends Controller {
                 $this->renderPartial('_sales_report', array('sales' => $sales, 'salesSummary' => $salesSummary, 'userData' => $userData, 'merchant_details' => $merchant_details));
         }
 
+        public function actionPrintProductPurchased() {
+                $criteria = new CDbCriteria(array(
+                    'select' => 't.*,COUNT(product_id) AS value_occurrence',
+                    'condition' => 't.merchant_id =' . Yii::app()->user->getState('merchant_id'),
+                    'group' => 't.product_id',
+                    'order' => 'value_occurrence DESC'
+                ));
+
+                return new CActiveDataProvider($this, array(
+                    'criteria' => $criteria,
+                ));
+                $purchased = OrderProducts::model()->findAll($criteria);
+                $merchant_details = MerchantDetails::model()->findByPk(Yii::app()->user->getState('merchant_id'));
+                $this->renderPartial('_product_purchased_report', array('purchased' => $purchased, 'merchant_details' => $merchant_details));
+        }
+
+        public function actionPrintMerchantProductViewed() {
+                $criteria = new CDbCriteria(array(
+                    'select' => 't.product_id,p.product_name,p.product_code',
+                    'join' => 'LEFT JOIN products p ON (t.product_id = p.id AND p.merchant_id = :merchant_id)',
+                    'group' => 'p.id',
+                    'params' => array(':merchant_id' => Yii::app()->user->getState('merchant_id'))
+                ));
+                $viewed = ProductViewed::model()->findAll($criteria);
+                $merchant_details = MerchantDetails::model()->findByPk(Yii::app()->user->getState('merchant_id'));
+                $this->renderPartial('_product_viewed_report', array('viewed' => $viewed, 'merchant_details' => $merchant_details));
+        }
+
         public function actionChangeOrderStatus() {
                 if (isset($_POST['order_id'])) {
                         $order_id = $_POST['order_id'];

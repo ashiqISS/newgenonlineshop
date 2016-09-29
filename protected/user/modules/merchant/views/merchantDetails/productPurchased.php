@@ -75,6 +75,11 @@
                         ?>
 
 
+                        <div class="fifty-1">
+
+                            <a href="<?php echo Yii::app()->request->baseUrl . '/user.php/merchant/order/PrintProductPurchased' ?>" target="_blank"> <span class="prnt"> <img class="fives" src="<?php echo Yii::app()->request->baseUrl; ?>/images/print.png" title="Print"></span></a>
+                        </div>
+
                     </div>
 
 
