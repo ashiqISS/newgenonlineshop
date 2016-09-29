@@ -26,7 +26,7 @@
 <section class="cart-main">
     <div class="container">
         <div class="heading">
-            Sales report
+            Most Viewed Products
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-9 his">

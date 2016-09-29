@@ -285,7 +285,7 @@ class CheckOutController extends Controller {
         date_default_timezone_set('Asia/Calcutta');
         $order = new Order;
         $order->user_id = Yii::app()->user->getId();
-        $order->total_amount = Yii::app()->user->getState('total_amt');
+        $order->total_amount = Yii::app()->Discount->Granttotal();
         $order->order_date = date('Y-m-d H:i:s');
         $order->ship_address_id = $ship_address_id;
         $order->bill_address_id = $bill_address_id;
@@ -343,7 +343,7 @@ class CheckOutController extends Controller {
         $orderHistory->order_status_comment = $orderStatus_comment;
         $orderHistory->order_status = 1;
         $orderHistory->date = date('Y-m-d');
-        $orderHistory->status = 1;
+        $orderHistory->status = 3;
         $orderHistory->cb = 1;
         $orderHistory->ub = 1;
         if ($orderHistory->save()) {

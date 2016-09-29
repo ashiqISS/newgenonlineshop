@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Order                <small>Manage</small>
+        User Orders                <small>Manage</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo Yii::app()->request->baseUrl . '/admin.php/products/order/admin'; ?>"><i class="fa fa-dashboard"></i>  Order</a></li>
@@ -61,20 +61,20 @@
                                 },
                             ),
                             'transaction_id',
-                            array('name' => 'status',
-                                'value' => function($data) {
-                                    if ($data->status == 1) {
-                                        return 'Order Placed , Not Delivered to customer';
-                                    } else if ($data->status == 2) {
-                                        return 'Order Success';
-                                    } else if ($data->payment_status == 3) {
-                                        return 'Order Failed';
-                                    } else {
-                                        return 'Order Not Placed';
-                                    }
-//                                            return 'INR ' . $data->payment_status . '/-';
-                                },
-                            ),
+//                            array('name' => 'status',
+//                                'value' => function($data) {
+//                                    if ($data->status == 1) {
+//                                        return 'Order Placed , Not Delivered to customer';
+//                                    } else if ($data->status == 2) {
+//                                        return 'Order Success';
+//                                    } else if ($data->payment_status == 3) {
+//                                        return 'Order Failed';
+//                                    } else {
+//                                        return 'Order Not Placed';
+//                                    }
+////                                            return 'INR ' . $data->payment_status . '/-';
+//                                },
+//                            ),
                             'order_date',
 //                    array('name' => 'ship_address_id',
 //                        'value' => '$data->addressBook->address_1',
@@ -96,18 +96,18 @@
                               'status',
                               'DOC',
                              */
-                            array(
-                                'header' => '<font color="#61625D">Edit</font>',
-                                'htmlOptions' => array('nowrap' => 'nowrap'),
-                                'class' => 'booster.widgets.TbButtonColumn',
-                                'template' => '{update}',
-                            ),
-                            array(
-                                'header' => '<font color="#61625D">Delete</font>',
-                                'htmlOptions' => array('nowrap' => 'nowrap'),
-                                'class' => 'booster.widgets.TbButtonColumn',
-                                'template' => '{delete}',
-                            ),
+//                            array(
+//                                'header' => '<font color="#61625D">Edit</font>',
+//                                'htmlOptions' => array('nowrap' => 'nowrap'),
+//                                'class' => 'booster.widgets.TbButtonColumn',
+//                                'template' => '{update}',
+//                            ),
+//                            array(
+//                                'header' => '<font color="#61625D">Delete</font>',
+//                                'htmlOptions' => array('nowrap' => 'nowrap'),
+//                                'class' => 'booster.widgets.TbButtonColumn',
+//                                'template' => '{delete}',
+//                            ),
                             array(
                                 'header' => '<font color="#61625D">View</font>',
                                 'htmlOptions' => array('nowrap' => 'nowrap'),

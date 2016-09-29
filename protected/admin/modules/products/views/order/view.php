@@ -82,20 +82,20 @@
 //                                            return 'INR ' . $data->payment_status . '/-';
                                 },
                             ),
-                            array('name' => 'status',
-                                'value' => function($data) {
-                                    if ($data->status == 1) {
-                                        return 'Order Placed , Not Delivered to customer';
-                                    } else if ($data->status == 2) {
-                                        return 'Order Success';
-                                    } else if ($data->payment_status == 3) {
-                                        return 'Order Failed';
-                                    } else {
-                                        return 'Order Not Placed';
-                                    }
-//                                            return 'INR ' . $data->payment_status . '/-';
-                                },
-                            ),
+//                            array('name' => 'status',
+//                                'value' => function($data) {
+//                                    if ($data->status == 1) {
+//                                        return 'Order Placed , Not Delivered to customer';
+//                                    } else if ($data->status == 2) {
+//                                        return 'Order Success';
+//                                    } else if ($data->payment_status == 3) {
+//                                        return 'Order Failed';
+//                                    } else {
+//                                        return 'Order Not Placed';
+//                                    }
+////                                            return 'INR ' . $data->payment_status . '/-';
+//                                },
+//                            ),
 //                    'DOC',
                         ),
                     ));

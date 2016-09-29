@@ -11,7 +11,6 @@
     }
 </style>
 
-<?php date_default_timezone_set('Asia/Kolkata'); ?>
 
 <section class="banner">
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?php echo Yii::app()->request->baseUrl; ?>/images/img_inn.jpg)">
@@ -26,7 +25,7 @@
 <section class="cart-main">
     <div class="container">
         <div class="heading">
-            Sales report
+            Most Purchased
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-9 his">
