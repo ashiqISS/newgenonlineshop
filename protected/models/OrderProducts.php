@@ -27,6 +27,7 @@ class OrderProducts extends CActiveRecord {
          */
         public $amt;
         public $cnt;
+        public $value_occurrence;
 
         public function tableName() {
                 return 'order_products';
@@ -122,6 +123,19 @@ class OrderProducts extends CActiveRecord {
          */
         public static function model($className = __CLASS__) {
                 return parent::model($className);
+        }
+
+        public function MostPurchasedProducts() {
+                $criteria = new CDbCriteria(array(
+                    'select' => 't.*,COUNT(product_id) AS value_occurrence',
+                    'condition' => 't.merchant_id =' . Yii::app()->user->getState('merchant_id'),
+                    'group' => 't.product_id',
+                    'order' => 'value_occurrence DESC'
+                ));
+
+                return new CActiveDataProvider($this, array(
+                    'criteria' => $criteria,
+                ));
         }
 
 }
