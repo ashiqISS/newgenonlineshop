@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title><?php echo Yii::app()->name; ?></title>
         <!-- Tell the browser to be responsive to screen width -->
-        <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                                  ?>/css/admin.css">-->
+        <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                                    ?>/css/admin.css">-->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.5 -->
 
@@ -50,8 +50,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- AdminLTE App -->
         <script src="<?php echo Yii::app()->baseUrl ?>/admin-themes/dist/js/app.min.js"></script>
         <script>
-                var baseurl = "<?php print Yii::app()->request->baseUrl . "/admin.php/"; ?>";
-                var basepath = "<?php print Yii::app()->basePath; ?>";
+            var baseurl = "<?php print Yii::app()->request->baseUrl . "/admin.php/"; ?>";
+            var basepath = "<?php print Yii::app()->basePath; ?>";
         </script>
         <style>
             .errorMessage{
@@ -123,125 +123,129 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <?php
                     $actionId = Yii::app()->controller->id;
                     switch ($actionId) {
-                            case "adminUser":
-                                    $action1 = "active";
-                                    $actionn1 = "active";
-                                    break;
-                            case "adminPost":
-                                    $action2 = "active";
-                                    $actionn1 = "active";
-                                    break;
-                            case "buyerDetails":
-                                    $action3 = "active";
-                                    $actionn2 = "active";
-                                    break;
-                            case "merchantDetails":
-                                    $action4 = "active";
-                                    $actionn2 = "active";
-                                    break;
-                            case "productCategory":
-                                    $action5 = "active";
-                                    $actionn3 = "active";
-                                    break;
-                            case "products":
-                                    $action6 = "active";
-                                    $actionn3 = "active";
-                                    break;
-                            case "currency":
-                                    $action7 = "active";
-                                    $actionn4 = "active";
-                                    break;
-                            case "masterShippingTypes":
-                                    $action8 = "active";
-                                    $actionn4 = "active";
-                                    break;
-                            case "shippingCharges":
-                                    $action9 = "active";
-                                    $actionn4 = "active";
-                                    break;
-                            case "weightClass":
-                                    $action10 = "active";
-                                    $actionn4 = "active";
-                                    break;
-                            case "userAddress":
-                                    $action11 = "active";
-                                    $actionn4 = "active";
-                                    break;
-                            case "countries":
-                                    $action12 = "active";
-                                    $actionn4 = "active";
-                                    break;
-                            case "districts":
-                                    $action13 = "active";
-                                    $actionn4 = "active";
-                                    break;
-                            case "states":
-                                    $action14 = "active";
-                                    $actionn4 = "active";
-                                    break;
-                            case "order":
-                                    $action15 = "active";
-                                    $actionn5 = "active";
-                                    break;
-                            case "orderStatus":
-                                    $action16 = "active";
-                                    $actionn5 = "active";
-                                    break;
-                            case "orderProducts":
-                                    $action17 = "active";
-                                    $actionn5 = "active";
-                                    break;
-                            case "orderHistory":
-                                    $action18 = "active";
-                                    $actionn5 = "active";
-                                    break;
-                            case "masterBrands":
-                                    $action19 = "active";
-                                    $actionn4 = "active";
-                                    break;
-                            case "merchantPayoutHistory":
-                                    $actionn6 = "active";
-                                    break;
-                            case "masterAdLocation":
-                                    $action20 = "active";
-                                    $actionn7 = "active";
-                                    break;
-                            case "adPayment":
-                                    $action21 = "active";
-                                    $actionn7 = "active";
-                                    break;
-                            case "salesReport":
-                                    $action22 = "active";
-                                    $actionn8 = "active";
-                                    break;
-                            case "productViewed":
-                                    $action23 = "active";
-                                    $actionn8 = "active";
-                                    break;
-                            case "faq":
-                                    $actionn9 = "active";
-                                    break;
-                            case "staticPage":
-                                    $actionn10 = "active";
-                                    $action24 = "active";
-                                    break;
-                            case "newsletterContent":
-                                    $actionn11 = "active";
-                                    break;
-                            case "contactDetails":
-                                    $actionn25 = "active";
-                                    $actionn4 = "active";
-                                    break;
+                        case "adminUser":
+                            $action1 = "active";
+                            $actionn1 = "active";
+                            break;
+                        case "adminPost":
+                            $action2 = "active";
+                            $actionn1 = "active";
+                            break;
+                        case "buyerDetails":
+                            $action3 = "active";
+                            $actionn2 = "active";
+                            break;
+                        case "merchantDetails":
+                            $action4 = "active";
+                            $actionn2 = "active";
+                            break;
+                        case "productCategory":
+                            $action5 = "active";
+                            $actionn3 = "active";
+                            break;
+                        case "products":
+                            $action6 = "active";
+                            $actionn3 = "active";
+                            break;
+                        case "currency":
+                            $action7 = "active";
+                            $actionn4 = "active";
+                            break;
+                        case "masterShippingTypes":
+                            $action8 = "active";
+                            $actionn4 = "active";
+                            break;
+                        case "shippingCharges":
+                            $action9 = "active";
+                            $actionn4 = "active";
+                            break;
+                        case "weightClass":
+                            $action10 = "active";
+                            $actionn4 = "active";
+                            break;
+                        case "userAddress":
+                            $action11 = "active";
+                            $actionn4 = "active";
+                            break;
+                        case "countries":
+                            $action12 = "active";
+                            $actionn4 = "active";
+                            break;
+                        case "districts":
+                            $action13 = "active";
+                            $actionn4 = "active";
+                            break;
+                        case "states":
+                            $action14 = "active";
+                            $actionn4 = "active";
+                            break;
+                        case "order":
+                            $action15 = "active";
+                            $actionn5 = "active";
+                            break;
+                        case "orderStatus":
+                            $action16 = "active";
+                            $actionn5 = "active";
+                            break;
+                        case "orderProducts":
+                            $action17 = "active";
+                            $actionn5 = "active";
+                            break;
+                        case "orderHistory":
+                            $action18 = "active";
+                            $actionn5 = "active";
+                            break;
+                        case "masterBrands":
+                            $action19 = "active";
+                            $actionn4 = "active";
+                            break;
+                        case "merchantPayoutHistory":
+                            $actionn6 = "active";
+                            break;
+                        case "masterAdLocation":
+                            $action20 = "active";
+                            $actionn7 = "active";
+                            break;
+                        case "adPayment":
+                            $action21 = "active";
+                            $actionn7 = "active";
+                            break;
+                        case "salesReport":
+                            $action22 = "active";
+                            $actionn8 = "active";
+                            break;
+                        case "productViewed":
+                            $action23 = "active";
+                            $actionn8 = "active";
+                            break;
+                        case "faq":
+                            $actionn9 = "active";
+                            break;
+                        case "staticPage":
+                            $actionn10 = "active";
+                            $action24 = "active";
+                            break;
+                        case "newsletterContent":
+                            $actionn11 = "active";
+                            break;
+                        case "contactDetails":
+                            $actionn25 = "active";
+                            $actionn4 = "active";
+                            break;
+                        case "merchantAccountMaster":
+                            $actionn8 = "active";
+                            $action26 = "active";
+                            break;
 
-                            case "site":
-                                    if (Yii::app()->controller->action->id == "home") {
-                                            $action18 = "active";
-                                    }
+                        case "site":
+                            if (Yii::app()->controller->action->id == "home") {
+                                $action18 = "active";
+                            }
 
-                                    break;
-                            default:
-                                    $action18 = "active";
-                                    break;
+                            break;
+                        default:
+                            $action18 = "active";
+                            break;
                     }
                     ?>
                     <ul class="sidebar-menu">
@@ -252,21 +256,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <?php if (isset(Yii::app()->session['post']['admin']) && Yii::app()->session['post']['admin'] == 1) { ?>
-                                <li class="<?php echo $actionn1 ?> treeview">
-                                    <a href="#"><i class="fa fa-user-secret"></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                    <ul class="treeview-menu">
-                                        <li class="<?php echo $action1 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/settings/AdminUser/admin"><i class="fa fa-circle-o"></i> Admin User</a></li>
-                                        <li class="<?php echo $action2 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/settings/AdminPost/admin"><i class="fa fa-circle-o"></i> Admin Post</a></li>
-                                    </ul>
-                                </li>
+                            <li class="<?php echo $actionn1 ?> treeview">
+                                <a href="#"><i class="fa fa-user-secret"></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li class="<?php echo $action1 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/settings/AdminUser/admin"><i class="fa fa-circle-o"></i> Admin User</a></li>
+                                    <li class="<?php echo $action2 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/settings/AdminPost/admin"><i class="fa fa-circle-o"></i> Admin Post</a></li>
+                                </ul>
+                            </li>
                         <?php } ?>
                         <?php if (isset(Yii::app()->session['post']['admin']) && Yii::app()->session['post']['admin'] == 1) { ?>
-                                <li class="<?php echo $actionn10 ?> treeview">
-                                    <a href="#"><i class="fa fa-connectdevelop"></i> <span>CMS</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                    <ul class="treeview-menu">
-                                        <li class="<?php echo $action24 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/staticPage/admin"><i class="fa fa-circle-o"></i> Static Page</a></li>
-                                    </ul>
-                                </li>
+                            <li class="<?php echo $actionn10 ?> treeview">
+                                <a href="#"><i class="fa fa-connectdevelop"></i> <span>CMS</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li class="<?php echo $action24 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/staticPage/admin"><i class="fa fa-circle-o"></i> Static Page</a></li>
+                                </ul>
+                            </li>
                         <?php } ?>
                         <li class="<?php echo $actionn2 ?> treeview">
                             <a href="#"><i class="fa fa-users"></i> <span>Users</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -276,88 +280,102 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
                         <?php if (isset(Yii::app()->session['post']['products']) && Yii::app()->session['post']['products'] == 1) { ?>
-                                <li class="<?php echo $actionn3 ?> treeview">
-                                    <a href="#"><i class="fa fa-bars"></i> <span>Products</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                    <ul class="treeview-menu">
-                                        <li class="<?php echo $action5 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/ProductCategory/admin"><i class="fa fa-circle-o"></i> Product Category</a></li>
-                                        <li class="<?php echo $action6 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Products/admin"><i class="fa fa-circle-o"></i> Manage Products</a></li>
-                                        <li class="<?php echo $action6 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Coupons/admin"><i class="fa fa-circle-o"></i> Manage Coupons</a></li>
-                                    </ul>
-                                </li>
+                            <li class="<?php echo $actionn3 ?> treeview">
+                                <a href="#"><i class="fa fa-bars"></i> <span>Products</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li class="<?php echo $action5 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/ProductCategory/admin"><i class="fa fa-circle-o"></i> Product Category</a></li>
+                                    <li class="<?php echo $action6 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Products/admin"><i class="fa fa-circle-o"></i> Manage Products</a></li>
+                                    <li class="<?php echo $action6 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Coupons/admin"><i class="fa fa-circle-o"></i> Manage Coupons</a></li>
+                                </ul>
+                            </li>
                         <?php } ?>
                         <?php if (isset(Yii::app()->session['post']['products']) && Yii::app()->session['post']['products'] == 1) { ?>
-                                <li class="<?php echo $actionn5 ?> treeview">
-                                    <a href="#"><i class="fa fa-bars"></i> <span>Orders</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                    <ul class="treeview-menu">
-                                        <li class="<?php echo $action15 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Order/admin"><i class="fa fa-circle-o"></i>Order</a></li>
-                                        <li class="<?php echo $action16 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/OrderStatus/admin"><i class="fa fa-circle-o"></i> Order status</a></li>
-                                        <li class="<?php echo $action17 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/OrderProducts/admin"><i class="fa fa-circle-o"></i> Order Products</a></li>
-                                        <li class="<?php echo $action18 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/OrderHistory/admin"><i class="fa fa-circle-o"></i> Order History</a></li>
+                            <li class="<?php echo $actionn5 ?> treeview">
+                                <a href="#"><i class="fa fa-bars"></i> <span>Orders</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li class="<?php echo $action15 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Order/admin"><i class="fa fa-circle-o"></i>Order</a></li>
+                                    <li class="<?php echo $action16 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/OrderStatus/admin"><i class="fa fa-circle-o"></i> Order status</a></li>
+                                    <li class="<?php echo $action17 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/OrderProducts/admin"><i class="fa fa-circle-o"></i> Order Products</a></li>
+                                    <li class="<?php echo $action18 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/OrderHistory/admin"><i class="fa fa-circle-o"></i> Order History</a></li>
 
 
-                                    </ul>
-                                </li>
+                                </ul>
+                            </li>
                         <?php } ?>
                         <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
-                                <li class="<?php echo $actionn4 ?> treeview">
-                                    <a href="#"><i class="fa fa-database"></i> <span>Masters</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                    <ul class="treeview-menu">
-                                        <li class="<?php echo $action7 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/Currency/admin"><i class="fa fa-circle-o"></i>Currency</a></li>
-                                        <li class="<?php echo $action8 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/MasterShippingTypes/admin"><i class="fa fa-circle-o"></i>Shipping Types</a></li>
-                                        <li class="<?php echo $action9 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/shippingCharges/admin"><i class="fa fa-circle-o"></i>Shipping Charges</a></li>
-                                        <li class="<?php echo $action10 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/WeightClass/admin"><i class="fa fa-circle-o"></i> Weight Class</a></li>
-                                        <li class="<?php echo $action11 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/users/UserAddress/admin"><i class="fa fa-circle-o"></i> User Address</a></li>
-                                        <li class="<?php echo $action12 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/Countries/admin"><i class="fa fa-circle-o"></i> Countries</a></li>
-                                        <li class="<?php echo $action13 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/Districts/admin"><i class="fa fa-circle-o"></i> Districts</a></li>
-                                        <li class="<?php echo $action14 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/States/admin"><i class="fa fa-circle-o"></i> States</a></li>
-                                        <li class="<?php echo $action19 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/brands-admin"><i class="fa fa-circle-o"></i> Brands</a></li>
-                                        <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/materTaxRates/admin"><i class="fa fa-circle-o"></i> Tax Rates</a></li>
-                                        <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/masterTaxClass/admin"><i class="fa fa-circle-o"></i> Tax Classes</a></li>
-                                        <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/social/admin"><i class="fa fa-circle-o"></i> Social Media</a></li>
-                                        <li class="<?php echo $actionn25 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/contactDetails/admin"><i class="fa fa-circle-o"></i> Contact Details</a></li>
-                                    </ul>
-                                </li>
-
-                        <?php } ?>
-                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
-                                <li class="<?php echo $actionn6 ?> treeview">
-                                    <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/payouts/MerchantPayoutHistory/admin"><i class="fa fa-user-secret"></i> <span>Payout Requests</span></a>
-                                </li>
-                        <?php } ?>
-                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
-                                <li class="<?php echo $actionn6 ?> treeview">
-                                    <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/merchantMessage/admin"><i class="fa fa-user-secret"></i> <span>Messages</span></a>
-                                </li>
-                        <?php } ?>
-                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
-                                <li class="<?php echo $actionn11 ?> treeview">
-                                    <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/newsletterContent/admin"><i class="fa fa-newspaper-o"></i> <span>Newsletter</span></a>
-                                </li>
-                        <?php } ?>
-                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
-                                <li class="<?php echo $actionn9 ?> treeview">
-                                    <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/faq/admin"><i class="fa fa-fax"></i> <span>Faq</span></a>
-                                </li>
-                        <?php } ?>
-                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
-                                <li class="<?php echo $actionn7 ?> treeview">
-                                    <a href="#"><i class="fa fa-database"></i> <span>Advertisement</span> <i class="fa fa-angle-left pull-right"></i></a>
-                                    <ul class="treeview-menu">
-                                        <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/Ad/masterAdLocation/admin"><i class="fa fa-circle-o"></i>Ad Position,prize and size</a></li>
-                                        <li class="<?php echo $action21 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/Ad/adPayment/admin"><i class="fa fa-circle-o"></i>Ad Payment</a></li>
-                                    </ul>
-                                </li>
+                            <li class="<?php echo $actionn4 ?> treeview">
+                                <a href="#"><i class="fa fa-database"></i> <span>Masters</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li class="<?php echo $action7 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/Currency/admin"><i class="fa fa-circle-o"></i>Currency</a></li>
+                                    <li class="<?php echo $action8 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/MasterShippingTypes/admin"><i class="fa fa-circle-o"></i>Shipping Types</a></li>
+                                    <li class="<?php echo $action9 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/shippingCharges/admin"><i class="fa fa-circle-o"></i>Shipping Charges</a></li>
+                                    <li class="<?php echo $action10 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/WeightClass/admin"><i class="fa fa-circle-o"></i> Weight Class</a></li>
+                                    <li class="<?php echo $action11 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/users/UserAddress/admin"><i class="fa fa-circle-o"></i> User Address</a></li>
+                                    <li class="<?php echo $action12 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/Countries/admin"><i class="fa fa-circle-o"></i> Countries</a></li>
+                                    <li class="<?php echo $action13 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/Districts/admin"><i class="fa fa-circle-o"></i> Districts</a></li>
+                                    <li class="<?php echo $action14 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/States/admin"><i class="fa fa-circle-o"></i> States</a></li>
+                                    <li class="<?php echo $action19 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/brands-admin"><i class="fa fa-circle-o"></i> Brands</a></li>
+                                    <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/materTaxRates/admin"><i class="fa fa-circle-o"></i> Tax Rates</a></li>
+                                    <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/masterTaxClass/admin"><i class="fa fa-circle-o"></i> Tax Classes</a></li>
+                                    <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/social/admin"><i class="fa fa-circle-o"></i> Social Media</a></li>
+                                    <li class="<?php echo $actionn25 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/contactDetails/admin"><i class="fa fa-circle-o"></i> Contact Details</a></li>
+                                </ul>
+                            </li>
 
                         <?php } ?>
                         <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
-                                <li class="<?php echo $actionn8 ?> treeview">
-                                    <a href="#"><i class="fa fa-mail-reply-all"></i> <span>Reports </span> <i class="fa fa-angle-left pull-right"></i></a>
-                                    <ul class="treeview-menu">
-                                        <li class="<?php echo $action22 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/reports/productViewed/admin"><i class="fa fa-circle-o"></i>Sales Report</a></li>
-                                        <li class="<?php echo $action23 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/reports/productViewed/admin"><i class="fa fa-circle-o"></i>Product Viewed</a></li>
+                            <li class="<?php echo $actionn6 ?> treeview">
+                                <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/payouts/MerchantPayoutHistory/admin"><i class="fa fa-user-secret"></i> <span>Payout Requests</span></a>
+                            </li>
+                        <?php } ?>
+                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                            <li class="<?php echo $actionn6 ?> treeview">
+                                <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/merchantMessage/admin"><i class="fa fa-user-secret"></i> <span>Messages</span></a>
+                            </li>
+                        <?php } ?>
+                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                            <li class="<?php echo $actionn11 ?> treeview">
+                                <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/newsletterContent/admin"><i class="fa fa-newspaper-o"></i> <span>Newsletter</span></a>
+                            </li>
+                        <?php } ?>
+                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                            <li class="<?php echo $actionn9 ?> treeview">
+                                <a href="<?php echo Yii::app()->baseUrl ?>/admin.php/faq/admin"><i class="fa fa-fax"></i> <span>Faq</span></a>
+                            </li>
+                        <?php } ?>
+                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                            <li class="<?php echo $actionn7 ?> treeview">
+                                <a href="#"><i class="fa fa-database"></i> <span>Advertisement</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/Ad/masterAdLocation/admin"><i class="fa fa-circle-o"></i>Ad Position,prize and size</a></li>
+                                    <li class="<?php echo $action21 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/Ad/adPayment/admin"><i class="fa fa-circle-o"></i>Ad Payment</a></li>
+                                </ul>
+                            </li>
 
-                                    </ul>
-                                </li>
+                        <?php } ?>
+                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                            <li class="<?php echo $actionn8 ?> treeview">
+                                <a href="#"><i class="fa fa-mail-reply-all"></i> <span>Reports </span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li class="<?php echo $action22 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/reports/productViewed/admin"><i class="fa fa-circle-o"></i>Sales Report</a></li>
+                                    <li class="<?php echo $action23 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/reports/productViewed/admin"><i class="fa fa-circle-o"></i>Product Viewed</a></li>
+                                    <li class="<?php echo $action26 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/reports/merchantAccountMaster/admin"><i class="fa fa-circle-o"></i>Accounts Master</a></li>
+
+
+                                </ul>
+                            </li>
+
+                        <?php } ?>
+
+                        <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                            <li class="<?php echo $actionn12 ?> treeview">
+                                <a href="#"><i class="fa fa-mail-reply-all"></i> <span>Transactions </span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+
+        <!--<li class="<?php echo $action23 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/reports/productViewed/admin"><i class="fa fa-circle-o"></i>Product Viewed</a></li>-->
+
+                                </ul>
+                            </li>
 
                         <?php } ?>
 

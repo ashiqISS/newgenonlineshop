@@ -10,7 +10,7 @@
         background-color: #B1B1CE;
         float:left;
         text-align: left;
-        //padding:10px;
+        /*//padding:10px;*/
         margin-bottom: 10px;
     }
     .right{
@@ -18,7 +18,7 @@
         background-color: #C7A9A9;
         float:right;
         text-align: right;
-        //padding:10px;
+        /*//padding:10px;*/
         margin-bottom: 10px;
 
 

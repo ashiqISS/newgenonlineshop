@@ -57,8 +57,8 @@ class MerchantDetails extends CActiveRecord {
         // will receive user inputs.
         return array(
 //			array('user_id, fullname, product_categories, merchant_type, product_count, shop_name, address, pincode, city, locality, district, state, country, CB, UB, DOC, DOU, is_payment_done', 'required'),
-            array('fullname, product_categories, merchant_type, shop_name, address, pincode, city, locality, district, state, country, is_payment_done', 'required','on'=>'admin_create'),
-            array('fullname, product_categories, merchant_type', 'required','on'=>'user_create'),
+            array('fullname, product_categories, merchant_type, shop_name, address, pincode, city, locality, district, state, country, is_payment_done', 'required', 'on' => 'admin_create'),
+            array('fullname, product_categories, merchant_type', 'required', 'on' => 'user_create'),
             array('user_id, merchant_type, product_count, pincode, CB, UB, is_payment_done', 'numerical', 'integerOnly' => true),
             array('fullname, city, locality, vat_tin', 'length', 'max' => 100),
             array('product_categories, shop_name, shop_logo, shop_banner', 'length', 'max' => 250),
@@ -188,22 +188,27 @@ class MerchantDetails extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-    
-    public static function getFullname($userid)
-    {
-        $model = MerchantDetails::model()->findByAttributes(array('user_id'=>$userid));
+
+    public static function getFullname($userid) {
+        $model = MerchantDetails::model()->findByAttributes(array('user_id' => $userid));
         $name = $model->fullname;
         return $name;
     }
-    public static function getMerchantname($merchantid)
-    {
+
+    public static function getMerchantname($merchantid) {
+        if ($merchantid == 0) {
+            return 'Admin';
+        } else {
+
+
+            $model = MerchantDetails::model()->findByPk($merchantid);
+            $name = $model->fullname;
+            return $name;
+        }
+    }
+
+    public static function getShopname($merchantid) {
         $model = MerchantDetails::model()->findByPk($merchantid);
-        $name = $model->fullname;
-        return $name;
-    }
-    public static function getShopname($merchantid)
-    {
-         $model = MerchantDetails::model()->findByPk($merchantid);
         $name = $model->shop_name;
         return $name;
     }

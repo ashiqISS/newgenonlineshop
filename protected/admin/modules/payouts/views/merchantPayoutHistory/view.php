@@ -51,10 +51,11 @@
         </div>
     </div>
 </div>
-
-<h3>
-    Other Histories in this request (Request Id : <?= $model->request_id ?> )
-</h3>
+<section class="content-header">
+<h1>
+    PayOut History (Request Id : <?= $model->request_id ?> )
+</h1>
+</section>
 <?php
 
 $model1 = new MerchantPayoutHistory('search');

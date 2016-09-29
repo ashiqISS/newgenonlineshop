@@ -34,7 +34,7 @@ return array(
     ),
     'modulePath' => $admin . '/modules/',
     'modules' => array(
-        'settings', 'users', 'products', 'masters', 'payouts', 'Ad',
+        'settings', 'users', 'products', 'masters', 'payouts', 'Ad', 'transactions', 'reports',
         // uncomment the following to enable the Gii tool
         'gii' => array(
             'class' => 'system.gii.GiiModule',
