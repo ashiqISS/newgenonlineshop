@@ -22,137 +22,149 @@
  */
 class OrderProducts extends CActiveRecord {
 
-    /**
-     * @return string the associated database table name
-     */
-    public $amt;
-    public $cnt;
-    public $value_occurrence;
+        /**
+         * @return string the associated database table name
+         */
+        public $amt;
+        public $cnt;
+        public $value_occurrence;
 
-    public function tableName() {
-        return 'order_products';
-    }
-
-    /**
-     * @return array validation rules for model attributes.
-     */
-    public function rules() {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
-        return array(
-//			array('order_id, product_id, merchant_id, quantity, amount, DOC, status, gift_option, rate', 'required'),
-            array('order_id, product_id, merchant_id, quantity, status, gift_option', 'numerical', 'integerOnly' => true),
-            array('amount, rate', 'numerical'),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
-            array('id, order_id, product_id, merchant_id, quantity, amount, DOC, status, gift_option, rate', 'safe', 'on' => 'search'),
-        );
-    }
-
-    /**
-     * @return array relational rules.
-     */
-    public function relations() {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
-        return array(
-            'merchant' => array(self::BELONGS_TO, 'MerchantDetails', 'merchant_id'),
-            'order' => array(self::BELONGS_TO, 'Order', 'order_id'),
-            'product' => array(self::BELONGS_TO, 'Products', 'product_id'),
-        );
-    }
-
-    /**
-     * @return array customized attribute labels (name=>label)
-     */
-    public function attributeLabels() {
-        return array(
-            'id' => 'ID',
-            'order_id' => 'Order',
-            'product_id' => 'Product',
-            'merchant_id' => 'Merchant',
-            'quantity' => 'Quantity',
-            'amount' => 'Amount',
-            'DOC' => 'Doc',
-            'status' => 'Status',
-//			'status' => '1-not placed, 2- payment_pending, 3- payment_done, 4 - completed',
-            'gift_option' => 'Gift Option',
-            'rate' => 'Rate',
-        );
-    }
-
-    /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
-     * @return CActiveDataProvider the data provider that can return the models
-     * based on the search/filter conditions.
-     */
-    public function search() {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-
-        $criteria = new CDbCriteria;
-        $criteria->order = 'id desc';
-        $criteria->compare('id', $this->id);
-        $criteria->compare('order_id', $this->order_id);
-        $criteria->compare('product_id', $this->product_id);
-        $criteria->compare('merchant_id', $this->merchant_id);
-        $criteria->compare('quantity', $this->quantity);
-        $criteria->compare('amount', $this->amount);
-        $criteria->compare('DOC', $this->DOC, true);
-        $criteria->compare('status', $this->status);
-        $criteria->compare('gift_option', $this->gift_option);
-        $criteria->compare('rate', $this->rate);
-
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-            'pagination' => array('pageSize' => 20),
-        ));
-    }
-
-    /**
-     * Returns the static model of the specified AR class.
-     * Please note that you should have this exact method in all your CActiveRecord descendants!
-     * @param string $className active record class name.
-     * @return OrderProducts the static model class
-     */
-    public static function model($className = __CLASS__) {
-        return parent::model($className);
-    }
-
-    public function MostPurchasedProducts() {
-        $criteria = new CDbCriteria(array(
-            'select' => 't.*,COUNT(product_id) AS value_occurrence',
-            'condition' => 't.merchant_id =' . Yii::app()->user->getState('merchant_id'),
-            'group' => 't.product_id',
-            'order' => 'value_occurrence DESC'
-        ));
-
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
-    }
-
-    public static function getStatus($val) {
-        switch ($val) {
-            case 1 : $status = "Not Placed";
-                break;
-            case 2 : $status = "Payment Pending";
-                break;
-            case 3 : $status = "Payment Done";
-                break;
-            case 4 : $status = "Delivered";
-                break;
-            case 5 : $status = "Completed";
-                break;
-            default : $status = "Invalid";
+        public function tableName() {
+                return 'order_products';
         }
-        return $status;
-    }
+
+        /**
+         * @return array validation rules for model attributes.
+         */
+        public function rules() {
+                // NOTE: you should only define rules for those attributes that
+                // will receive user inputs.
+                return array(
+//			array('order_id, product_id, merchant_id, quantity, amount, DOC, status, gift_option, rate', 'required'),
+                    array('order_id, product_id, merchant_id, quantity, status, gift_option', 'numerical', 'integerOnly' => true),
+                    array('amount, rate', 'numerical'),
+                    // The following rule is used by search().
+                    // @todo Please remove those attributes that should not be searched.
+                    array('id, order_id, product_id, merchant_id, quantity, amount, DOC, status, gift_option, rate', 'safe', 'on' => 'search'),
+                );
+        }
+
+        /**
+         * @return array relational rules.
+         */
+        public function relations() {
+                // NOTE: you may need to adjust the relation name and the related
+                // class name for the relations automatically generated below.
+                return array(
+                    'merchant' => array(self::BELONGS_TO, 'MerchantDetails', 'merchant_id'),
+                    'order' => array(self::BELONGS_TO, 'Order', 'order_id'),
+                    'product' => array(self::BELONGS_TO, 'Products', 'product_id'),
+                );
+        }
+
+        /**
+         * @return array customized attribute labels (name=>label)
+         */
+        public function attributeLabels() {
+                return array(
+                    'id' => 'ID',
+                    'order_id' => 'Order',
+                    'product_id' => 'Product',
+                    'merchant_id' => 'Merchant',
+                    'quantity' => 'Quantity',
+                    'amount' => 'Amount',
+                    'DOC' => 'Doc',
+                    'status' => 'Status',
+//			'status' => '1-not placed, 2- payment_pending, 3- payment_done, 4 - completed',
+                    'gift_option' => 'Gift Option',
+                    'rate' => 'Rate',
+                );
+        }
+
+        /**
+         * Retrieves a list of models based on the current search/filter conditions.
+         *
+         * Typical usecase:
+         * - Initialize the model fields with values from filter form.
+         * - Execute this method to get CActiveDataProvider instance which will filter
+         * models according to data in model fields.
+         * - Pass data provider to CGridView, CListView or any similar widget.
+         *
+         * @return CActiveDataProvider the data provider that can return the models
+         * based on the search/filter conditions.
+         */
+        public function search() {
+                // @todo Please modify the following code to remove attributes that should not be searched.
+
+                $criteria = new CDbCriteria;
+                $criteria->order = 'id desc';
+                $criteria->compare('id', $this->id);
+                $criteria->compare('order_id', $this->order_id);
+                $criteria->compare('product_id', $this->product_id);
+                $criteria->compare('merchant_id', $this->merchant_id);
+                $criteria->compare('quantity', $this->quantity);
+                $criteria->compare('amount', $this->amount);
+                $criteria->compare('DOC', $this->DOC, true);
+                $criteria->compare('status', $this->status);
+                $criteria->compare('gift_option', $this->gift_option);
+                $criteria->compare('rate', $this->rate);
+
+                return new CActiveDataProvider($this, array(
+                    'criteria' => $criteria,
+                    'pagination' => array('pageSize' => 20),
+                ));
+        }
+
+        /**
+         * Returns the static model of the specified AR class.
+         * Please note that you should have this exact method in all your CActiveRecord descendants!
+         * @param string $className active record class name.
+         * @return OrderProducts the static model class
+         */
+        public static function model($className = __CLASS__) {
+                return parent::model($className);
+        }
+
+        public function MostPurchasedProducts() {
+                $criteria = new CDbCriteria(array(
+                    'select' => 't.*,COUNT(product_id) AS value_occurrence',
+                    'condition' => 't.merchant_id =' . Yii::app()->user->getState('merchant_id'),
+                    'group' => 't.product_id',
+                    'order' => 'value_occurrence DESC'
+                ));
+
+                return new CActiveDataProvider($this, array(
+                    'criteria' => $criteria,
+                ));
+        }
+
+        public function AdminPurchasedProducts() {
+                $criteria = new CDbCriteria(array(
+                    'select' => 't.*,COUNT(product_id) AS value_occurrence',
+                    'group' => 't.product_id',
+                    'order' => 'value_occurrence DESC'
+                ));
+
+                return new CActiveDataProvider($this, array(
+                    'criteria' => $criteria,
+                ));
+        }
+
+        public static function getStatus($val) {
+                switch ($val) {
+                        case 1 : $status = "Not Placed";
+                                break;
+                        case 2 : $status = "Payment Pending";
+                                break;
+                        case 3 : $status = "Payment Done";
+                                break;
+                        case 4 : $status = "Delivered";
+                                break;
+                        case 5 : $status = "Completed";
+                                break;
+                        default : $status = "Invalid";
+                }
+                return $status;
+        }
 
 }
