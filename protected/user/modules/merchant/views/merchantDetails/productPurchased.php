@@ -61,15 +61,6 @@
                                     'type' => 'raw'
                                 ),
                                 'value_occurrence'
-//                                array(
-//                                    'name' => 'product_id',
-//                                    'header' => 'No.Of Viewers',
-//                                    'value' => function($data) {
-//                                            $product_count = ProductViewed::model()->findAll(array('condition' => 'product_id = ' . $data->product_id));
-//                                            return count($product_count);
-//                                    },
-//                                            'type' => 'raw'
-//                                        ),
                             ),
                         ));
                         ?>

@@ -26,7 +26,7 @@ class ProductViewedController extends Controller {
         public function accessRules() {
                 return array(
                     array('allow', // allow all users to perform 'index' and 'view' actions
-                        'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
+                        'actions' => array('index', 'view', 'create', 'update', 'admin', 'MostPurchased', 'delete', 'SalesReport'),
                         'users' => array('*'),
                     ),
                     array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -156,6 +156,37 @@ class ProductViewedController extends Controller {
                         echo CActiveForm::validate($model);
                         Yii::app()->end();
                 }
+        }
+
+        public function actionSalesReport() {
+                $criteria = new CDbCriteria();
+                $sumary = new CDbCriteria();
+                $fromdate = '';
+                $todate = '';
+                if (isset($_POST['slaes_filter_date_from']) && $_POST['slaes_filter_date_from'] != "") {
+                        $criteria->addCondition("DOC >='" . $_POST['slaes_filter_date_from'] . "'");
+                        $sumary->addCondition("DOC >='" . $_POST['slaes_filter_date_from'] . "'");
+                        $fromdate = $_POST['slaes_filter_date_from'];
+                }if (isset($_POST['slaes_filter_date_to']) && $_POST['slaes_filter_date_to'] != '') {
+                        $criteria->addCondition("DOC <= '" . $_POST['slaes_filter_date_to'] . "'");
+                        $sumary->addCondition("DOC <= '" . $_POST['slaes_filter_date_to'] . "'");
+                        $todate = $_POST['slaes_filter_date_to'];
+                }
+                $sumary->select = 'SUM(amount) as amt ,count(order_id) cnt';
+                $sales = OrderProducts::model()->findAll($criteria);
+                $salesSummary = OrderProducts::model()->find($sumary);
+                $this->render('sales', array('sales' => $sales, 'slaesSummary' => $salesSummary, 'fromdt' => $fromdate, 'todate' => $todate));
+        }
+
+        public function actionMostPurchased() {
+                $model = new OrderProducts('MostPurchasedProducts');
+                $model->unsetAttributes();  // clear any default values
+                if (isset($_GET['ProductViewed']))
+                        $model->attributes = $_GET['MostPurchasedProducts'];
+
+                $this->render('productPurchased', array(
+                    'model' => $model,
+                ));
         }
 
 }
