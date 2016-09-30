@@ -127,7 +127,7 @@
                                         <tr>
                                             <td><?= $ProductDetails->product_name; ?></td>
                                             <td><?= $ProductDetails->product_name; ?></td>
-                                            <td><?= $$purchased->value_occurrence ?></td>
+                                            <td><?= $purchased->value_occurrence ?></td>
 
                                         </tr>
                                         <?php

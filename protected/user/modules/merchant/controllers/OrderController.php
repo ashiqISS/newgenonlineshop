@@ -82,6 +82,7 @@ class OrderController extends Controller {
         }
 
         public function actionPrintProductPurchased() {
+
                 $criteria = new CDbCriteria(array(
                     'select' => 't.*,COUNT(product_id) AS value_occurrence',
                     'condition' => 't.merchant_id =' . Yii::app()->user->getState('merchant_id'),
@@ -89,9 +90,7 @@ class OrderController extends Controller {
                     'order' => 'value_occurrence DESC'
                 ));
 
-                return new CActiveDataProvider($this, array(
-                    'criteria' => $criteria,
-                ));
+
                 $purchased = OrderProducts::model()->findAll($criteria);
                 $merchant_details = MerchantDetails::model()->findByPk(Yii::app()->user->getState('merchant_id'));
                 $this->renderPartial('_product_purchased_report', array('purchased' => $purchased, 'merchant_details' => $merchant_details));
