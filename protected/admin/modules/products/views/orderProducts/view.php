@@ -76,7 +76,7 @@ $this->widget('zii.widgets.CDetailView', array(
         array('name' => 'status',
 //                        'filter' => CHtml::listData(Products::model()->findAll(), 'id', 'product_name'),
             'value' => function($data) {
-                return OrderStatus::model()->findByPk($data->status)->title . ' ' . OrderStatus::model()->findByPk($data->status)->description;
+                return OrderProducts::getStatus($data->status);
             },
             'type' => 'raw',
         ),
@@ -97,13 +97,13 @@ $this->widget('zii.widgets.CDetailView', array(
 //echo $model->order_id .'<br>'.$model->product_id;
 ?>
 <?php $history = new OrderHistory('search'); ?>
-<?php echo $history->order_id = $model->order_id; ?>
-<?php echo $history->product_id = $model->product_id; ?>
+<?php  $history->order_id = $model->order_id; ?>
+<?php  $history->product_id = $model->product_id; ?>
 <?php
 $this->widget('booster.widgets.TbGridView', array(
     'type' => ' bordered condensed hover',
     'id' => 'order-products-grid',
-    'dataProvider' => $history->search(array('condition' => "order_id = $model->order_id AND product_id = $model->product_id")),
+    'dataProvider' => $history->search(array('condition' => "order_id = $model->order_id AND product_id = $model->product_id" )),
 //    'dataProvider' => $history->search(),
     //'filter' => $products,
     'columns' => array(

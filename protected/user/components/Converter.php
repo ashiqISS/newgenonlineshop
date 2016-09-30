@@ -39,6 +39,6 @@ class Converter extends CApplicationComponent {
         }
 
 }
-?>
+
 
 
