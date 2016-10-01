@@ -146,7 +146,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         case "products":
                             $action6 = "active";
                             $actionn3 = "active";
-                            break;
+                            break;                      
                         case "currency":
                             $action7 = "active";
                             $actionn4 = "active";
@@ -240,6 +240,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             $actionn8 = "active";
                             $action27 = "active";
                             break;
+                          case "coupons":
+                            $action28 = "active";
+                            $actionn3 = "active";
+                            break;
 
                         case "site":
                             if (Yii::app()->controller->action->id == "home") {
@@ -289,7 +293,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <ul class="treeview-menu">
                                     <li class="<?php echo $action5 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/ProductCategory/admin"><i class="fa fa-circle-o"></i> Product Category</a></li>
                                     <li class="<?php echo $action6 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Products/admin"><i class="fa fa-circle-o"></i> Manage Products</a></li>
-                                    <li class="<?php echo $action6 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Coupons/admin"><i class="fa fa-circle-o"></i> Manage Coupons</a></li>
+                                    <li class="<?php echo $action28 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Coupons/admin"><i class="fa fa-circle-o"></i> Manage Coupons</a></li>
                                 </ul>
                             </li>
                         <?php } ?>

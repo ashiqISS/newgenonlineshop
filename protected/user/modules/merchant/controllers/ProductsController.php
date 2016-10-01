@@ -317,7 +317,6 @@ class ProductsController extends Controller {
     }
 
     public function actionCloneProduct($id) {
-        echo 'id....' . $id;
         $model = new Products;
         $model1 = Products::model()->findByPk($id);
         $model->attributes = $model1->attributes;
@@ -338,25 +337,12 @@ class ProductsController extends Controller {
         $model->special_price_from = $model1->special_price_from;
         $model->special_price = $model1->special_price;
         $model->special_price_to = $model1->special_price_to;
-//
-//        print_r($model1->attributes);
-//        echo '<br><br>';
-//        print_r($model->attributes);
-//        echo '<br>  <br>';
-//        exit;
+
         if ($model->save(FALSE)) {
             $model->canonical_name = str_replace(" ", "-", $model->product_name) . '-' . $model->id;
-//            $model->save();
-//            echo 'model1<br><br>';
-//            print_r($model1->attributes);
-//            echo '<br><br> model<br>';
-//            print_r($model->attributes);
             $folder = Yii::app()->Upload->folderName(0, 1000, $model->id) . '/';
-        echo    '<br>'.$src = yii::app()->basePath . '/../uploads/products/' . $folder . $id . '/';
-          echo  '<br>'.$dst = yii::app()->basePath . '/../uploads/products/' . $folder . $model->id. '/';
-//            echo 'dst<br><br>';
-//            var_dump($dst);
-//                        exit;
+            $src = yii::app()->basePath . '/../uploads/products/' . $folder . $id . '/';
+            $dst = yii::app()->basePath . '/../uploads/products/' . $folder . $model->id . '/';
             $this->recurse_copy($src, $dst);
             $this->redirect(array('../my-products'));
         }
@@ -399,7 +385,7 @@ class ProductsController extends Controller {
         $criteria->select = "*";
         $criteria->condition = "merchant_id = $merchant_id";
         $criteria->order = 'id DESC';
-        $data = new CActiveDataProvider('Products', array('criteria' => $criteria, 'pagination' => array('pageSize' =>10)));
+        $data = new CActiveDataProvider('Products', array('criteria' => $criteria, 'pagination' => array('pageSize' => 10)));
         $this->render('my_products', array(
             'ModelInstance' => Products::model()->findAll($criteria),
             'dataProvider' => $data

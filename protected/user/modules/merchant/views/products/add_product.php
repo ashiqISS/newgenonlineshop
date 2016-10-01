@@ -64,20 +64,20 @@
                                 'form_id' => 'products-form',
                             ));
                             ?>
-                            <?php echo $form->error($model, 'category_id', array('class' => 'red')); ?>
+                            <?php echo $form->error($model, 'category_id'); ?>
 
                         </div>
 
                         <div class="form-group">
                             <?php echo $form->labelEx($model, 'product_name'); ?>
-                            <?php echo $form->textField($model, 'product_name', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control', 'placeholder' => 'Product Name')); ?>
-                            <?php echo $form->error($model, 'product_name', array('class' => 'red')); ?>
+                            <?php echo $form->textField($model, 'product_name', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control slug', 'placeholder' => 'Product Name')); ?>
+                            <?php echo $form->error($model, 'product_name'); ?>
 
                         </div>
                         <div class="form-group">
                             <?php echo $form->labelEx($model, 'canonical_name'); ?>
-                            <?php echo $form->textField($model, 'canonical_name', array('size' => 60, 'maxlength' => 200, 'class' => 'form-control', 'placeholder' => 'Canonical Name')); ?>
-                            <?php echo $form->error($model, 'canonical_name', array('class' => 'red')); ?>
+                            <?php echo $form->textField($model, 'canonical_name', array('size' => 60, 'maxlength' => 200, 'class' => 'form-control', 'placeholder' => 'Canonical Name', 'readonly' => true)); ?>
+                            <?php echo $form->error($model, 'canonical_name'); ?>
 
                         </div>
                         <div class="row">
@@ -85,7 +85,7 @@
                                 <div class="form-group">
                                     <?php echo $form->labelEx($model, 'product_code'); ?>
                                     <?php echo $form->textField($model, 'product_code', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control', 'placeholder' => 'Product Code')); ?>
-                                    <?php echo $form->error($model, 'product_code', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'product_code'); ?>
 
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                 <div class="form-group">
                                     <?php echo $form->labelEx($model, 'brand_id'); ?>
                                     <?php echo CHtml::activeDropDownList($model, 'brand_id', CHtml::listData(MasterBrands::model()->findAll(), 'id', 'brand_name'), array('empty' => '--Brand--', 'class' => 'form-control')); ?>                
-                                    <?php echo $form->error($model, 'brand_id', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'brand_id'); ?>
 
                                 </div>
                             </div>
@@ -103,16 +103,29 @@
                                 <div class="form-group">
                                     <?php echo $form->labelEx($model, 'price'); ?>
                                     <?php echo $form->textField($model, 'price', array('class' => 'form-control', 'placeholder' => 'Price')); ?>
-                                    <?php echo $form->error($model, 'price', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'price'); ?>
 
 
                                 </div>
                             </div>
                             <div class="col-sm-6">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <?php echo $form->labelEx($model, 'wholesale_price'); ?>
                                     <?php echo $form->textField($model, 'wholesale_price', array('class' => 'form-control', 'placeholder' => 'Wholesale Price')); ?>
-                                    <?php echo $form->error($model, 'wholesale_price', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'wholesale_price'); ?>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <?php echo $form->labelEx($model, 'wholesale_quantity'); ?>
+                                    <?php echo $form->textField($model, 'wholesale_quantity', array('class' => 'form-control', 'placeholder' => 'Wholesale Quantity')); ?>
+                                    <?php echo $form->error($model, 'wholesale_quantity'); ?>
 
                                 </div>
                             </div>
@@ -120,17 +133,7 @@
 
 
                         <?php /*
-                          <div class="form-group">
-                          <div>
-                          <?php echo $form->labelEx($model, 'header_visibility'); ?>
-                          </div>
-                          <div>
-                          <?php echo $form->textField($model, 'header_visibility', array('class' => 'form-control', 'placeholder' => 'Email')); ?>
-                          <?php echo $form->error($model, 'header_visibility'); ?>
-                          </div>
-                          </div>
-                         * 
-                         * 
+
                           <div class="form-group">
                           <div>
                           <?php echo $form->labelEx($model, 'is_discount_available'); ?>
@@ -163,7 +166,7 @@
                                 'attribute' => 'description',
                             ));
                             ?>
-                            <?php echo $form->error($model, 'description', array('class' => 'red')); ?>
+                            <?php echo $form->error($model, 'description'); ?>
 
                         </div>
 
@@ -174,11 +177,12 @@
                             <?php
                             if ($model->main_image != '' && $model->id != "") {
                                 $folder = Yii::app()->Upload->folderName(0, 1000, $model->id);
-                                echo '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->baseUrl . '/uploads/products/' . $folder . '/' . $model->id . '/' . $model->id . '.' . $model->main_image . '" />';
+//                                echo '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->baseUrl . '/uploads/products/' . $folder . '/' . $model->id . '/' . $model->id . '.' . $model->main_image . '" />';
+                                echo '<img width="100" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->baseUrl . '/uploads/products/' . $folder . '/' . $model->id . '/small.' . $model->main_image . '" />';
                             }
                             ?>
 
-                            <?php echo $form->error($model, 'main_image', array('class' => 'red')); ?>
+                            <?php echo $form->error($model, 'main_image'); ?>
                         </div>
 
                         <div class="form-group">
@@ -192,7 +196,7 @@
                             }
                             ?>
 
-                            <?php echo $form->error($model, 'hover_image', array('class' => 'red')); ?>
+                            <?php echo $form->error($model, 'hover_image'); ?>
                         </div>
 
                         <div class="form-group">
@@ -238,7 +242,7 @@
                             }
                             ?>
 
-                            <?php echo $form->error($model, 'gallery_images', array('class' => 'red')); ?>
+                            <?php echo $form->error($model, 'gallery_images'); ?>
                         </div>
 
                         <div class="row">
@@ -246,7 +250,7 @@
                                 <div class="form-group">                 
                                     <?php echo $form->labelEx($model, 'quantity'); ?>
                                     <?php echo $form->textField($model, 'quantity', array('class' => 'form-control', 'placeholder' => 'Quantity')); ?>
-                                    <?php echo $form->error($model, 'quantity', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'quantity'); ?>
 
                                 </div>
                             </div>
@@ -254,7 +258,7 @@
                                 <div class="form-group">
                                     <?php echo $form->labelEx($model, 'weight'); ?>
                                     <?php echo $form->textField($model, 'weight', array('class' => 'form-control', 'placeholder' => 'Weight')); ?>
-                                    <?php echo $form->error($model, 'weight', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'weight'); ?>
 
                                 </div>
                             </div>
@@ -262,7 +266,7 @@
                                 <div class="form-group">
                                     <?php echo $form->labelEx($model, 'weight_class'); ?>
                                     <?php echo CHtml::activeDropDownList($model, 'weight_class', CHtml::listData(WeightClass::model()->findAll(), 'id', 'title'), array('empty' => '--Weight Class--', 'class' => 'form-control')); ?>
-                                    <?php echo $form->error($model, 'weight_class', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'weight_class'); ?>
 
 
                                 </div>
@@ -296,7 +300,7 @@
                                         ),
                                     ));
                                     ?>
-                                    <?php echo $form->error($model, 'sale_from', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'sale_from'); ?>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -325,7 +329,7 @@
                                         ),
                                     ));
                                     ?>
-                                    <?php echo $form->error($model, 'sale_to', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'sale_to'); ?>
                                 </div>
                             </div>
 
@@ -358,7 +362,7 @@
                                         ),
                                     ));
                                     ?>
-                                    <?php echo $form->error($model, 'new_from', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'new_from'); ?>
 
 
                                 </div>
@@ -389,7 +393,7 @@
                                         ),
                                     ));
                                     ?>
-                                    <?php echo $form->error($model, 'new_to', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'new_to'); ?>
                                 </div>
                             </div>
                         </div>
@@ -406,7 +410,7 @@
                                 <div class="form-group">
                                     <?php echo $form->labelEx($model, 'discount_type'); ?>
                                     <?php echo $form->dropDownList($model, 'discount_type', array('0' => "Classic", '1' => "Fixed"), array('class' => 'form-control', 'empty' => '--Discount Type--')); ?>
-                                    <?php echo $form->error($model, 'discount_type', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'discount_type'); ?>
 
                                 </div>
                             </div>
@@ -414,7 +418,7 @@
                                 <div class="form-group">
                                     <?php echo $form->labelEx($model, 'discount_rate'); ?>
                                     <?php echo $form->textField($model, 'discount_rate', array('class' => 'form-control', 'placeholder' => 'Discount Rate')); ?>
-                                    <?php echo $form->error($model, 'discount_rate', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'discount_rate'); ?>
 
                                 </div>
                             </div>
@@ -446,7 +450,7 @@
                                         ),
                                     ));
                                     ?>
-                                    <?php echo $form->error($model, 'discount_from', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'discount_from'); ?>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -475,91 +479,92 @@
                                         ),
                                     ));
                                     ?>
-                                    <?php echo $form->error($model, 'discount_to', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'discount_to'); ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <?php echo $form->labelEx($model, 'special_price'); ?>
-                                    <?php echo $form->textField($model, 'special_price', array('class' => 'form-control', 'placeholder' => 'Special Price')); ?>
-                                    <?php echo $form->error($model, 'special_price', array('class' => 'red')); ?>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <?php echo $form->labelEx($model, 'special_price_from'); ?>
-                                    <?php
-                                    $from = date('Y') - 2;
-                                    $to = date('Y') + 20;
-                                    $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                                        'model' => $model,
-                                        'attribute' => 'special_price_from',
-                                        'value' => 'special_price_from',
-                                        'options' => array(
-                                            'minDate' => '0', // this will disable previous dates from datepicker
-                                            'dateFormat' => 'dd-mm-yy',
-                                            'changeYear' => true, // can change year
-                                            'changeMonth' => true, // can change month
-                                            'yearRange' => $from . ':' . $to, // range of year
-                                            'showButtonPanel' => true, // show button panel
-                                        ),
-                                        'htmlOptions' => array(
-                                            'size' => '10', // textField size
-                                            'maxlength' => '10', // textField maxlength
-                                            'class' => 'form-control',
-                                            'placeholder' => 'Special Price From',
-                                        ),
-                                    ));
-                                    ?>
-                                    <?php echo $form->error($model, 'special_price_from', array('class' => 'red')); ?>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <?php echo $form->labelEx($model, 'special_price_to'); ?>
-                                    <?php
-                                    $from = date('Y') - 2;
-                                    $to = date('Y') + 20;
-                                    $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                                        'model' => $model,
-                                        'attribute' => 'special_price_to',
-                                        'value' => 'special_price_to',
-                                        'options' => array(
-                                            'minDate' => '0', // this will disable previous dates from datepicker
-                                            'dateFormat' => 'dd-mm-yy',
-                                            'changeYear' => true, // can change year
-                                            'changeMonth' => true, // can change month
-                                            'yearRange' => $from . ':' . $to, // range of year
-                                            'showButtonPanel' => true, // show button panel
-                                        ),
-                                        'htmlOptions' => array(
-                                            'size' => '10', // textField size
-                                            'maxlength' => '10', // textField maxlength
-                                            'class' => 'form-control',
-                                            'placeholder' => 'Special Price To',
-                                        ),
-                                    ));
-                                    ?>
-                                    <?php echo $form->error($model, 'special_price_to', array('class' => 'red')); ?>
-                                </div>
-                            </div>
-                        </div>
-
+                        <?php /*
+                          <div class="row">
+                          <div class="col-sm-4">
+                          <div class="form-group">
+                          <?php echo $form->labelEx($model, 'special_price'); ?>
+                          <?php echo $form->textField($model, 'special_price', array('class' => 'form-control', 'placeholder' => 'Special Price')); ?>
+                          <?php echo $form->error($model, 'special_price'); ?>
+                          </div>
+                          </div>
+                          <div class="col-sm-4">
+                          <div class="form-group">
+                          <?php echo $form->labelEx($model, 'special_price_from'); ?>
+                          <?php
+                          $from = date('Y') - 2;
+                          $to = date('Y') + 20;
+                          $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                          'model' => $model,
+                          'attribute' => 'special_price_from',
+                          'value' => 'special_price_from',
+                          'options' => array(
+                          'minDate' => '0', // this will disable previous dates from datepicker
+                          'dateFormat' => 'dd-mm-yy',
+                          'changeYear' => true, // can change year
+                          'changeMonth' => true, // can change month
+                          'yearRange' => $from . ':' . $to, // range of year
+                          'showButtonPanel' => true, // show button panel
+                          ),
+                          'htmlOptions' => array(
+                          'size' => '10', // textField size
+                          'maxlength' => '10', // textField maxlength
+                          'class' => 'form-control',
+                          'placeholder' => 'Special Price From',
+                          ),
+                          ));
+                          ?>
+                          <?php echo $form->error($model, 'special_price_from'); ?>
+                          </div>
+                          </div>
+                          <div class="col-sm-4">
+                          <div class="form-group">
+                          <?php echo $form->labelEx($model, 'special_price_to'); ?>
+                          <?php
+                          $from = date('Y') - 2;
+                          $to = date('Y') + 20;
+                          $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                          'model' => $model,
+                          'attribute' => 'special_price_to',
+                          'value' => 'special_price_to',
+                          'options' => array(
+                          'minDate' => '0', // this will disable previous dates from datepicker
+                          'dateFormat' => 'dd-mm-yy',
+                          'changeYear' => true, // can change year
+                          'changeMonth' => true, // can change month
+                          'yearRange' => $from . ':' . $to, // range of year
+                          'showButtonPanel' => true, // show button panel
+                          ),
+                          'htmlOptions' => array(
+                          'size' => '10', // textField size
+                          'maxlength' => '10', // textField maxlength
+                          'class' => 'form-control',
+                          'placeholder' => 'Special Price To',
+                          ),
+                          ));
+                          ?>
+                          <?php echo $form->error($model, 'special_price_to'); ?>
+                          </div>
+                          </div>
+                          </div>
+                         */ ?>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <?php echo $form->labelEx($model, 'meta_title'); ?>
                                     <?php echo $form->textField($model, 'meta_title', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control', 'placeholder' => 'Meta Title')); ?>
-                                    <?php echo $form->error($model, 'meta_title', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'meta_title'); ?>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <?php echo $form->labelEx($model, 'meta_keywords'); ?>
                                     <?php echo $form->textField($model, 'meta_keywords', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control', 'placeholder' => 'Meta Keywords')); ?>
-                                    <?php echo $form->error($model, 'meta_keywords', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'meta_keywords'); ?>
                                 </div>
                             </div>
                         </div>
@@ -569,7 +574,7 @@
                         <div class="form-group">
                             <?php echo $form->labelEx($model, 'meta_description'); ?>
                             <?php echo $form->textArea($model, 'meta_description', array('rows' => 6, 'cols' => 50, 'class' => 'form-control', 'placeholder' => 'Meta Description')); ?>
-                            <?php echo $form->error($model, 'meta_description', array('class' => 'red')); ?>
+                            <?php echo $form->error($model, 'meta_description'); ?>
 
                         </div>
 
@@ -578,14 +583,14 @@
                         <div class="form-group">
                             <?php echo $form->labelEx($model, 'sort_order'); ?>
                             <?php echo $form->textField($model, 'sort_order', array('class' => 'form-control', 'placeholder' => 'Sort Order')); ?>
-                            <?php echo $form->error($model, 'sort_order', array('class' => 'red')); ?>
+                            <?php echo $form->error($model, 'sort_order'); ?>
 
                         </div>       
 
                         <div class="form-group">
                             <?php echo $form->labelEx($model, 'requires_shipping'); ?>
                             <?php echo $form->dropDownList($model, 'requires_shipping', array('0' => "No", '1' => "Yes"), array('class' => 'form-control', 'placeholder' => 'Requires Shipping', 'empty' => '--Requires Shipping--')); ?>
-                            <?php echo $form->error($model, 'requires_shipping', array('class' => 'red')); ?>
+                            <?php echo $form->error($model, 'requires_shipping'); ?>
 
                         </div>
 
@@ -598,42 +603,49 @@
                           <?php echo $form->textField($model, 'enquiry_sale', array('class' => 'form-control', 'placeholder' => 'Email')); ?>
                           <?php echo $form->error($model, 'enquiry_sale'); ?>
                           </div>
-                          </div> */ ?>
+                          </div>
+                         * 
+                         * 
+                          <div class="form-group">
+                          <?php echo $form->labelEx($model, 'gift_option'); ?>
+                          <?php echo $form->dropDownList($model, 'gift_option', array('0' => "No", '1' => "Yes"), array('class' => 'form-control', 'placeholder' => 'Gift Option', 'empty' => '--Gift Option--')); ?>
+                          <?php echo $form->error($model, 'gift_option'); ?>
+
+                          </div>
+                         * 
+                         * 
+                          <div class="form-group">
+                          <?php echo $form->labelEx($model, 'exchange'); ?>
+                          <?php echo $form->dropDownList($model, 'exchange', array('0' => "No", '1' => "Yes"), array('class' => 'form-control', 'empty' => '--Exchange--')); ?>
+                          <?php echo $form->error($model, 'exchange'); ?>
+
+                          </div>
+                         *  */ ?>
 
                         <div class="form-group">
                             <?php echo $form->labelEx($model, 'tax'); ?>
-                            <?php echo $form->textField($model, 'tax', array('class' => 'form-control', 'placeholder' => 'Tax')); ?>
-                            <?php echo $form->error($model, 'tax', array('class' => 'red')); ?>
+                            <?php echo CHtml::activeDropDownList($model, 'tax', CHtml::listData(MasterTaxClass::model()->findAll(array('condition' => 'status = 1')), 'id', 'tax_class_name'), array('empty' => '--Select--', 'class' => 'form-control')); ?>
+                            <?php echo $form->error($model, 'tax'); ?>
 
                         </div>
 
-                        <div class="form-group">
-                            <?php echo $form->labelEx($model, 'gift_option'); ?>
-                            <?php echo $form->dropDownList($model, 'gift_option', array('0' => "No", '1' => "Yes"), array('class' => 'form-control', 'placeholder' => 'Gift Option', 'empty' => '--Gift Option--')); ?>
-                            <?php echo $form->error($model, 'gift_option', array('class' => 'red')); ?>
 
-                        </div>
 
                         <div class="form-group">
                             <?php echo $form->labelEx($model, 'stock_availability'); ?>
                             <?php echo $form->dropDownList($model, 'stock_availability', array('0' => "No", '1' => "Yes"), array('class' => 'form-control', 'empty' => '--Stock Availability--')); ?>
-                            <?php echo $form->error($model, 'stock_availability', array('class' => 'red')); ?>
+                            <?php echo $form->error($model, 'stock_availability'); ?>
 
                         </div>
 
                         <div class="form-group">
                             <?php echo $form->labelEx($model, 'video_link'); ?>
                             <?php echo $form->textField($model, 'video_link', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control', 'placeholder' => 'Video Link')); ?>
-                            <?php echo $form->error($model, 'video_link', array('class' => 'red')); ?>
+                            <?php echo $form->error($model, 'video_link'); ?>
 
                         </div>
 
-                        <div class="form-group">
-                            <?php echo $form->labelEx($model, 'exchange'); ?>
-                            <?php echo $form->dropDownList($model, 'exchange', array('0' => "No", '1' => "Yes"), array('class' => 'form-control', 'empty' => '--Exchange--')); ?>
-                            <?php echo $form->error($model, 'exchange', array('class' => 'red')); ?>
 
-                        </div>
 
                         <div class="form-group">
 
@@ -648,7 +660,7 @@
                                     'form_id' => 'products-form',
                                 ));
                                 ?>
-                                <?php echo $form->error($model, 'search_tag', array('class' => 'red')); ?>
+                                <?php echo $form->error($model, 'search_tag'); ?>
 
                             </div>
 
@@ -674,10 +686,19 @@
 
                                     <?php echo CHtml::activeDropDownList($model, 'related_products', CHtml::listData(Products::model()->findAll(), 'id', 'product_name'), array('empty' => '-Select-', 'class' => 'form-control', 'placeholder' => 'Related Products', 'multiple' => true, 'options' => $related_products));
                                     ?>
-                                    <?php echo $form->error($model, 'related_products', array('class' => 'red')); ?>
+                                    <?php echo $form->error($model, 'related_products'); ?>
                                 </div>
                             </div>
-
+                            
+                            <div class="form-group">
+                                <div>
+                                    <?php echo $form->labelEx($model, 'is_featured'); ?>
+                                </div>
+                                <div>
+                                    <?php echo $form->dropDownList($model, 'is_featured', array('0' => "No",'1' => "Yes"), array('class' => 'form-control')); ?>
+                                    <?php echo $form->error($model, 'is_featured'); ?>
+                                </div>
+                            </div>
 
                             <?php /*
 
@@ -776,7 +797,7 @@
 
             </div>
 
-         <?php echo $this->renderPartial('../merchantDetails/_rightMenu'); ?>
+            <?php echo $this->renderPartial('../merchantDetails/_rightMenu'); ?>
         </div>
 
     </div>
@@ -787,3 +808,21 @@
 
 
 <!-- end of container -->
+<script>
+    $(document).ready(function () {
+        $('.slug').keyup(function () {
+            $('#Products_canonical_name').val(slug($(this).val()));
+        });
+
+
+    });
+    var slug = function (str) {
+        var $slug = '';
+        var trimmed = $.trim(str);
+        $slug = trimmed.replace(/[^a-z0-9-]/gi, '-').
+                replace(/-+/g, '-').
+                replace(/^-|-$/g, '');
+        return $slug.toLowerCase();
+    };
+
+</script>

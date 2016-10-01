@@ -178,6 +178,7 @@ class Products extends CActiveRecord {
                 // @todo Please modify the following code to remove attributes that should not be searched.
 
                 $criteria = new CDbCriteria;
+                $criteria->order = "id desc";
 
                 $criteria->compare('id', $this->id);
                 $criteria->compare('category_id', $this->category_id, true);

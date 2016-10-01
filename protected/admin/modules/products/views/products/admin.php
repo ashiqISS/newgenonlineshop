@@ -26,7 +26,8 @@
                     'dataProvider' => $model->search(),
                     'filter' => $model,
                     'columns' => array(
-//            		'id',
+                        'product_name',
+                        'product_code',
                         array(
                             'name' => 'category_id',
                             'value' => function($data) {
@@ -40,8 +41,6 @@
                                 return $catt;
                             },
                         ),
-                        'product_name',
-                        'product_code',
                         array(
                             'name' => 'main_image',
                             'value' => function($data) {
@@ -49,39 +48,46 @@
                                     return;
                                 } else {
                                     $folder = Yii::app()->Upload->folderName(0, 1000, $data->id);
-                                    return '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $data->id . '/' . $data->id . '.' . $data->main_image . '" />';
+//                                    return '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $data->id . '/' . $data->id . '.' . $data->main_image . '" />';
+
+                                    return '<img width="100" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->baseUrl . '/uploads/products/' . $folder . '/' . $data->id . '/small.' . $data->main_image . '" />';
                                 }
                             },
                             'type' => 'raw'
-                        ),
-                        array(
-                            'name' => 'hover_image',
-                            'value' => function($data) {
-                                if ($data->hover_image == "") {
-                                    return;
-                                } else {
-                                    $folder = Yii::app()->Upload->folderName(0, 1000, $data->id);
-                                    return '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $data->id . '/hover/hover.' . $data->hover_image . '" />';
-                                }
-                            },
-                            'type' => 'raw'
-                        ),
-                        array(
-                            'name' => 'description',
-                            'value' => function($data) {
-                                $contents = str_word_count($data->description);
-                                if ($contents > 5) {
-                                    return substr($data->description, 0, 50);
-                                } else {
-                                    return $data->description;
-                                }
-                            },
-                            'type' => 'html'
                         ),
 //		'brand_id',
-                        'merchant_id',
+                        array('name' => 'merchant_id',
+                            'value' => function($data) {
+                                $name = MerchantDetails::getMerchantname($data->merchant_id);
+                                return $name;
+                            },
+                        ),
                         'price',
                         'quantity',
+                        array(
+                            'name' => 'is_admin_approved',
+                            'value' => function($data) {
+
+                                if ($data->is_admin_approved == 0) {
+                                    return "<span style='color:red; font-weight:bold;'><center>Not Approved</center></span>";
+                                } else {
+                                    return "<span style='color:green; font-weight:bold;'><center>Approved</center></span>";
+                                }
+                            },
+                            'type' => 'raw'
+                        ),
+                        array(
+                            'name' => 'is_featured',
+                            'value' => function($data) {
+
+                                if ($data->is_featured == 0) {
+                                    return "<center>-</center>";
+                                } else {
+                                    return "<span style='color:blue; font-weight:bold;'><center>Featured</center></span>";
+                                }
+                            },
+                            'type' => 'raw'
+                        ),
                         /*
                           'merchant_type',
                           'description',
@@ -146,6 +152,22 @@
                             'htmlOptions' => array('nowrap' => 'nowrap'),
                             'class' => 'booster.widgets.TbButtonColumn',
                             'template' => '{view}',
+                        ),
+                        array(
+                            'header' => '<font color="#61625D">Clone</font>',
+                            'htmlOptions' => array('nowrap' => 'nowrap'),
+                            'class' => 'booster.widgets.TbButtonColumn',
+                            'template' => '{approval}',
+                            'buttons' => array(
+                                'approval' => array(
+                                    'url' => 'Yii::app()->request->baseUrl."/admin.php/products/products/cloneProduct/id/".$data->id',
+                                    'label' => '<i class="fa fa-clone" aria-hidden="true"></i>',
+                                    'options' => array(
+                                        'data-toggle' => 'tooltip',
+                                        'title' => 'Clone the Product',
+                                    ),
+                                ),
+                            ),
                         ),
                     ),
                 ));

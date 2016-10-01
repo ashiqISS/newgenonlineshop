@@ -27,11 +27,11 @@ class ProductController extends Controller {
                 $condition .= 'category_id like "%' . $cats . '%" OR ';
             }
             $condition = trim($condition, " OR ");
-            $criteria->having = '`product_id` IN (SELECT `id` FROM `products` WHERE ' . $condition . ')';
+            $criteria->having = '`product_id` IN (SELECT `id` FROM `products` WHERE ' . $condition . ' AND status = 1 AND is_admin_approved = 1 AND `sale_to` >= CURDATE())';
             $criteria->order = '`value_occurrence` DESC';
             $bestsellers = OrderProducts::model()->findAll($criteria);
 
-            $you_may_also_like = Products::model()->findAll(array('condition' => 'status = 1 AND is_admin_approved = 1 AND (' . $condition . ')'));
+            $you_may_also_like = Products::model()->findAll(array('condition' => 'status = 1 AND is_admin_approved = 1 AND `sale_to` >= CURDATE() AND (' . $condition . ')'));
 
 
             $this->render('detailed', array('product' => $prduct, 'related_products' => $related_products, 'you_may_also_like' => $you_may_also_like, 'best_sellers' => $bestsellers));
