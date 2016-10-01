@@ -196,3 +196,19 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/bootstra
 
 
 </script>
+
+   <script>
+            $(".hover-div-img").each(function () {
+                var imageUrl = $(this).find('img').attr("src");
+                $(this).find('img').css("visibility", "hidden");
+                $(this).css('background-image', 'url(' + imageUrl + ')').css("background-repeat", "no-repeat").css("background-size", "contain").css("background-position", "50% 50%");
+            });
+
+            $(window).scroll(function () {
+                     $(".hover-div-img").each(function () {
+                var imageUrl = $(this).find('img').attr("src");
+                $(this).find('img').css("visibility", "hidden");
+                $(this).css('background-image', 'url(' + imageUrl + ')').css("background-repeat", "no-repeat").css("background-size", "contain").css("background-position", "50% 50%");
+            });
+            });
+        </script>

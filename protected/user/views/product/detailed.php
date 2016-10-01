@@ -1,4 +1,26 @@
 <style>
+    input.btn.submit_btn {
+    background-color: #c47c65;
+    padding-left: 12px;
+    padding-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 9px;
+    margin-top: 5%;
+    color: #fff;
+    font-weight: 400;
+    border-radius: 0px;
+    display: block;
+    font-size: 13px;
+    max-width: 157px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+input.btn.submit_btn:hover {
+        background: #dc9780 !important;
+   }
+
+   
     .form-review {
         display: block;
         width: 250px;
@@ -327,7 +349,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                             </div>
                         </div>
                         <div class="form-group">
-                            <input class="cart-b review_submit" type="button" value="Submit">
+                            <input class="btn submit_btn" type="button" value="Submit">
 
                         </div>
 
@@ -337,7 +359,6 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
             </div></div>
     </div>
 </section> <!-- end of facial -->
-
 
 
 

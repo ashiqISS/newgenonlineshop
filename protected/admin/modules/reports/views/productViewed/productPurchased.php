@@ -5,10 +5,10 @@
 
 <section class="content-header">
     <h1>
-        Product Viewed    </h1>
+        Product Purchased    </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo Yii::app()->request->baseurl . '/site/home'; ?>"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li class="active">Product Viewed</li>
+        <li class="active">Product Purchased</li>
     </ol>
 </section>
 

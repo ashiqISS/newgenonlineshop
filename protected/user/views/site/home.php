@@ -1,7 +1,7 @@
 
 <style>
-    .women{
-        height: 552px;
+    .women-box-img {
+        height: 100%;
     }
 </style>
 <div class="hero row" id="main-hero">
@@ -165,7 +165,7 @@
                                         <h1>New Arrivals</h1>
                                         <p> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
                                     </div>
-                                    <img class="women img-responsive" height="42" src="<?= Yii::app()->baseUrl . '/uploads/ads/' . $folder . '/' . $tpL->id . '/big.' . $tpL->image ?>" >
+                                    <div class="women-box-img img-wrapper"><img class="women img-responsive" height="42" src="<?= Yii::app()->baseUrl . '/uploads/ads/' . $folder . '/' . $tpL->id . '/big.' . $tpL->image ?>" ></div>
                                     <a href="#" class="bt">Shop Now</a>
 
                                 </div>
@@ -181,7 +181,7 @@
                                     <h1>New Arrivals</h1>
                                     <p> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
                                 </div>
-                                <img class="women img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/women2.png">
+                                <div class="women-box-img img-wrapper"><img class="women img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/women2.png"></div>
                                 <a href="#" class="bt">Shop Now</a>
                             </div>
                         </div>

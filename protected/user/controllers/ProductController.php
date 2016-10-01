@@ -81,7 +81,7 @@ class ProductController extends Controller {
 //        echo $def_min = Yii::app()->db->createCommand("SELECT min(`price`) FROM `products`")->queryScalar();
 //        echo $def_max = Yii::app()->db->createCommand('SELECT max(`price`) FROM `products`')->queryScalar();
         $criteria = new CDbCriteria;
-        $criteria->condition = 'status = 1';
+        $criteria->condition = 'status = 1 AND is_admin_approved = 1 AND `sale_to` >= CURDATE() ';
 //        is_discount_available
          if (isset($_GET['offers']) && $_GET['offers'] == 1) {
              $criteria->addCondition("`is_discount_available` = 1");

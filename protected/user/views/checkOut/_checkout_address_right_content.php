@@ -27,7 +27,7 @@
                                         </tr>
                                         <tr>
                                                 <td rowspan="3">
-                                                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php echo $folder; ?>/<?php echo $prod_details->id; ?>/small.<?php echo $prod_details->main_image; ?>" class="img-responsive crt mid" align="absmiddle" style="height:110px; width:100px;display: block;">
+                                                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php echo $folder; ?>/<?php echo $prod_details->id; ?>/small.<?php echo $prod_details->main_image; ?>" class="img-responsive crt mid" align="absmiddle" style="width:100px;display: block;">
                                                 </td>
                                                 <td>Price : <?= Yii::app()->Currency->convert($price); ?></td>
                                         </tr>

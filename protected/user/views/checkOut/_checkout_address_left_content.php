@@ -114,7 +114,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                         <?php echo CHtml::activeDropDownList($billing, '[bill]district', CHtml::listData(Districts::model()->findAllByAttributes(array()), 'Id', 'district_name'), array('empty' => '--Select District--', 'class' => 'form-control aik', 'options' => array('id' => array('selected' => 'selected')))); ?>
 
                                         <?php //echo $form->textField($shipping, '[bill]district', array('placeholder' => 'district ', 'class' => 'form-control aik1')); ?>
-                                        <?php echo $form->error($shipping, '[bill]district'); ?>
+                                        <?php echo $form->error($billing, '[bill]district'); ?>
                                 </div>
 
                                 <div class="form-group form_mrg">

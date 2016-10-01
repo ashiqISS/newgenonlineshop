@@ -18,4 +18,6 @@ $this->widget('application.user.extensions.yiinfinite-scroll.YiinfiniteScroller'
     'donetext' => 'Loading Completed',
     'pages' => $pages,
 ));
+
 ?>
+

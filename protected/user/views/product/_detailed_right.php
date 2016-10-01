@@ -23,32 +23,51 @@
         <div class="product_quantity" style="padding-bottom: 1em;">
 
             <div class="qunatity">
-                <table>
-                    <tr>
-                        <td style="border-bottom: none;"><h4 style="margin-top: 20px;">Quantity</h4></td>
-                        <td style="vertical-align: top;border-bottom: none;">
-                            &nbsp;&nbsp;    <select class="qty" >
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
+                <?php
+//                $product->quantity = 0;
+                if ($product->quantity != 0) {
+                    ?>
+                    <table>
+                        <tr>
+                            <td style="border-bottom: none;"><h4 style="margin-top: 20px;">Quantity</h4></td>
+                            <td style="vertical-align: top;border-bottom: none;">
 
+                                &nbsp;&nbsp;    <select class="qty" >
+                                    <?php foreach (range(1, $product->quantity) as $number) { ?>
+                                        <option value="<?= $number ?>"><?= $number ?></option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <?php
+                } else {
+                    ?>
+                <label style="color: red;font-size: 18px;">  Out Of stock </label>
+                    <?php
+                }
+                ?>
 
             </div>
         </div>
-        <ul>
-            <li style="display: inline-block;">
-                <button class="cart-b add_to_cart" style="padding-right: 18px;padding-left: 18px;" id="<?= $product->id; ?>"><strong><i class="fa baskets fa-shopping-basket"></i> &nbsp;ADD TO CART</strong></button>
-            </li>
-            <?php if (Yii::app()->user->getId()) { ?>
+        <?php if (Yii::app()->user->getId()) { ?>
+            <ul>
+                <li style="display: inline-block;">
+                    <button class="cart-b add_to_cart" style="padding-right: 18px;padding-left: 18px;" id="<?= $product->id; ?>"><strong><i class="fa baskets fa-shopping-basket"></i> &nbsp;ADD TO CART</strong></button>
+                </li>
+
                 <li style="display: inline-block;padding-left: 1em;">
                     <button class="cart-b add_to_wishlist" id="<?= $product->id; ?>" onclick="addToWishlist(this.id)"><strong><i class="fa baskets fa-shopping-basket"></i> &nbsp;ADD TO WISHLIST</strong></button>
                 </li>
-            <?php } ?>
-        </ul>
+
+            </ul>
+            <?php
+        } else {
+            ?>
+            <a class="edit-btn" href="/newgenonlineshop/user.php/login" style="border-radius: 0;background-color: #dc9780 !important;">Login to see price</a>
+            <?php
+        }
+        ?>
 
         <input type = "hidden" value = "<?= $product->canonical_name; ?>" id="cano_name_<?= $product->id; ?>" name="cano_name">
 

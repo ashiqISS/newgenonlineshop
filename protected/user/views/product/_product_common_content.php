@@ -13,7 +13,7 @@ if ($product->main_image == NULL) {
 
         <div class="wrap-hover-content f1 facial-left-thumbnail thumbnail" style="background: url(<?php echo $main_image; ?>)no-repeat 50% 50%">
             <div class="hover-content">
-                <div class="">
+                <div class="hover-div-img">
 
                     <img  src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php
                     echo Yii::app()->Upload->folderName(0, 1000, $product->id)
