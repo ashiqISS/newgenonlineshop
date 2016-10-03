@@ -61,9 +61,9 @@ class Footer extends CWidget {
                         <h2>Newgen E-Shop</h2>
 
                         <ul>
-                            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/user-registration">Join Our Shop</a></li>
-                            <li><a href="#">Merchant</a></li>
-                            <li><a href="#">Local Vendors</a></li>
+                            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/join-our-shop">Join Our Shop</a></li>
+                            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/merchant">Merchant</a></li>
+                            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/local-vendors">Local Vendors</a></li>
 
                         </ul>
                     </div> <!-- end of explore  -->
@@ -71,11 +71,11 @@ class Footer extends CWidget {
                     <div class="usefull-links col col-xs-6 col-sm-4 col-md-2">
                         <h2>Our Service</h2>
                         <ul>
-                            <li><a href="#">Shipping Return</a></li>
+                            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/shipping-return">Shipping Return</a></li>
                             <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/contact_us">Contact us</a></li>
                             <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/faq">Faq</a></li>
-                            <li><a href="#">Affiliates</a></li>
-                            <li><a href="#">Specials</a></li>
+                            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/affiliates">Affiliates</a></li>
+                            <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/specials">Specials</a></li>
                         </ul>
 
                     </div> <!-- end of usefull-links  -->

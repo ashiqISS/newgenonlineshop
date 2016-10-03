@@ -66,6 +66,7 @@ class StaticPageController extends Controller {
                 if (isset($_POST['StaticPage'])) {
                         $model->attributes = $_POST['StaticPage'];
                         $model->big_content = $_POST['StaticPage']['big_content'];
+                        $model->small_content = $_POST['StaticPage']['small_content'];
                         $model->doc = date('Y-m-d');
                         $banner = CUploadedFile::getInstance($model, 'banner');
                         $big_image = CUploadedFile::getInstance($model, 'big_image');
@@ -105,6 +106,7 @@ class StaticPageController extends Controller {
                 if (isset($_POST['StaticPage'])) {
                         $model->attributes = $_POST['StaticPage'];
                         $model->big_content = $_POST['StaticPage']['big_content'];
+                        $model->small_content = $_POST['StaticPage']['small_content'];
                         $banner = CUploadedFile::getInstance($model, 'banner');
                         $big_image = CUploadedFile::getInstance($model, 'big_image');
                         if (isset($banner)) {

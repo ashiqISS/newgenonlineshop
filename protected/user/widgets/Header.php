@@ -281,7 +281,7 @@ class Header extends CWidget {
                                                 <!--<li class="active"><a href="#">Home</a></li>-->
                                                 <?php if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Home</a></li><?php } ?>
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
-                                                <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about_us">About Us</a></li> 
+                                                <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about-us">About Us</a></li> 
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                 <li><a href="<?= Yii::app()->request->baseUrl . "/index.php/product/offers "?>">Offers & Deals</a></li> 
 
@@ -328,7 +328,7 @@ class Header extends CWidget {
                                                     </li>
                                                     <?php if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products"><span>Home</span></a></li><?php } ?>
                                                     <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
-                                                    <li><a href="<?= Yii::app()->request->baseUrl; ?>/site/AboutUs"><span>About Us</span></a></li>
+                                                    <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about-us"><span>About Us</span></a></li>
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                     <li><a href="#"><span>Offers & Deals</span></a></li>
 

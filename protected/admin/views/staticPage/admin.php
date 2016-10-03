@@ -42,7 +42,11 @@
 //                      'banner',
                     array('name' => 'big_image',
                         'value' => function ($data) {
+                            if ($data->big_image != "") {
                                 return '<img style="width:100px;height:100px;" src="' . Yii::app()->baseUrl . '/uploads/static/' . $data->id . '/big_image.' . $data->big_image . '">';
+                            } else {
+                                return '<img style="width:100px;height:100px;" src="' . Yii::app()->getBaseUrl(true) . '/uploads/products/no_image.jpg' . '">';
+                            }
                         },
                         'type' => 'raw',
                     ),
