@@ -82,7 +82,7 @@
 
     </div> <!-- end of slider -->
     <div class="clearfix"></div>
-    <a href="#" class="btn btn-default">Shop Now</a>
+    <a href="<?= Yii::app()->baseUrl ?>/index.php/products" class="btn btn-default">Shop Now</a>
 </div> <!-- end of hero -->
 
 
@@ -166,7 +166,7 @@
                                         <p> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
                                     </div>
                                     <div class="women-box-img img-wrapper"><img class="women img-responsive" height="42" src="<?= Yii::app()->baseUrl . '/uploads/ads/' . $folder . '/' . $tpL->id . '/big.' . $tpL->image ?>" ></div>
-                                    <a href="#" class="bt">Shop Now</a>
+                                    <a href="<?= Yii::app()->baseUrl ?>/index.php/products" class="bt">Shop Now</a>
 
                                 </div>
                             </div>
@@ -182,7 +182,7 @@
                                     <p> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
                                 </div>
                                 <div class="women-box-img img-wrapper"><img class="women img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/women2.png"></div>
-                                <a href="#" class="bt">Shop Now</a>
+                                <a href="<?= Yii::app()->baseUrl ?>/index.php/products" class="bt">Shop Now</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -207,7 +207,7 @@
                                         <h2>Best sellers</h2>
                                         <h3>Forum Novelties Glitter Tiara</h3>
                                     </div>
-                                    <a href="#" class="slicks" tabindex="0">Shop Now</a>
+                                    <a href="<?= Yii::app()->baseUrl ?>/index.php/products" class="slicks" tabindex="0">Shop Now</a>
                                 </div>
                             </div>
                             <?php
@@ -223,7 +223,7 @@
                                     <h2>Best sellers</h2>
                                     <h3>Forum Novelties Glitter Tiara</h3>
                                 </div>
-                                <a href="#" class="slicks" tabindex="0">Shop Now</a>
+                                <a href="<?= Yii::app()->baseUrl ?>/index.php/products" class="slicks" tabindex="0">Shop Now</a>
                             </div>
                         </div>
                     <?php } ?>
