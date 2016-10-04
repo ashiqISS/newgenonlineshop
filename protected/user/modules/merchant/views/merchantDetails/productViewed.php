@@ -42,7 +42,7 @@
                             'type' => ' bordered condensed hover',
                             'id' => 'product-viewed-grid',
                             'dataProvider' => $model->merchantSearch(),
-                            'filter' => $model,
+//                            'filter' => $model,
                             'columns' => array(
                                 array(
                                     'name' => 'product_id',

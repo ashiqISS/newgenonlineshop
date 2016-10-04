@@ -34,7 +34,7 @@
                 <div class="left-content">
 
                     <?php
-                    $this->widget('zii.widgets.CDetailView', array(
+                    $this->widget('booster.widgets.TbDetailView', array(
                         'data' => $model,
                         'attributes' => array(
                             array(
@@ -52,7 +52,13 @@
                             ),
                             'product_name',
                             'product_code',
-                            'brand_id',
+                            'canonical_name',
+                            array(
+                                'name' => 'brand_id',
+                                'value' => function($data) {
+                                    return MasterBrands::model()->findByPk($data->brand_id)->brand_name;
+                                },
+                            ),
                             array(
                                 'name' => 'description',
                                 'value' => function($data) {
@@ -77,12 +83,6 @@
                                 },
                                 'type' => 'raw'
                             ),
-//                            'gallery_images',
-//                                        $dirname = "media/images/iconized/";
-//$images = glob($dirname."*.png");
-//foreach($images as $image) {
-//echo '<img src="'.$image.'" /><br />';
-//}
                             array(
                                 'name' => 'gallery_images',
                                 'value' => function($data) {
@@ -96,7 +96,6 @@
                                             $img = '<img src="' . $image . '" /><br />';
                                         }
                                         return $img;
-//                    return '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $data->id . '/hover/hover.' . $data->hover_image . '" />';
                                     }
                                 },
                                 'type' => 'raw'
@@ -117,16 +116,10 @@
                             'meta_title',
                             'meta_description',
                             'meta_keywords',
-//                            'display_category_name',
                             'price',
                             'wholesale_price',
-//                            'is_discount_available',
-//                            'discount',
-//                            'discount_type',
-//                            'discount_rate',
+                            'is_discount_available',
                             'quantity',
-//                            'requires_shipping',
-//                            'enquiry_sale',
                             'new_from',
                             'new_to',
                             'sale_from',
@@ -138,16 +131,38 @@
 //                            'stock_availability',
 //                            'video_link',
 //                            'video',
-                            'weight',
-                            'weight_class',
+                            array(
+                                'name' => 'weight',
+                                'value' => function($data) {
+                                    return $data->weight.' '.WeightClass::model()->findByPk($data->weight_class)->title;
+                               
+                                },
+                            ),
                             'status',
 //                            'exchange',
                             'search_tag',
                             'related_products',
-                            'is_cod_available',
-//                            'is_available',
-//                            'is_featured',
-                            'is_admin_approved',
+//                            'is_cod_available',
+                            array(
+                                'name' => 'is_featured',
+                                'value' => function($data) {
+                                    if ($data->is_featured == 1) {
+                                        return 'Yes';
+                                    } else {
+                                        return 'No';
+                                    }
+                                },
+                            ),
+                            array(
+                                'name' => 'is_admin_approved',
+                                'value' => function($data) {
+                                    if ($data->is_admin_approved == 1) {
+                                        return 'Yes';
+                                    } else {
+                                        return 'No';
+                                    }
+                                },
+                            ),
 //                            'CB',
 //                            'UB',
                             'DOC',
@@ -163,7 +178,7 @@
 
             </div>
 
-        <?php echo $this->renderPartial('../merchantDetails/_rightMenu'); ?>
+            <?php echo $this->renderPartial('../merchantDetails/_rightMenu'); ?>
         </div>
 
     </div>

@@ -35,7 +35,7 @@
 <div class="order_detail_content">
                                         <h4>Your Plans Details</h4>
                                         <?php
-                                        $this->widget('zii.widgets.CDetailView', array(
+                                        $this->widget('booster.widgets.TbDetailView', array(
                                             'data' => $model,
                                             'attributes' => array(
                                                 array('name' => 'Plan Name',

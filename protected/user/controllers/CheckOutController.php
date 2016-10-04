@@ -223,6 +223,17 @@ class CheckOutController extends Controller {
                     if ($product_order->update()) {
                         $product_id = $product_order->product_id;
 
+                        // update product quantity in products table
+                        $productData = Products::model()->findByPk($product_id);
+                        $cur_quantity = $productData->quantity;
+                        $cur_quantity = $cur_quantity - $product_order->quantity;
+                        $productData->quantity = $cur_quantity;
+                        if($cur_quantity <= 0)
+                        {
+                            $productData->stock_availability = 0;
+                        }
+                        $productData->update();
+
                         // insertion into order history table
                         $this->createOrderHistory($order_id, $product_id, $order_product_id);
                         // add money to merchnat account
@@ -230,8 +241,6 @@ class CheckOutController extends Controller {
                         // update money deposit transaction to transaction history table
                     } else {
                         echo 'order product not updated';
-//                        print_r($product_order->attributes);
-//                        exit;
                     }
                 }
 

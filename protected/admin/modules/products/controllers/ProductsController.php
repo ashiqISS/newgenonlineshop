@@ -79,6 +79,7 @@ class ProductsController extends Controller {
             $model->tax = $_POST['Products']['tax'];
             $model->DOC = $_POST['Products']['DOC'];
             $model->DOU = $_POST['Products']['DOU'];
+            $model->quantity_master = $model->quantity;
 //            print_r($model->attributes);
 
 
@@ -197,6 +198,7 @@ class ProductsController extends Controller {
         $image1 = $model->main_image;
         $image0 = $model->gallery_images;
         $image2 = $model->hover_image;
+        $old_quantity = $model->quantity;
         $doc = $model->DOC;
 
         if (isset($_POST['Products'])) {
@@ -298,6 +300,12 @@ class ProductsController extends Controller {
                 Yii::app()->Upload->uploadMultipleImage($images, $id, true, $dimension);
             } else {
                 $model->gallery_images = $image0;
+            }
+
+            if ($model->quantity != $old_quantity) {
+                $model->quantity_master = $model->quantity;
+            } else {
+                $model->quantity = $old_quantity;
             }
 
             if ($model->canonical_name == '') {
@@ -406,7 +414,7 @@ class ProductsController extends Controller {
             $src = yii::app()->basePath . '/../uploads/products/' . $folder . $id . '/';
             $dst = yii::app()->basePath . '/../uploads/products/' . $folder . $model->id . '/';
             $this->recurse_copy($src, $dst);
-             $this->redirect(array('admin', 'id' => $model->id));
+            $this->redirect(array('admin', 'id' => $model->id));
         }
     }
 

@@ -52,7 +52,7 @@ class MerchantDetailsController extends Controller {
                 $user_id = Yii::app()->user->getId();
                 $merchant_id = Yii::app()->user->getState('merchant_id');
                 $userdetails = Users::model()->findByPk($user_id);
-                $sale = OrderProducts::model()->findAllByAttributes(array('merchant_id' => $merchant_id), array('order' => 'id DESC', 'limit' => 15));
+                $sale = OrderProducts::model()->findAllByAttributes(array('merchant_id' => $merchant_id), array('order' => 'id DESC', 'limit' => 10));
                 $this->render('dashboard', array('userdetails' => $userdetails, 'sale' => $sale));
         }
 

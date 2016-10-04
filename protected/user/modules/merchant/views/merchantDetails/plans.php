@@ -149,7 +149,7 @@
                                 <div class="commission-1">
                                     <div class="head-1"><h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></div>
                                     <div class="head-1"><h2>Plan Name</h2></div>
-                                    <div class="head-1"><h2>Amount</h2></div>
+                                    <div class="head-1"><h2>Amountttttt</h2></div>
                                     <div class="head-1"><h2>Duration</h2></div>
                                     <div class="head-1"><h2>Product Limit</h2></div>
                                     <!--<div class="head-1"><h2>Quantity</h2></div>-->

@@ -49,6 +49,7 @@ class ProductsController extends Controller {
 
     public function actionAddProduct() {
         $model = new Products('user_create');
+        $plandetails = MerchantPlans::model()->findByAttributes(array('user_id' => Yii::app()->user->getState('merchant_id')), array('condition' => 'no_of_days_left > 0'));
 
 
         if (isset($_POST['Products'])) {
@@ -56,20 +57,13 @@ class ProductsController extends Controller {
             $model->attributes = $_POST['Products'];
             $model->description = $_POST['Products']['description'];
             $model->meta_description = $_POST['Products']['meta_description'];
-//            $model->new_from = $_POST['Products']['new_from'];
-//            $model->new_to = $_POST['Products']['new_to'];
-//            $model->sale_from = $_POST['Products']['sale_from'];
-//            $model->sale_to = $_POST['Products']['sale_to'];
-//            $model->special_price_from = $_POST['Products']['special_price_from'];
-//            $model->special_price_to = $_POST['Products']['special_price_to'];
-//            $model->DOC = $_POST['Products']['DOC'];
-//            $model->DOU = $_POST['Products']['DOU'];
 
             $image = CUploadedFile::getInstance($model, 'main_image');
             $hover_image = CUploadedFile::getInstance($model, 'hover_image');
             $images = CUploadedFile::getInstancesByName('gallery_images');
             $model->main_image = $image->extensionName;
             $model->hover_image = $hover_image->extensionName;
+            $model->quantity_master = $model->quantity;
 
             $model->merchant_id = Yii::app()->user->getState('merchant_id');
             $model->merchant_type = Yii::app()->user->getState('merchant_type');
@@ -137,6 +131,9 @@ class ProductsController extends Controller {
 
                 if ($model->save()) {
 
+                    $plandetails->no_of_product_left = $plandetails->no_of_product_left - 1;
+                    $plandetails->save(false);
+
                     if ($image != "") {
                         $id = $model->id;
                         $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
@@ -167,6 +164,7 @@ class ProductsController extends Controller {
 
         $this->render('add_product', array(
             'model' => $model,
+            'plandetails' => $plandetails,
         ));
     }
 
@@ -189,6 +187,7 @@ class ProductsController extends Controller {
         $image1 = $model->main_image;
         $image0 = $model->gallery_images;
         $image2 = $model->hover_image;
+        $old_quantity = $model->quantity;
         $doc = $model->DOC;
 
         if (isset($_POST['Products'])) {
@@ -263,7 +262,11 @@ class ProductsController extends Controller {
                 $model->canonical_name = preg_replace('#[ -]+#', '-', $model->product_name);
                 $model->canonical_name = $model->canonical_name . '_' . $model->id;
             }
-
+            if ($model->quantity != $old_quantity) {
+                $model->quantity_master = $model->quantity;
+            } else {
+                $model->quantity = $old_quantity;
+            }
 
             $model->UB = 0;
 //            $model->DOU = date('Y-m-d');

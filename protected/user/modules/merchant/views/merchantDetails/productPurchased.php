@@ -41,7 +41,7 @@
                             'type' => ' bordered condensed hover',
                             'id' => 'purchased-viewed-grid',
                             'dataProvider' => $model->MostPurchasedProducts(),
-                            'filter' => $model,
+//                            'filter' => $model,
                             'columns' => array(
                                 array(
                                     'name' => 'product_id',

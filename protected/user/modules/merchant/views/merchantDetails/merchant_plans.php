@@ -73,13 +73,13 @@
                                 <table class="table ac">
                                     <thead class="thead-inverse ac_bg">
                                         <tr>
-                                            <th><h4>Plan Name</th>
-                                            <th><h4>Amount</h4></th>
-                                            <th><h4>Plan Start Date</h4> </th>
-                                            <th><h4>Plan Expiry Date</h4> </th>
-                                            <th><h4>Products Left</h4></th>
-                                            <th><h4>Ads Left</h4> </th>
-                                            <th><h4>View</h4> </th>
+                                            <th><h4 style="text-align: left;">Plan Name</th>
+                                            <th><h4 style="text-align: left;">Amount</h4></th>
+                                            <th><h4 style="text-align: left;">Plan Start Date</h4> </th>
+                                            <th><h4 style="text-align: left;">Plan Expiry Date</h4> </th>
+                                            <th><h4 style="text-align: left;">Products Left</h4></th>
+                                            <th><h4 style="text-align: left;">Ads Left</h4> </th>
+                                            <th><h4 style="text-align: left;">View</h4> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
