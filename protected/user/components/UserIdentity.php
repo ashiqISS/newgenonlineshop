@@ -6,7 +6,9 @@
  * data can identity the user.
  */
 class UserIdentity extends CUserIdentity {
+
     private $_id;
+
 //    public $username;
 
     /**
@@ -29,18 +31,15 @@ class UserIdentity extends CUserIdentity {
             Yii::app()->user->setState('user_mail', $this->username);
             Yii::app()->user->setState('user_id', $user_id);
             Yii::app()->user->setState('user_type', $user_type);
+
         }
 
-
-        if ($this->username === null)
+        if ($this->username === null) {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-
-        elseif ($password !== $this->password)
+        } elseif ($password != md5($this->password)) {
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
-        else {
+        } else {
             $this->errorCode = self::ERROR_NONE;
-
-
             $this->_id = $user->id;
             $this->username = $user->email;
             $this->errorCode = self::ERROR_NONE;

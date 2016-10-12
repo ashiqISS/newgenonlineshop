@@ -71,6 +71,8 @@ class BuyerDetailsController extends Controller {
             $valid = $user_model->validate() && $valid;
 
             if ($valid) {
+                $user_model->password = md5($user_model->password);
+                $user_model->confirm_password = md5($user_model->confirm_password);
                 if ($user_model->save()) {
                     $model->user_id = $user_model->id;
                     if ($model->save()) {
