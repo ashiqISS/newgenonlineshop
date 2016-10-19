@@ -219,10 +219,11 @@ class SiteController extends Controller {
             if ($model->validate()) {
                 $email = $_POST['ForgotPassword']['email'];
                 if ($user = Users::model()->findByAttributes(array('email' => $email))) {
-                    $user->password = Utilities::genPassword();
+                    $new_password = Utilities::genPassword();
+                    $user->password = md5($new_password);
                     $user->update();
                     $model = new ForgotPassword;
-                    $this->resetPasswordMail($user);
+                    $this->resetPasswordMail($user,$new_password);
                 }
             }
         }
@@ -233,14 +234,13 @@ class SiteController extends Controller {
         $this->render('password_reset');
     }
 
-    public function resetPasswordMail($user) {
+    public function resetPasswordMail($user,$new_password) {
         Yii::import('user.extensions.yii-mail.YiiMail');
         $message = new YiiMailMessage;
         $message->view = "_reset_password";
-        $params = array('user' => $user);
+        $params = array('user' => $user, 'new_password' => $new_password);
         $message->subject = 'NewGenShop : Recover Password';
         $message->setBody($params, 'text/html');
-//        $message->addTo('aathira@intersmart.in');
         $message->addTo($user->email);
         $message->from = Yii::app()->params['infoEmail'];
         if (Yii::app()->mail->send($message)) {

@@ -34,13 +34,14 @@ $this->widget('zii.widgets.CDetailView', array(
             'value' => function($model) {
 
                 $product_details = Products::model()->findByPk($model->product_id);
+                return  MerchantDetails::getMerchantname($product_details->merchant_id);
 
-                if ($product_details->merchant_id != 0) {
-                    $merchant = MerchantDetails::getFullname($product_details->merchant_id);
-                    return $merchant;
-                } else {
-                    return 'Admin';
-                }
+//                if ($product_details->merchant_id != 0) {
+//                    $merchant = MerchantDetails::getFullname($product_details->merchant_id);
+//                    return $merchant;
+//                } else {
+//                    return 'Admin';
+//                }
             },
             'type' => 'raw',
         ),

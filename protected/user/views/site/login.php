@@ -42,14 +42,12 @@
                         ?>
                         <div class="form-group">
 
-                            <!--<input type="email" class="form-new" id="email" placeholder="Email :">-->
                             <?php echo $form->textField($model, 'email', array('class' => "form-new", 'placeholder' => 'Email')); ?>
                             <?php echo $form->error($model, 'email', array('class' => ' red')); ?>
                         </div>
                         <div class="form-group">
 
-                            <!--<input type="password" class="form-new" id="pwd" placeholder="Password :">-->
-                            <?php echo $form->passwordField($model, 'password', array('class' => "form-new", 'placeholder' => 'Password')); ?>
+                            <?php  echo $form->passwordField($model, 'password', array('class' => "form-new", 'placeholder' => 'Password')); ?>
                             <?php echo $form->error($model, 'password', array('class' => ' red')); ?>
                         </div>
 

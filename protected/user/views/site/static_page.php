@@ -33,10 +33,10 @@
                 <?php if ($model->big_image) { ?>
                     <div class="left col col-md-4 col-sm-4 col-xs-6 fill">
                         <div class="wrap-hover-content f6 facial-left-thumbnail thumbnail">
-                            <div class="hover-content">
+                            <div>
                                 <div class="">
                                     <img src="<?= Yii::app()->request->baseUrl; ?>/images/des.png" alt="">
-                                    <p>Product Name</p>
+                                   
                                 </div>
                             </div>
                         </div>

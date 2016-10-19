@@ -120,14 +120,14 @@
                                                             <?php } ?>
                                                         </select>
                                                         <?php /*
-                                                        <select  class="quantity qty" id="<?php echo $cart->id; ?>" name="cart_quantity" cart="<?php echo $cart->id; ?>" style="width: 35px !important">
-                                                            <?php for ($i = 1; $i < 5; $i++) {
-                                                                ?>
-                                                                <option <?= $cart->quantity == $i ? 'selected' : '' ?> value="<?= $i; ?>" class="jsNumeric jsQty p0  qty"><?= $i; ?> </option>
-                                                            <?php }
-                                                            ?>
-                                                        </select>
-                                                       */ ?>
+                                                          <select  class="quantity qty" id="<?php echo $cart->id; ?>" name="cart_quantity" cart="<?php echo $cart->id; ?>" style="width: 35px !important">
+                                                          <?php for ($i = 1; $i < 5; $i++) {
+                                                          ?>
+                                                          <option <?= $cart->quantity == $i ? 'selected' : '' ?> value="<?= $i; ?>" class="jsNumeric jsQty p0  qty"><?= $i; ?> </option>
+                                                          <?php }
+                                                          ?>
+                                                          </select>
+                                                         */ ?>
                                                     </form>
 
                                                 </td>
@@ -151,7 +151,7 @@
                         <div class="slip-2">
                             <br>
                             <!--                            <button type="submit" class="btn proceed-btn btn-default" href="checkout.php">proceed to checkout</button>-->
-                            <a style="color:#ff6633" href="<?= Yii::app()->baseUrl; ?>/index.php/products" >Continue Shopping</a>
+                            <a class="btn-dark btn-full"  href="<?= Yii::app()->baseUrl; ?>/index.php/products"  >Continue Shopping <i class="glyphicon glyphicon-arrow-right" style="top: 2px;"></i></a>
                         </div>
                         <div class="slip-1">
                             <a class="shop-cart range"><!--Subtotal: <?= Yii::app()->Currency->convert($total); ?>--></a>
@@ -204,12 +204,16 @@
                         </tbody>
                     </table>
                     <div class="proceed_upmg">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default">                                           
+
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#p1">
                                 <div class="panel-heading headz">
 
-                                    <span class="panel-title">
-                                        <i class="glyphicon gly glyphicon-minus"></i>  Coupon Code
+                                    <span class="panel-title minusclass">
+                                        <i class="glyphicon gly glyphicon-minus" onclick="hideCoupon()"></i>  Coupon Code
+                                    </span>
+                                    <span class="panel-title plusclass" style="display: none">
+                                        <i class="glyphicon gly glyphicon-plus" onclick="showCoupon()"></i>  Coupon Code
                                     </span>
 
 
@@ -220,7 +224,7 @@
                                     <form class="form-inline" action="<?php echo Yii::app()->request->baseUrl; ?>/index.php/cart/updatecoupon" method="post" >
                                         <div class="form-group">
 
-                                            <input type="test" class="form-control" name="coupon_code"  placeholder="Enter your coupon here">
+                                            <input type="text" class="form-control" name="coupon_code"  placeholder="Enter coupon here">
                                         </div>
 
                                         <button type="submit" class="btn btn-default go">Go</button>
@@ -246,54 +250,66 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1
 ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
+                                            $(document).ready(function () {
 
-        $(".quantity").change(function () {
+                                                $(".quantity").change(function () {
 
-            var id = $(this).attr("id");
-            $("#qty_" + id).submit();
-        });
-    });
-    $(document).ready(function () {
-        // submit checkout form
-        $('#checkout_btn').click(function () {
-            $('#checkoutForm').submit();
-        });
+                                                    var id = $(this).attr("id");
+                                                    $("#qty_" + id).submit();
+                                                });
+                                            });
+                                            $(document).ready(function () {
+                                                // submit checkout form
+                                                $('#checkout_btn').click(function () {
+                                                    $('#checkoutForm').submit();
+                                                });
 
-        $('.quantity1').change(function () {
-            var cart = $(this).attr('cart');
-            var qty = this.value;
-            var product_id = $('#cart_' + cart).val();
-            quantityChange1(cart, qty, product_id);
-            total();
-        });
+                                                $('.quantity1').change(function () {
+                                                    var cart = $(this).attr('cart');
+                                                    var qty = this.value;
+                                                    var product_id = $('#cart_' + cart).val();
+                                                    quantityChange1(cart, qty, product_id);
+                                                    total();
+                                                });
 
-    });
-    function quantityChange1(cart, qty, product_id) {
+                                            });
+                                            function quantityChange1(cart, qty, product_id) {
 
-        $.ajax({
-            type: "POST",
-            cache: 'false',
-            async: false,
-            url: baseurl + 'Cart/Calculate',
-            data: {cart_id: cart, Qty: qty, prod_id: product_id},
-        }).done(function (data) {
-            $(".range_" + cart).html(data);
-        });
-    }
-    function total() {
-        $.ajax({
-            type: "POST",
-            cache: 'false',
-            async: false,
-            url: baseurl + 'Cart/Total',
-            data: {}
-        }).done(function (data) {
-            $(".range").html(data);
-            hideLoader();
-        });
-    }
+                                                $.ajax({
+                                                    type: "POST",
+                                                    cache: 'false',
+                                                    async: false,
+                                                    url: baseurl + 'Cart/Calculate',
+                                                    data: {cart_id: cart, Qty: qty, prod_id: product_id},
+                                                }).done(function (data) {
+                                                    $(".range_" + cart).html(data);
+                                                });
+                                            }
+                                            function total() {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    cache: 'false',
+                                                    async: false,
+                                                    url: baseurl + 'Cart/Total',
+                                                    data: {}
+                                                }).done(function (data) {
+                                                    $(".range").html(data);
+                                                    hideLoader();
+                                                });
+                                            }
 
+                                            function hideCoupon()
+                                            {
+                                                $(".minusclass").hide();
+                                                $(".plusclass").show();
+                                                $(".collapse").hide('slow');
 
+                                            }
+                                            function showCoupon()
+                                            {
+                                                $(".plusclass").hide();
+                                                $(".minusclass").show();
+                                                $(".collapse").show('slow');
+                                            }
 
 </script>

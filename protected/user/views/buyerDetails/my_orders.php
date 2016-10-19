@@ -86,7 +86,7 @@
                                                 <h1><?= $product->product_name; ?></h1>
                                                 <h2>Qty : <?= $orderProduct->quantity; ?></h2>
                                                 <h2>
-                                                    <?= Yii::app()->Currency->convert($orderProduct->quantity); ?>
+                                                    <?= Yii::app()->Currency->convert($orderProduct->amount); ?>
                                                 </h2>
                                             </div>
 

@@ -49,9 +49,11 @@ class UserAddress extends CActiveRecord {
                 // will receive user inputs.
                 return array(
                     array('first_name, last_name, contact_number, address_1, city, district, postcode, country, state', 'required'),
-                    array('userid, district, country, state, CB, UB', 'numerical', 'integerOnly' => true),
-                    array('first_name, last_name, company, contact_number, city', 'length', 'max' => 100),
-                    array('postcode, default_billing_address, default_shipping_address', 'length', 'max' => 111),
+                    array('userid, district, country, state, CB, UB, postcode, contact_number', 'numerical', 'integerOnly' => true),
+                    array('first_name, last_name, company, city', 'length', 'max' => 100),
+                    array('postcode', 'length', 'max' => 6),
+                    array('contact_number', 'length', 'max' => 12),
+                    array('default_billing_address, default_shipping_address', 'length', 'max' => 111),
                     array('DOU', 'safe'),
                     // The following rule is used by search().
                     // @todo Please remove those attributes that should not be searched.

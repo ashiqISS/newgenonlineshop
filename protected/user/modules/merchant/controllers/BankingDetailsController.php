@@ -167,7 +167,7 @@ class BankingDetailsController extends Controller {
 
     public function actionDetails() {
         $user_id = Yii::app()->user->getId();
-        $data = BankingDetails::model()->findAllByAttributes(array('user_id' => $user_id));
+        $data = BankingDetails::model()->findAllByAttributes(array('user_id' => $user_id), array('order' => 'id DESC'));
         $this->render('banking_details', array('datas' => $data));
     }
 

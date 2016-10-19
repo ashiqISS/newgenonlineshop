@@ -1,3 +1,12 @@
+<style>
+    .copyz {
+        padding-bottom: 0px !important;
+    }
+    hr {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+</style>
 <section class="banner">
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?php echo Yii::app()->request->baseUrl; ?>/images/img_inn.jpg)">
         <div class="banner_txt">

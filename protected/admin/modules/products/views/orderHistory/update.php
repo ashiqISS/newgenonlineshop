@@ -37,7 +37,7 @@
 
 
         <div class="col-sm-12">
-                <a class="btn  btn-success manage" href="<?php echo Yii::app()->request->baseurl . '/products/orderHistory/admin'; ?>" id="add-note">
+                <a class="btn  btn-success manage" href="<?php echo Yii::app()->request->baseurl . '/admin.php/products/orderHistory/admin'; ?>" id="add-note">
                         <i class="fa fa-pencil"></i>
                         <span>Manage OrderHistory</span>
                 </a>

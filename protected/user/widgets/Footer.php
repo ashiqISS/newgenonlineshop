@@ -28,9 +28,14 @@ class Footer extends CWidget {
                         <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/foot.png" alt class="img img-responsive center-block">
 
                         <ul class="nav navbar-nav faces">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <?php 
+                            $facebook = Social::model()->findByPk(9)->link;
+                            $twitter = Social::model()->findByPk(10)->link;
+                            $plus = Social::model()->findByPk(11)->link;
+                            ?>
+                            <li><a href="<?= $facebook ?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="<?= $twitter ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="<?= $plus ?>" target="_blank"><i class="fa fa-google-plus"></i></a></li>
 
                         </ul>
                     </div> <!-- end of victoria -->
@@ -89,7 +94,7 @@ class Footer extends CWidget {
                         <form class="form-inline" role="form">
                             <div class="form-group">
 
-                                <input type="email" class="form-control2" id="email" placeholder="Enter Your Email">
+                                <input type="email" class="form-control2" id="newletter_email" placeholder="Enter Your Email">
                             </div>
 
 
@@ -111,7 +116,7 @@ class Footer extends CWidget {
 
                 <div class="row copyright">
                     <div class="col col-md-6">
-                        <p>Copyright © 2016 Newgen. All rights reserved.<a href="#">Privacy Policy</a><a href="#">Terms of Use </a><a href="#">Site Map</a></p>
+                        <p>Copyright © 2016 Newgen. All rights reserved.<a href="<?= Yii::app()->request->baseUrl; ?>/index.php/privacy">Privacy Policy</a><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/terms">Terms of Use </a><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/sitemap">Site Map</a></p>
                     </div>
 
                     <div class="col col-md-6">
@@ -156,7 +161,7 @@ class Footer extends CWidget {
 
 
                 $('.ok').click(function () {
-                    var email = $('#email').val();
+                    var email = $('#newletter_email').val();
                     var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
                     if (filter.test(email)) {
                         $.ajax({

@@ -79,7 +79,7 @@ class ProductController extends Controller {
         $def_min = $min = 50;
         $def_max = $max = 20000;
         $criteria = new CDbCriteria;
-        $criteria->condition = 'status = 1 AND is_admin_approved = 1 AND `sale_to` >= CURDATE() ';
+      
 //        is_discount_available
          if (isset($_GET['offers']) && $_GET['offers'] == 1) {
              $criteria->addCondition("`is_discount_available` = 1");
@@ -123,6 +123,8 @@ class ProductController extends Controller {
         }
 
         $criteria->order = 'id desc';
+          $criteria->addCondition('status = 1 AND is_admin_approved = 1 AND `sale_to` >= CURDATE() ');
+//          $criteria->condition = 'status = 1 AND is_admin_approved = 1 AND `sale_to` >= CURDATE() ';
         $total = Products::model()->count($criteria);
 
         $pages = new CPagination($total);
