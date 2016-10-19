@@ -198,7 +198,7 @@ class MerchantDetailsController extends Controller {
                         if ($model->validate()) {
                                 $user_id = Yii::app()->user->getState('user_id');
                                 $user = Users::model()->findByPk($user_id);
-                                $user->password = $model->newPassword;
+                                $user->password = md5($model->newPassword);
                                 if ($user->update()) {
                                         Yii::app()->user->setFlash('passwordReset', "Password Changed!");
                                         $this->passwordChanged($user);

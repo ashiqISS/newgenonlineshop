@@ -31,7 +31,7 @@ class ResetPassword extends CFormModel {
     }
 
     public function check() {
-        $password = $this->currentPassword;
+        $password = md5($this->currentPassword);
         $user_id = Yii::app()->user->getState('user_id');
         if (Users::model()->findByPk($user_id)) {
             $pwd = Users::model()->findByPk($user_id)->password;
