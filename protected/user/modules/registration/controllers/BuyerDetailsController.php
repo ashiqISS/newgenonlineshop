@@ -77,7 +77,7 @@ class BuyerDetailsController extends Controller {
                     $model->user_id = $user_model->id;
                     if ($model->save()) {
                         // uncomment the following for sending activation mail
-                        $this->sendActivation($user_model);
+//                        $this->sendActivation($user_model);
                         $this->render('info_activation', array('user_model' => $user_model));
                         $model = new BuyerDetails('user_create');
                         $user_model = new Users('user_create');

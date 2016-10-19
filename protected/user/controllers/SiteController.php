@@ -51,8 +51,7 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
         Yii::app()->session['currency'] = Currency::model()->findByPk(1);
-//                $this->layout = 'test';
-//        $this->render('index');
+        $date = date('Y-m-d');
         $this->layout = 'main';
         $params = array();
 
@@ -86,11 +85,10 @@ class SiteController extends Controller {
         $top_Right2 = AdPayment::model()->findAllByAttributes(array('position' => '8', 'admin_approve' => '1', 'status' => 1), $criteria_top_Right2);
         $params['top_Right2'] = $top_Right2;
 
-        $featured_products = Products::model()->findAllByAttributes(array('is_featured' => 1, 'is_admin_approved' => 1, 'status' => 1), array('order' => 'id DESC', 'limit' => 4));
+        $featured_products = Products::model()->findAllByAttributes(array('is_featured' => 1, 'is_admin_approved' => 1, 'status' => 1), array('order' => 'id DESC', 'limit' => 4, 'condition' => "status = 1 AND is_admin_approved = 1 AND ( '" . $date . "' >= sale_from AND  '" . $date . "' <= sale_to) "));
         $params['featured_products'] = $featured_products;
 
         $criterialatest = new CDbCriteria;
-        $date = date('Y-m-d');
         $criterialatest->condition = "status = 1 AND is_admin_approved = 1 AND '" . $date . "' >= new_from AND  '" . $date . "' <= new_to AND ( '" . $date . "' >= sale_from AND  '" . $date . "' <= sale_to) ";
         $latest_products = Products::model()->findAll($criterialatest);
         if (empty($latest_products)) {
@@ -156,6 +154,10 @@ class SiteController extends Controller {
                         Yii::app()->user->setState('buyer_id', $buyer_id);
                         Yii::app()->user->setState('buyer_fname', $buyer_fname);
 //                    $this->redirect(array('buyer/default/index'));
+                        if (Yii::app()->session['product_viewed']) {
+                            $path = "Product/Detail/name/" . Yii::app()->session['product_viewed'];
+                            $this->redirect(array($path));
+                        }
                         if (Yii::app()->session['temp_user']) {
                             Cart::model()->updateAll(array("user_id" => $buyer->user_id), 'session_id=' . Yii::app()->session['temp_user']);
                             CouponHistory::model()->updateAll(array("user_id" => $buyer->user_id), 'session_id=' . Yii::app()->session['temp_user']);
@@ -203,6 +205,7 @@ class SiteController extends Controller {
         Yii::app()->user->setState('user_type', null);
         Yii::app()->user->setState('buyer_id', null);
         Yii::app()->user->setState('merchant_id', null);
+        Yii::app()->session['product_viewed'] = "";
 
         Yii::app()->user->logout();
 

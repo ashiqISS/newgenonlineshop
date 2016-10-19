@@ -55,6 +55,7 @@ class ProductController extends Controller {
                 }
             }
         } else {
+            Yii::app()->session['product_viewed'] = $product->canonical_name;
             if (!isset(Yii::app()->session['temp_user'])) {
                 Yii::app()->session['temp_user'] = microtime(true);
             }
@@ -74,12 +75,9 @@ class ProductController extends Controller {
     }
 
     public function actionProducts() {
-//        print_r($_POST);
         $brands = $price = $category = $category_name = '';
         $def_min = $min = 50;
         $def_max = $max = 20000;
-//        echo $def_min = Yii::app()->db->createCommand("SELECT min(`price`) FROM `products`")->queryScalar();
-//        echo $def_max = Yii::app()->db->createCommand('SELECT max(`price`) FROM `products`')->queryScalar();
         $criteria = new CDbCriteria;
         $criteria->condition = 'status = 1 AND is_admin_approved = 1 AND `sale_to` >= CURDATE() ';
 //        is_discount_available
@@ -103,7 +101,6 @@ class ProductController extends Controller {
             $brands = $_POST['brand_inputs'];
             $brs = explode(',', $brands);
             foreach ($brs as $brand) {
-//                $find_in_set .= "FIND_IN_SET('$brand',`brand_id`) OR ";
                 $condition .= "`brand_id` = $brand OR";
             }
             $condition = rtrim($condition, ' OR');
@@ -122,20 +119,9 @@ class ProductController extends Controller {
                 $price_condition .= "price BETWEEN $price OR ";
                 $price_condition = rtrim($price_condition, ' OR');
                 $criteria->addCondition($price_condition);
-//                                var_dump($criteria->addCondition($price_condition));
-//                                exit;
             }
         }
-//        if (isset($_POST['priceRange']) && $_POST['priceRange'] != '') {
-//            $price = $_POST['priceRange'];
-//            $prc = explode(', ', $price);
-//            foreach ($prc as $price) {
-//                $price_condition .= "price BETWEEN $price OR ";
-//            }
-//            $price_condition = rtrim($price_condition, ' OR');
-//            $criteria->addCondition($price_condition);
-//        }
-//        var_dump($criteria);
+
         $criteria->order = 'id desc';
         $total = Products::model()->count($criteria);
 

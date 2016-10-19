@@ -21,7 +21,7 @@
 
 
                     <br>
-                    Hi Merchant,<br> we have sent a verification link to your e-mail address <?php echo $model->email; ?>.
+                    Hi,<br> we have sent a verification link to your e-mail address <?php echo $model->email; ?>.
                     <br>Please click on the verification link to help us create your account.
                     <br><br>
                     <br>Please note

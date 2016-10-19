@@ -43,7 +43,7 @@
                     <?php
                 } else {
                     ?>
-                <label style="color: red;font-size: 18px;">  Out Of stock </label>
+                    <label style="color: red;font-size: 18px;">  Out Of stock </label>
                     <?php
                 }
                 ?>
@@ -52,10 +52,11 @@
         </div>
         <?php if (Yii::app()->user->getId()) { ?>
             <ul>
-                <li style="display: inline-block;">
-                    <button class="cart-b add_to_cart" style="padding-right: 18px;padding-left: 18px;" id="<?= $product->id; ?>"><strong><i class="fa baskets fa-shopping-basket"></i> &nbsp;ADD TO CART</strong></button>
-                </li>
-
+                <?php if ($product->quantity != 0) { ?>
+                    <li style="display: inline-block;">
+                        <button class="cart-b add_to_cart" style="padding-right: 18px;padding-left: 18px;" id="<?= $product->id; ?>" ><strong><i class="fa baskets fa-shopping-basket"></i> &nbsp;ADD TO CART</strong></button>
+                    </li>
+                <?php } ?>
                 <li style="display: inline-block;padding-left: 1em;">
                     <button class="cart-b add_to_wishlist" id="<?= $product->id; ?>" onclick="addToWishlist(this.id)"><strong><i class="fa baskets fa-shopping-basket"></i> &nbsp;ADD TO WISHLIST</strong></button>
                 </li>

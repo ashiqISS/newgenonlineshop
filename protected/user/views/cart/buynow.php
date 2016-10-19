@@ -68,11 +68,11 @@
                                     <thead>
                                         <tr>
                                             <th class="tb"> Image</th>
-                                            <th>Product Name</th>
-                                            <th>Price</th>
-                                            <th>Qty</th>
-                                            <th>Delete</th>
-                                            <th>Total</th>
+                                            <th style="text-align: left;">Product Name</th>
+                                            <th style="text-align: left;">Price</th>
+                                            <th style="text-align: left;">Qty</th>
+                                            <th style="text-align: left;">Delete</th>
+                                            <th style="text-align: left;">Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,8 +90,8 @@
                                                         <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php echo $folder; ?>/<?php echo $prod_details->id; ?>/small.<?php echo $prod_details->main_image; ?>" class="img-responsive crt mid" align="absmiddle" style="max-height:300px; max-width:200px;display: block;">
                                                     </a>
                                                 </td>
-                                                <td>
-                                                    <h2>
+                                                <td style="text-align: left;">
+                                                    <h2 style="text-align: left;">
                                                         <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $prod_details->canonical_name; ?>"style="text-decoration: none;">
                                                             <?php echo $prod_details->product_name; ?>
                                                         </a>
@@ -109,8 +109,8 @@
                                                 $ship = $cart_qty * $shipprice;
                                                 $gt = $tot_price + $ship;
                                                 ?>
-                                                <td><h2><?= Yii::app()->Currency->convert($price); ?></h2></td>
-                                                <td class="">
+                                                <td style="text-align: left;"><h2 style="text-align: left;"><?= Yii::app()->Currency->convert($price); ?></h2></td>
+                                                <td style="text-align: left;" class="">
                                                     <form action="<?php echo Yii::app()->request->baseUrl; ?>/index.php/cart/updatecart" method="post" id="qty_<?php echo $cart->id; ?>">
                                                         <input type="hidden" value="<?php echo $cart->id; ?>" name="cart_id" />
 
@@ -131,8 +131,8 @@
                                                     </form>
 
                                                 </td>
-                                                <td><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/cart/Delete?id=<?= $cart->id; ?>"><img class="bin" src="<?= Yii::app()->baseUrl; ?>/images/ben.png"></a></td>
-                                                <td><h2 class="range_<?php echo $cart->id; ?>"><?= Yii::app()->Currency->convert($tot_price); ?></h2></td>
+                                                <td style="text-align: center;"><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/cart/Delete?id=<?= $cart->id; ?>" style="text-align: center;"><img class="bin" src="<?= Yii::app()->baseUrl; ?>/images/ben.png"></a></td>
+                                                <td style="text-align: left;"><h2 class="range_<?php echo $cart->id; ?>" style="text-align: left;"><?= Yii::app()->Currency->convert($tot_price); ?></h2></td>
                                         <input type="hidden" id="cart_<?php echo $cart->id; ?>" value="<?php echo $prod_details->id; ?>">
                                         </tr>
                                         <?php

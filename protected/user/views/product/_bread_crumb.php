@@ -11,7 +11,7 @@ if ($action == 'category') {
                 } else {
                         $get_parent = ProductCategory::model()->findByPk($get_cat_name->parent);
                         ?>
-                        <span> > </span><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products/category/name/<?= $get_parent->canonical_name; ?>"><?php echo $get_parent->category_name; ?></a><span> > </span> <?php echo $get_cat_name->category_name; ?>
+                        <span> > </span><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products?cat_name=<?= $get_parent->canonical_name; ?>"><?php echo $get_parent->category_name; ?></a><span> > </span> <?php echo $get_cat_name->category_name; ?>
                         <?php
                 }
         }
@@ -25,7 +25,7 @@ if ($action == 'category') {
                 } else {
                         $get_parent = ProductCategory::model()->findByPk($get_cat_name->parent);
                         ?>
-                        <span> > </span><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products/category/name/<?= $get_parent->canonical_name; ?>"><?php echo $get_parent->category_name; ?></a><span> > </span> <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products/category/name/<?= $get_cat_name->canonical_name; ?>"><?php echo $get_cat_name->category_name; ?></a>
+                        <span> > </span><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products?cat_name=<?= $get_parent->canonical_name; ?>"><?php echo $get_parent->category_name; ?></a><span> > </span> <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products?cat_name=<?= $get_cat_name->canonical_name; ?>"><?php echo $get_cat_name->category_name; ?></a>
                         <?php
                 }
         }

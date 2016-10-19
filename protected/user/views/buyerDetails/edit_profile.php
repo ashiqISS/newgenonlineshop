@@ -69,14 +69,14 @@
                                     <?php echo $form->labelEx($model, 'first_name'); ?>
 
                                     <?php echo $form->textField($model, 'first_name', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
-                                    <?php echo $form->error($model, 'first_name',array('class'=>'red')); ?>
+                                    <?php echo $form->error($model, 'first_name', array('class' => 'red')); ?>
                                 </div>
                                 <div class="col-sm-6">
 
                                     <?php echo $form->labelEx($model, 'last_name'); ?>
 
                                     <?php echo $form->textField($model, 'last_name', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
-                                    <?php echo $form->error($model, 'last_name',array('class'=>'red')); ?>
+                                    <?php echo $form->error($model, 'last_name', array('class' => 'red')); ?>
                                 </div>
                             </div>
                         </div>
@@ -108,15 +108,15 @@
                                         ),
                                     ));
                                     ?>
-                                    <?php echo $form->error($model, 'dob',array('class'=>'red')); ?>
+                                    <?php echo $form->error($model, 'dob', array('class' => 'red')); ?>
                                 </div>
 
 
                                 <div class="col-sm-6">  <br>
                                     <?php echo $form->labelEx($model, 'gender'); ?>
 
-                                    <?php echo $form->dropDownList($model, 'gender', array('male' => "male", 'female' => "fe-male"), array('empty' => 'Select Gender', 'class' => 'form-control')); ?>
-                                    <?php echo $form->error($model, 'gender',array('class'=>'red')); ?>
+                                    <?php echo $form->dropDownList($model, 'gender', array('Male' => "Male", 'Female' => "Female"), array('empty' => 'Select Gender', 'class' => 'form-control')); ?>
+                                    <?php echo $form->error($model, 'gender', array('class' => 'red')); ?>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                     <?php echo $form->labelEx($user_model, 'email'); ?>
 
                                     <?php echo $form->textField($user_model, 'email', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
-                                    <?php echo $form->error($user_model, 'email',array('class'=>'red')); ?>
+                                    <?php echo $form->error($user_model, 'email', array('class' => 'red')); ?>
                                 </div>
 
 
@@ -136,7 +136,7 @@
                                     <?php echo $form->labelEx($user_model, 'phone_number'); ?>
 
                                     <?php echo $form->textField($user_model, 'phone_number', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
-                                    <?php echo $form->error($user_model, 'phone_number',array('class'=>'red')); ?>
+                                    <?php echo $form->error($user_model, 'phone_number', array('class' => 'red')); ?>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                                     <?php echo $form->labelEx($model, 'phone_no_2'); ?>
 
                                     <?php echo $form->textField($model, 'phone_no_2', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
-                                    <?php echo $form->error($model, 'phone_no_2',array('class'=>'red')); ?>
+                                    <?php echo $form->error($model, 'phone_no_2', array('class' => 'red')); ?>
                                 </div>
 
 
@@ -160,14 +160,14 @@
                                     <?php echo $form->labelEx($model, 'newsletter'); ?>
 
                                     <?php echo $form->dropDownList($model, 'newsletter', array('1' => "Enabled", '0' => "Disabled"), array('class' => 'form-control')); ?>
-                                    <?php echo $form->error($model, 'newsletter',array('class'=>'red')); ?>
+                                    <?php echo $form->error($model, 'newsletter', array('class' => 'red')); ?>
                                 </div>
                             </div>
                         </div>
 
 
                         </fieldset>
-<br>
+                        <br>
                         <div class="col-sm-12">
 
                             <div class="buttons clearfix">

@@ -279,7 +279,7 @@ class Header extends CWidget {
                                                 </div>-->
                                             <ul class="nav navbar-nav">
                                                 <!--<li class="active"><a href="#">Home</a></li>-->
-                                                <?php if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Home</a></li><?php } ?>
+                                                <?php /* if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Home</a></li><?php } */?>
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about-us">About Us</a></li> 
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
