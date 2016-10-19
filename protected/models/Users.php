@@ -7,7 +7,7 @@
  * @property integer $id
  * @property integer $user_type
  * @property string $email
- * @property integer $phone_number
+ * @property string $phone_number
  * @property integer $password
  * @property integer $activation_link
  * @property integer $verification_code
@@ -53,7 +53,8 @@ class Users extends CActiveRecord {
             array('email, phone_number', 'unique'),
             array('user_type, phone_number, activation_link, verification_code, user_status, bad_attempts, CB, UB, field1', 'numerical', 'integerOnly' => true),
             array('email', 'length', 'max' => 320),
-            array('email', 'email'),
+            array('phone_number', 'length', 'max' => 12),
+            array('email', 'email'),            
             array('password, confirm_password', 'length', 'min' => 6, 'max' => 40),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
