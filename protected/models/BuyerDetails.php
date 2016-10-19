@@ -46,13 +46,14 @@ class BuyerDetails extends CActiveRecord {
         // will receive user inputs.
         return array(
 //			array('user_id, first_name, last_name, dob, gender, phone_no_2, newsletter, wallet_amt, CB, UB, DOC, DOU', 'required'),
-            array('first_name, last_name, dob, gender, newsletter,terms', 'required', 'on' => 'user_create'),
+            array('first_name, last_name, dob, gender, newsletter, terms', 'required', 'on' => 'user_create'),
             array('terms', 'compare', 'compareValue' => 1, 'message' => 'Please accept terms and conditions to use our service', 'on' => 'user_create'),
             array('first_name, last_name, dob, gender', 'required', 'on' => 'admin_create'),
-            array('user_id, newsletter, CB, UB, field2, field3', 'numerical', 'integerOnly' => true),
-            array('first_name, last_name, phone_no_2', 'length', 'max' => 100),
+            array('user_id, newsletter, CB, UB, phone_no_2, field3', 'numerical', 'integerOnly' => true),
+            array('first_name, last_name', 'length', 'max' => 100),
             array('gender', 'length', 'max' => 50),
             array('wallet_amt', 'length', 'max' => 10),
+            array('phone_no_2', 'length', 'max' => 12),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id, user_id, first_name, last_name, dob, gender, phone_no_2, newsletter, wallet_amt, CB, UB, DOC, DOU, field2, field3, email, last_login, phone_number, user_status', 'safe', 'on' => 'search'),
@@ -166,9 +167,7 @@ class BuyerDetails extends CActiveRecord {
 
     public static function getFullname($id) {
         $model = BuyerDetails::model()->findByAttributes(array('user_id' => $id));
-        $fname = $model->first_name;
-        $lname = $model->last_name;
-        $name = $model->first_name.' '.$model->last_name;
+        $name = $model->first_name . ' ' . $model->last_name;
         return $name;
     }
 
