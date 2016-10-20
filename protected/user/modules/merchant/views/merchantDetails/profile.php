@@ -76,6 +76,7 @@
                                             $category = ProductCategory::model()->findByPk($cat);
                                             $catt .= Yii::app()->category->selectCategories($category) . ', ';
                                         }
+                                        $catt = rtrim($catt,', ,');
                                         echo $catt;
                                         ?>
                                     </label>

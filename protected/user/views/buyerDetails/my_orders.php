@@ -63,27 +63,32 @@
                             <?php
 //                        print_r($orders);
                             foreach ($orders as $order) {
-//                            echo '<br><br>'.$order->id.'<br><br>';
                                 $orderHistory = OrderHistory::model()->findByAttributes(array('order_id' => $order->id));
                                 $orderProducts = OrderProducts::model()->findAllByAttributes(array('order_id' => $order->id));
                                 foreach ($orderProducts as $orderProduct) {
-//                                echo $orderProduct->product_id.',';
-                                    $product = Products::model()->findByPk($orderProduct->product_id);
+                                    if ($product = Products::model()->findByPk($orderProduct->product_id)) {
+                                        $product_url = Yii::app()->request->baseUrl . '/index.php/Product/Detail/name/' . $product->canonical_name;
+                                        $folder = Yii::app()->Upload->folderName(0, 1000, $orderProduct->product_id);
+                                        $img_url = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $product->id . '/small.' . $product->main_image;
+                                        $product_name = $product->product_name;
+                                    } else {
+                                        $product_url = 'javascript:void(0)';
+                                        $img_url = Yii::app()->request->baseUrl . '/uploads/products/no_image.jpg';
+                                        $product_name = '<font color="#b1b1b1">Product Removed</font>';
+                                    }
                                     ?>       
                                     <div class="div-main">
                                         <div class="div-4">
                                             <div class="parttt-1" style="padding: 1em;">
                                                 <!--main_image-->
-                                                <?php
-                                                $folder = Yii::app()->Upload->folderName(0, 1000, $orderProduct->product_id);
-                                                ?>
-                                                <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
-                                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php echo $folder; ?>/<?php echo $product->id; ?>/small.<?php echo $product->main_image; ?>" class="img-responsive crt mid" align="absmiddle" style="max-height:300px; max-width:200px;display: block;">
+
+                                                <a href="<?= $product_url ?>">
+                                                    <img src="<?= $img_url ?>" class="img-responsive crt mid" align="absmiddle" style="display: block;">
                                                 </a>
                                                 <!--<img class="catz" src="<?= Yii::app()->request->baseUrl; ?>/images/cart.jpg">-->
                                             </div>
                                             <div class="parttt-2">
-                                                <h1><?= $product->product_name; ?></h1>
+                                                <h1><?= $product_name; ?></h1>
                                                 <h2>Qty : <?= $orderProduct->quantity; ?></h2>
                                                 <h2>
                                                     <?= Yii::app()->Currency->convert($orderProduct->amount); ?>
@@ -103,7 +108,7 @@
 
                                                 <h3>  
                                                     <span style="color: #797979;"><?= Utilities::getPaymentStatus($order->status) ?></span><br>
-                                                   <br><br>
+                                                    <br><br>
 
                                                     <?= $orderHistory->order_status_comment ?>
                                                 </h3>

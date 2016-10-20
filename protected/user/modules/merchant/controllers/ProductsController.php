@@ -49,6 +49,7 @@ class ProductsController extends Controller {
 
     public function actionAddProduct() {
         $model = new Products('user_create');
+         $model->setScenario('create');
         $plandetails = MerchantPlans::model()->findByAttributes(array('user_id' => Yii::app()->user->getState('merchant_id')), array('condition' => 'no_of_days_left > 0'));
 
 
@@ -172,6 +173,8 @@ class ProductsController extends Controller {
         $id = $product;
         $model = $this->loadModel($id);
         $model->setScenario('update');
+         $plandetails = MerchantPlans::model()->findByAttributes(array('user_id' => Yii::app()->user->getState('merchant_id')), array('condition' => 'no_of_days_left > 0'));
+
 
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
@@ -316,6 +319,7 @@ class ProductsController extends Controller {
         }
         $this->render('add_product', array(
             'model' => $model,
+            'plandetails' => $plandetails,
         ));
     }
 

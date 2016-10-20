@@ -50,7 +50,7 @@ class Users extends CActiveRecord {
             array('user_type, email, phone_number, password, confirm_password, user_status', 'required', 'on' => 'admin_create'),
             array('user_type, email, phone_number, password, confirm_password', 'required', 'on' => 'user_create'),
             array('confirm_password', 'compare', 'compareAttribute' => 'password', 'message' => 'Password and confirm password does not match', 'on' => 'admin_create, user_create'),
-            array('email, phone_number', 'unique'),
+            array('email, phone_number', 'unique', 'on' => 'admin_create, user_create'),
             array('user_type, phone_number, activation_link, verification_code, user_status, bad_attempts, CB, UB, field1', 'numerical', 'integerOnly' => true),
             array('email', 'length', 'max' => 320),
             array('phone_number', 'length', 'max' => 12),

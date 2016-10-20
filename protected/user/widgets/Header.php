@@ -165,11 +165,12 @@ class Header extends CWidget {
                                         </div>
                                     </li>
                                                 <!--<li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-cart"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">MyCart</a></li>-->
-                                    <li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-wishlist"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/shop.png">Wishlist</a></li>
+                                   
 
                                     <?php
                                     if (Yii::app()->user->hasState('user_id')) {
                                         ?>
+                                     <li><a class="mycart" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/my-wishlist"><img class="shop2" src="<?= Yii::app()->request->baseUrl; ?>/images/wish.png">Wishlist</a></li>
                                         <li class="dropdown">
 
                                             <button class="btn btn-primary cat dropdown-toggle" type="button" data-toggle="dropdown" style="padding: 0 2px;margin-bottom: none;font-weight: 0;vertical-align: top;">
@@ -280,7 +281,7 @@ class Header extends CWidget {
                                             <ul class="nav navbar-nav">
                                                 <!--<li class="active"><a href="#">Home</a></li>-->
                                                 <?php /* if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Home</a></li><?php } */?>
-                                                <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
+                                                <!--<li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>-->
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about-us">About Us</a></li> 
                                                 <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                 <li><a href="<?= Yii::app()->request->baseUrl . "/index.php/product/offers "?>">Offers & Deals</a></li> 
@@ -326,8 +327,8 @@ class Header extends CWidget {
                                                                                                                     </div>
                                                                                                                 </div>-->
                                                     </li>
-                                                    <?php if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products"><span>Home</span></a></li><?php } ?>
-                                                    <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>
+                                                    <?php /* if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products"><span>Home</span></a></li><?php } */?>
+                                                    <!--<li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>-->
                                                     <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about-us"><span>About Us</span></a></li>
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                     <li><a href="#"><span>Offers & Deals</span></a></li>

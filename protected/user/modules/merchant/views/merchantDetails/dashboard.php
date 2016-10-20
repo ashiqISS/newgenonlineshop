@@ -30,7 +30,7 @@
                 <div class="col-md-6">
                     <?php
                     $id = Yii::app()->user->getState('merchant_id');
-                    echo 'Hi ' . MerchantDetails::getFullname($id) . ',<br>';
+                    echo 'Hi ' . MerchantDetails::getMerchantname($id) . ',<br>';
                     echo $userdetails->email . '<br>';
                     echo MerchantDetails::getShopname($id) . '<br>';
                     ?>

@@ -1,26 +1,26 @@
 <style>
     input.btn.submit_btn {
-    background-color: #c47c65;
-    padding-left: 12px;
-    padding-right: 10px;
-    padding-top: 8px;
-    padding-bottom: 9px;
-    margin-top: 5%;
-    color: #fff;
-    font-weight: 400;
-    border-radius: 0px;
-    display: block;
-    font-size: 13px;
-    max-width: 157px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    border-radius: 4px;
-}
-input.btn.submit_btn:hover {
+        background-color: #c47c65;
+        padding-left: 12px;
+        padding-right: 10px;
+        padding-top: 8px;
+        padding-bottom: 9px;
+        margin-top: 5%;
+        color: #fff;
+        font-weight: 400;
+        border-radius: 0px;
+        display: block;
+        font-size: 13px;
+        max-width: 157px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        border-radius: 4px;
+    }
+    input.btn.submit_btn:hover {
         background: #dc9780 !important;
-   }
+    }
 
-   
+
     .form-review {
         display: block;
         width: 250px;
@@ -349,7 +349,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                             </div>
                         </div>
                         <div class="form-group">
-                            <input class="btn submit_btn" type="button" value="Submit">
+                            <input class="btn submit_btn review_submit" type="button" value="Submit">
 
                         </div>
 
@@ -433,31 +433,32 @@ if (!empty($you_may_also_like)) {
                         <?php
                         $i = 1;
                         foreach ($best_sellers as $productid) {
-                            $product = Products::model()->findByPk($productid->product_id);
-                            if ($product->main_image == NULL) {
-                                $main_image = Yii::app()->getBaseUrl(true) . '/uploads/products/no_image.jpg';
-                            } else {
-                                $main_image = Yii::app()->getBaseUrl(true) . '/uploads/products/' . Yii::app()->Upload->folderName(0, 1000, $product->id) . '/' . $product->id . '/medium.' . $product->main_image;
-                            }
-                            ?>
-                            <div class="item effects">
-                                <div class="main">
-                                    <div class="zoom-img">
-                                        <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>"><img src="<?= $main_image; ?>" class="img-responsive" style="height: 250px;"></a>
+                            if ($product = Products::model()->findByPk($productid->product_id)) {
+                                if ($product->main_image == NULL) {
+                                    $main_image = Yii::app()->getBaseUrl(true) . '/uploads/products/no_image.jpg';
+                                } else {
+                                    $main_image = Yii::app()->getBaseUrl(true) . '/uploads/products/' . Yii::app()->Upload->folderName(0, 1000, $product->id) . '/' . $product->id . '/medium.' . $product->main_image;
+                                }
+                                ?>
+                                <div class="item effects">
+                                    <div class="main">
+                                        <div class="zoom-img">
+                                            <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>"><img src="<?= $main_image; ?>" class="img-responsive" style="height: 250px;"></a>
+                                        </div>
+                                        <h2>
+                                            <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
+                                                <?php echo $product->product_name; ?>
+                                            </a>
+                                        </h2>
+                                        <?php if (Yii::app()->user->getId()) { ?>
+                                            <h3><?php echo Yii::app()->Discount->Discount($product); ?></h3>
+                                        <?php } ?>
+
                                     </div>
-                                    <h2>
-                                        <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/Product/Detail/name/<?php echo $product->canonical_name; ?>">
-                                            <?php echo $product->product_name; ?>
-                                        </a>
-                                    </h2>
-                                    <?php if (Yii::app()->user->getId()) { ?>
-                                        <h3><?php echo Yii::app()->Discount->Discount($product); ?></h3>
-                                    <?php } ?>
-
                                 </div>
-                            </div>
 
-                        <?php } ?>
+                            <?php }
+                        } ?>
                     </div>
                 </div>
 

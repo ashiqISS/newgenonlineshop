@@ -65,7 +65,14 @@
                                                     'value' => function($model) {
                                                             $product_details = Products::model()->findByPk($model->product_id);
 //                                                            return '<a href="' . Yii::app()->baseUrl . '/admin.php/products/products/view/id/' . $product_details->id . '" target="_blank">' . $product_details->product_name . '-' . $product_details->product_code . '</a>';
+                                                            if($product_details)
+                                                            {
                                                             return  $product_details->product_name . '-' . $product_details->product_code ;
+                                                            }
+                                                            else
+                                                            {
+                                                                return '<font color="#b1b1b1">Product removed</font>';
+                                                            }
                                                     },
                                                     'type' => 'raw',
                                                 ),

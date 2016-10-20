@@ -36,7 +36,7 @@ $id = $data->id;
     <td>
         <div style="padding: .2em"><?php echo CHtml::link('clone', array('products/CloneProduct', 'id' => $id), array('style' => 'color:#346cce;font-size:12px')); ?></div>
         <div style="padding: .2em"><?php echo CHtml::link('Edit', array("products/Edit", 'product' => $id), array('style' => 'color:#346cce;font-size:12px')); ?></div>
-        <div style="padding: .2em"><?php echo CHtml::link('Delete', array("products/DeleteProduct", 'product' => $id), array('style' => 'color:#346cce;font-size:12px')); ?></div>
+        <!--<div style="padding: .2em"><?php // echo CHtml::link('Delete', array("products/DeleteProduct", 'product' => $id), array('style' => 'color:#346cce;font-size:12px')); ?></div>-->
         <div style="padding: .2em"><?php echo CHtml::link('View', array('products/View', 'product' => $id), array('style' => 'color:#346cce;font-size:12px')); ?></div>
     </td>
 
