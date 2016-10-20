@@ -124,7 +124,14 @@
                                 <?php
                                 foreach ($sales as $sale) {
                                         $order_produ = Order::model()->findByPk($sale->order_id);
-                                        $order_products = Products::model()->findByPk($sale->product_id);
+                                        if($order_products = Products::model()->findByPk($sale->product_id))
+                                        {
+                                            $product_name = $order_products->product_name;
+                                        }
+                                        else
+                                        {
+                                            $product_name = '<font color="#b1b1b1">Product removed</font>';
+                                        }
                                         $user = BuyerDetails::model()->findByAttributes(array('user_id' => $order_produ->user_id));
                                         ?>
 
@@ -139,7 +146,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?= $order_products->product_name; ?></td>
+                                            <td><?= $product_name ?></td>
                                             <td> <?= $sale->amount; ?></td>
                                             <td><?= date('d-m-Y', strtotime($order_produ->order_date)); ?></td>
                                             <td><?= $sale->quantity; ?></td>
@@ -158,36 +165,6 @@
                     </td>
                 </tr>
             </table>
-<!--            <table class="tlb_total">
-                <tr class="pro_info">
-                    <th class="new">PRODUCT NAME</th><th class="new"> QUANTITY  </th><th class="new"> UNIT PRICE  </th><th class="new"> TOTAL  </th>
-                </tr>
-            <?php // foreach ($productOrder as $orders) {  ?>
-            <?php
-//                        $product = Products::model()->findByPk($orders->product_id);
-//                        print_r($product_names);exit;
-//                        foreach ($product_names as $product) {
-            ?>
-                <tr> <td style="border: 1px solid #ddd; text-align: left; padding: 6px 0px 0px 20px;"><?php echo $product->product_name; ?></td>
-                    <td style="border: 1px solid #ddd; text-align: left;padding: 6px 0px 0px 20px;">
-            <?php echo $productOrder->quantity; ?>
-                    </td>
-                    <td style="border: 1px solid #ddd; text-align: left;padding: 6px 0px 0px 20px;"><?php
-            echo $product->price . '.00';
-            ?></td>
-                    <td style="border: 1px solid #ddd; text-align: left;padding: 6px 0px 0px 20px;"> <?php echo ($productOrder->quantity * $product->price) . '.00'; ?></td>
-                </tr>
-                </br>
-            <?php // }
-            ?>
-            <?php
-//                }
-            ?>
-                <tr>
-                    <td align="center">TOTAL</td><td></td><td></td><td><strong  style="padding: 6px 0px 0px 17px;"><?php echo $productOrder->amount . '.00'; ?></strong></td>
-                </tr>
-            </table>-->
-            <!--            <button onclick="myFunction()">Print this page</button>-->
         </div>
     </body>
 </html>

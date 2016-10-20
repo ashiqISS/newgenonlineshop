@@ -58,7 +58,8 @@
                             } else {
 
                                 foreach ($wishlist as $item) {
-                                    $product = Products::model()->findByPk($item->product_id);
+                                    if($product = Products::model()->findByPk($item->product_id))
+                                    {
                                     if ($product->main_image == NULL) {
                                         $main_image = Yii::app()->getBaseUrl(true) . '/uploads/products/no_image.jpg';
                                     } else {
@@ -101,6 +102,7 @@
 
                                     <?php
                                 }
+                            }
                             }
                             ?>
                         </div>

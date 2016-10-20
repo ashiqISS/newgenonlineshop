@@ -33,7 +33,7 @@
 
                 <div class="left-my_acnt">
                     <div style="padding: 2em;">
-                    <?php  echo $this->renderPartial('_reports_sub_menu');?>
+                        <?php echo $this->renderPartial('_reports_sub_menu'); ?>
                     </div>
 
                     <div class="panel-body sis">
@@ -83,7 +83,7 @@
                             ));
                             ?>
 
-                            <?php echo CHtml::submitButton('GO' ,array('class' => "submit_btn sbbt")); ?>
+                            <?php echo CHtml::submitButton('GO', array('class' => "submit_btn sbbt")); ?>
                             <?php echo CHtml::Button('Reset', array('id' => 'resetSalesReport', 'class' => "submit_btn sbbt")); ?>
                             <?php echo CHtml::endForm(); ?>
 
@@ -93,69 +93,73 @@
                         <br/>
                         <?php
                         if (empty($sales)) {
-                                ?>
-                                <h4 class="fournotfour">You have no completed orders!</h4>
-                                <?php
+                            ?>
+                            <h4 class="fournotfour">You have no completed orders!</h4>
+                            <?php
                         } else {
-                                ?>
+                            ?>
 
 
-                                <div class="table-responsive ac_up">
-                                    <table class="table ac">
-                                        <thead class="thead-inverse ac_bg">
-                                            <tr>
-                                                <th>Order Id</th>
-                                                <th>Customer Name</th>
-                                                <th>Product Name </th>
-                                                <th>Amount </th>
-                                                <th>date of Order</th>
-                                                <th>Quantity </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                            <div class="table-responsive ac_up">
+                                <table class="table ac">
+                                    <thead class="thead-inverse ac_bg">
+                                        <tr>
+                                            <th>Order Id</th>
+                                            <th>Customer Name</th>
+                                            <th>Product Name </th>
+                                            <th>Amount </th>
+                                            <th>date of Order</th>
+                                            <th>Quantity </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                            <?php
-                                            foreach ($sales as $sale) {
-                                                    $order_produ = Order::model()->findByPk($sale->order_id);
-                                                    $order_products = Products::model()->findByPk($sale->product_id);
-                                                    $user = BuyerDetails::model()->findByAttributes(array('user_id' => $order_produ->user_id));
-                                                    ?>
-
-                                                    <tr>
-                                                        <td>ID-<?= $order_produ->id; ?></td>
-                                                        <td>
-                                                            <?php
-                                                            if ($order_produ->user_id == '' || $order_produ->user_id == 0) {
-                                                                    echo 'Unknown';
-                                                            } else {
-                                                                    echo $user->first_name . ' ' . $user->last_name;
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                        <td><?= $order_products->product_name; ?></td>
-                                                        <td> <?= $sale->amount; ?></td>
-                                                        <td><?= date('d-m-Y', strtotime($order_produ->order_date)); ?></td>
-                                                        <td><?= $sale->quantity; ?></td>
-                                                    </tr>
-                                                    <?php
+                                        <?php
+                                        foreach ($sales as $sale) {
+                                            $order_produ = Order::model()->findByPk($sale->order_id);
+                                            if ($order_products = Products::model()->findByPk($sale->product_id)) {
+                                                $product_name = $order_products->product_name;
+                                            } else {
+                                                $product_name = '<font color="#b1b1b1">Product removed</font>';
                                             }
+                                            $user = BuyerDetails::model()->findByAttributes(array('user_id' => $order_produ->user_id));
                                             ?>
+
                                             <tr>
-                                                <td colspan="1">Total Order </td> <td colspan="2"><? print_r($slaesSummary->cnt) ?></td>
-                                                <td colspan="1">Total Amount</td> <td colspan="2"><? print_r($slaesSummary->amt) ?></td>
-
+                                                <td>ID-<?= $order_produ->id; ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($order_produ->user_id == '' || $order_produ->user_id == 0) {
+                                                        echo 'Unknown';
+                                                    } else {
+                                                        echo $user->first_name . ' ' . $user->last_name;
+                                                    }
+                                                    ?>
+                                                </td>
+                                                <td><?= $product_name ?></td>
+                                                <td> <?= $sale->amount; ?></td>
+                                                <td><?= date('d-m-Y', strtotime($order_produ->order_date)); ?></td>
+                                                <td><?= $sale->quantity; ?></td>
                                             </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                        <tr>
+                                            <td colspan="1">Total Order </td> <td colspan="2"><? print_r($slaesSummary->cnt) ?></td>
+                                            <td colspan="1">Total Amount</td> <td colspan="2"><? print_r($slaesSummary->amt) ?></td>
 
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
 
 
-                                <div class="fifty-1">
+                            <div class="fifty-1">
 
-                                    <a href="<?php echo Yii::app()->request->baseUrl . '/user.php/merchant/order/PrintSalesReport?PrintStart=' . $fromdt . '&PrintEnd=' . $todate ?>" target="_blank"> <span class="prnt"> <img class="fives" src="<?php echo Yii::app()->request->baseUrl; ?>/images/print.png" title="Print"></span></a>
-                                </div>
-                                <?php
+                                <a href="<?php echo Yii::app()->request->baseUrl . '/user.php/merchant/order/PrintSalesReport?PrintStart=' . $fromdt . '&PrintEnd=' . $todate ?>" target="_blank"> <span class="prnt"> <img class="fives" src="<?php echo Yii::app()->request->baseUrl; ?>/images/print.png" title="Print"></span></a>
+                            </div>
+                            <?php
                         }
                         ?>
 
@@ -187,23 +191,23 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1
 //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/bootstrap.min.js');
 ?>
 <script>
-        $("#sales_filter_date_to").on('change', function (e) {
-            var start = $("#slaes_filter_date_from").val().replace('-', '/');
-            var end = $(this).val().replace('-', '/');
-            if (start > end) {
-                alert("From date should be less than end date");
-                $(this).val("");
-                return false;
-            }
-        });
-        $("#resetSalesReport").on('click', function (e) {
-            e.preventDefault();
-            window.location.href = baseurl + '/my-sales/';
-        });
+    $("#sales_filter_date_to").on('change', function (e) {
+        var start = $("#slaes_filter_date_from").val().replace('-', '/');
+        var end = $(this).val().replace('-', '/');
+        if (start > end) {
+            alert("From date should be less than end date");
+            $(this).val("");
+            return false;
+        }
+    });
+    $("#resetSalesReport").on('click', function (e) {
+        e.preventDefault();
+        window.location.href = baseurl + '/my-sales/';
+    });
 
-        $("#printSubmit").on('click', function (e) {
-            $('#printForm').submit();
-        });
+    $("#printSubmit").on('click', function (e) {
+        $('#printForm').submit();
+    });
 
 
 </script>

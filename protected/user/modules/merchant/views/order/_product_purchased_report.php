@@ -92,7 +92,7 @@
                         <table>
                             <tr>
                                 <td class="title">
-                                    NEWGEN SHOP : PRODUCT VIWED REPORT
+                                    NEWGEN SHOP :<br> PRODUCT PURCHASED REPORT
                                 </td>
 
                                 <td>
@@ -121,12 +121,21 @@
 
                                 <?php
                                 foreach ($purchased as $purchased) {
-                                        $ProductDetails = Products::model()->findByPk($purchased->product_id);
+                                        if($ProductDetails = Products::model()->findByPk($purchased->product_id))
+                                        {
+                                            $product_name = $ProductDetails->product_name;
+                                            $product_code = $ProductDetails->product_code;
+                                        }
+                                        else
+                                        {
+                                            $product_name = '<font color="#b1b1b1">product removed</font>';
+                                            $product_code = '-';
+                                        }
                                         ?>
 
                                         <tr>
-                                            <td><?= $ProductDetails->product_name; ?></td>
-                                            <td><?= $ProductDetails->product_name; ?></td>
+                                            <td><?= $product_name ?></td>
+                                            <td><?= $product_code ?></td>
                                             <td><?= $purchased->value_occurrence ?></td>
 
                                         </tr>

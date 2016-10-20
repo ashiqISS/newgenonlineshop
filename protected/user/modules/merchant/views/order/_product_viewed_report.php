@@ -92,7 +92,7 @@
                         <table>
                             <tr>
                                 <td class="title">
-                                    NEWGEN SHOP : PRODUCT VIWED REPORT
+                                    NEWGEN SHOP : PRODUCT VIEWED REPORT
                                 </td>
 
                                 <td>

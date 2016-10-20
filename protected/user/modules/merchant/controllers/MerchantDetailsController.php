@@ -326,7 +326,7 @@ class MerchantDetailsController extends Controller {
                                                                 Yii::app()->Upload->uploadAdImage1($image, $model->id, true, $dimension);
 //
                                                         }
-                                                        Yii::app()->user->setFlash('paid', 'Success Waiting For Admin Approve.');
+                                                        Yii::app()->user->setFlash('paid', 'Your request has placed successfully and is waiting for admin approval');
                                                         $this->redirect(array('FeaturedAds'));
                                                 }
                                         }

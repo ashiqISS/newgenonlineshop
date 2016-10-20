@@ -1,7 +1,7 @@
 <style>
     .input-fldd {
-    color: #555;  
-}
+        color: #555;  
+    }
 </style>
 <section class="banner">
 
@@ -27,7 +27,7 @@
             <div class="heading">
 
 
-                your personal details
+                Featured Advertisements
 
             </div>
 
@@ -42,22 +42,6 @@
 
                                 <div class="form-group required mrg">
 
-                                    <!--                                    <div class="col-sm-12">
-                                                                            <div class="col-sm-2 col-xs-2 zeros">
-                                                                                <label for="textinput" class="control-label">Ad title</label>
-                                                                            </div>
-
-                                                                            <div class="col-sm-1 col-xs-1 zeros">
-                                                                                <label for="textinput" class="control-label">:</label>
-                                                                            </div>
-
-                                                                            <div class="col-sm-6">
-
-                                                                                <input type="text" name="Meta keyword" value="" placeholder="Meta keyword" id="input-firstname" class="form-control input-fldd" vk_11acd="subscribed">
-                                                                            </div>
-
-
-                                                                        </div>-->
 
                                     <?php
                                     $form = $this->beginWidget('CActiveForm', array(
@@ -71,7 +55,13 @@
                                     ));
                                     ?>
                                     <div class="flash-success">
-                                        <?php echo Yii::app()->user->getFlash('paid'); ?>
+                                        <?php if (Yii::app()->user->hasFlash('paid')): ?>
+                                            <div class="row" style="padding-bottom: 1em;">
+                                                <div class="alert alert-info fade in">
+                                                    <?php echo Yii::app()->user->getFlash('paid'); ?>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
 
                                     <?php echo $form->errorSummary($model); ?>
@@ -280,7 +270,7 @@
 
                 </div>
 
-             <?php echo $this->renderPartial('_rightMenu'); ?>
+                <?php echo $this->renderPartial('_rightMenu'); ?>
             </div>
 
 

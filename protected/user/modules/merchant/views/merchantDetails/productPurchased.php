@@ -46,8 +46,11 @@
                                 array(
                                     'name' => 'product_id',
                                     'value' => function($data) {
-                                            $product_det = Products::model()->findByPk($data->product_id);
+                                        if ($product_det = Products::model()->findByPk($data->product_id)) {
                                             return $product_det->product_name;
+                                        } else {
+                                            return '<font color="#b1b1b1">product removed</font>';
+                                        }
                                     },
                                     'type' => 'raw'
                                 ),
@@ -55,8 +58,11 @@
                                     'name' => 'product_id',
                                     'header' => 'Product Code',
                                     'value' => function($data) {
-                                            $product_det = Products::model()->findByPk($data->product_id);
+                                        if ($product_det = Products::model()->findByPk($data->product_id)) {
                                             return $product_det->product_code;
+                                        } else {
+                                            return '<font color="#b1b1b1">-</font>';
+                                        }
                                     },
                                     'type' => 'raw'
                                 ),

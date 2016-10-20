@@ -73,10 +73,10 @@ class HeaderMerchant extends CWidget {
                                         <button class="btn btn-primary cat dropdown-toggle" type="button" data-toggle="dropdown">
                                             <?php if (isset(Yii::app()->session['currency'])) { ?>
                                                 <i class="fa currency_symbol">
-                                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/currency/<?php echo Yii::app()->session['currency']['id']; ?>.<?php echo Yii::app()->session['currency']['image']; ?>" width="16" height="11" alt=""/>
+                                                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/currency/<?php echo Yii::app()->session['currency']['id']; ?>.<?php echo Yii::app()->session['currency']['image']; ?>" width="16" height="11" alt="" style="margin-top: -3px;" />
                                                 </i> <?php echo Yii::app()->session['currency']['currency_code']; ?>
                                             <?php } else { ?>
-                                                <i class="fa currency_symbol"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/india-home.jpg" width="16" height="11" alt=""/></i> INR
+                                                <i class="fa currency_symbol"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/india-home.jpg" width="16" height="11" alt="" style="margin-top: -3px;" /></i> INR
                                             <?php } ?>
                                             <i class="fa fa-angle-down"></i>
                                         </button>
@@ -88,7 +88,7 @@ class HeaderMerchant extends CWidget {
                                                 ?>
                                                 <li>
                                                     <a href="<?php echo Yii::app()->baseUrl; ?>/index.php/Site/CurrencyChange/id/<?= $currency->id; ?>" class="currency" code="<?= $currency->id; ?>">
-                                                        <i class="fa currency_symbol"><img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/currency/<?= $currency->id; ?>.<?= $currency->image; ?>" width="16" height="11" alt=""/></i> <?= $currency->currency_code; ?></a>
+                                                        <i class="fa currency_symbol"><img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/currency/<?= $currency->id; ?>.<?= $currency->image; ?>" width="16" height="11" alt="" style="margin-top: -3px;" /></i> <?= $currency->currency_code; ?></a>
                                                 </li>
                                             <?php } ?>
                                         </ul>
