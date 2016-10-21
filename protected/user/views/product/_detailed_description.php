@@ -16,9 +16,9 @@ $review_count = count($product_reviews);
             <div class="tab_upcmg">
 
 
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#productDesc">Description </a></li>
-                    <li><a data-toggle="tab" href="#reviews">Reviews (<?= $review_count ?>)</a></li>
+                <ul class="nav nav-tabs" id="myTabs">
+                    <li id="descList" class="active"><a data-toggle="tab" href="#productDesc">Description </a></li>
+                    <li id="reviewList"><a data-toggle="tab" href="#reviews">Reviews (<?= $review_count ?>)</a></li>
 
                 </ul>
 

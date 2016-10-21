@@ -331,7 +331,7 @@ class Header extends CWidget {
                                                     <!--<li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>-->
                                                     <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about-us"><span>About Us</span></a></li>
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
-                                                    <li><a href="#"><span>Offers & Deals</span></a></li>
+                                                    <li><a href="<?= Yii::app()->request->baseUrl . "/index.php/product/offers "?>">Offers & Deals</a></li> 
 
                                                                                 <!--                                                    <li class="has-sub"><a href="#"><span>categories</span></a>
                                                                                                                                         <ul>

@@ -3,6 +3,11 @@
     label {
         font-weight: 100; 
     }
+    .cke_browser_webkit
+    {
+        overflow-x: auto;
+    }
+
 </style>
 <section class="banner">
     <div id="large-header" class="large-header " style="height: 124px; background: url(<?php echo Yii::app()->request->baseUrl; ?>/images/img_inn.jpg)">
@@ -24,7 +29,11 @@
                 <div class="left-content">
                     <?php
                     if (empty($plandetails)) {
-                        echo 'Sorry, your current plan has expired. Please upgrade your plan to add more products.';
+                        if ($newuser == 1) {
+                            echo '<a href="' . CommonUrls::plans() . '"> Please purchase a plan to add products. </a>';
+                        } else {
+                            echo 'Sorry, your current plan has expired. Please upgrade your plan to add more products.';
+                        }
                     } elseif ($plandetails->no_of_product_left <= 0) {
                         echo 'Sorry, your product count has reached the limit. Please upgrade your plan to add more products.';
                     } else {
@@ -160,20 +169,23 @@
                               </div>
                               </div>
                              */ ?>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12">
+                                    <div class="form-group">
 
-                            <div class="form-group">
+                                        <?php echo $form->labelEx($model, 'description'); ?>
 
-                                <?php echo $form->labelEx($model, 'description'); ?>
+                                        <?php // echo $form->textArea($model, 'description', array('rows' => 6, 'cols' => 50,'class' => 'form-control', 'placeholder' => 'Email', 'placeholder' => 'Email'));   ?>
+                                        <?php
+                                        $this->widget('application.admin.extensions.eckeditor.ECKEditor', array(
+                                            'model' => $model,
+                                            'attribute' => 'description',
+                                        ));
+                                        ?>
+                                        <?php echo $form->error($model, 'description'); ?>
 
-                                <?php // echo $form->textArea($model, 'description', array('rows' => 6, 'cols' => 50,'class' => 'form-control', 'placeholder' => 'Email', 'placeholder' => 'Email'));   ?>
-                                <?php
-                                $this->widget('application.admin.extensions.eckeditor.ECKEditor', array(
-                                    'model' => $model,
-                                    'attribute' => 'description',
-                                ));
-                                ?>
-                                <?php echo $form->error($model, 'description'); ?>
-
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -314,7 +326,7 @@
                                         <?php echo $form->labelEx($model, 'sale_to'); ?>
                                         <?php
                                         $date = date('Y-m-d', strtotime($plandetails->doc));
-                                        $exp_date = date("Y-m-d", strtotime($date . " + $plandetails->no_of_days days"));                                        
+                                        $exp_date = date("Y-m-d", strtotime($date . " + $plandetails->no_of_days days"));
 //                                        echo $exp_date;
                                         $now = time(); // or your date as well
                                         $exp_date = strtotime($exp_date);

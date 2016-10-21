@@ -49,9 +49,14 @@ class ProductsController extends Controller {
 
     public function actionAddProduct() {
         $model = new Products('user_create');
-         $model->setScenario('create');
+        $model->setScenario('create');
+        $newuser = 0;
         $plandetails = MerchantPlans::model()->findByAttributes(array('user_id' => Yii::app()->user->getState('merchant_id')), array('condition' => 'no_of_days_left > 0'));
-
+        if (MerchantPlans::model()->findByAttributes(array('user_id' => Yii::app()->user->getState('merchant_id')))) {
+            $newuser = 0;
+        } else {
+            $newuser = 1;
+        }
 
         if (isset($_POST['Products'])) {
 
@@ -166,6 +171,7 @@ class ProductsController extends Controller {
         $this->render('add_product', array(
             'model' => $model,
             'plandetails' => $plandetails,
+            'newuser' => $newuser
         ));
     }
 
@@ -173,7 +179,13 @@ class ProductsController extends Controller {
         $id = $product;
         $model = $this->loadModel($id);
         $model->setScenario('update');
-         $plandetails = MerchantPlans::model()->findByAttributes(array('user_id' => Yii::app()->user->getState('merchant_id')), array('condition' => 'no_of_days_left > 0'));
+         $newuser = 0;
+        $plandetails = MerchantPlans::model()->findByAttributes(array('user_id' => Yii::app()->user->getState('merchant_id')), array('condition' => 'no_of_days_left > 0'));
+        if (MerchantPlans::model()->findByAttributes(array('user_id' => Yii::app()->user->getState('merchant_id')))) {
+            $newuser = 0;
+        } else {
+            $newuser = 1;
+        }
 
 
 // Uncomment the following line if AJAX validation is needed
@@ -320,6 +332,7 @@ class ProductsController extends Controller {
         $this->render('add_product', array(
             'model' => $model,
             'plandetails' => $plandetails,
+            'newuser' => $newuser
         ));
     }
 

@@ -2,6 +2,10 @@
     .table > thead > tr > th {
         text-align: left;
     }
+    #merchant-payout-history-grid
+    {
+        overflow-x: auto;
+    }
 </style>
 <?php date_default_timezone_set('Asia/Kolkata'); ?>
 <section class="banner">

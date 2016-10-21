@@ -12,14 +12,21 @@
                 echo $servicedesc;
             }
             ?>
-            <a href="#descriptionTab" style="color: #337ab7;float: right;"> See Full description</a>
+            <a href="#descriptionTab" style="color: #337ab7;float: right;" id="seeLink"> See Full description</a>
 
         </p>
         <?php if (Yii::app()->user->getId()) { ?>
 
             <h3><?php echo Yii::app()->Discount->Discount($product); ?></h3>
             <span class="extax">Ex Tax : <?php echo Yii::app()->Discount->extax($product); ?></span>
+            <div class="row" style="padding-left: 1em;">
+               
+                <h4 style="">Wholesale Price : <?php echo Yii::app()->Currency->convert($product->wholesale_price); ?> </h4>
+                <h5> Wholesale Quantity : <?= $product->wholesale_quantity ?> </h5>
+            
+            </div>
         <?php } ?>
+
         <div class="product_quantity" style="padding-bottom: 1em;">
 
             <div class="qunatity">
@@ -77,3 +84,9 @@
     </div>
 
 </div>
+
+<script>
+    $('#seeLink').click(function () {
+        $('#myTabs a[href="#productDesc"]').tab('show');
+    });
+</script>

@@ -8659,6 +8659,18 @@ button.btn.dlt-btn.btn-default :hover {
 
 
 @media (max-width: 767px){
+    .log_upcmg {
+        width: 60%;
+        margin: auto;
+
+        border: 1px solid rgba(204, 204, 204, 0.52);
+
+        background-color: #ededed;
+        margin-top: 24px;
+        font-family: 'Roboto', sans-serif; 
+        background: none;
+        background-size: cover !important;
+        background-position: center center !important; }
 
     .new_form2{ width:100%;}
 
