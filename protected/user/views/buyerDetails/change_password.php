@@ -100,7 +100,7 @@
 
                 </div>
 
-                <div class="col-md-3 sidebar hidden-xs">
+                <div class="col-md-3 sidebar">
 
                     <ul>
                         <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/my-account" > <i class="fa fa-user fa-2x" aria-hidden="true"></i> <span>My Account</span></a></li>

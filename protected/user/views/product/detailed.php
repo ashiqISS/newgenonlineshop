@@ -170,7 +170,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
 
 <section class="details-products">
     <div class="container">
-        <div class="row">
+     
 
             <div style="padding-bottom: 1em;color: #e40689;">
                 <div class="breadcrumbs">
@@ -184,7 +184,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                 </div>
             </div>
 
-            <div class="row" style="padding: .5em;padding-bottom: 2em;">
+            <div class="row" style="padding: 1em;padding-bottom: 2em;">
                 <h2><?= $product->product_name; ?></h2>
             </div>
 
@@ -356,7 +356,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
                     </form>
                     <div class="review_message"> </div>
                 </div>
-            </div></div>
+            </div>
     </div>
 </section> <!-- end of facial -->
 

@@ -58,8 +58,8 @@ $this->breadcrumbs = array(
 <div class="container">
     
         <div class="row">
-                <div class="col-xs-4 row-borderd text-right empty_image"><img src="<?php echo Yii::app()->baseUrl ?>/images/logo.png" alt=""/></div>
-                <div class="col-xs-6 empty_message">
+                <div class="col-md-4 row-borderd text-right empty_image"><img src="<?php echo Yii::app()->baseUrl ?>/images/logo.png" alt=""/></div>
+                <div class="col-md-6 empty_message">
                         <h2 class="fournotfour">404!</h2>
                         <h3>Looks like the page you're looking for doesn't exist. Sorry about that.</h3>
                         <input type="hidden" value="<?php echo $code.' : '.CHtml::encode($message); ?>">

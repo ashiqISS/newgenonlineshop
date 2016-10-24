@@ -249,28 +249,6 @@ class Header extends CWidget {
                                     </div>
 
                                 </div>
-                                <!--                                <div class="col-md-7 col-sm-4 hidden-xs hidden-sm">
-                                                                    <div class="dropdown">
-                                                                        <button class="btn btn-primary cat dropdown-toggle" type="button" data-toggle="dropdown"><img class="bars" src="<?= Yii::app()->request->baseUrl; ?>/images/bars.png">Categories
-                                                                        </button>
-                                <?php // Utilities::loadCategory();
-                                ?>
-                                                                        <ul class="dropdown-menu categories">
-                                <?php
-//                                echo ProductCategory::model()->loadCategory();
-//                                            Utilities::loadCategory();
-//                                            $menus = ProductCategory::model()->findAllByAttributes(array(), array('condition' => 'header_visibility = 1 and id=parent order by sort_order'));
-//                                            foreach ($menus as $menu) {
-                                ?>
-                                
-                                                                                <li><a href="<?php // echo Yii::app()->request->baseUrl; ?>/index.php/product/category/name/<?php // echo $menu->canonical_name; ?>"><?php echo $menu->category_name; ?></a></li>
-                                <?php
-//                                            }
-                                ?>
-                                
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>-->
 
                                 <div class="col-md-5 col-sm-8">
                                     <nav class="navbar navbar-inverse hidden-xs hidden-sm">
@@ -328,7 +306,7 @@ class Header extends CWidget {
                                                                                                                 </div>-->
                                                     </li>
                                                     <?php /* if (Yii::app()->user->hasState('user_id')) { ?>  <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/products"><span>Home</span></a></li><?php } */?>
-                                                    <!--<li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">My Account</a></li>-->
+                                                    <li><a href="<?= Yii::app()->request->baseUrl; ?>/user.php/my-account">Categories</a></li>
                                                     <li><a href="<?= Yii::app()->request->baseUrl; ?>/index.php/about-us"><span>About Us</span></a></li>
                                                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products">Products</a></li> 
                                                     <li><a href="<?= Yii::app()->request->baseUrl . "/index.php/product/offers "?>">Offers & Deals</a></li> 

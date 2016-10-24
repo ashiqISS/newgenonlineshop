@@ -1,11 +1,10 @@
+
 <section class="banner">
-    <img src="<?= Yii::app()->request->baseUrl; ?>/images/img_inn.jpg">
-
-    <div class="banner_txt">
-        <h1 class="animated fadeInLeft m2">faq </h1>
-
+    <div id="large-header" class="large-header " style="height: 124px; background: url(<?= Yii::app()->baseUrl; ?>/images/img_inn.jpg)">
+        <div class="banner_txt">
+            <h1 class="animated fadeInLeft m2">faq</h1>
+        </div>
     </div>
-
 </section>
 
 <div class="clearfix"></div>

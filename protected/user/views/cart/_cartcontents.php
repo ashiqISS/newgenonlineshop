@@ -9,7 +9,7 @@ if ($prod_details) {
             $img_url = Yii::app()->request->baseUrl . '/uploads/products/no_image.jpg';
         }
         ?>
-        <img src="" />
+        <img src="<?= $img_url; ?>" />
         <h3><?php echo $prod_details->product_name; ?></h3>
         <p><span>Qty:</span>	<?php echo $cart_content->quantity; ?></p>
         <?php if (Yii::app()->user->getId()) { ?>

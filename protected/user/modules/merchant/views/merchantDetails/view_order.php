@@ -133,9 +133,9 @@
                                         <section class="content-header">
                                                 <h1>Order History</h1>
                                                 <br />
-                                                <a href="<?php echo Yii::app()->baseUrl; ?>/user.php/merchant/MerchantDetails/NewOrderHistory/id/<?php echo $model->id; ?>" class="btn  btn-success manage">Add New History</a>
-                                                <a href="<?php echo Yii::app()->baseUrl; ?>/user.php/merchant/MerchantDetails/PrintProductInvoice/id/<?php echo $model->id; ?>"  target="_blank" class="btn  btn-success manage">Print Invoice</a>
-                                                <a href="<?php echo Yii::app()->baseUrl; ?>/user.php/merchant/MerchantDetails/PrintShippingDetail/id/<?php echo $model->id; ?>"  target="_blank"  class="btn  btn-success manage">Print Ship Details</a>
+                                                <a href="<?php echo Yii::app()->baseUrl; ?>/user.php/merchant/MerchantDetails/NewOrderHistory/id/<?php echo $model->id; ?>" class="btn  btn-success manage order_btn">Add New History</a>
+                                                <a href="<?php echo Yii::app()->baseUrl; ?>/user.php/merchant/MerchantDetails/PrintProductInvoice/id/<?php echo $model->id; ?>"  target="_blank" class="btn  btn-success manage order_btn">Print Invoice</a>
+                                                <a href="<?php echo Yii::app()->baseUrl; ?>/user.php/merchant/MerchantDetails/PrintShippingDetail/id/<?php echo $model->id; ?>"  target="_blank"  class="btn  btn-success manage order_btn">Print Ship Details</a>
                                         </section>
 
                                         <?php $history = new OrderHistory('search'); ?>

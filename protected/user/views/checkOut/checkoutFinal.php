@@ -59,17 +59,17 @@
                                             <td colspan="2"><h2 style="margin-top: 0"><?php echo $prod_details->product_name; ?></h2></td>
                                         </tr>
                                         <tr>
-                                            <td rowspan="3">
+                                            <td rowspan="3" class="bdr">
                                                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php echo $folder; ?>/<?php echo $prod_details->id; ?>/small.<?php echo $prod_details->main_image; ?>" class="img-responsive crt mid" align="absmiddle" style="height:110px; width:100px;display: block;">
                                             </td>
-                                            <td>Price : <?= Yii::app()->Currency->convert($price); ?></td>
+                                            <td class="bdr">Price : <?= Yii::app()->Currency->convert($price); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Quantity : <?= $cart_qty ?></td>
+                                            <td class="bdr">Quantity : <?= $cart_qty ?></td>
                                         </tr>
                                         <tr>
 
-                                            <td>Total: <?= Yii::app()->Currency->convert($tot_price); ?></td>
+                                            <td class="bdr">Total: <?= Yii::app()->Currency->convert($tot_price); ?></td>
                                         </tr>
                                     </table>
 

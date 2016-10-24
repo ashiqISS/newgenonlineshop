@@ -77,7 +77,7 @@
                             </div>
                             <div class="copyz">
                                 <div class="col-sm-3 col-xs-3 zeros">
-                                    <label for="textinput" class="control-labelz">Account Created On </label>
+                                    <label for="textinput" class="control-labelz"> Created On </label>
                                 </div>
                                 <div class="col-sm-1 col-xs-1 zeros">
                                     <label for="textinput" class="control-labelz">:</label>
@@ -91,7 +91,7 @@
 
                 </div>
 
-                <div class="col-md-3 sidebar hidden-xs">
+                <div class="col-md-3 sidebar">
 
                     <ul>
                         <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/my-account"  class="act "> <i class="fa fa-user fa-2x" aria-hidden="true"></i> <span>My Account</span></a></li>

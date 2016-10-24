@@ -64,14 +64,15 @@
                         <div class="form-group required mrg">
 
                             <div class="col-sm-12">
-                                <div class="col-sm-6">
+                                <div class="row">
+                                <div class="col-sm-6"><br>
 
                                     <?php echo $form->labelEx($model, 'first_name'); ?>
 
                                     <?php echo $form->textField($model, 'first_name', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
                                     <?php echo $form->error($model, 'first_name', array('class' => 'red')); ?>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-6"><br>
 
                                     <?php echo $form->labelEx($model, 'last_name'); ?>
 
@@ -79,10 +80,12 @@
                                     <?php echo $form->error($model, 'last_name', array('class' => 'red')); ?>
                                 </div>
                             </div>
+                            </div>
                         </div>
                         <div class="form-group required mrg">
 
                             <div class="col-sm-12">
+                                <div class="row">
                                 <div class="col-sm-6">  <br>
                                     <?php echo $form->labelEx($model, 'dob'); ?>
 
@@ -120,9 +123,11 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
                         <div class="form-group required mrg">
 
                             <div class="col-sm-12">
+                                <div class="row">
                                 <div class="col-sm-6"><br>
 
                                     <?php echo $form->labelEx($user_model, 'email'); ?>
@@ -139,12 +144,14 @@
                                     <?php echo $form->error($user_model, 'phone_number', array('class' => 'red')); ?>
                                 </div>
                             </div>
+                            </div>
                         </div>
 
 
                         <div class="form-group required mrg">
 
                             <div class="col-sm-12">
+                                <div class="row">
                                 <div class="col-sm-6"><br>
                                     <?php echo $form->labelEx($model, 'phone_no_2'); ?>
 
@@ -162,6 +169,7 @@
                                     <?php echo $form->dropDownList($model, 'newsletter', array('1' => "Enabled", '0' => "Disabled"), array('class' => 'form-control')); ?>
                                     <?php echo $form->error($model, 'newsletter', array('class' => 'red')); ?>
                                 </div>
+                            </div>
                             </div>
                         </div>
 
@@ -196,7 +204,7 @@
 
             </div>
 
-            <div class="col-md-3 sidebar ">
+            <div class="col-md-3 sidebar">
 
                 <ul>
                     <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/user.php/my-account" > <i class="fa fa-user fa-2x" aria-hidden="true"></i> <span>My Account</span></a></li>

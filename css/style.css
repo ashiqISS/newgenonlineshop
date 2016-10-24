@@ -1,3 +1,8 @@
+
+.order_btn{}
+
+.order_btn:hover{ color:#000;}
+
 .alert-danger {
     color: #a94442;
     background-color: #f2dede;
@@ -6981,7 +6986,10 @@ input.rad {
     text-align: left;
 }
 
-
+.bdr
+{
+    border: 1px solid #e4dede;
+}
 
 table#t2 {
     border-collapse: collapse;
@@ -8659,6 +8667,13 @@ button.btn.dlt-btn.btn-default :hover {
 
 
 @media (max-width: 767px){
+
+    .order_btn{ font-size: 13px;}
+
+    .empty_image
+    {
+        text-align: center;
+    }
     .log_upcmg {
         width: 60%;
         margin: auto;
@@ -8689,12 +8704,12 @@ button.btn.dlt-btn.btn-default :hover {
         margin-top: 20px;
     }
 
-    .zeros {
-        padding-left: 15px;
-        width: 25%;
+   .zeros {
+        padding-left: 0px; 
+        width: 32%;
     }
 
-    .cht{border-right:none !important;}
+    .cht{border-left:none !important;}
 
 
     table#t03 {
@@ -8871,6 +8886,12 @@ button.btn.dlt-btn.btn-default :hover {
     img.women.img-responsive {
         margin-top: 0%;
     }
+
+    .services .left.adjust_img
+    {
+        float: none;
+        margin: auto !important;
+    }
     .gallery-updates-overlay {
         position: absolute;
         left: 0;
@@ -8993,7 +9014,10 @@ button.btn.dlt-btn.btn-default :hover {
 
 @media (max-width:600px){
 
-
+    .bx2
+    {
+        width: 100%;
+    }
     .counter-1 {
         float: left;
         width: 24%;
